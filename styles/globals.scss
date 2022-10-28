@@ -1,0 +1,35 @@
+@use './reset.scss';
+
+
+@use './fontsSignature.scss';
+@use './fonts.scss';
+@use './icon.scss';
+
+@import './variables.scss';
+
+body {
+  font-family: 'fontGeneral';
+  color: $color-primary;
+  text-align: center;
+}
+h1, h2{
+  font-family: 'fontTitle';
+  font-weight: bold;
+}
+button {
+  border: none;
+  background: none;
+}
+img{
+  max-width: 100%;
+  margin: auto;
+}
+a:hover{
+  color: $color-blue;
+  text-shadow: 0 0 0.2rem $color-white;
+
+}
+hr{
+  width: 90%;
+}
+

@@ -1,0 +1,32 @@
+
+@font-face {
+  font-family: 'signature';
+  //src:  url('fonts/icomoon.eot?5m9y13');
+  src: url('../asset/font/signature.svg') format('svg'),
+    url('../asset/font/signature.eot') format('eot'),
+    url('../asset/font/signature.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'signature' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.signature:before {
+  content: "\e999";
+}
