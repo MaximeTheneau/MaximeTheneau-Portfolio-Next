@@ -143,6 +143,40 @@
 .header .header-navbar{
   height: 100vh;
 }
+.footer{
+  &-form-top{
+    & input[type="text"], input[type="email"]{
+      width:90%;
+      margin: 1rem auto;
+      padding: 0.5rem;
+      font-family: 'fontGeneral';
+      font-size: 1rem;
+      border: 0.3rem solid $color-primary;
+      border-radius: 0.5rem;
+      outline: none;
+    }
+  }
+  & textarea{
+    width:90%;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    font-family: 'fontGeneral';
+    font-size: 1rem;
+    border: 0.3rem solid $color-primary;
+    border-radius: 0.5rem;
+    outline: none;
+  }
+  & button{
+    font-size: 1rem;
+    background: $color-primary;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-family: 'fontGeneral';
+    font-size: 1rem;
+    cursor: pointer;
+  }
+}
 
 @media screen and (min-width: 720px) {
   .home{

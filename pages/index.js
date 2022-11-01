@@ -170,27 +170,29 @@ export default function Home({ categories }) {
           ))
         }
         <form className={styles['footer-form']} onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Nom Prénom"
-            onChange={(e) => setState({ ...state, name: e.target.value })}
-            value={state.name}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Votre@Email.fr"
-            onChange={(e) => setState({ ...state, email: e.target.value })}
-            value={state.email}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Sujet"
-            onChange={(e) => setState({ ...state, subject: e.target.value })}
-            value={state.subject}
-            required
-          />
+          <div className={styles['footer-form-top']}>
+            <input
+              type="text"
+              placeholder="Nom Prénom"
+              onChange={(e) => setState({ ...state, name: e.target.value })}
+              value={state.name}
+              required
+            />
+            <input
+              type="email"
+              placeholder="Votre@Email.fr"
+              onChange={(e) => setState({ ...state, email: e.target.value })}
+              value={state.email}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Sujet"
+              onChange={(e) => setState({ ...state, subject: e.target.value })}
+              value={state.subject}
+              required
+            />
+          </div>
           <textarea
             placeholder="Message"
             onChange={(e) => setState({ ...state, message: e.target.value })}
@@ -198,6 +200,7 @@ export default function Home({ categories }) {
             required
           />
           <button type="submit">
+            <i className="icon-paper-plane" />
             Envoyer
           </button>
         </form>
