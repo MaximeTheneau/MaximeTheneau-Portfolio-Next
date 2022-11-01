@@ -173,14 +173,14 @@ export default function Home({ categories }) {
           <div className={styles['footer-form-top']}>
             <input
               type="text"
-              placeholder="Nom Prénom"
+              placeholder="Nom"
               onChange={(e) => setState({ ...state, name: e.target.value })}
               value={state.name}
               required
             />
             <input
               type="email"
-              placeholder="Votre@Email.fr"
+              placeholder="Email"
               onChange={(e) => setState({ ...state, email: e.target.value })}
               value={state.email}
               required
@@ -195,6 +195,7 @@ export default function Home({ categories }) {
           </div>
           <textarea
             placeholder="Message"
+            rows={5}
             onChange={(e) => setState({ ...state, message: e.target.value })}
             value={state.message}
             required
