@@ -3,9 +3,18 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
 import stylesHeader from '../styles/Header.module.scss'
 import { useState } from 'react'
-
+import cookie from "cookie";
+import { NextApiResponse } from "next";
+import React from "react";
 export default function Home({categories}) {
+
   const [toggleNav, setToggleNav] = useState(true);
+  const [state, setState] = React.useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   return (
     <div className={styles.container}>
       <Head>
@@ -14,7 +23,7 @@ export default function Home({categories}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
         {/** Header Images Sticky */}
-        { categories?.filter((item) => item.idTitle === '#Accueil').map((item) => (
+        { categories?.filter((item) => item.idTitle === '#home').map((item) => (
           <div key={item.id} id={item.title} >
               <picture>
                 <source srcSet={item.imgWebp} type="image/webp" />
@@ -55,7 +64,7 @@ export default function Home({categories}) {
             <ul className={styles["header-navbar"]} >
               {
                 categories?.map((item) => (
-                  <a href={item.idTitle}>
+                  <a href={item.idTitle} key={item.id} >
                     <li
                       className={styles["header-navbar-item"]} 
                       onClick={() => {
@@ -72,7 +81,7 @@ export default function Home({categories}) {
               <ul className={styles['header-navbar-720']}>
           {
             categories?.map((item) => (
-              <a href={item.idTitle}>
+              <a href={item.idTitle} key={item.id} >
                 <li>{item.title}</li>
               </a>
             ))
@@ -88,9 +97,9 @@ export default function Home({categories}) {
           <p>Marseille</p>
         </div>
         {   
-            categories?.filter((item) => item.idTitle === '#Projet').map((item) => (
+            categories?.filter((item) => item.idTitle === '#skills').map((item) => (
                 <div key={item.id} className={styles['home-picture']}>
-                  <div key={item.id} id={item.title}>
+                  <div id={item.title}>
                     <picture>
                       <source srcSet={item.imgWebp} type="image/webp" />
                       <img src={item.imgSvg} alt={item.title} className={styles["home-picture-title"]} />
@@ -115,24 +124,46 @@ export default function Home({categories}) {
                 </div>
               ))
         }
-
-      <hr />
-
-      {
-          categories.filter((item) => item.idTitle === '#Contact').map((item) => (
+    </main>
+    <footer className={styles.footer}>
+      <form className={styles['footer-form']}>
+        <input
+          type="text"
+          placeholder="Nom Prénom"
+          onChange={(e)=>setState({...state, 'name': e.target.value})}
+          value={state.name}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e)=>setState({...state, 'email': e.target.value})}
+          value={state.email}
+          required
+          />
+        <textarea
+          placeholder="Message"
+          onChange={(e)=>setState({...state, 'message': e.target.value})}
+          value={state.message}
+          required          
+          />
+        <button type="submit">Envoyer</button>
+      </form>
+    {
+          categories?.filter((item) => item.idTitle === '#contact').map((item) => (
             <>
               <div key={item.id} className={styles["home-picture"]}>
                 <picture>
                   <source srcSet={item.imgWebp} type="image/webp" />
-                  <img src={item.imgSvg} alt={item.title} className="home-picture-title" />
+                  <img src={item.imgSvg} alt={item.title} className={styles["home-picture-title"]} />
                 </picture>
                 <h2 key={item.id} className="home-title" id={item.title}>{item.title}</h2>
               </div>
-              <div className="home-contact">
-                <h2 className="home-contact-title">Thenau Maxime</h2>
-                <h3 className="home-contact-subtitle">Marseille </h3>
+              <div className={styles["home-contact"]}>
+                <h2 className={styles["home-contact-title"]}>Thenau Maxime</h2>
+                <h3 className={styles["home-contact-subtitle"]}>Marseille </h3>
                 {item.contacts.map((contact) => (
-                  <div key={contact.idTitle} className="home-contact-list-social">
+                  <div key={contact.id} className={styles["home-contact-list-social"]}>
                     <a href={contact.email} target="_blank" rel="noreferrer">
                       <i className="icon-email" />
                     </a>
@@ -151,13 +182,17 @@ export default function Home({categories}) {
             </>
           ))
         }
-    </main>
+    </footer>
     </div>
   )
 }
 
 export async function getStaticProps () {
-  const categories = await fetch('https://back-portofolio.unetaupechezvous.fr/public/api/categories')
-      .then((res) => res.json())
+ 
+  const categories = await fetch('http://localhost:8000/api/categories')
+  .then((res) => res.json())
+  .finally((res) => console.log("res"))
+
+      
   return {props : {categories}}
 }
