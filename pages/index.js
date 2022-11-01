@@ -15,6 +15,19 @@ export default function Home({categories}) {
     subject: "",
     message: "",
   });
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const res = await fetch("http://localhost:8000/api/message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(state),
+    });
+    const text = await res.text();
+    console.log(text);
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -126,7 +139,7 @@ export default function Home({categories}) {
         }
     </main>
     <footer className={styles.footer}>
-      <form className={styles['footer-form']}>
+      <form className={styles['footer-form']} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Nom Prénom"
@@ -136,18 +149,27 @@ export default function Home({categories}) {
         />
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Votre@Email.fr"
           onChange={(e)=>setState({...state, 'email': e.target.value})}
           value={state.email}
           required
           />
+        <input
+          type="text"
+          placeholder="Sujet"
+          onChange={(e)=>setState({...state, 'subject': e.target.value})}
+          value={state.subject}
+          required
+        />
         <textarea
           placeholder="Message"
           onChange={(e)=>setState({...state, 'message': e.target.value})}
           value={state.message}
           required          
           />
-        <button type="submit">Envoyer</button>
+        <button type="submit">
+          Envoyer
+        </button>
       </form>
     {
           categories?.filter((item) => item.idTitle === '#contact').map((item) => (
