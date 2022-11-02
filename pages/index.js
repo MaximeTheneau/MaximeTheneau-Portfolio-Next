@@ -13,18 +13,27 @@ export default function Home({ categories }) {
     message: '',
   });
 
-  async function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:8000/api/message', {
+    console.log(state);
+    const requestOptions = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(state),
-    });
-    const text = await res.text();
-    console.log(text);
-  }
+    };
+    fetch('http://localhost:8000/api/message', requestOptions)
+      .finally(() => {
+        setState({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+        console.log('Message sent');
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className={styles.container}>
       <Head>
