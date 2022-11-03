@@ -6,14 +6,18 @@ import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
 
 export default function Home({ categories }) {
-  const [toggleNav, setToggleNav] = useState(true);
-  const [toggleModal, setToggleModal] = useState(false);
   const [state, setState] = useState({
+    toggleNav: true,
+    toggleModal: false,
     name: '',
     email: '',
     subject: '',
     message: '',
   });
+  const setToggleModalValue = () => {
+    console.log('setToggleModalValue');
+    setState({ ...state, toggleModal: false });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,13 +30,16 @@ export default function Home({ categories }) {
     fetch('http://localhost:8000/api/message', requestOptions)
       .finally(() => {
         setState({
+          ...state,
           name: '',
           email: '',
           subject: '',
           message: '',
+          toggleModal: true,
         });
-        setToggleModal(true);
-        console.log('Message sent');
+        setTimeout(() => {
+          setState({ ...state, toggleModal: false });
+        }, 3000);
       })
       .catch((err) => console.log(err));
   };
@@ -44,12 +51,9 @@ export default function Home({ categories }) {
         <meta name="description" content="Theneau Maxime dévelloppeur web à Marseille." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/** Modal Confirmation */}
+      {state.toggleModal ? <Confirmation onClick={setToggleModalValue} /> : ''}
 
-      {toggleModal ? (
-        <Confirmation />
-      ) : ''}
-      
-      
       {/** Header Images Sticky */}
       { categories?.filter((item) => item.idTitle === '#home').map((item) => (
         <div key={item.id} id={item.title}>
@@ -61,7 +65,7 @@ export default function Home({ categories }) {
       ))}
       {/** Header Navbar */}
       <header className={stylesHeader.header}>
-        {toggleNav ? (
+        {state.toggleNav ? (
           <div className={stylesHeader['header-navbar-toggle']}>
             <div className={stylesHeader['header-button_close']}>
               <button
@@ -69,7 +73,7 @@ export default function Home({ categories }) {
                 id="button_nav"
                 title="Fermer le menu"
                 onClick={() => {
-                  setToggleNav((value) => !value);
+                  setState({ ...state, toggleNav: false });
                 }}
               >
                 <i className="icon-navbar" />
@@ -82,7 +86,9 @@ export default function Home({ categories }) {
               <div className={stylesHeader['header-button_close']}>
                 <button
                   type="button"
-                  onClick={() => setToggleNav((value) => !value)}
+                  onClick={() => {
+                    setState({ ...state, toggleNav: true });
+                  }}
                 >
                   <i className="icon-x" />
                 </button>
@@ -95,7 +101,7 @@ export default function Home({ categories }) {
                     <li
                       className={stylesHeader['header-navbar-item']}
                       onClick={() => {
-                        setToggleNav((value) => !value);
+                        setState({ ...state, toggleNav: true });
                       }}
                     >
                       {item.title}
@@ -192,7 +198,6 @@ export default function Home({ categories }) {
             </>
           ))
         }
-
 
         <form className={styles['footer-form']} onSubmit={handleSubmit}>
           <div className={styles['footer-form-top']}>
