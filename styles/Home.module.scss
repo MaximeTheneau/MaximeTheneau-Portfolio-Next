@@ -57,92 +57,7 @@
   }
 }
 
-.header{
-  background: $color-grey;
-  position: sticky;
-  font-family: 'fontTitle';
-  font-weight: bold;
-  top: 0;
-  width: 100%!important;
-  margin: 0 0 2rem 0;
-  z-index: 1;
-  &-button_close button {
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease-in-out;
-      &:hover {
-          opacity: 0.5;
-          transition: all 0.3s ease-in-out;
-      }
-  }
-  &-navbar{
-    &-720{
-      display: none;
-    }
-      &-toggle {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 1rem;
-      }
-      &-item{
-          font-size: 1.5rem;
-          font-weight: 600;
-          border-bottom: 0.1rem solid;
-          width: 90%;
-          margin: auto;
-          padding: 1rem;
-          &_subtitle{
-              font-size: 1.5rem;
-              font-weight: 600;
-              width: 90%;
-              margin: 1rem auto;
-              padding: 0 1rem 1rem;
-              border-bottom: 0.1rem solid;
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              cursor: pointer;            
-          }  
-      }
-      &-subtitle-item{
-          border-bottom: 0.1rem solid;
-          padding: 1rem;
-          font-size: 1.5rem;
-          font-weight: 600;
-          width: 70%;
-          margin: auto;
-      }
-  }
-  &-sticky{
-    height: 100vh;
-    object-fit: contain;
-    margin: auto;
-      &-content{
-          animation: bounce 2s ease infinite;
-          text-align: center;
-          text-shadow: #fff 1px 0 6px;
-          font-size: 3rem;
-          padding: 0 0 1rem 0;
-          &:hover{
-              animation: none;
-              & .icon-angle-90{
-                  color: #fff;
-              }
-          }
-      }
-                  
-      
-  }
-  
-}
 
-
-.header .header-navbar{
-  height: 100vh;
-}
 .footer{
   &-form-top{
     & input[type="text"], input[type="email"]{
@@ -194,26 +109,6 @@
       width: 50%;
     }
   }
-  .header{
-    &-sticky{
-      width: 50%;
-    }
-    &-navbar{
-      &-720{
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 1rem;
-      font-size: 1.5rem;
-        & li{
-          margin: 0 1rem;
-        }
-      } 
-    &-toggle{
-      display: none;
-    }
-  }
-  } 
 }
 
 @media screen and (min-width: 1024px) {
@@ -233,11 +128,7 @@
       }
     }
   }
-  .header{
-    &-sticky{
-      width: 749px;
-    } 
-  }
+
   .footer{
     &-form-top{
       & input[type="text"], input[type="email"]{

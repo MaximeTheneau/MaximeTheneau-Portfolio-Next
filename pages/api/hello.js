@@ -1,5 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+export async function getStaticProps() {
+  const categories = await fetch('http://localhost:8000/api/categories')
+    .then((res) => res.json());
+
+  return { props: { categories } };
 }

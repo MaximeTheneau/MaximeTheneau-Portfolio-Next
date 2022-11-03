@@ -1,11 +1,13 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Confirmation from '../components/modal/confirmation';
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
 
 export default function Home({ categories }) {
   const [toggleNav, setToggleNav] = useState(true);
+  const [toggleModal, setToggleModal] = useState(false);
   const [state, setState] = useState({
     name: '',
     email: '',
@@ -29,32 +31,39 @@ export default function Home({ categories }) {
           subject: '',
           message: '',
         });
+        setToggleModal(true);
         console.log('Message sent');
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Theneau Maxime Développeur Web à Marseille</title>
         <meta name="description" content="Theneau Maxime dévelloppeur web à Marseille." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      {toggleModal ? (
+        <Confirmation />
+      ) : ''}
+      
+      
       {/** Header Images Sticky */}
       { categories?.filter((item) => item.idTitle === '#home').map((item) => (
         <div key={item.id} id={item.title}>
           <picture>
             <source srcSet={item.imgWebp} type="image/webp" />
-            <img src={item.imgSvg} alt={item.title} className={styles['header-sticky']} />
+            <img src={item.imgSvg} alt={item.title} className={stylesHeader['header-sticky']} />
           </picture>
         </div>
       ))}
       {/** Header Navbar */}
-      <header className={styles.header}>
+      <header className={stylesHeader.header}>
         {toggleNav ? (
-          <div className={styles['header-navbar-toggle']}>
-            <div className={styles['header-button_close']}>
+          <div className={stylesHeader['header-navbar-toggle']}>
+            <div className={stylesHeader['header-button_close']}>
               <button
                 type="button"
                 id="button_nav"
@@ -68,9 +77,9 @@ export default function Home({ categories }) {
             </div>
           </div>
         ) : (
-          <nav className={styles.navbar}>
-            <div className={styles['header-navbar-toggle']}>
-              <div className={styles['header-button_close']}>
+          <nav className={stylesHeader.navbar}>
+            <div className={stylesHeader['header-navbar-toggle']}>
+              <div className={stylesHeader['header-button_close']}>
                 <button
                   type="button"
                   onClick={() => setToggleNav((value) => !value)}
@@ -79,12 +88,12 @@ export default function Home({ categories }) {
                 </button>
               </div>
             </div>
-            <ul className={styles['header-navbar']}>
+            <ul className={stylesHeader['header-navbar']}>
               {
                 categories?.map((item) => (
                   <a href={item.idTitle} key={item.id}>
                     <li
-                      className={styles['header-navbar-item']}
+                      className={stylesHeader['header-navbar-item']}
                       onClick={() => {
                         setToggleNav((value) => !value);
                       }}
@@ -97,7 +106,7 @@ export default function Home({ categories }) {
             </ul>
           </nav>
         )}
-        <ul className={styles['header-navbar-720']}>
+        <ul className={stylesHeader['header-navbar-720']}>
           {
             categories?.map((item) => (
               <a href={item.idTitle} key={item.id}>
@@ -143,6 +152,11 @@ export default function Home({ categories }) {
               </div>
             ))
         }
+        {/** Modal */}
+        <div className="test">
+          <confirmationMessage />
+        </div>
+
       </main>
       <footer className={styles.footer}>
         {
@@ -178,6 +192,8 @@ export default function Home({ categories }) {
             </>
           ))
         }
+
+
         <form className={styles['footer-form']} onSubmit={handleSubmit}>
           <div className={styles['footer-form-top']}>
             <input
@@ -215,7 +231,7 @@ export default function Home({ categories }) {
           </button>
         </form>
       </footer>
-    </div>
+    </>
   );
 }
 Home.propTypes = {
@@ -251,7 +267,7 @@ Home.propTypes = {
   ).isRequired,
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const categories = await fetch('http://localhost:8000/api/categories')
     .then((res) => res.json());
 
