@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styleModal from '../../styles/Modal.module.scss';
 
 function confirmation({ onClick }) {

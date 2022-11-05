@@ -1,50 +1,7 @@
 @import './variables.scss';
 
 .home{
-  &-picture-title{
-    width: 80%;
-  }
-  &-title{
-    font-size: 2rem;
-    font-weight: 600;
-    margin: 1rem 0;
-  }
-  &-subtitle{
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 1rem 0;
-  }
-  &-location{
-    display: flex;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin: 1rem 0;
-  }
-  &-picture-experience{
-    height: 25rem;
-    width: 80%;
-    margin: 1rem auto;
-    box-shadow: 0.1rem 0.11rem 0.2rem $color-shadow;
-    border: 0.1rem solid $color-primary;
-    border-radius: 0.5rem;
-    line-height: 1.5rem;
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    & img{
-      width: 100%;
-      height: 15rem;
-      object-fit: contain;
-    }
-    & a{
-      font-size: 2.5rem;
-      margin: 1.5rem 0;
-    }
 
-  }
   &-contact{
     line-height: 2rem;
     font-size: 1.5rem;
@@ -140,4 +97,7 @@
       width: 50%;
     }
   }
+}
+.blur{
+  filter: blur(0.2em);
 }
