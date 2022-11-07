@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prod": "next export"
   },
   "dependencies": {
+    "@babel/runtime": "^7.20.1",
     "cookie": "^0.5.0",
     "gsap": "^3.11.3",
     "next": "13.0.0",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/preset-env": "^7.19.4",
+    "@next/eslint-plugin-next": "^13.0.2",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^9.0.1",

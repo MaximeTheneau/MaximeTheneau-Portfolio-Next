@@ -3,28 +3,73 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
-import PropTypes from 'prop-types';
+import PropTypes, { element } from 'prop-types';
 import Confirmation from '../components/modal/confirmation';
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function Home({ categories }) {
+function Home({ categories }) {
+  const router = useRouter();
+  // console.log(router);
   gsap.registerPlugin(ScrollTrigger);
-  const headerRef = useRef(null);
+  
   const experienceRef = useRef(null);
-
+  const headerRef = useRef(null);
+  const contactRef = useRef(null);
+  
   useEffect(() => {
+    function updatePosition() {
+      const valueScroll = window.scrollY;
+        setState({
+          ...state,
+          position: valueScroll,
+        });
+    }
+
+    window.addEventListener('scroll', updatePosition)
+    updatePosition()
+
+    console.log(state.position);
+    return () => window.removeEventListener('scroll', updatePosition)
+   }, []);
+
+  
+  useEffect(() => {
+    const experience = experienceRef.current;
     const header = headerRef.current;
-    gsap.fromTo(header, {
-      opacity: 0,
-    }, {
+    const contact = contactRef.current;
+
+    gsap.to(header, {
       scrollTrigger: {
         trigger: header,
-        start: 'center center',
+        start: 'top top',
       },
-      duration: 2,
       opacity: 0.8,
-    },
+      y: state.position > 0 ? -100 : 0,  
+    });
+    gsap.to(experience, {
+      scrollTrigger: {
+        trigger: experiences,
+        start: 'top 50%',
+      },
+      opacity: 1,
+      x: 0,
+      duration: 1,
+    });
+    gsap.fromTo(contact, {
+      opacity: 0,
+      y: 100,
+    }, {
+      scrollTrigger: {
+        trigger: contact,
+        start: 'top 50%',
+      },
+      opacity: 1,
+      y: 0,
+      duration: 2,
+    }
     );
   }, []);
 
@@ -35,6 +80,7 @@ export default function Home({ categories }) {
     email: '',
     subject: '',
     message: '',
+    position: null,
   });
   const setToggleModalValue = () => {
     console.log('setToggleModalValue');
@@ -76,22 +122,29 @@ export default function Home({ categories }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={state.toggleModal ? (styles.blur) : ''}>
+        
         {/** Header Images Sticky */}
-        { categories?.filter((item) => item.idTitle === '#home').map((item) => (
-          <div key={item.id} id={item.title} >
-            <Image
-              src={item.imgWebp}
-              alt={item.title}
-              quality={100}
-              width="1000"
-              height="1000"
-              layout="fill"
-              placeholder="blur"
-              blurDataURL={`${item.imageWebp}?auto=format,compress&q=1&blur=500&w=`}
-              priority
-            />
+        <div className={stylesHeader['header-sticky']}>
+          { categories?.filter((item) => item.idTitle === '#home').map((item) => (
+              <Image
+                key={item.id}
+                src={item.imgWebp}
+                alt={item.title}
+                width="1000"
+                height="1000"
+                layout="fill"
+                className={stylesHeader['header-sticky-img']}
+                style={{
+                  left: state.position,
+                }}
+                priority
+              />
+          ))}
+          <div className={stylesHeader['header-sticky-content']}>
+            <h1 className={styles['home-title']}>Theneau Maxime</h1>
+            <h2 className={styles['home-subtitle']}>Développeur Web à Marseille</h2>
           </div>
-        ))}
+        </div>
 
         {/** Header Navbar */}
         <header className={stylesHeader.header} ref={headerRef}>
@@ -134,9 +187,9 @@ export default function Home({ categories }) {
                         setState({ ...state, toggleNav: true });
                       }}
                     >
-                      <a href={item.idTitle}>
+                      <Link href={item.idTitle} >
                         {item.title}
-                      </a>
+                      </Link>
                     </li>
                   ))
                 }
@@ -154,32 +207,55 @@ export default function Home({ categories }) {
           </ul>
         </header>
 
-        <main className={styles.main} >
-          <h1 className={styles['home-title']}>Theneau Maxime</h1>
-          <h2 className={styles['home-subtitle']}>Développeur Web à Marseille</h2>
-
+        <main className={styles.main} ref={experienceRef} style={{opacity: 0}}   >
           {
               categories?.filter((item) => item.idTitle === '#skills').map((item) => (
-                <div key={item.id} className="test">
-                  <div id={item.idTitle} ref={experienceRef}>
-                    <picture>
-                      <source srcSet={item.imgWebp} type="image/webp" />
-                      <img src={item.imgSvg} alt={item.title} className={styles['home-picture-title']} />
-                    </picture>
-                    <h2 className={styles['home-title']}>{item.title}</h2>
+                <div key={item.id}  >
+                  <div id={item.idTitle} className={styles['home-categories']} >
+                    <Image
+                      src={item.imgWebp}
+                      alt={item.title}
+                      width="1000"
+                      height="1000"
+                      layout="fill"
+                      className={styles['home-categories-img']}
+                    />
+                    <h2 className={styles['home-categories-title']}>{item.title}</h2>
                   </div>
+
+                  {/** Skills */}
                   { item.experiences.map((experience) => (
-                    <div key={experience.id} id={experience.idTitle} className={styles['home-picture-experience']}>
-                      <picture>
-                        <source srcSet={experience.imageWebp} type="image/webp" />
-                        <img src={experience.imageSvg} alt={item.title} />
-                      </picture>
-                      <h2>{experience.title}</h2>
-                      <h3>{experience.contents}</h3>
-                      <p>{experience.contents2}</p>
-                      <a href={experience.contents3}>
-                        <i className="icon-github" />
-                      </a>
+                    <div key={experience.id} id="experiences" className={styles['home-experience']}>
+                      <Image
+                        src={experience.imageWebp}
+                        alt={experience.title}
+                        width="1000"
+                        height="1000"
+                        layout="fill"
+                        className={styles['home-experience-img']}
+                      />
+                      <div className={styles['home-experience-text']}>
+                        <h2>{experience.title}</h2>
+                        <h3>{experience.contents}</h3>
+                        <div className={styles['home-experience-text-link']}>
+                          <div className={styles['home-experience-text-link-github']}>
+                            <a href={experience.contents2}>
+                              <i className="icon-github" />
+                              <div>
+                                Github
+                              </div>
+                            </a>
+                          </div>
+                          <div className={styles['home-experience-text-link-site']}>
+                            <a href={experience.contents3}>
+                              <i className="icon-github" />
+                              <div>
+                                Site
+                              </div>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
 
                     </div>
                   ))}
@@ -188,20 +264,23 @@ export default function Home({ categories }) {
           }
 
         </main>
-        <footer className={styles.footer}>
+
+        <footer className={styles.footer} ref={contactRef}>
           {
             categories?.filter((item) => item.idTitle === '#contact').map((item) => (
               <>
-                <div key={item.id} className={styles['home-picture']}>
-                  <picture>
-                    <source srcSet={item.imgWebp} type="image/webp" />
-                    <img src={item.imgSvg} alt={item.title} className={styles['home-picture-title']} />
-                  </picture>
-                  <h2 key={item.id} className="home-title" id={item.title}>{item.title}</h2>
+                <div key={item.id}  className={styles['home-categories']}>
+                  <Image
+                    src={item.imgWebp}
+                    alt={item.title}
+                    width="1000"
+                    height="1000"
+                    layout="fill"
+                    className={styles['home-categories-img']}
+                  />
+                  <h2 className={styles['home-categories-title']}>{item.title}</h2>
                 </div>
                 <div className={styles['home-contact']}>
-                  <h2 className={styles['home-contact-title']}>Thenau Maxime</h2>
-                  <h3 className={styles['home-contact-subtitle']}>Marseille </h3>
                   {item.contacts.map((contact) => (
                     <div key={contact.id} className={styles['home-contact-list-social']}>
                       <a href={contact.email} target="_blank" rel="noreferrer">
@@ -255,8 +334,8 @@ export default function Home({ categories }) {
               required
             />
             <button type="submit">
-              <i className="icon-paper-plane" />
               Envoyer
+              <i className="icon-github" />
             </button>
           </form>
         </footer>
@@ -297,9 +376,12 @@ Home.propTypes = {
   ).isRequired,
 };
 
-export async function getServerSideProps() {
+export default Home;
+
+export async function getStaticProps() {
   const categories = await fetch('http://localhost:8000/api/categories')
-    .then((res) => res.json());
+    .then((res) => res.json())
+    .finally(() => console.log('fetch categories'));
 
   return { props: { categories } };
 }
