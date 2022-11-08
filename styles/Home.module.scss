@@ -1,0 +1,179 @@
+@import './variables.scss';
+.active{
+  color: rgb(201, 27, 27);
+}
+
+.home{
+  // Categories
+  &-categories{
+    font-size: 1.2rem;
+    position: relative;
+    &-title{
+      position:absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    &-img{
+      width: 100%;
+      height: 10vh;
+      object-fit: cover;
+    }
+  }
+
+  // Experiences
+  &-experience{
+    &-img{
+      width: 100%;
+      height: 30vh;
+      object-fit: contain;
+    }
+    &-text{
+      color: $color-primary;
+      background: grey;
+      height: 30vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 0 1rem 0;
+      & > h2 {
+        font-size: 1.5rem;
+        margin: 0 0 1rem 0;
+      }
+      & > h3 {
+        font-size: 1.2rem;
+        font-weight: 900;
+      }
+      &-link{
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: space-evenly;
+        margin: 1rem 0 0 0;
+        &-github, &-site{
+          display: flex;
+        }
+      }
+    }
+  }
+
+
+
+  &-contact{
+    line-height: 2rem;
+    font-size: 1.5rem;
+    &-list-social{
+      margin: 1.5rem 0;
+      font-size: 2rem;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}
+
+
+.footer{
+  &-form-top{
+    & input[type="text"], input[type="email"]{
+      width:90%;
+      margin: 1rem auto;
+      padding: 0.5rem;
+      font-family: 'fontGeneral';
+      font-size: 1rem;
+      border: 0.3rem solid $color-primary;
+      border-radius: 0.5rem;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+  & textarea{
+    width:90%;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    font-family: 'fontGeneral';
+    font-size: 1rem;
+    border: 0.3rem solid $color-primary;
+    border-radius: 0.5rem;
+    outline: none;
+    cursor: pointer;
+  }
+  & button{
+    font-size: 1rem;
+    background: $color-button;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-family: 'fontGeneral';
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: block;
+    margin: 1rem auto;
+    font-weight: 900;
+    padding: 1rem;
+    & i{
+      font-size: 1.8rem;
+      margin: 0 0.5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .home{
+    &-experience{
+      display: flex;
+      align-items: center;
+      &-img{
+        width: 50%;
+      }
+      &-text{
+        width: 50%;
+        margin: 0 0 1.5rem 0;
+        & > h2 {
+          font-size: 2rem;
+          margin: 0 0 1rem 0;
+        }
+        & > h3 {
+          font-size: 1.5rem;
+          font-weight: 900;
+        }
+        &-link{
+          font-size: 2rem;
+          font-weight: 900;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .home{
+    &-experience{
+
+      &-text{
+        margin: 0 0 2rem 0;
+        width: 60%;
+      }
+    }
+    &-contact{
+      &-list-social{
+        font-size: 3rem;
+      }
+    }
+  }
+
+  .footer{
+    &-form-top{
+      & input[type="text"], input[type="email"]{
+        width: 30%;
+        margin: 1rem 0.5rem 1rem 0;
+      }
+    }
+    & textarea{
+      width: 50%;
+    }
+  }
+}
+.blur{
+  filter: blur(0.2em);
+}
