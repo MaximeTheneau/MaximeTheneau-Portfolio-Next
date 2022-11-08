@@ -1,4 +1,7 @@
 @import './variables.scss';
+.active{
+  color: rgb(201, 27, 27);
+}
 
 .home{
   // Categories
@@ -19,7 +22,6 @@
       object-fit: cover;
     }
   }
-
 
   // Experiences
   &-experience{

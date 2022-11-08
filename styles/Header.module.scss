@@ -1,5 +1,7 @@
 @import './variables.scss';
-
+.active{
+  color: rgb(201, 27, 27);
+}
 .header{
     opacity: 0;
     background: $color-grey;
@@ -32,12 +34,7 @@
             padding: 1rem;
         }
         &-item{
-            font-size: 1.5rem;
-            font-weight: 600;
-            border-bottom: 0.1rem solid;
-            width: 90%;
-            margin: auto;
-            padding: 1rem;
+
             &_subtitle{
                 font-size: 1.5rem;
                 font-weight: 600;
