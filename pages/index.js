@@ -90,7 +90,6 @@ function Home ({ categories }) {
             <div className={stylesHeader['header-sticky-content']}>
               <h1 className={styles['home-title']}>Theneau Maxime</h1>
               <h2 className={styles['home-subtitle']}>Développeur Web à Marseille</h2>
-              <i className='icon-signature'/>
 
             </div>
           </div>

@@ -1,8 +1,13 @@
 @font-face {
   font-family: 'fontTitle';
-  src: url('../asset/font/MajorMonoDisplay-Regular.ttf');
+  src: url('../asset/font/title/title.woff2'),
+    url('../asset/font/title/title.woff'),
+    url('../asset/font/title/title.ttf');
+  font-weight: 900;
 }
 @font-face {
   font-family: 'fontGeneral';
-  src: url('../asset/font/Quicksand-Light.ttf');
+  src: url('../asset/font/rimouski/rimouski.woff2'),
+  url('../asset/font/rimouski/rimouski.woff'),
+  url('../asset/font/rimouski/rimouski.ttf');
 }

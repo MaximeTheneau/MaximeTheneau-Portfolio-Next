@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconTheneauM';
-  src: 
-    url('../asset/font/iconTheneauM.woff?7bufwb') format('woff'),
-    url('../asset/font/iconTheneauM.eot?7bufwb#iefix') format('embedded-opentype'),
-    url('../asset/font/iconTheneauM.ttf?7bufwb') format('truetype'),
-    url('../asset/font/iconTheneauM.svg?7bufwb#iconSocial') format('svg');
+  src: url('../asset/font/icon/iconTheneauM.woff2') format('woff2'),
+    url('../asset/font/icon/iconTheneauM.woff?7bufwb') format('woff'),
+    url('../asset/font/icon/iconTheneauM.eot?7bufwb#iefix') format('embedded-opentype'),
+    url('../asset/font/icon/iconTheneauM.ttf?7bufwb') format('truetype'),
+    url('../asset/font/icon/iconTheneauM.svg?7bufwb#iconSocial') format('svg');
 
   font-weight: normal;
   font-style: normal;
@@ -48,7 +48,7 @@
 .icon-angle-right:before {
   content: "\e930";
 }
-.icon-bars:before {
+.icon-navbar:before {
   content: "\e949";
 }
 .icon-x:before {

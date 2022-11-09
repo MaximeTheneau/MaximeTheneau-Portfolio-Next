@@ -62,9 +62,9 @@
         margin: auto ;
         height: 50vh;
         &-img{
-          height: 100%;
+          height: 50vh;
           width: 100%;
-          object-fit: cover;
+          object-fit: none;
           position: relative;
           z-index: 0;
           &-animation{
@@ -104,8 +104,8 @@
 
   @media screen and (min-width: 720px) {
     .header{
-      &-sticky{
-        width: 50%;
+      &-sticky-img{
+        object-fit: contain;
       }
       &-navbar{
         &-720{
@@ -126,11 +126,6 @@
   }
   
   @media screen and (min-width: 1024px) {
-    .header{
-      &-sticky{
-        width: 749px;
-      } 
-    }
     .footer{
       &-form-top{
         & input[type="text"], input[type="email"]{
