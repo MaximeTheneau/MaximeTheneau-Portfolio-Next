@@ -1,9 +1,12 @@
+//* Import
+import { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+
+
+//* Gsap
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import Image from 'next/image';
-import PropTypes from 'prop-types';
 
 //* Components
 import Confirmation from '../components/modal/confirmation';
@@ -12,12 +15,15 @@ import CategoriesList from '../components/header/categoriesList';
 import CategoriesMain from '../components/main/categoriesMain';
 import ExperiencesList from '../components/main/experiencesList';
 import FormContact from '../components/footer/formContact';
+import FormContactList from '../components/footer/formContactList';
 
+//* Styles
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
 
 
-function Home({ categories }) {
+function Home ({ categories }) {
+
  
   gsap.registerPlugin(ScrollTrigger);
 
@@ -47,16 +53,11 @@ function Home({ categories }) {
       duration: 1,
     }
     );
-
   }, []);
 
   const [state, setState] = useState({
     toggleNav: true,
     toggleModal: false,
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
     position: null,
     loadingSticky: false,
   });
@@ -65,45 +66,18 @@ function Home({ categories }) {
     setState({ ...state, toggleModal: false });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(state);
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(state),
-    };
-    fetch('http://localhost:8000/api/message', requestOptions)
-      .finally(() => {
-        setState({
-          ...state,
-          name: '',
-          email: '',
-          subject: '',
-          message: '',
-          toggleModal: true,
-        });
-        setTimeout(() => {
-          setState({ ...state, toggleModal: true });
-        }, 3000);
-      })
-      .catch((err) => console.log(err));
-  };
-
-
   return (
     <>
-      {/** Modal Confirmation */}
-      {state.toggleModal ? <Confirmation onClick={setToggleModalValue} /> : ''}
-      <Head>
-        <title>Theneau Maxime Développeur Web à Marseille</title>
-        <meta name="description" content="Theneau Maxime dévelloppeur web à Marseille." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      {state.loadingSticky && "<p>test</p>"}
-      {!state.loadingSticky && (
-        <div className={state.toggleModal ? (styles.blur) : ''}>
-          
+        <Head>
+          <title>Theneau Maxime Développeur Web à Marseille</title>
+          <meta name="description" content="Theneau Maxime dévelloppeur web à Marseille." />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+          <div className={state.toggleModal ? (styles.blur) : ''}>
+                
+          {/** Modal Confirmation */}
+          {state.toggleModal ? <Confirmation onClick={setToggleModalValue} /> : ''}
+
           {/** Header Images Sticky */}
           <div className={stylesHeader['header-sticky']} >
             { categories?.filter((image) => image.idTitle === '#home').map((item) => (
@@ -116,6 +90,8 @@ function Home({ categories }) {
             <div className={stylesHeader['header-sticky-content']}>
               <h1 className={styles['home-title']}>Theneau Maxime</h1>
               <h2 className={styles['home-subtitle']}>Développeur Web à Marseille</h2>
+              <i className='icon-signature'/>
+
             </div>
           </div>
 
@@ -199,20 +175,29 @@ function Home({ categories }) {
 
                   {/** Contact List */}
                   {item.contacts.map((contact) => (
-                    <FormContact key={contact.twitter} contact={contact} />
+                      <FormContactList key={contact.twitter} contact={contact}  />
                   ))}
+
+                  {/** Form Contact */}
+                  <FormContact />
                 </div>
               ))
             }
+            <div className={styles['footer-autor']}>
+              <p>
+                Site réaliser par <i className='icon-signature'/>
+              </p>
+            </div>
           </footer>
-        </div>
-      )}
+          </div>
+
+         
+
+
     </>
   );
 }
-Home.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+export default Home;
 
 
 export async function getServerSideProps(checkStatus) {
@@ -222,6 +207,4 @@ export async function getServerSideProps(checkStatus) {
       // Pass data to the page via props
       return { props: { categories: categoriesData} }
 }
-
-export default Home;
 

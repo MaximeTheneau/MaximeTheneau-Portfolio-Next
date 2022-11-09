@@ -28,7 +28,7 @@ function ExperiencesList({ experience }) {
               </div>
               <div className={styles['home-experience-text-link-site']}>
                 <a href={experience.contents3}>
-                  <i className="icon-github" />
+                  <i className="icon-website" />
                   <div>
                     Site
                   </div>
