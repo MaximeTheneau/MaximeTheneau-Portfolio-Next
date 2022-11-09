@@ -11,10 +11,11 @@ import Sticky from '../components/header/sticky';
 import CategoriesList from '../components/header/categoriesList';
 import CategoriesMain from '../components/main/categoriesMain';
 import ExperiencesList from '../components/main/experiencesList';
+import FormContact from '../components/footer/formContact';
 
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
-import Contact from '../components/footer/contact';
+
 
 function Home({ categories }) {
  
@@ -150,12 +151,22 @@ function Home({ categories }) {
                   </div>
                 </div>
                 <ul className={stylesHeader['header-navbar']}>
-
+                      { categories?.map((item) => (
+                        <CategoriesList
+                          key={item.id}
+                          item={item}
+                        />
+                      ))}
                 </ul>
               </nav>
             )}
             <ul className={stylesHeader['header-navbar-720']}>
-
+              { categories?.map((item) => (
+                  <CategoriesList
+                    key={item.id}
+                    item={item}
+                  />
+              ))}
             </ul>
           </header>
 
@@ -188,47 +199,11 @@ function Home({ categories }) {
 
                   {/** Contact List */}
                   {item.contacts.map((contact) => (
-                    <Contact key={contact.twitter} contact={contact} />
+                    <FormContact key={contact.twitter} contact={contact} />
                   ))}
                 </div>
               ))
             }
-            <form className={styles['footer-form']} onSubmit={handleSubmit}>
-              <div className={styles['footer-form-top']}>
-                <input
-                  type="text"
-                  placeholder="Nom"
-                  onChange={(e) => setState({ ...state, name: e.target.value })}
-                  value={state.name}
-                  required
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  onChange={(e) => setState({ ...state, email: e.target.value })}
-                  value={state.email}
-                  required
-                />
-                <input
-                  type="text"
-                  placeholder="Sujet"
-                  onChange={(e) => setState({ ...state, subject: e.target.value })}
-                  value={state.subject}
-                  required
-                />
-              </div>
-              <textarea
-                placeholder="Message"
-                rows={5}
-                onChange={(e) => setState({ ...state, message: e.target.value })}
-                value={state.message}
-                required
-              />
-              <button type="submit">
-                Envoyer
-                <i className="icon-github" />
-              </button>
-            </form>
           </footer>
         </div>
       )}

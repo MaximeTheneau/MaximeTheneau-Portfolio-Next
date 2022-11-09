@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import styles from '../../styles/Home.module.scss';
-import PropTypes from 'prop-types'
-function Contact({ contact }) {
+
+function formContact({contact}) {
   return (
     <>
         <div className={styles['home-contact-list-social']}>
@@ -21,13 +20,5 @@ function Contact({ contact }) {
     </>
   );
 }
-Contact.propTypes = {
-contact: PropTypes.shape({
-  email: PropTypes.string.isRequired,
-  Github: PropTypes.string.isRequired,
-  Linkedin: PropTypes.string.isRequired,
-  twitter: PropTypes.string.isRequired,
-  }).isRequired,
 
-};
-export default Contact;
+export default formContact;
