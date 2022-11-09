@@ -35,7 +35,7 @@ function Home ({ categories }) {
       email: '',
       subject: '',
       message: '',
-
+      confirmation:'',
     }
   });
  
@@ -46,13 +46,11 @@ function Home ({ categories }) {
   const testRef = useRef(null);
   
   useEffect(() => {
-
-      const header = headerRef.current;
-      const contact = contactRef.current;
-
-      gsap.to(header, {
+    const header = headerRef.current;
+    const contact = contactRef.current;
+    gsap.to(header, {
       scrollTrigger: {
-        markers: true,
+
         trigger: header,
         start: 'top top',
       },
@@ -71,10 +69,6 @@ function Home ({ categories }) {
     }
     );
   }, []);
-
-
-
-
 
   return (
     <>

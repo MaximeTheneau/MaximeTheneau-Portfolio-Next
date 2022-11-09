@@ -1,12 +1,8 @@
-import { useState } from 'react';
+
 import styles from '../../styles/Home.module.scss';
-
-
 
 function formContact({state, setState} ) {
 
-  console.log(state);
-  
   const handleSubmit = (e) => {
     e.preventDefault();
     const requestOptions = {
@@ -30,31 +26,125 @@ function formContact({state, setState} ) {
       .catch((err) => console.log(err));
   };
 
+  const handleChangeName = (e) => {
+    setState({
+      ...state,
+      form:{
+        ...state.form,
+        confirmationName: 'change',
+        name: e.target.value
+      }} )
+    if(e.target.value.length > 2){
+      setState({
+        ...state,
+        form:{
+          ...state.form,
+          confirmationName: 'confirmation' ,
+          name: e.target.value
+        }} )
+    }if(e.target.value.length > 25){
+    setState({
+      ...state,
+      form:{
+        ...state.form,
+        confirmationName: 'error',
+        name: e.target.value
+      }} )
+    }
 
+  }
 
-  return (
+  const handleChangeEmail = (e) => {
+    setState({
+      ...state,
+      form:{
+        ...state.form,
+        confirmationEmail: 'change',
+        email: e.target.value
+      }} )
+    if(e.target.value.length > 2){
+      setState({
+        ...state,
+        form:{ 
+          ...state.form,
+          confirmationEmail: 'error',
+          email: e.target.value
+        }} )
+    }
+    const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(regex.test(e.target.value)){
+      setState({
+        ...state,
+        form:{
+          ...state.form,
+          confirmationEmail: 'confirmation' ,
+          email: e.target.value
+        }} )
+    }
+  }
+
+  const handleChangeSubject = (e) => {
+    setState({ ...state, form:{...state.form, subject: e.target.value }})
+    if(e.target.value.length > 2){
+      setState({
+        ...state,
+        form:{
+          ...state.form,
+          confirmationSubject: 'confirmation' ,
+          subject: e.target.value
+        }} )
+    }if(e.target.value.length > 25){
+    setState({
+      ...state,
+      form:{
+        ...state.form,
+        confirmationSubject: 'error',
+        subject: e.target.value
+      }} )
+    }
+  }
+
+  return (  
     <form className={styles['footer-form']} onSubmit={handleSubmit}>
       <div className={styles['footer-form-top']}>
-        <input
-          type="text"
-          placeholder="Nom"
-          onChange={(e) => setState({ ...state, form:{...state.form, name: e.target.value}} )}
-          value={state.form.name}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e) => setState({ ...state, form:{...state.form, email: e.target.value} })}
-          value={state.form.email}
+        <div className={styles[state.form.confirmationName]}>
+          <input
+            type="text"
+            placeholder="Nom"
+            onChange={handleChangeName}
+            value={state.form.name}
+            required
           />
-        <input
-          type="text"
-          placeholder="Sujet"
-          onChange={(e) => setState({ ...state, form:{...state.form, subject: e.target.value }})}
-          value={state.form.subject}
-          required
-        />
+          <i className={`icon-${state.form.confirmationName} ${styles[state.form.confirmationName]}`} />
+          {
+            state.form.confirmationName === 'error' ? <p className={styles['error']}>Le nom doit faire moins de 25 caractères</p> : ''
+          }
+        </div>
+        <div className={styles[state.form.confirmationEmail]}>
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={handleChangeEmail}
+            value={state.form.email}
+            />
+          <i className={`icon-${state.form.confirmationEmail} ${styles[state.form.confirmationEmail]}`} />
+          {
+            state.form.confirmationEmail === 'error' ? <p className={styles['error']}>L'email n'est pas valide</p> : ''
+          }
+        </div>
+        <div className={styles[state.form.confirmationSubject]}>
+          <input
+            type="text"
+            placeholder="Sujet"
+            onChange={handleChangeSubject}
+            value={state.form.subject}
+            required
+          />
+          <i className={`icon-${state.form.confirmationSubject} ${styles[state.form.confirmationSubject]} `} />
+          {
+            state.form.confirmationSubject === 'error' ? <p className={styles['error']}>Le sujet doit faire moins de 25 caractères</p> : ''
+          }
+      </div>
       </div>
       <textarea
         placeholder="Message"
