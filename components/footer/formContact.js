@@ -1,18 +1,11 @@
 import { useState } from 'react';
 import styles from '../../styles/Home.module.scss';
 
-function formContact() {
 
-  const [state, setState] = useState({
-    toggleNav: true,
-    toggleModal: false,
-    form:{
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-    }
-  });
+
+function formContact({state, setState} ) {
+
+  console.log(state);
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,51 +15,52 @@ function formContact() {
       body: JSON.stringify(state.form),
     };
     fetch('http://localhost:8000/api/message', requestOptions)
-      .finally(() => {
+    .finally(() => {
         setState({
           ...state,
-          name: '',
-          email: '',
-          subject: '',
-          message: '',
           toggleModal: true,
+          form: {
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+          }
         });
-        setTimeout(() => {
-          setState({ ...state, toggleModal: true });
-        }, 3000);
       })
       .catch((err) => console.log(err));
   };
+
+
+
   return (
     <form className={styles['footer-form']} onSubmit={handleSubmit}>
       <div className={styles['footer-form-top']}>
         <input
           type="text"
           placeholder="Nom"
-          onChange={(e) => setState({ ...state, name: e.target.value })}
-          value={state.name}
+          onChange={(e) => setState({ ...state, form:{...state.form, name: e.target.value}} )}
+          value={state.form.name}
           required
         />
         <input
           type="email"
           placeholder="Email"
-          onChange={(e) => setState({ ...state, email: e.target.value })}
-          value={state.email}
-          required
-        />
+          onChange={(e) => setState({ ...state, form:{...state.form, email: e.target.value} })}
+          value={state.form.email}
+          />
         <input
           type="text"
           placeholder="Sujet"
-          onChange={(e) => setState({ ...state, subject: e.target.value })}
-          value={state.subject}
+          onChange={(e) => setState({ ...state, form:{...state.form, subject: e.target.value }})}
+          value={state.form.subject}
           required
         />
       </div>
       <textarea
         placeholder="Message"
         rows={5}
-        onChange={(e) => setState({ ...state, message: e.target.value })}
-        value={state.message}
+        onChange={(e) => setState({ ...state, form:{...state.form, message: e.target.value }})}
+        value={state.form.message}
         required
       />
       <button type="submit">

@@ -6,6 +6,7 @@ function sticky({ imgWebp, alt }) {
     const [state, setState] = useState({
         position: null,
       });
+      
     useEffect(() => {
         function updatePosition() {
           const valueScroll = window.scrollY;

@@ -23,19 +23,36 @@ import stylesHeader from '../styles/Header.module.scss';
 
 
 function Home ({ categories }) {
+  
+  //* State
+  const [state, setState] = useState({
+    toggleNav: true,
+    toggleModal: false,
+    position: null,
+    loadingSticky: false,
+    form:{
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
 
+    }
+  });
  
   gsap.registerPlugin(ScrollTrigger);
 
   const headerRef = useRef(null);
   const contactRef = useRef(null);
+  const testRef = useRef(null);
+  
+  useEffect(() => {
 
-    useEffect(() => {
       const header = headerRef.current;
       const contact = contactRef.current;
 
       gsap.to(header, {
       scrollTrigger: {
+        markers: true,
         trigger: header,
         start: 'top top',
       },
@@ -50,36 +67,30 @@ function Home ({ categories }) {
         start: 'top 100%',
       },
       opacity: 1,
-      duration: 1,
+      duration: 2,
     }
     );
   }, []);
 
-  const [state, setState] = useState({
-    toggleNav: true,
-    toggleModal: false,
-    position: null,
-    loadingSticky: false,
-  });
-  const setToggleModalValue = () => {
-    console.log('setToggleModalValue');
-    setState({ ...state, toggleModal: false });
-  };
+
+
+
 
   return (
     <>
+        {/** Modal Confirmation */}
+        {state.toggleModal ? <Confirmation setState={setState} state={state} /> : ''}
         <Head>
           <title>Theneau Maxime Développeur Web à Marseille</title>
           <meta name="description" content="Theneau Maxime dévelloppeur web à Marseille." />
           <link rel="icon" href="/favicon.ico" />
+
         </Head>
-          <div className={state.toggleModal ? (styles.blur) : ''}>
+          <div  className={state.toggleModal ? (styles.blur) : ''}>
                 
-          {/** Modal Confirmation */}
-          {state.toggleModal ? <Confirmation onClick={setToggleModalValue} /> : ''}
 
           {/** Header Images Sticky */}
-          <div className={stylesHeader['header-sticky']} >
+          <div className={stylesHeader['header-sticky']} ref={testRef} >
             { categories?.filter((image) => image.idTitle === '#home').map((item) => (
               <Sticky
                 key={item.id}
@@ -178,7 +189,7 @@ function Home ({ categories }) {
                   ))}
 
                   {/** Form Contact */}
-                  <FormContact />
+                  <FormContact setState={setState} state={state} />
                 </div>
               ))
             }
@@ -189,10 +200,6 @@ function Home ({ categories }) {
             </div>
           </footer>
           </div>
-
-         
-
-
     </>
   );
 }
