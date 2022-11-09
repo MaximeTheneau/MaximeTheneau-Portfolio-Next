@@ -1,19 +1,15 @@
 @use './reset.scss';
-
-
-@use './fontsSignature.scss';
 @use './fonts.scss';
 @use './icon.scss';
-
 @import './variables.scss';
 
 body {
-  font-family: 'fontGeneral';
+  font-family: 'fontGeneral', sans-serif;
   color: $color-primary;
   text-align: center;
 }
 h1, h2{
-  font-family: 'fontTitle';
+  font-family: 'fontTitle', sans-serif;
   font-weight: bold;
 }
 button {
