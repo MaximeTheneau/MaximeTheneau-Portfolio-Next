@@ -2,7 +2,6 @@
 import styles from '../../styles/Home.module.scss';
 
 function formContact({state, setState} ) {
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const requestOptions = {
@@ -104,57 +103,134 @@ function formContact({state, setState} ) {
     }
   }
 
+  const handleChangeMessage = (e) => {
+    const trows = e.target.value.split("\n").length - 1 == 0 ? 1 : e.target.value.split("\n").length - 1; 
+
+    setState({ ...state, form:{...state.form, message: e.target.value, textArea: trows, confirmationMessage: 'change' }})
+    const textareaheight = state.form.textArea;
+    console.log(textareaheight);
+    if(e.target.value.length > 25){
+      setState({
+        ...state,
+        form:{
+          ...state.form,
+          confirmationMessage: 'confirmation' ,
+          message: e.target.value,
+          textArea: trows
+        }} )
+    }if(e.target.value.length > 26){
+    setState({
+      ...state,
+      form:{
+        ...state.form,
+        confirmationMessage: 'error',
+        message: e.target.value,
+        textArea: trows
+
+      }} )
+    }
+  }
+
   return (  
     <form className={styles['footer-form']} onSubmit={handleSubmit}>
       <div className={styles['footer-form-top']}>
-        <div className={styles[state.form.confirmationName]}>
-          <input
-            type="text"
-            placeholder="Nom"
-            onChange={handleChangeName}
-            value={state.form.name}
-            required
-          />
-          <i className={`icon-${state.form.confirmationName} ${styles[state.form.confirmationName]}`} />
-          {
-            state.form.confirmationName === 'error' ? <p className={styles['error']}>Le nom doit faire moins de 25 caractères</p> : ''
-          }
-        </div>
-        <div className={styles[state.form.confirmationEmail]}>
-          <input
-            type="email"
-            placeholder="Email"
-            onChange={handleChangeEmail}
-            value={state.form.email}
+        <div className={styles['footer-form-input']}>
+          <div className={styles['footer-form-input-field']}>
+            <input
+              type="text"
+              placeholder="Nom"
+              onChange={handleChangeName}
+              value={state.form.name}
+              required
             />
-          <i className={`icon-${state.form.confirmationEmail} ${styles[state.form.confirmationEmail]}`} />
-          {
-            state.form.confirmationEmail === 'error' ? <p className={styles['error']}>L'email n'est pas valide</p> : ''
-          }
+          </div>
+          <div className={styles['footer-form-input-icon']}>
+            <i className={`icon-${state.form.confirmationName} ${styles[state.form.confirmationName]}`} />
+          </div>
         </div>
-        <div className={styles[state.form.confirmationSubject]}>
-          <input
-            type="text"
-            placeholder="Sujet"
-            onChange={handleChangeSubject}
-            value={state.form.subject}
-            required
-          />
-          <i className={`icon-${state.form.confirmationSubject} ${styles[state.form.confirmationSubject]} `} />
-          {
-            state.form.confirmationSubject === 'error' ? <p className={styles['error']}>Le sujet doit faire moins de 25 caractères</p> : ''
+        <div className={styles['footer-form-input']}>
+          <div className={styles['footer-form-input-field']}>
+            <input
+              type="email"
+              placeholder="Email"
+              onChange={handleChangeEmail}
+              value={state.form.email}
+              />
+          </div>
+          <div className={styles['footer-form-input-icon']}>
+            <i className={`icon-${state.form.confirmationEmail} ${styles[state.form.confirmationEmail]}`} />
+          </div>
+        </div >
+
+        {/* Subject */}
+        <div className={styles['footer-form-input']}>
+          <div className={styles['footer-form-input-field']}>
+            <input
+              type="text"
+              placeholder="Sujet"
+              onChange={handleChangeSubject}
+              value={state.form.subject}
+              className={styles[state.form.confirmationSubject]}
+              required
+            />
+          </div>
+          <div className={styles['footer-form-input-icon']}>
+            <i className={`icon-${state.form.confirmationSubject}`} />
+          </div>
+      </div>
+      </div>
+      {
+            state.form.confirmationEmail === 'error' ? (
+              <div 
+                className={styles['footer-form-message']}>
+              <p >L'email n'est pas valide</p>
+            </div>
+            ) : ''
           }
+          {
+            state.form.confirmationSubject === 'error' ?(
+            <div className={styles['footer-form-message']}>
+              <p>Le sujet doit faire moins de 25 caractères</p>
+            </div>
+            ) : ''
+          }
+
+    {
+            state.form.confirmationName === 'error' ? (
+              <div className={styles['footer-form-message']}>
+                <p >Le nom doit faire moins de 25 caractères</p>
+              </div>
+            ) : ''
+          }
+      {/* Message */}
+      <div className={styles['footer-form-textarea']}>
+        <div className={`${styles['footer-form-textarea-input']}`}>
+          <div className={styles['footer-form-textarea-input-field']}>
+            <textarea
+              placeholder="Message"
+              rows={state.form.textArea}
+              wrap="off"
+              onChange={handleChangeMessage}
+              value={state.form.message}
+              required
+            />
+          </div>
+          <div className={styles['footer-form-textarea-input-icon']}>
+            <i className={`icon-${state.form.confirmationMessage}`} />
+          </div>
+        </div>
+        
+          {                      
+            state.form.confirmationMessage === 'error' ? (
+              <div className={`${styles['footer-form-message']}`}>
+                <p >Le message doit faire moins de 25 caractères</p>
+              </div>
+            ) : ''
+          }
+
       </div>
-      </div>
-      <textarea
-        placeholder="Message"
-        rows={5}
-        onChange={(e) => setState({ ...state, form:{...state.form, message: e.target.value }})}
-        value={state.form.message}
-        required
-      />
       <button type="submit">
-        <i className="icon-paper-plane" />
+      <i className="icon-paper-plane" />
         Envoyer
       </button>
     </form>

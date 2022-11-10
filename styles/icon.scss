@@ -54,12 +54,28 @@
 .icon-x:before {
   content: "\e94a";
 }
-.icon-error:before {
-  content: "\e94a";
-}
 .icon-linkedin:before {
   content: "\e94b";
 }
 .icon-location:before {
   content: "\e94c";
+}
+
+//* Message error
+.icon-error:before {
+  content: "\e94a";
+  color: red;
+}
+.icon-confirmation:before {
+  content: "\e94c";
+  color: green;
+}
+
+.icon-confirmation:before {
+  content: "\e94c";
+  color: green;
+}
+.icon-change:before {
+  content: "\e94c";
+  color: green;
 }

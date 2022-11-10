@@ -36,6 +36,12 @@ function Home ({ categories }) {
       subject: '',
       message: '',
       confirmation:'',
+      textArea: 1,
+      confirmationMessage: 'change',
+      confirmationName: 'change',
+      confirmationEmail: 'change',
+      confirmationSubject: 'change',
+
     }
   });
  
@@ -173,7 +179,7 @@ function Home ({ categories }) {
             {/** Contact */}
             {
               categories?.filter((item) => item.idTitle === '#contact').map((item) => (
-                <div key={item.idTitle}>
+                <>
                   {/** Title Categories */}
                   <CategoriesMain key={item.id} item={item} />
 
@@ -184,7 +190,7 @@ function Home ({ categories }) {
 
                   {/** Form Contact */}
                   <FormContact setState={setState} state={state} />
-                </div>
+                </>
               ))
             }
             <div className={styles['footer-autor']}>
