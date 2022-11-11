@@ -3,13 +3,17 @@
 @use './icon.scss';
 @import './variables.scss';
 
+
 body {
-  font-family: 'fontGeneral', sans-serif;
+  font-family: $font-primary;
+  font-size: $font-size;
   color: $color-primary;
   text-align: center;
 }
+
 h1, h2{
-  font-family: 'fontTitle', sans-serif;
+  font-size: $font-size-large;
+  font-family: $font-secondary;
   font-weight: bold;
 }
 button {
@@ -27,5 +31,17 @@ a:hover{
 }
 hr{
   width: 90%;
+}
+
+//* Message Modal
+.change{
+  color: grey;
+}
+.confirmation{
+  color: green;
+
+}
+.error{
+  color: red;
 }
 

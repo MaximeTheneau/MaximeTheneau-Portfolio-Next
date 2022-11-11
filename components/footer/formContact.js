@@ -1,4 +1,5 @@
 
+import { useEffect } from 'react';
 import styles from '../../styles/Home.module.scss';
 
 function formContact({state, setState} ) {
@@ -131,40 +132,48 @@ function formContact({state, setState} ) {
     }
   }
 
+    const handleMouseMove = (event) => {
+      const localX = event.clientX - event.target.offsetLeft;
+      const localY = event.clientY - event.target.offsetTop;
+      const x = (localX - event.target.clientWidth / 2) / 10;
+      setState({
+        ...state,
+        form:{
+          ...state.form,
+          x: x,
+          y: localY,
+        }
+      })
+    };
+
+
+
+
   return (  
-    <form className={styles['footer-form']} onSubmit={handleSubmit}>
+    <form className={styles['footer-form']} onSubmit={handleSubmit} >
       <div className={styles['footer-form-top']}>
         <div className={styles['footer-form-input']}>
-          <div className={styles['footer-form-input-field']}>
-            <input
-              type="text"
-              placeholder="Nom"
-              onChange={handleChangeName}
-              value={state.form.name}
-              required
-            />
-          </div>
-          <div className={styles['footer-form-input-icon']}>
-            <i className={`icon-${state.form.confirmationName} ${styles[state.form.confirmationName]}`} />
-          </div>
+          <input
+            type="text"
+            placeholder="Nom"
+            onChange={handleChangeName}
+            value={state.form.name}
+            required
+          />
+          <i className={`icon-${state.form.confirmationName}`} />
         </div>
         <div className={styles['footer-form-input']}>
-          <div className={styles['footer-form-input-field']}>
-            <input
-              type="email"
-              placeholder="Email"
-              onChange={handleChangeEmail}
-              value={state.form.email}
-              />
-          </div>
-          <div className={styles['footer-form-input-icon']}>
-            <i className={`icon-${state.form.confirmationEmail} ${styles[state.form.confirmationEmail]}`} />
-          </div>
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={handleChangeEmail}
+            value={state.form.email}
+            />
+          <i className={`icon-${state.form.confirmationEmail}`} />
         </div >
 
         {/* Subject */}
         <div className={styles['footer-form-input']}>
-          <div className={styles['footer-form-input-field']}>
             <input
               type="text"
               placeholder="Sujet"
@@ -173,12 +182,11 @@ function formContact({state, setState} ) {
               className={styles[state.form.confirmationSubject]}
               required
             />
-          </div>
-          <div className={styles['footer-form-input-icon']}>
             <i className={`icon-${state.form.confirmationSubject}`} />
-          </div>
       </div>
       </div>
+
+      {/* Error */}
       {
             state.form.confirmationEmail === 'error' ? (
               <div 
@@ -204,8 +212,6 @@ function formContact({state, setState} ) {
           }
       {/* Message */}
       <div className={styles['footer-form-textarea']}>
-        <div className={`${styles['footer-form-textarea-input']}`}>
-          <div className={styles['footer-form-textarea-input-field']}>
             <textarea
               placeholder="Message"
               rows={state.form.textArea}
@@ -213,13 +219,9 @@ function formContact({state, setState} ) {
               onChange={handleChangeMessage}
               value={state.form.message}
               required
-            />
-          </div>
-          <div className={styles['footer-form-textarea-input-icon']}>
+            />          
             <i className={`icon-${state.form.confirmationMessage}`} />
-          </div>
-        </div>
-        
+        </div>        
           {                      
             state.form.confirmationMessage === 'error' ? (
               <div className={`${styles['footer-form-message']}`}>
@@ -228,11 +230,15 @@ function formContact({state, setState} ) {
             ) : ''
           }
 
-      </div>
-      <button type="submit">
-      <i className="icon-paper-plane" />
-        Envoyer
-      </button>
+        <button
+          type="submit"
+          onMouseMove={handleMouseMove}
+        >
+          <div className={styles['footer-form-button']}>
+            <span>Envoyer</span>    
+            <i className="icon-paper-plane" />
+          </div>      
+        </button>
     </form>
 
   );

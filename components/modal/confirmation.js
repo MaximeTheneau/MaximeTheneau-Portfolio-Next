@@ -5,6 +5,9 @@ function confirmation({ setState, state }) {
   const setToggleModalValue = () => {
     console.log('setToggleModalValue');
     setState({ ...state, toggleModal: false });
+    setTimeout(() => {
+      setState({ ...state, toggleModal: true });
+    }, 3000);
   };
   return (
 

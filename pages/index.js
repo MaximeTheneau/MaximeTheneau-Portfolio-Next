@@ -20,10 +20,11 @@ import FormContactList from '../components/footer/formContactList';
 //* Styles
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
+import Link from 'next/link';
 
 
-function Home ({ categories }) {
-  
+function Home ({ categories, statusApi }) {
+
   //* State
   const [state, setState] = useState({
     toggleNav: true,
@@ -182,18 +183,28 @@ function Home ({ categories }) {
                 <>
                   {/** Title Categories */}
                   <CategoriesMain key={item.id} item={item} />
+                  <div className={styles['footer-cv']}>
+                    <Link href="/cv-theneau-maxime.pdf">
+                      <button type="button" className={styles['footer-cv-button']}>
+                        <span>Mon CV</span>
+                      </button>
+                    </Link>
+                  </div>
+
+                  {/** Form Contact */}
+                  <div className={styles['footer-form-backcground']}>
+                    <h3>Contactez-moi</h3>
+                    <FormContact setState={setState} state={state} />
+                  </div>
 
                   {/** Contact List */}
                   {item.contacts.map((contact) => (
                       <FormContactList key={contact.twitter} contact={contact}  />
                   ))}
-
-                  {/** Form Contact */}
-                  <FormContact setState={setState} state={state} />
                 </>
               ))
             }
-            <div className={styles['footer-autor']}>
+            <div className={styles['footer-author']}>
               <p>
                 Site réaliser par <i className='icon-signature'/>
               </p>
@@ -206,11 +217,21 @@ function Home ({ categories }) {
 export default Home;
 
 
-export async function getServerSideProps(checkStatus) {
+export async function getServerSideProps() {
       // Fetch data from external API
-      const res = await fetch('http://localhost:8000/api/categories')
-      const categoriesData = await res.json()
-      // Pass data to the page via props
-      return { props: { categories: categoriesData} }
+        const res = await fetch('http://localhost:8000/api/categories')
+        const categories = await res.json()
+        if (res.status === 200) {
+          return {
+            props: {
+              categories: categories,
+              statusApi: false,
+            }
+          }     
+          
+        }
+        return {props:{status: res.status}}
+
+      
 }
 
