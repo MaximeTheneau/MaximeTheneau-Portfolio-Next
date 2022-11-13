@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import styles from '../../styles/Home.module.scss';
 
-function formContact({state, setState} ) {
+export default function FormContact({state, setState} ) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const requestOptions = {
@@ -110,7 +110,7 @@ function formContact({state, setState} ) {
     setState({ ...state, form:{...state.form, message: e.target.value, textArea: trows, confirmationMessage: 'change' }})
     const textareaheight = state.form.textArea;
     console.log(textareaheight);
-    if(e.target.value.length > 25){
+    if(e.target.value.length > 250){
       setState({
         ...state,
         form:{
@@ -119,7 +119,7 @@ function formContact({state, setState} ) {
           message: e.target.value,
           textArea: trows
         }} )
-    }if(e.target.value.length > 26){
+    }if(e.target.value.length > 250){
     setState({
       ...state,
       form:{
@@ -132,19 +132,7 @@ function formContact({state, setState} ) {
     }
   }
 
-    const handleMouseMove = (event) => {
-      const localX = event.clientX - event.target.offsetLeft;
-      const localY = event.clientY - event.target.offsetTop;
-      const x = (localX - event.target.clientWidth / 2) / 10;
-      setState({
-        ...state,
-        form:{
-          ...state.form,
-          x: x,
-          y: localY,
-        }
-      })
-    };
+    
 
 
 
@@ -232,7 +220,6 @@ function formContact({state, setState} ) {
 
         <button
           type="submit"
-          onMouseMove={handleMouseMove}
         >
           <div className={styles['footer-form-button']}>
             <span>Envoyer</span>    
@@ -244,4 +231,3 @@ function formContact({state, setState} ) {
   );
 }
 
-export default formContact;

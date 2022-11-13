@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles from '../../styles/Home.module.scss';
 import PropTypes from 'prop-types';
 
-function ExperiencesList({ experience }) {
+export default function ExperiencesList({ experience }) {
   return (
     <>
         <div className={styles['home-experience']}>
@@ -51,4 +51,3 @@ ExperiencesList.propTypes = {
   }).isRequired,
 
 };
-export default ExperiencesList;

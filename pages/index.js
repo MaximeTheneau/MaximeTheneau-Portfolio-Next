@@ -21,15 +21,15 @@ import FormContactList from '../components/footer/formContactList';
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
-function Home ({ categories, statusApi }) {
+function Home ({ categories }) {
 
   //* State
   const [state, setState] = useState({
     toggleNav: true,
     toggleModal: false,
-    position: null,
     loadingSticky: false,
     form:{
       name: '',
@@ -50,7 +50,6 @@ function Home ({ categories, statusApi }) {
 
   const headerRef = useRef(null);
   const contactRef = useRef(null);
-  const testRef = useRef(null);
   
   useEffect(() => {
     const header = headerRef.current;
@@ -61,8 +60,7 @@ function Home ({ categories, statusApi }) {
         trigger: header,
         start: 'top top',
       },
-      opacity: 0.8,
-      y: state.position > 0 ? -100 : 0,  
+      opacity: 0.8,  
     });
     gsap.fromTo(contact, {
       opacity: 0,
@@ -79,20 +77,20 @@ function Home ({ categories, statusApi }) {
 
   return (
     <>
-        {/** Modal Confirmation */}
-        {state.toggleModal ? <Confirmation setState={setState} state={state} /> : ''}
         <Head>
           <title>Theneau Maxime Développeur Web à Marseille</title>
           <meta name="description" content="Theneau Maxime dévelloppeur web à Marseille." />
           <link rel="icon" href="/favicon.ico" />
 
         </Head>
+        {/** Modal Confirmation */}
+        {state.toggleModal ? <Confirmation setState={setState} state={state} /> : ''}
           <div  className={state.toggleModal ? (styles.blur) : ''}>
                 
 
           {/** Header Images Sticky */}
-          <div className={stylesHeader['header-sticky']} ref={testRef} >
-            { categories?.filter((image) => image.idTitle === '#home').map((item) => (
+          <div className={stylesHeader['header-sticky']}  >
+            { categories?.filter((image) => image.idTitle === 'accueil').map((item) => (
               <Sticky
                 key={item.id}
                 imgWebp={item.imgWebp}
@@ -110,31 +108,25 @@ function Home ({ categories, statusApi }) {
           <header className={stylesHeader.header} ref={headerRef}>
             {state.toggleNav ? (
               <div className={stylesHeader['header-navbar-toggle']}>
-                <div className={stylesHeader['header-button_close']}>
-                  <button
-                    type="button"
-                    id="button_nav"
-                    title="Fermer le menu"
-                    onClick={() => {
-                      setState({ ...state, toggleNav: false });
-                    }}
+                <div
+                  className={stylesHeader['header-button_close']}
+                  onClick={() => {
+                    setState({ ...state, toggleNav: false });
+                  }}
                   >
-                    <i className="icon-navbar" />
-                  </button>
-                </div>
+                    <i className="icon-navbar" />                  
+                  </div>
               </div>
             ) : (
               <nav className={stylesHeader.navbar}>
                 <div className={stylesHeader['header-navbar-toggle']}>
-                  <div className={stylesHeader['header-button_close']}>
-                    <button
-                      type="button"
-                      onClick={() => {
+                  <div 
+                    className={stylesHeader['header-button_close']}
+                    onClick={() => {
                         setState({ ...state, toggleNav: true });
                       }}
                     >
                       <i className="icon-x" />
-                    </button>
                   </div>
                 </div>
                 <ul className={stylesHeader['header-navbar']}>
@@ -157,9 +149,9 @@ function Home ({ categories, statusApi }) {
             </ul>
           </header>
 
-          <main className={styles.main} id="skills" >
+          <main className={styles.main} >
             {
-                categories?.filter((item) => item.idTitle === '#skills').map((item) => (
+                categories?.filter((item) => item.idTitle === 'experiences').map((item) => (
                   <div  key={item.idTitle}>
 
                     {/** Title Categories */}
@@ -173,23 +165,55 @@ function Home ({ categories, statusApi }) {
                 ))
             }
 
-          </main>
-
-          <footer className={styles.footer} id="contact" ref={contactRef}>
-            
-            {/** Contact */}
+            {/** About  */}
             {
-              categories?.filter((item) => item.idTitle === '#contact').map((item) => (
-                <>
-                  {/** Title Categories */}
-                  <CategoriesMain key={item.id} item={item} />
-                  <div className={styles['footer-cv']}>
+                categories?.filter((item) => item.idTitle === 'a-propos').map((item) => (
+                  <div  key={item.idTitle}>
+                    {/** Title Categories */}
+                    <CategoriesMain item={item} key={item.id} />
+                  </div>
+                ))
+
+            }
+              <div className={styles['about']}>
+                <div className={styles['about-content']}>
+                  <h3 className={styles['about-content-text']}>
+                    Passionné par le développement web et le design.
+                  </h3>
+                  <Image
+                    src="https://avatars.githubusercontent.com/u/99042955?v=4"
+                    alt="Theneau Maxime"
+                    width="1000"
+                    height="1000"
+                    layout="fill"
+                  />
+                  <p className={styles['about-content-text']}>
+                    Développeur depuis adolescent, j'ai toujours été attiré par le monde du web.
+                    J'ai commencé par créer des sites web pour mes propres site web pour mes réalisations, puis j'ai décidé de me former pour devenir développeur web.
+                  </p>
+                  <div className={styles['about-cv']}>
                     <Link href="/cv-theneau-maxime.pdf">
-                      <button type="button" className={styles['footer-cv-button']}>
+                      <button type="button" className={styles['button']}>
                         <span>Mon CV</span>
                       </button>
                     </Link>
                   </div>
+                </div>
+
+                
+              </div>
+
+          </main>
+
+          <footer className={styles.footer} ref={contactRef}>
+            
+            {/** Contact */}
+            {
+              categories?.filter((item) => item.idTitle === 'contact').map((item) => (
+                <>
+                  {/** Title Categories */}
+                  <CategoriesMain key={item.id} item={item} />
+
 
                   {/** Form Contact */}
                   <div className={styles['footer-form-backcground']}>
@@ -214,24 +238,15 @@ function Home ({ categories, statusApi }) {
     </>
   );
 }
+
 export default Home;
 
-
-export async function getServerSideProps() {
+export async function getStaticProps() {
       // Fetch data from external API
-        const res = await fetch('http://localhost:8000/api/categories')
+        const res = await fetch('http://back.theneaumaxime.fr/public/api/categories')
         const categories = await res.json()
-        if (res.status === 200) {
-          return {
-            props: {
-              categories: categories,
-              statusApi: false,
-            }
-          }     
-          
-        }
-        return {props:{status: res.status}}
 
-      
-}
+        return {props:{categories: categories}}
+
+      }
 

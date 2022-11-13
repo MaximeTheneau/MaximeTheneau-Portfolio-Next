@@ -24,6 +24,9 @@
         }
     }
     &-navbar{
+      & li {
+        margin: 0 0 2rem;
+      }
       &-720{
         display: none;
       }

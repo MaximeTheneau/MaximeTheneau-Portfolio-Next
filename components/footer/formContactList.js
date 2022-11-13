@@ -1,6 +1,6 @@
 import styles from '../../styles/Home.module.scss';
 
-function formContactList({contact}) {
+export default function FormContactList({contact}) {
   return (
     <>
         <div className={styles['footer-contact-list-social']}>
@@ -21,4 +21,3 @@ function formContactList({contact}) {
   );
 }
 
-export default formContactList;

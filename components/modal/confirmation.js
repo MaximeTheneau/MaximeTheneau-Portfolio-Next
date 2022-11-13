@@ -1,6 +1,6 @@
 import styleModal from '../../styles/Modal.module.scss';
 
-function confirmation({ setState, state }) {
+export default function confirmation({ setState, state }) {
   
   const setToggleModalValue = () => {
     console.log('setToggleModalValue');
@@ -24,4 +24,3 @@ function confirmation({ setState, state }) {
     </div>
   );
 }
-export default confirmation;

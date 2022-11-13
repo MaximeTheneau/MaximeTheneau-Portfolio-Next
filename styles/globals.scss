@@ -16,10 +16,28 @@ h1, h2{
   font-family: $font-secondary;
   font-weight: bold;
 }
-button {
-  border: none;
-  background: none;
-}
+  //* Button
+  button{
+    border: none;
+    font-size: $font-size;
+    background: $color-blue;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 900;
+    padding: 1rem  1rem;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    transition: color 1s linear;
+    & i{
+      margin: 0 0.5rem;
+      padding: 1rem ;
+    }
+    &:hover{
+      color: $color-primary;
+      transition: color 1s linear;
+    }
+
+  }
 img{
   max-width: 100%;
   margin: auto;

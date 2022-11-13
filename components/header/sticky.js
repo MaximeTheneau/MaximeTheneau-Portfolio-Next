@@ -1,17 +1,16 @@
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import stylesHeader from '../../styles/Header.module.scss';
 
-function sticky({ imgWebp, alt }) {
-    const [state, setState] = useState({
+export default function Sticky({ imgWebp, alt }) {
+    const [position, setPosition] = useState({
         position: null,
       });
       
     useEffect(() => {
         function updatePosition() {
           const valueScroll = window.scrollY;
-          setState({
-            ...state,
+          setPosition({
               position: valueScroll,
             });
           }
@@ -29,10 +28,9 @@ function sticky({ imgWebp, alt }) {
             height="1000"
             layout="fill"
             className={stylesHeader['header-sticky-img']}
-            style={{ top : `-${state.position}px` }}
+            style={{ top : `-${position.position}px` }}
             priority
         />
     </>
   );
 }
-export default sticky;
