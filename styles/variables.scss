@@ -1,11 +1,21 @@
 /*--Colors--*/
-$color-primary: #5b5b59;
-$color-secondary: #4c575a;
-$color-grey: #dcdde1;
+$color-primary: #26211D;
+$color-secondary: #EEECE8;
+$color-secondary-light: #FAFBFA;
+$color-secondary-dark: #40392E;
+$color-background:#EDF2EE;
 $color-white: #fff;
-$color-blue: #63c9c6;
-$color-shadow: #5b5b5947;
-$color-button: #63c9c6;
+$color-button: #69b9e7;
+$color-grey: #d1cdc3;
+$color-error: #5b5b5947;
+$color-blue: #69b9e7;
+$color-red: #e22121;
+$color-green: #21e2a1;
 
-/*--Media Query--*/
-
+/*--Fonts--*/
+$font-primary: 'fontGeneral', sans-serif;
+$font-secondary: 'fontTitle', sans-serif;
+$font-size: 1.5rem;
+$font-size-small: 1.2rem;
+$font-size-large: 1.8rem;
+$font-size-bold: 900;

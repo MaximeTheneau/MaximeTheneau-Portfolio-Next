@@ -1,19 +1,31 @@
 @import './variables.scss';
-.active{
-  color: rgb(201, 27, 27);
-}
 
+
+
+// /*--Font--*/
+// $font-primary: 'Roboto', sans-serif;
+// $font-secondary: 'Roboto', sans-serif;
+// $font-size: 1.6rem;
+// $font-size-small: 1.4rem;
+// $font-size-medium: 1.8rem;
+// $font-size-bold: 900;
+
+
+
+//* Home
 .home{
+
   // Categories
   &-categories{
-    font-size: 1.2rem;
     position: relative;
+    margin: 0 0 1rem;
     &-title{
       position:absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 100%;
+      width: 50%;
+      padding: 1rem 0;
       background: rgba(255, 255, 255, 0.8);
     }
     &-img{
@@ -25,6 +37,8 @@
 
   // Experiences
   &-experience{
+    margin: 0 0 1rem;
+    border-bottom:0.1rem solid $color-primary; ;
     &-img{
       width: 100%;
       height: 30vh;
@@ -32,22 +46,19 @@
     }
     &-text{
       color: $color-primary;
-      background: grey;
+      background: $color-secondary;
       height: 30vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin: 0 0 1rem 0;
+
       & > h2 {
-        font-size: 1.5rem;
         margin: 0 0 1rem 0;
       }
       & > h3 {
-        font-size: 1.2rem;
         font-weight: 900;
       }
       &-link{
-        font-size: 1.5rem;
         display: flex;
         justify-content: space-evenly;
         margin: 1rem 0 0 0;
@@ -58,62 +69,120 @@
     }
   }
 
-
-
-  &-contact{
-    line-height: 2rem;
-    font-size: 1.5rem;
-    &-list-social{
-      margin: 1.5rem 0;
-      font-size: 2rem;
-      display: flex;
-      justify-content: space-around;
-    }
-  }
 }
 
 
 .footer{
-  &-form-top{
-    & input[type="text"], input[type="email"]{
-      width:90%;
-      margin: 1rem auto;
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: 0.3rem solid $color-primary;
-      border-radius: 0.5rem;
-      outline: none;
-      cursor: pointer;
+  &-author{
+    background: $color-secondary-dark;
+    color: $color-secondary;
+    padding: 0.5rem;
+    font-size: $font-size-small;
+    & i{
+      font-size: 2rem;
     }
   }
-  & textarea{
-    width:90%;
-    margin: 1rem auto;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 0.3rem solid $color-primary;
-    border-radius: 0.5rem;
-    outline: none;
-    cursor: pointer;
+  & h3{
+    padding: 1rem 0;
   }
-  & button{
-    font-size: 1rem;
-    background: $color-button;
-    color: #fff;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: block;
-    margin: 1rem auto;
-    font-weight: 900;
-    padding: 1rem;
-    & i{
-      font-size: 1.8rem;
-      margin: 0 0.5rem;
+  &-contact{
+    line-height: 2rem;
+    &-list-social{
+      padding:  1.5rem 0;
+      display: flex;
+      justify-content: space-around;
+      background: $color-background;
+    }
+  }
+  &-form{
+    width: 80%;
+    margin: auto;
+    //* Background
+    &-backcground{
+      background: $color-background;
+    }
+    //* TextArea
+    &-textarea{
+      margin: 2rem 0 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      & textarea{
+        font-family: $font-primary;
+        font-size: $font-size;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 0.1rem solid $color-primary;
+        resize: none;
+        line-height: 2rem;
+        overflow-y: hidden;
+        overflow-x: auto;
+        height: auto;
+        padding: 0.5rem;
+        background: none;
+        outline: none;
+        width: 80%;
+      }
+    }
+    //* Input
+    &-input{
+      margin: 2rem 0 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      & input[type="text"], input[type="email"]{
+        font-family: $font-primary;
+        font-size: $font-size;
+        background: none;
+        padding: 0.5rem;
+        border: none;
+        border-bottom: 0.1rem solid $color-primary;
+        outline: none;
+        cursor: pointer;
+        resize: none;
+        width: 80%;
+      }     
+    }
+    //*Message
+    &-message{
+      border-radius: 1rem;
+      background-color: $color-error;
+      color: $color-red;
+      margin: 1rem auto;
+      padding: 1rem;
+      width: 80%;
+      animation: fadeIn 1.5s ease;
     }
   }
 }
+
+//* Animation
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(100%);
+  }
+  50% {
+    transform: translate(0);
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+    transform: translate(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(100%);
+  }
+}
+
+//* Media Queries
 
 @media screen and (min-width: 720px) {
   .home{
@@ -125,17 +194,13 @@
       }
       &-text{
         width: 50%;
-        margin: 0 0 1.5rem 0;
         & > h2 {
-          font-size: 2rem;
           margin: 0 0 1rem 0;
         }
         & > h3 {
-          font-size: 1.5rem;
           font-weight: 900;
         }
         &-link{
-          font-size: 2rem;
           font-weight: 900;
         }
       }
@@ -148,29 +213,38 @@
     &-experience{
 
       &-text{
-        margin: 0 0 2rem 0;
         width: 60%;
       }
     }
     &-contact{
       &-list-social{
-        font-size: 3rem;
       }
     }
   }
 
   .footer{
-    &-form-top{
-      & input[type="text"], input[type="email"]{
-        width: 30%;
-        margin: 1rem 0.5rem 1rem 0;
+    &-form{
+      &-textarea{
+        & textarea{
+          width: 100%;
+        }
       }
-    }
-    & textarea{
-      width: 50%;
-    }
+      &-top{
+        display: flex;
+        justify-content: space-between;
+      }
+      &-input{
+        width: 30%;
+        & input[type="text"], input[type="email"]{
+          width: 100%;
+        }
+      }
   }
+
+  }
+
 }
+
 .blur{
   filter: blur(0.2em);
 }

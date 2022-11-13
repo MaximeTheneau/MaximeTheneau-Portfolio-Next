@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles from '../../styles/Home.module.scss';
 import PropTypes, { element } from 'prop-types';
 
-function CategoriesMain({ item }) {
+export default function CategoriesMain({ item }) {
   return (
     
       <div
@@ -27,4 +27,3 @@ CategoriesMain.propTypes = {
   imgWebp: PropTypes.string,
   title: PropTypes.string,
 };
-export default CategoriesMain;

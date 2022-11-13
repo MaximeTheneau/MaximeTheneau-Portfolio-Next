@@ -1,6 +1,14 @@
 import styleModal from '../../styles/Modal.module.scss';
 
-function confirmation({ onClick }) {
+export default function confirmation({ setState, state }) {
+  
+  const setToggleModalValue = () => {
+    console.log('setToggleModalValue');
+    setState({ ...state, toggleModal: false });
+    setTimeout(() => {
+      setState({ ...state, toggleModal: true });
+    }, 3000);
+  };
   return (
 
     <div className={styleModal.modal}>
@@ -9,11 +17,10 @@ function confirmation({ onClick }) {
       <button
         type="button"
         className={styleModal.close}
-        onClick={onClick}
+        onClick={setToggleModalValue}
       >
         Fermer
       </button>
     </div>
   );
 }
-export default confirmation;

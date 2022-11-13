@@ -2,17 +2,17 @@
 const nextConfig = {
   images: {
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'theneaumaxime.fr',
-        port: '',
-        pathname: '/account123/**',
-      },
-    ],
+    formats: ['image/webp'],
   },
-  reactStrictMode: true,
-  swcMinify: true,
+  extends: [
+    //...
+    'plugin:@next/next/recommended',
+  ],
+  exportPathMap: async function () {
+    return {
+      '/': { page: '/' },
+    }
+  },
 }
 
 module.exports = nextConfig

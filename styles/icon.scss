@@ -1,3 +1,4 @@
+@import './variables.scss';
 @font-face {
   font-family: 'iconTheneauM';
   src: url('../asset/font/icon/iconTheneauM.woff2') format('woff2'),
@@ -19,9 +20,9 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.8rem;
 }
 
 .icon-signature:before {
@@ -59,4 +60,18 @@
 }
 .icon-location:before {
   content: "\e94c";
+}
+
+//* Message error
+.icon-change:before {
+  opacity: 0.5;
+  content: "\e903";
+}
+.icon-confirmation:before {
+  color: $color-green;
+  content: "\e904";
+}
+.icon-error:before {
+  color: $color-red;
+  content: "\e905";
 }

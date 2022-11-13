@@ -4,7 +4,7 @@
 }
 .header{
     opacity: 0;
-    background: $color-grey;
+    background: $color-secondary-light;
     position: sticky;
     font-family: 'fontTitle';
     font-weight: bold;
@@ -24,6 +24,9 @@
         }
     }
     &-navbar{
+      & li {
+        margin: 0 0 2rem;
+      }
       &-720{
         display: none;
       }
