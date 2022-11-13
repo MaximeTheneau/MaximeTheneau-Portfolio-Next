@@ -2,12 +2,12 @@ import Image from 'next/image';
 import styles from '../../styles/Home.module.scss';
 import PropTypes, { element } from 'prop-types';
 
-export default function CategoriesMain({ item }) {
+export default function CategoriesMain({ item, id }) {
   return (
     
       <div
-          id={item.idTitle}
           className={styles['home-categories']}
+          id={id}
         >
           <Image
             src={item.imgWebp}
