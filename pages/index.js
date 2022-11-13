@@ -16,7 +16,6 @@ import CategoriesMain from '../components/main/categoriesMain';
 import ExperiencesList from '../components/main/experiencesList';
 import FormContact from '../components/footer/formContact';
 import FormContactList from '../components/footer/formContactList';
-import About from '../components/main/AboutMain';
 
 //* Styles
 import styles from '../styles/Home.module.scss';
@@ -94,7 +93,6 @@ function Home ({ categories }) {
             { categories?.filter((image) => image.idTitle === 'accueil').map((item) => (
               <Sticky
                 key={item.id}
-                id={item.idTitle}
                 imgWebp={item.imgWebp}
                 alt={item.title}
               />
@@ -152,13 +150,14 @@ function Home ({ categories }) {
           </header>
 
           <main className={styles.main} >
-
-            {/** Skills */}
             {
                 categories?.filter((item) => item.idTitle === 'experiences').map((item) => (
                   <div  key={item.idTitle}>
-                    <CategoriesMain item={item} key={item.id} id={item.idTitle} />
 
+                    {/** Title Categories */}
+                    <CategoriesMain item={item} key={item.id} />
+
+                    {/** Skills */}
                     { item.experiences.map((experience) => (
                       <ExperiencesList key={experience.title} experience={experience} />
                     ))}
@@ -169,45 +168,72 @@ function Home ({ categories }) {
             {/** About  */}
             {
                 categories?.filter((item) => item.idTitle === 'a-propos').map((item) => (
-                    <CategoriesMain item={item} key={item.id} id={item.idTitle} />
+                  <div  key={item.idTitle}>
+                    {/** Title Categories */}
+                    <CategoriesMain item={item} key={item.id} />
+                  </div>
                 ))
+
             }
-              <div className={styles['about']} >
-                { categories?.filter((item) => item.idTitle === 'a-propos' ).map((item) => (
-                  item.abouts.map((about) => (
-                    <About key={about.id} about={about} />
-                  ))
-                ))}        
+              <div className={styles['about']}>
+                <div className={styles['about-content']}>
+                  <h3 className={styles['about-content-text']}>
+                    Passionné par le développement web et le design.
+                  </h3>
+                  <Image
+                    src="https://avatars.githubusercontent.com/u/99042955?v=4"
+                    alt="Theneau Maxime"
+                    width="1000"
+                    height="1000"
+                    layout="fill"
+                  />
+                  <p className={styles['about-content-text']}>
+                    Développeur depuis adolescent, j'ai toujours été attiré par le monde du web.
+                    J'ai commencé par créer des sites web pour mes propres site web pour mes réalisations, puis j'ai décidé de me former pour devenir développeur web.
+                  </p>
+                  <div className={styles['about-cv']}>
+                    <Link href="/cv-theneau-maxime.pdf">
+                      <button type="button" className={styles['button']}>
+                        <span>Mon CV</span>
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+
+                
               </div>
 
           </main>
 
-            <footer className={styles.footer} ref={contactRef}>
-              
-              {/** Contact */}
+          <footer className={styles.footer} ref={contactRef}>
+            
+            {/** Contact */}
+            {
+              categories?.filter((item) => item.idTitle === 'contact').map((item) => (
                 <>
-                    {/** Title Categories */}
-                    { categories?.filter((item) => item.idTitle === 'contact').map((item) => (
-                    <CategoriesMain key={item.id} item={item} id={item.idTitle} />
-                    ))}
+                  {/** Title Categories */}
+                  <CategoriesMain key={item.id} item={item} />
 
-                    {/** Form Contact */}
-                    <div className={styles['footer-form-backcground']}>
-                      <h3>Contactez-moi</h3>
-                      <FormContact setState={setState} state={state} />
-                    </div>
 
-                    {/** Contact List */}
-                    {categories?.filter((item) => item.idTitle === 'contact').map((contact) => (
-                        <FormContactList key={contact.id} contact={contact}  />
-                    ))}
-                  </>
-              <div className={styles['footer-author']}>
-                <p>
-                  Site réaliser par <i className='icon-signature'/>
-                </p>
-              </div>
-            </footer>
+                  {/** Form Contact */}
+                  <div className={styles['footer-form-backcground']}>
+                    <h3>Contactez-moi</h3>
+                    <FormContact setState={setState} state={state} />
+                  </div>
+
+                  {/** Contact List */}
+                  {item.contacts.map((contact) => (
+                      <FormContactList key={contact.twitter} contact={contact}  />
+                  ))}
+                </>
+              ))
+            }
+            <div className={styles['footer-author']}>
+              <p>
+                Site réaliser par <i className='icon-signature'/>
+              </p>
+            </div>
+          </footer>
           </div>
     </>
   );
