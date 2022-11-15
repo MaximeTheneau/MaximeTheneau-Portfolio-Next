@@ -1,5 +1,4 @@
 
-import { useEffect } from 'react';
 import styles from '../../styles/Home.module.scss';
 
 export default function FormContact({state, setState} ) {
@@ -14,7 +13,6 @@ export default function FormContact({state, setState} ) {
     .finally(() => {
         setState({
           ...state,
-          toggleModal: true,
           form: {
             name: '',
             email: '',
@@ -51,7 +49,6 @@ export default function FormContact({state, setState} ) {
         name: e.target.value
       }} )
     }
-
   }
 
   const handleChangeEmail = (e) => {

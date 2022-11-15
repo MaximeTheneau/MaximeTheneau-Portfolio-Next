@@ -14,7 +14,6 @@
 
 //* Home
 .home{
-
   // Categories
   &-categories{
     position: relative;
@@ -69,6 +68,24 @@
     }
   }
 
+}
+
+// About */
+.about{
+  & img{
+    width: 30%;
+    height: 30%;
+    border-radius: 100%;
+    margin: 0 0 1rem 0;
+  }
+  &-content{
+    margin: 0 0 1rem 0;
+    &-italic{
+      margin: 0 0 1rem 0;
+      opacity: 0.8;
+      font-style: italic;
+    }
+  }
 }
 
 
@@ -204,6 +221,12 @@
           font-weight: 900;
         }
       }
+    }
+  }
+  .about{
+    &-content{
+      width: 50%;
+      margin: auto;
     }
   }
 }

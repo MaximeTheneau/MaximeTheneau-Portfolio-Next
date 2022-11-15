@@ -1,14 +1,8 @@
 import styleModal from '../../styles/Modal.module.scss';
 
-export default function confirmation({ setState, state }) {
+export default function confirmation({ setToggleModalValue }) {
   
-  const setToggleModalValue = () => {
-    console.log('setToggleModalValue');
-    setState({ ...state, toggleModal: false });
-    setTimeout(() => {
-      setState({ ...state, toggleModal: true });
-    }, 3000);
-  };
+
   return (
 
     <div className={styleModal.modal}>

@@ -9,27 +9,28 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 //* Components
-import Confirmation from '../components/modal/confirmation';
-import Sticky from '../components/header/sticky';
-import CategoriesList from '../components/header/categoriesList';
-import CategoriesMain from '../components/main/categoriesMain';
-import ExperiencesList from '../components/main/experiencesList';
-import FormContact from '../components/footer/formContact';
-import FormContactList from '../components/footer/formContactList';
+import Confirmation from '../src/components/modal/Confirmation';
+import Sticky from '../src/components/header/Sticky';
+import CategoriesList from '../src/components/header/CategoriesList';
+import CategoriesMain from '../src/components/main/CategoriesMain';
+import ExperiencesList from '../src/components/main/ExperiencesList';
+import FormContact from '../src/components/footer/FormContact';
+import FormContactList from '../src/components/footer/FormContactList';
 
 //* Styles
-import styles from '../styles/Home.module.scss';
-import stylesHeader from '../styles/Header.module.scss';
-import Link from 'next/link';
-import Image from 'next/image';
+import styles from '../src/styles/Home.module.scss';
+import stylesHeader from '../src/styles/Header.module.scss';
+import AboutMain from '../src/components/main/AboutMain';
 
 
 function Home ({ categories }) {
 
+
+
   //* State
   const [state, setState] = useState({
     toggleNav: true,
-    toggleModal: false,
+    toggleModal: true,
     loadingSticky: false,
     form:{
       name: '',
@@ -50,6 +51,7 @@ function Home ({ categories }) {
 
   const headerRef = useRef(null);
   const contactRef = useRef(null);
+
   
   useEffect(() => {
     const header = headerRef.current;
@@ -75,21 +77,40 @@ function Home ({ categories }) {
     );
   }, []);
 
+  const setToggleModalValue = () => {
+    console.log('setToggleModalValue');
+    setState({ ...state, toggleModal: false });
+  };
+
+
   return (
     <>
         <Head>
-          <title>Theneau Maxime Développeur Web à Marseille</title>
-          <meta name="description" content="Theneau Maxime dévelloppeur web à Marseille." />
+          <title>Portfolio Développeur Web - Theneau Maxime à Marseille.</title>
+          <meta name="description" content="Portfolio Développeur Web - Theneau Maxime à Marseille. Après une formation certifiante web, chez O’clock et une expérience de plus de 15 ans..." />
+          <meta property="og:image" content="https://back.theneaumaxime.fr/public/images/webp/social.jpg" />
+
+          {/* Open Graph */}
+          <meta property="og:title" content="Portfolio Développeur Web - Theneau Maxime à Marseille." />
+          <meta property="og:description" content="Portfolio Développeur Web - Theneau Maxime à Marseille. Après une formation certifiante web, chez O’clock et une expérience de plus de 15 ans..." />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content="https://back.theneaumaxime.fr/public/images/webp/social.jpg" />
+          <meta property="og:url" content="https://www.maxtheneau.fr" />
+
+          {/* Favicon */}
           <link rel="icon" href="/favicon.ico" />
 
         </Head>
+
+    
         {/** Modal Confirmation */}
-        {state.toggleModal ? <Confirmation setState={setState} state={state} /> : ''}
+        {state.toggleModal ? <Confirmation setToggleModalValue={setToggleModalValue} /> : ''}
           <div  className={state.toggleModal ? (styles.blur) : ''}>
                 
 
           {/** Header Images Sticky */}
           <div className={stylesHeader['header-sticky']}  >
+
             { categories?.filter((image) => image.idTitle === 'accueil').map((item) => (
               <Sticky
                 key={item.id}
@@ -176,28 +197,13 @@ function Home ({ categories }) {
 
             }
               <div className={styles['about']}>
-                <div className={styles['about-content']}>
-                  <h3 className={styles['about-content-text']}>
-                    Passionné par le développement web et le design.
-                  </h3>
-                  <Image
-                    src="https://avatars.githubusercontent.com/u/99042955?v=4"
-                    alt="Theneau Maxime"
-                    width="1000"
-                    height="1000"
-                    layout="fill"
-                  />
-                  <p className={styles['about-content-text']}>
-                    Développeur depuis adolescent, j'ai toujours été attiré par le monde du web.
-                    J'ai commencé par créer des sites web pour mes propres site web pour mes réalisations, puis j'ai décidé de me former pour devenir développeur web.
-                  </p>
-                  <div className={styles['about-cv']}>
-                    <Link href="/cv-theneau-maxime.pdf">
-                      <button type="button" className={styles['button']}>
-                        <span>Mon CV</span>
-                      </button>
-                    </Link>
-                  </div>
+                <div className={styles['about']} >
+
+                { categories?.filter((item) => item.idTitle === 'a-propos' ).map((item) => (
+                  item.abouts.map((about) => (
+                    <AboutMain key={about.id} about={about} />
+                  ))
+                ))}
                 </div>
 
                 
