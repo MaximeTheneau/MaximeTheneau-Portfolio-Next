@@ -1,6 +1,6 @@
 //* Import
 import { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+
 import Head from 'next/head';
 
 
@@ -25,12 +25,10 @@ import AboutMain from '../src/components/main/AboutMain';
 
 function Home ({ categories }) {
 
-
-
   //* State
   const [state, setState] = useState({
     toggleNav: true,
-    toggleModal: true,
+    toggleModal: false,
     loadingSticky: false,
     form:{
       name: '',
@@ -86,17 +84,18 @@ function Home ({ categories }) {
   return (
     <>
         <Head>
+
+        
           <title>Portfolio Développeur Web - Theneau Maxime à Marseille.</title>
           <meta name="description" content="Portfolio Développeur Web - Theneau Maxime à Marseille. Après une formation certifiante web, chez O’clock et une expérience de plus de 15 ans..." />
-          <meta property="og:image" content="https://back.theneaumaxime.fr/public/images/webp/social.jpg" />
-
+          
           {/* Open Graph */}
+          <meta property="og:type" content="website" />
           <meta property="og:title" content="Portfolio Développeur Web - Theneau Maxime à Marseille." />
           <meta property="og:description" content="Portfolio Développeur Web - Theneau Maxime à Marseille. Après une formation certifiante web, chez O’clock et une expérience de plus de 15 ans..." />
-          <meta property="og:type" content="website" />
-          <meta property="og:image" content="https://back.theneaumaxime.fr/public/images/webp/social.jpg" />
-          <meta property="og:url" content="https://www.maxtheneau.fr" />
-
+          <meta property="og:site_name" content="https://www.maxtheneau.fr" />
+          <meta property="og:image" content="https://back.theneaumaxime.fr/public/images/webp/social.jpg"
+        />
           {/* Favicon */}
           <link rel="icon" href="/favicon.ico" />
 

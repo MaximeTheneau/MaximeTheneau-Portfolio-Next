@@ -8,6 +8,11 @@ const nextConfig = {
     //...
     'plugin:@next/next/recommended',
   ],
+  exportPathMap: async function () {
+    return {
+      '/': { page: '/' },
+    }
+  },
 }
 
 module.exports = nextConfig
