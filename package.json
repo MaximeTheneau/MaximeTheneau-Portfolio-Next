@@ -6,12 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export":  "next build && next export"
+    "export": "next build && next export"
   },
   "dependencies": {
     "@babel/runtime": "^7.20.1",
     "@next/font": "^13.0.2",
-    "gsap": "^3.11.3",
     "next": "13.0.0",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
@@ -20,6 +19,7 @@
   },
   "devDependencies": {
     "eslint": "8.26.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "13.0.0",
     "eslint-config-prettier": "^8.5.0"
   }

@@ -40,7 +40,7 @@ h1, h2{
   }
 img{
   max-width: 100%;
-  margin: auto;
+  max-height: 100%;
 }
 a:hover{
   color: $color-blue;
@@ -61,5 +61,9 @@ hr{
 }
 .error{
   color: red;
+}
+
+.section{
+  height: 50vh;
 }
 
