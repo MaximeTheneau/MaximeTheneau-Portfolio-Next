@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import styles from '../../styles/Home.module.scss';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import styles from '../../styles/Home.module.scss';
 
 export default function AboutMain({ about }) {
   console.log(about);
   return (
-    
     <div className={styles['about-content']}>
       <p className={styles['about-content-italic']}>
         {about.content}
@@ -22,23 +21,18 @@ export default function AboutMain({ about }) {
         {about.contents2}
       </p>
       <div className={styles['about-cv']}>
-          <Link href="/cv-theneau-maxime.pdf">
-            <button type="button" className={styles['button']}>
-              <span>Mon CV</span>
-            </button>
-          </Link>
+        <Link href="/cv-theneau-maxime.pdf">
+          <button type="button" className={styles.button}>
+            <span>Mon CV</span>
+          </button>
+        </Link>
 
       </div>
 
-        
     </div>
-    
+
   );
 }
 AboutMain.propTypes = {
-  about: PropTypes.shape({
-
-  }),
-
 
 };
