@@ -10,9 +10,13 @@ body {
   color: $color-primary;
   text-align: center;
 }
-
+h1{
+  font-size:10vw;
+}
+h2{
+  font-size: 3vw;
+}
 h1, h2{
-  font-size: $font-size-large;
   font-family: $font-secondary;
   font-weight: bold;
 }

@@ -16,6 +16,7 @@ import FormContactList from '../components/footer/formContactList';
 //* Styles
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
+import useScrollClass from '../lib/useScrollClass';
 
 export async function getStaticProps() {
   // Fetch data from external API
@@ -46,6 +47,14 @@ function Home({ categories }) {
     },
   });
 
+  const refHeader = useRef(null);
+  const refExperience = useRef(null);
+  const refContact = useRef(null);
+
+  const hasClassContact = useScrollClass(refContact, 'active');
+  const hasClassHeader = useScrollClass(refHeader, 'active');
+  const hasClassExperience = useScrollClass(refExperience, 'active');
+
   return (
     <>
       <Head>
@@ -59,7 +68,7 @@ function Home({ categories }) {
       <div className={state.toggleModal ? (styles.blur) : ''}>
 
         {/** Header */}
-        <header className="section">
+        <header className="section" ref={refHeader} className={hasClassHeader ? 'active' : ''}>
           {/** Header Images Sticky */}
           <div className={stylesHeader['header-sticky']}>
             { categories?.filter((image) => image.idTitle === 'accueil').map((item) => (
@@ -99,18 +108,23 @@ function Home({ categories }) {
 
           </div>
           {
-                categories?.filter((item) => item.idTitle === 'experiences').map((item) => (
-                  <div key={item.idTitle}>
+            categories?.filter((item) => item.idTitle === 'experiences').map((item) => (
+              <div key={item.idTitle}>
 
-                    {/** Title Categories */}
-                    <CategoriesMain item={item} key={item.id} />
+                {/** Title Categories */}
+                <div ref={refExperience} className={hasClassExperience ? 'active' : ''}>
+                  <CategoriesMain
+                    item={item}
+                    key={item.id}
+                  />
+                </div>
 
-                    {/** Skills */}
-                    { item.experiences.map((experience) => (
-                      <ExperiencesList key={experience.title} experience={experience} />
-                    ))}
-                  </div>
-                ))
+                {/** Skills */}
+                { item.experiences.map((experience) => (
+                  <ExperiencesList key={experience.title} experience={experience} />
+                ))}
+              </div>
+            ))
             }
         </main>
 
@@ -120,8 +134,10 @@ function Home({ categories }) {
           {
               categories?.filter((item) => item.idTitle === 'contact').map((item) => (
                 <>
-                  {/** Title Categories */}
-                  <CategoriesMain key={item.id} item={item} />
+                  <div ref={refContact} className={hasClassContact ? 'active' : ''}>
+                    {/** Title Categories */}
+                    <CategoriesMain key={item.id} item={item} />
+                  </div>
 
                   {/** Form Contact */}
                   <div className={`section ${styles['footer-form-backcground']}`}>
