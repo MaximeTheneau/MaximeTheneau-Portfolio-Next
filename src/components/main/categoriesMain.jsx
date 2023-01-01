@@ -5,19 +5,15 @@ import useAnimationSvg from '../../lib/useAnimationSvg';
 import styles from '../../styles/Home.module.scss';
 import SvgCategory from '../svgCategory';
 
-export default function CategoriesMain({ item, id }) {
-  const refHeader = useRef(null);
-  const headerLayerTransform = useAnimationSvg(0.1, refHeader);
+export default function CategoriesMain({ item, experienceElement, contactElement }) {
   return (
     <div
       className={`${styles.home__categories} section`}
-      ref={refHeader}
-      style={{
-        transform: `translateY(${headerLayerTransform}px)`,
-      }}
     >
-      <SvgCategory />
-      <h2 className={styles['home-categories-title']}>{item.title}</h2>
+      <SvgCategory experienceElement={experienceElement} contactElement={contactElement} />
+      <div className="titleBackground">
+        <h2 className={styles.home__categories__title}>{item.title}</h2>
+      </div>
     </div>
 
   );

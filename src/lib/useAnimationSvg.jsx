@@ -1,20 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
-function useAnimationSvg(speed) {
-  const [scroll, setScroll] = useState(0);
-
+export default function useAnimationSvg({ refElement }) {
+  const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
-    const handleScroll = () => {
-      setScroll(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const element = refElement.current;
+    if (!element) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio === 1) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      });
+    });
+
+    observer.observe(element);
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      observer.unobserve(element);
     };
-  }, []);
+  }, [refElement]);
 
-  const transform = `translateY(${scroll / speed}px)`;
-  return transform;
+  return isVisible;
 }
-
-export default useAnimationSvg;

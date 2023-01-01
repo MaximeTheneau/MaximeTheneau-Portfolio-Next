@@ -6,51 +6,74 @@
 
 body {
   font-family: $font-primary;
-  font-size: $font-size;
+  font-size: 1rem;
   color: $color-primary;
   text-align: center;
 }
 h1{
-  font-size:10vw;
+  font-size:20vw;
 }
 h2{
-  font-size: 3vw;
+  font-size: 8vw;
 }
-h1, h2{
+h1,
+h2,
+h3 {
   font-family: $font-secondary;
   font-weight: bold;
 }
-  //* Button
-  button{
-    border: none;
-    font-size: $font-size;
-    background: $color-blue;
+.text h3{
+  font-size: 1.5rem;
+}
+//* Button
+button{
+  border: none;
+  font-size: 1.2rem;
+  background: #fff;
+  color: $color-primary;
+  cursor: pointer;
+  font-weight: 900;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  &:hover{
+    background: $color-primary;
     color: #fff;
-    cursor: pointer;
-    font-weight: 900;
-    padding: 1rem  1rem;
-    margin: 1rem 0;
-    border-radius: 0.5rem;
-    transition: color 1s linear;
-    & i{
-      margin: 0 0.5rem;
-      padding: 1rem ;
-    }
-    &:hover{
-      color: $color-primary;
-      transition: color 1s linear;
-    }
-
+    transform: scale(0.9);
   }
+  & a{
+    transition: all 0.05s ease 2ms;
+    display: flex;
+    align-items: center;
+  }
+
+}
+.text-hover{
+  transform: translateY(100%);
+  opacity: 0.2;
+  transition: all 0.2s ease ;
+  &-opacity{
+    transition: none;
+    opacity: 0;
+    transform: translateY(0);
+  }
+  &-transform{
+    transition: none;
+    opacity: 1;
+  }
+}
+
+//* Form
+
 img{
   max-width: 100%;
   max-height: 100%;
 }
-a:hover{
-  color: $color-blue;
-  text-shadow: 0 0 0.2rem $color-white;
 
+
+i{
+  font-size: 1.8rem;
 }
+
 hr{
   width: 90%;
 }
@@ -70,4 +93,53 @@ hr{
 .section{
   height: 50vh;
 }
+.titleBackground {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+g {
+  transition: fill 1s linear;
+}
+.color{
+  color: rgba(15, 132, 161, 0.87) ;
+}
+
+.animationPath{
+  fill: #5c2751ab;
+  stroke: #5c275142;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw 2s linear forwards;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+    fill: #c0bfc8;
+    stroke: none;
+  }
+}
+// Media Queries
+
+@media screen and (min-width: 590px) {
+  h1{
+    font-size: 10vw;
+  }
+  h2{
+    font-size: 5vw;
+  }
+  body {
+    font-size: 1.2rem;
+  }
+  i {
+    font-size: 2.5rem !important;
+  }
+}

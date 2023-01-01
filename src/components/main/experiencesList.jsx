@@ -1,8 +1,33 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import styles from '../../styles/Home.module.scss';
 
 export default function ExperiencesList({ experience }) {
+  const [styleTranslateY, setStyleTranslateY] = useState({
+    transform: 'translateY(0%)',
+    opacity: '1',
+  });
+
+  const handleOnMouseEnter = (e) => {
+    const element = e.currentTarget.children[0];
+    element.classList.add('text-hover');
+    setTimeout(
+      () => {
+        element.classList.remove('text-hover');
+        element.classList.add('text-hover-opacity');
+      },
+      100,
+    );
+    setTimeout(() => {
+      element.classList.remove('text-hover-opacity');
+      element.classList.add('text-hover-transform');
+    }, 300);
+    setTimeout(() => {
+      element.classList.remove('text-hover-transform');
+    }, 500);
+  };
+
   return (
     <div className={`section ${styles.home__experience}`}>
       <Image
@@ -16,22 +41,30 @@ export default function ExperiencesList({ experience }) {
         <h2>{experience.title}</h2>
         <h3>{experience.contents}</h3>
         <div className={styles['home__experience-text-link']}>
-          <div className={styles['home__experience-text-link-github']}>
-            <a href={experience.contents2}>
+          <button
+            type="button"
+            className="button"
+            onMouseEnter={(e) => handleOnMouseEnter(e)}
+          >
+            <a
+              href={experience.contents2}
+            >
               <i className="icon-github" />
-              <div>
-                Github
-              </div>
+              Github
             </a>
-          </div>
-          <div className={styles['home__experience-text-link-site']}>
-            <a href={experience.contents3}>
+          </button>
+          <button
+            type="button"
+            className="button"
+            onMouseEnter={(e) => handleOnMouseEnter(e)}
+          >
+            <a
+              href={experience.contents3}
+            >
               <i className="icon-website" />
-              <div>
-                Site
-              </div>
+              Site
             </a>
-          </div>
+          </button>
         </div>
       </div>
 

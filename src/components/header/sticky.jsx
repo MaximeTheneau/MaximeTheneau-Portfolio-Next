@@ -1,7 +1,8 @@
 import SvgCategory from '../svgCategory';
+import useAnimationSvg from '../../lib/useAnimationSvg';
 
-export default function Sticky() {
+export default function Sticky({ headerClass, headerElement }) {
   return (
-    <SvgCategory />
+    <SvgCategory headerElement={headerElement} headerClass={headerClass}/>
   );
 }
