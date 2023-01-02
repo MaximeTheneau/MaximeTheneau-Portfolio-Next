@@ -74,6 +74,9 @@
       display: flex;
       justify-content: space-around;
       background: $color-primary-light;
+      & i:hover{
+        color: $color-secondary;
+      }
     }
   }
   &-form{
@@ -228,7 +231,6 @@
       }
     }
   }
-
   .footer{
     &-form{
       &-textarea{
@@ -246,12 +248,9 @@
           width: 100%;
         }
       }
+    }
   }
-
-  }
-
 }
-
 .blur{
   filter: blur(0.2em);
 }

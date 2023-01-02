@@ -1,32 +1,14 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styles from '../../styles/Home.module.scss';
 
-export default function ExperiencesList({ experience }) {
+export default function ExperiencesList({ experience, handleOnMouseEnter }) {
   const [styleTranslateY, setStyleTranslateY] = useState({
     transform: 'translateY(0%)',
     opacity: '1',
   });
-
-  const handleOnMouseEnter = (e) => {
-    const element = e.currentTarget.children[0];
-    element.classList.add('text-hover');
-    setTimeout(
-      () => {
-        element.classList.remove('text-hover');
-        element.classList.add('text-hover-opacity');
-      },
-      100,
-    );
-    setTimeout(() => {
-      element.classList.remove('text-hover-opacity');
-      element.classList.add('text-hover-transform');
-    }, 300);
-    setTimeout(() => {
-      element.classList.remove('text-hover-transform');
-    }, 500);
-  };
 
   return (
     <div className={`section ${styles.home__experience}`}>
@@ -44,26 +26,32 @@ export default function ExperiencesList({ experience }) {
           <button
             type="button"
             className="button"
-            onMouseEnter={(e) => handleOnMouseEnter(e)}
           >
-            <a
+            <Link
               href={experience.contents2}
+              onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+              target="_blank"
             >
-              <i className="icon-github" />
-              Github
-            </a>
+              <div className="relative f-center">
+                <i className="icon-github" />
+                Github
+              </div>
+            </Link>
           </button>
           <button
             type="button"
             className="button"
-            onMouseEnter={(e) => handleOnMouseEnter(e)}
           >
-            <a
+            <Link
               href={experience.contents3}
+              onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+              target="_blank"
             >
-              <i className="icon-website" />
-              Site
-            </a>
+              <div className="relative f-center">
+                <i className="icon-website" />
+                Site
+              </div>
+            </Link>
           </button>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import styles from '../../styles/Home.module.scss';
 
-export default function FormContact({ state, setState }) {
+export default function FormContact({ state, setState, handleOnMouseEnter }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const requestOptions = {
@@ -229,8 +229,9 @@ export default function FormContact({ state, setState }) {
 
       <button
         type="submit"
+        onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
       >
-        <div className={styles['footer-form-button']}>
+        <div className="relative f-center">
           <span>Envoyer</span>
           <i className="icon-paper-plane" />
         </div>

@@ -27,39 +27,47 @@ h3 {
 }
 //* Button
 button{
+  font-family: $font-secondary;
   border: none;
   font-size: 1.2rem;
   background: #fff;
   color: $color-primary;
   cursor: pointer;
-  font-weight: 900;
+  font-weight: bold;
   border-radius: 0.5rem;
   margin: 1rem;
+  padding: 0.5rem 0;
+  width: 49%;
   &:hover{
     background: $color-primary;
     color: #fff;
-    transform: scale(0.9);
   }
-  & a{
-    transition: all 0.05s ease 2ms;
-    display: flex;
-    align-items: center;
+  & i{
+    margin: 0 0.5rem 0 0;
   }
 
 }
 .text-hover{
-  transform: translateY(100%);
+  transform: translate(-50%, 30%) !important;
   opacity: 0.2;
-  transition: all 0.2s ease ;
-  &-opacity{
-    transition: none;
-    opacity: 0;
-    transform: translateY(0);
-  }
-  &-transform{
-    transition: none;
-    opacity: 1;
-  }
+  color: #fff;
+  transition: all 0.5s ease;
+}
+.relative{
+  position: relative;
+}
+.absolute-content{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.f-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 //* Form

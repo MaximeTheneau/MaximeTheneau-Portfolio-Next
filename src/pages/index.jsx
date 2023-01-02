@@ -51,8 +51,9 @@ function Home({ categories }) {
       confirmationSubject: 'change',
 
     },
+    transitionEffect: true,
   });
- //  const refHeader = useRef(null);
+
   const refExperience = useRef(null);
   const refContact = useRef(null);
 
@@ -63,6 +64,46 @@ function Home({ categories }) {
   const hasClassContact = useScrollClass(refContact, 'active');
   const hasClassHeader = useScrollClass(refHeader, 'activeHeader');
   const hasClassExperience = useScrollClass(refExperience, 'active');
+
+  const handleOnMouseEnter = (element) => {
+    if (!element.children[1]) {
+      const cloneElement = element.children[0].cloneNode(true);
+      element.children[0].appendChild(cloneElement);
+      cloneElement.classList.remove('relative');
+      cloneElement.classList.add('absolute-content');
+      setTimeout(
+        () => {
+          cloneElement.classList.add('text-hover');
+        },
+        10,
+      );
+      setTimeout(
+        () => {
+          cloneElement.remove();
+        },
+        300,
+      );
+    }
+    if (element.children[1] !== undefined) {
+      element.children[1].classList.add('text-hover');
+      setTimeout(
+        () => {
+          element.children[1].classList.remove('text-hover');
+        },
+        300,
+      );
+    }
+  };
+
+  //* Transition Effect 
+  useEffect(() => {
+    setTimeout(() => {
+      setState({
+        ...state,
+        transitionEffect: false,
+      })}, 10000);
+  }, []);
+
 
   return (
     <>
@@ -87,6 +128,7 @@ function Home({ categories }) {
                 alt={item.title}
                 headerClass={hasClassHeader}
                 headerElement={refHeader}
+                transitionEffect={state.transitionEffect}
               />
             ))}
             <div className="titleBackground">
@@ -139,7 +181,11 @@ function Home({ categories }) {
 
                 {/** Skills */}
                 { item.experiences.map((experience) => (
-                  <ExperiencesList key={experience.title} experience={experience} />
+                  <ExperiencesList
+                    key={experience.title}
+                    experience={experience}
+                    handleOnMouseEnter={handleOnMouseEnter}
+                  />
                 ))}
               </div>
             ))
@@ -159,30 +205,36 @@ function Home({ categories }) {
 
                   {/** Contact List */}
                   {item.contacts.map((contact) => (
-                    <FormContactList key={contact.twitter} contact={contact} />
+                    <FormContactList
+                      key={contact.twitter}
+                      contact={contact}
+                      handleOnMouseEnter={handleOnMouseEnter}
+                    />
                   ))}
 
                   {/** Form Contact */}
                   <div className={styles['footer-form-backcground']}>
-                    <Link href="/cv-theneau-maxime.pdf" target="_blank">
-                      <button type="button" className={styles.button}>
-                        <span>Mon CV</span>
-                      </button>
-                    </Link>
+                    <button
+                      type="button"
+                      className={styles.button}
+                      onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+                    >
+                      <div className="relative">
+                        <Link href="/cv-theneau-maxime.pdf" target="_blank">
+                          <span>Mon CV</span>
+                        </Link>
+                      </div>
+                    </button>
                     <h3>Me contacter</h3>
-                    <FormContact setState={setState} state={state} />
+                    <FormContact
+                      setState={setState}
+                      state={state}
+                      handleOnMouseEnter={handleOnMouseEnter}
+                    />
                   </div>
-
                 </>
               ))
             }
-          <div className={styles['footer-author']}>
-            <p>
-              Site réaliser par
-              {' '}
-              <i className="icon-signature" />
-            </p>
-          </div>
         </footer>
       </div>
     </>
