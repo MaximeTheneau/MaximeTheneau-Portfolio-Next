@@ -101,7 +101,7 @@ function Home({ categories }) {
       setState({
         ...state,
         transitionEffect: false,
-      })}, 10000);
+      })}, 2000);
   }, []);
 
 
