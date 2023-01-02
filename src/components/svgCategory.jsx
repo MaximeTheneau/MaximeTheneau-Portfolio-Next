@@ -6,7 +6,7 @@ function SvgCategory({
   headerClass, headerElement, experienceElement, contactElement, transitionEffect,
 }) {
   const [fond1State, setFond1State] = useState('');
-  const [counterEffet, setCounterEffet] = useState(1000);
+  const [counterEffet, setCounterEffet] = useState(100);
   const headerRef = useRef(null);
   const isVisible = useAnimationSvg({ refElement: headerElement || headerRef });
   let colorsFond3 = '#679494';
@@ -21,14 +21,23 @@ function SvgCategory({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (counterEffet > 100) {
+      if (counterEffet > 10) {
         setCounterEffet(counterEffet - 1);
       } else {
         clearInterval(interval);
       }
-    }, 0.1 / 100);
+    }, 4);
     return () => clearInterval(interval);
   }, [counterEffet]);
+
+  const effectTranitionStyle = transitionEffect
+    ? {
+      width: `${counterEffet * 10}%`,
+      height: `${counterEffet * 10 / 2}vh`,
+      left: `${10 - counterEffet}%`,
+      background: `rgba(87, 79, 125, ${counterEffet / 100})`,
+
+    } : {};
 
   console.log(counterEffet);
   return (
@@ -40,13 +49,7 @@ function SvgCategory({
         width="100%"
         height="100%"
         fill="none"
-        style={{
-          width: `${counterEffet}%`,
-          height: `${counterEffet / 2}vh`,
-          left: `${100 - counterEffet}%`,
-          background: `rgba(0, 0, 0, ${counterEffet / 1000})`,
-
-        }}
+        style={effectTranitionStyle}
       >
         {/* <path
           id="fond1"
