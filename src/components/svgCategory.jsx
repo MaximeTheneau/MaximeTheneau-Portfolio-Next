@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/SvgCategory.module.scss';
-import useAnimationSvg from '../lib/useAnimationSvg';
 
 function SvgCategory({
   headerClass, headerElement, experienceElement, contactElement, transitionEffect,
@@ -8,15 +7,15 @@ function SvgCategory({
   const [fond1State, setFond1State] = useState('');
   const [transitionWaveEffect, setTransitionWaveEffect] = useState(false);
   const headerRef = useRef(null);
-  const isVisible = useAnimationSvg({ refElement: headerElement || headerRef });
+  
   let colorsFond3 = '#2a1d37'; // $color-primary > Primary color
   if (headerClass) {
     colorsFond3 = '#503A65'; // $color-primary-meduim > Header color
   } if (experienceElement) {
-    colorsFond3 = '#21e2a1'; // $color-green > Experience color
+    colorsFond3 = '#6B8996'; // $color-green > Experience color
   }
   if (contactElement) {
-    colorsFond3 = '#95ADBE'; // $color-secondary > Contact color
+    colorsFond3 = '#21e2a1'; // $color-secondary > Contact color
   }
 
   setTimeout(() => {

@@ -1,7 +1,4 @@
-import Image from 'next/image';
 import PropTypes, { element } from 'prop-types';
-import { useRef } from 'react';
-import useAnimationSvg from '../../lib/useAnimationSvg';
 import styles from '../../styles/Home.module.scss';
 import SvgCategory from '../svgCategory';
 

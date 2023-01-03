@@ -3,7 +3,6 @@
 
 //* Home
 .home{
-
   // Categories
   &__categories{
     position: relative;
@@ -29,7 +28,7 @@
     }
     &-text{
       color: $color-primary;
-      background: $color-primary-light;
+      background: $color-secondary;
       width: 50%;
       height: 100%;
       display: flex;
@@ -58,33 +57,39 @@
 
 
 .footer{
-  &-author{
-    background: $color-primary;
-    color: $color-secondary;
-    padding: 0.5rem;
-    font-size: $font-size-small;
+  & button{
+    color: $color-green !important;
+    background: $color-primary !important;
   }
-  & h3{
-    padding: 1rem 0;
-  }
-  &-contact{
+  &__contact{
     line-height: 2rem;
-    &-list-social{
+    background: $color-secondary;
+    & button{
+      width: auto;
+      padding: 1rem;
+    }
+    &__listSocial{
       padding:  1.5rem 0;
       display: flex;
       justify-content: space-around;
-      background: $color-primary-light;
-      & i:hover{
-        color: $color-secondary;
+      & i {
+        color: $color-green !important;
       }
     }
   }
+
+  & h3{
+    font-size: 1.5rem;
+    margin: 1rem 0 0 0;
+  }
+
   &-form{
     width: 80%;
     margin: auto;
-    //* Background
-    &-backcground{
-      background: $color-primary-light;
+    & ::placeholder{
+      color: $color-primary;
+      font-family: $font-primary;
+      opacity: 0.5;
     }
     //* TextArea
     &-textarea{
@@ -131,13 +136,19 @@
     //*Message
     &-message{
       border-radius: 1rem;
-      background-color: $color-error;
+      background-color: $color-red;
       color: $color-red;
       margin: 1rem auto;
       padding: 1rem;
       width: 80%;
       animation: fadeIn 1.5s ease;
     }
+  }
+  &-author{
+    background: $color-primary;
+    color: $color-secondary;
+    padding: 0.5rem;
+    font-size: $font-size-small;
   }
 }
 

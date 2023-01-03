@@ -14,14 +14,11 @@ import FormContact from '../components/footer/formContact';
 import FormContactList from '../components/footer/formContactList';
 
 //* Lib
-import useColorText from '../lib/useColorText';
-import useScrollClass from '../lib/useScrollClass';
-import TextBlocker from '../components/main/TextBlocker';
-import useIntersectionObserver from '../lib/useIntersectionObserver';
 
 //* Styles
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
+import ScrollParallax from '../lib/ScrollParallax';
 
 export async function getStaticProps() {
   // Fetch data from external API
@@ -52,18 +49,13 @@ function Home({ categories }) {
 
     },
     transitionEffect: true,
+    isInView: false,
   });
+  const handleIsInViewChange = (newIsInView) => {
+    setState({ ...state, isInView: newIsInView });
+  };
 
-  const refExperience = useRef(null);
-  const refContact = useRef(null);
 
-  const [refHeader] = useIntersectionObserver({
-    threshold: 0.0,
-  });
-  // const refText = useRef(null);
-  const hasClassContact = useScrollClass(refContact, 'active');
-  const hasClassHeader = useScrollClass(refHeader, 'activeHeader');
-  const hasClassExperience = useScrollClass(refExperience, 'active');
 
   const handleOnMouseEnter = (element) => {
     if (!element.children[1]) {
@@ -81,7 +73,7 @@ function Home({ categories }) {
         () => {
           cloneElement.remove();
         },
-        300,
+        4000,
       );
     }
     if (element.children[1] !== undefined) {
@@ -103,7 +95,7 @@ function Home({ categories }) {
         transitionEffect: false,
       })}, 800);
   }, []);
-
+  console.log(state.isInView);
 
   return (
     <>
@@ -118,7 +110,7 @@ function Home({ categories }) {
       <div className={state.toggleModal ? (styles.blur) : ''}>
 
         {/** Header */}
-        <header className="section" ref={refHeader} className={hasClassHeader ? 'activeHeader' : ''}>
+        <header className="section">
           {/** Header Images Sticky */}
           <div className={stylesHeader['header-sticky']}>
             { categories?.filter((image) => image.idTitle === 'accueil').map((item) => (
@@ -126,8 +118,6 @@ function Home({ categories }) {
                 key={item.id}
                 imgWebp={item.imgWebp}
                 alt={item.title}
-                headerClass={hasClassHeader}
-                headerElement={refHeader}
                 transitionEffect={state.transitionEffect}
               />
             ))}
@@ -143,27 +133,29 @@ function Home({ categories }) {
           <div
             className={`section ${styles.about} ${state.isTextVisible ? 'active' : ''}}`}
           >
-            <div>
-              <h3>
-                Passionné par le développement web et le design.
-              </h3>
-              <p>
-                Fasciné par les possibilités offertes par le monde
-                numérique, j'ai commencé à créé mes propres sites web pour mes
-                réalisations personnelles.
-              </p>
-              <p>
-                Inspiré par mes premières expériences de développement, j'ai poursuivi
-                mes études dans ce domaine et suivi une formation pour acquis les
-                compétences nécessaires pour réaliser des projets de qualité.
-              </p>
-              <p>
-                Depuis, j'ai continué à apprendre et à me développer dans le domaine
-                du développement web et je suis maintenant à la recherche de nouvelles
-                opportunités pour mettre mes compétences et mon expérience au service de projets
-                passionnants.
-              </p>
-            </div>
+            <ScrollParallax onIsInViewChange={handleIsInViewChange}>
+              <div>
+                <h3>
+                  Passionné par le développement web et le design.
+                </h3>
+                <p>
+                  Fasciné par les possibilités offertes par le monde
+                  numérique, j'ai commencé à créé mes propres sites web pour mes
+                  réalisations personnelles.
+                </p>
+                <p>
+                  Inspiré par mes premières expériences de développement, j'ai poursuivi
+                  mes études dans ce domaine et suivi une formation pour acquis les
+                  compétences nécessaires pour réaliser des projets de qualité.
+                </p>
+                <p>
+                  Depuis, j'ai continué à apprendre et à me développer dans le domaine
+                  du développement web et je suis maintenant à la recherche de nouvelles
+                  opportunités pour mettre mes compétences et mon expérience au service de projets
+                  passionnants.
+                </p>
+              </div>
+            </ScrollParallax>
 
           </div>
           {
@@ -171,13 +163,15 @@ function Home({ categories }) {
               <div key={item.idTitle}>
 
                 {/** Title Categories */}
-                <div ref={refExperience} className={hasClassExperience ? 'active wave' : ''}>
-                  <CategoriesMain
-                    experienceElement={hasClassExperience}
-                    item={item}
-                    key={item.id}
-                  />
-                </div>
+                <ScrollParallax onIsInViewChange={handleIsInViewChange}>
+                  <div className={state.isInView ? 'active wave' : ''}>
+                    <CategoriesMain
+                      experienceElement={state.isInView}
+                      item={item}
+                      key={item.id}
+                    />
+                  </div>
+                </ScrollParallax>
 
                 {/** Skills */}
                 { item.experiences.map((experience) => (
@@ -191,17 +185,19 @@ function Home({ categories }) {
             ))
             }
         </main>
-
         <footer className={styles.footer}>
 
           {/** Contact */}
           {
               categories?.filter((item) => item.idTitle === 'contact').map((item) => (
                 <>
-                  <div ref={refContact} className={hasClassContact ? 'active wave' : ''}>
-                    {/** Title Categories */}
-                    <CategoriesMain key={item.id} item={item} contactElement={hasClassContact} />
-                  </div>
+                  {/** Title Categories */}
+                  <ScrollParallax onIsInViewChange={handleIsInViewChange}>
+                    <div className={state.isInView ? 'active wave' : ''}>
+                      {/** Title Categories */}
+                      <CategoriesMain key={item.id} item={item} contactElement={state.isInView} />
+                    </div>
+                  </ScrollParallax>
 
                   {/** Contact List */}
                   {item.contacts.map((contact) => (
@@ -214,17 +210,7 @@ function Home({ categories }) {
 
                   {/** Form Contact */}
                   <div className={styles['footer-form-backcground']}>
-                    <button
-                      type="button"
-                      className={styles.button}
-                      onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
-                    >
-                      <div className="relative">
-                        <Link href="/cv-theneau-maxime.pdf" target="_blank">
-                          <span>Mon CV</span>
-                        </Link>
-                      </div>
-                    </button>
+
                     <h3>Me contacter</h3>
                     <FormContact
                       setState={setState}

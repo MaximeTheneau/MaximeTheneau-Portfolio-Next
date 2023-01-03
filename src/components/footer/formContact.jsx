@@ -149,6 +149,7 @@ export default function FormContact({ state, setState, handleOnMouseEnter }) {
     <form className={styles['footer-form']} onSubmit={handleSubmit}>
       <div className={styles['footer-form-top']}>
         <div className={styles['footer-form-input']}>
+          <i className={`icon-${state.form.confirmationName}`} />
           <input
             type="text"
             placeholder="Nom"
@@ -156,20 +157,20 @@ export default function FormContact({ state, setState, handleOnMouseEnter }) {
             value={state.form.name}
             required
           />
-          <i className={`icon-${state.form.confirmationName}`} />
         </div>
         <div className={styles['footer-form-input']}>
+          <i className={`icon-${state.form.confirmationEmail}`} />
           <input
             type="email"
             placeholder="Email"
             onChange={handleChangeEmail}
             value={state.form.email}
           />
-          <i className={`icon-${state.form.confirmationEmail}`} />
         </div>
 
         {/* Subject */}
         <div className={styles['footer-form-input']}>
+          <i className={`icon-${state.form.confirmationSubject}`} />
           <input
             type="text"
             placeholder="Sujet"
@@ -178,7 +179,6 @@ export default function FormContact({ state, setState, handleOnMouseEnter }) {
             className={styles[state.form.confirmationSubject]}
             required
           />
-          <i className={`icon-${state.form.confirmationSubject}`} />
         </div>
       </div>
 
@@ -209,6 +209,7 @@ export default function FormContact({ state, setState, handleOnMouseEnter }) {
           }
       {/* Message */}
       <div className={styles['footer-form-textarea']}>
+        <i className={`icon-${state.form.confirmationMessage}`} />
         <textarea
           placeholder="Message"
           rows={state.form.textArea}
@@ -217,7 +218,6 @@ export default function FormContact({ state, setState, handleOnMouseEnter }) {
           value={state.form.message}
           required
         />
-        <i className={`icon-${state.form.confirmationMessage}`} />
       </div>
       {
             state.form.confirmationMessage === 'error' ? (

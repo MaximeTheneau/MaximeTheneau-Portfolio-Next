@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
 import useIntersectionObserver from '../../lib/useIntersectionObserver';
-import useBlockScroll from '../../lib/useBlockScroll';
 
 export default function TextBlocker({ text, delay }) {
   const words = text.split(' ');
@@ -13,12 +12,10 @@ export default function TextBlocker({ text, delay }) {
     if (index < words.length) {
       // Mettre à jour l'opacité du mot courant
       setOpacities((prevOpacities) => prevOpacities.map((opacity, i) => (i === index ? 1 : opacity)));
-
       index++;
       setTimeout(writeText, delay);
     }
   };
-
   const containerRef = useRef(null);
   useIntersectionObserver(containerRef, writeText);
   return (

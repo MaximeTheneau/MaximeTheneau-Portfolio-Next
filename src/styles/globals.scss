@@ -40,19 +40,31 @@ button{
   width: 49%;
   &:hover{
     background: $color-primary;
-    color: #fff;
+    color: #fff !important;
+    z-index: 1;
   }
   & i{
     margin: 0 0.5rem 0 0;
   }
 
 }
+
 .text-hover{
-  transform: translate(-50%, 30%) !important;
-  opacity: 0.2;
   color: #fff;
-  transition: all 0.5s ease;
+  animation: textHover 1s linear forwards;
 }
+@keyframes textHover{
+  0%{
+    transform: translate(-50%, 00%);
+    opacity: 0.2;
+  }
+  100%{
+    transform: translate(-50%, 50%);
+    opacity: 0;
+  }
+}
+  
+
 .relative{
   position: relative;
 }
