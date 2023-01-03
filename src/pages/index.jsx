@@ -171,7 +171,7 @@ function Home({ categories }) {
               <div key={item.idTitle}>
 
                 {/** Title Categories */}
-                <div ref={refExperience} className={hasClassExperience ? 'active' : ''}>
+                <div ref={refExperience} className={hasClassExperience ? 'active wave' : ''}>
                   <CategoriesMain
                     experienceElement={hasClassExperience}
                     item={item}
@@ -198,7 +198,7 @@ function Home({ categories }) {
           {
               categories?.filter((item) => item.idTitle === 'contact').map((item) => (
                 <>
-                  <div ref={refContact} className={hasClassContact ? 'active' : ''}>
+                  <div ref={refContact} className={hasClassContact ? 'active wave' : ''}>
                     {/** Title Categories */}
                     <CategoriesMain key={item.id} item={item} contactElement={hasClassContact} />
                   </div>

@@ -6,50 +6,32 @@ function SvgCategory({
   headerClass, headerElement, experienceElement, contactElement, transitionEffect,
 }) {
   const [fond1State, setFond1State] = useState('');
-  const [counterEffet, setCounterEffet] = useState(100);
+  const [transitionWaveEffect, setTransitionWaveEffect] = useState(false);
   const headerRef = useRef(null);
   const isVisible = useAnimationSvg({ refElement: headerElement || headerRef });
-  let colorsFond3 = '#679494';
+  let colorsFond3 = '#2a1d37'; // $color-primary > Primary color
   if (headerClass) {
-    colorsFond3 = '#679494b6';
+    colorsFond3 = '#503A65'; // $color-primary-meduim > Header color
   } if (experienceElement) {
-    colorsFond3 = 'green';
+    colorsFond3 = '#21e2a1'; // $color-green > Experience color
   }
   if (contactElement) {
-    colorsFond3 = 'red';
+    colorsFond3 = '#95ADBE'; // $color-secondary > Contact color
   }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (counterEffet > 10) {
-        setCounterEffet(counterEffet - 1);
-      } else {
-        clearInterval(interval);
-      }
-    }, 4);
-    return () => clearInterval(interval);
-  }, [counterEffet]);
+  setTimeout(() => {
+    setTransitionWaveEffect(true);
+  }, 1000);
 
-  const effectTranitionStyle = transitionEffect
-    ? {
-      width: `${counterEffet * 10}%`,
-      height: `${counterEffet * 10 / 2}vh`,
-      left: `${10 - counterEffet}%`,
-      background: `rgba(87, 79, 125, ${counterEffet / 100})`,
-
-    } : {};
-
-  console.log(counterEffet);
   return (
-    <div className={styles.svgCategory}>
+    <div className={`${transitionWaveEffect ? 'wave' : ''} ${styles.svgCategory}`}>
       <svg
         viewBox="0 0 1025.07 385.59"
         preserveAspectRatio="xMidYMid slice"
-        className={!transitionEffect ? styles.svgCategory : styles.transitionEffect}
+        className={styles.transitionEffect}
         width="100%"
         height="100%"
         fill="none"
-        style={effectTranitionStyle}
       >
         {/* <path
           id="fond1"

@@ -120,6 +120,24 @@ g {
 .color{
   color: rgba(15, 132, 161, 0.87) ;
 }
+// Animation
+.wave{
+  animation: transitionEffectWave 0.5s;
+}
+
+@keyframes transitionEffectWave{
+  0% {
+      filter: blur(2px);
+      transform: scaleY(1);
+    }
+    50%{
+      transform: scaleY(0.9);
+      filter: blur(2px);
+    }
+    100% {
+      transform:   scaleY(1);
+    }
+}
 
 .animationPath{
   fill: #5c2751ab;
