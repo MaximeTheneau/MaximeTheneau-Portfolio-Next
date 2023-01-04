@@ -22,6 +22,8 @@
 
 @keyframes transitionEffect{
     0%{
+        overflow: hidden !important;
+        scroll-behavior: smooth;
         position: fixed;
         z-index: 9;
         width: 1000%;
@@ -32,6 +34,8 @@
     }
     20%{
         position: fixed;
+        overflow: hidden !important;
+
         z-index: 9;
         width: 1000%;
         height: 100vh;

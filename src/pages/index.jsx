@@ -1,5 +1,5 @@
 //* Import
-import React from 'react';
+import React, { createRef } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
@@ -19,6 +19,7 @@ import FormContactList from '../components/footer/formContactList';
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
 import ScrollParallax from '../lib/ScrollParallax';
+import useMovableElements from '../lib/useMovableElements';
 
 export async function getStaticProps() {
   // Fetch data from external API
@@ -50,12 +51,21 @@ function Home({ categories }) {
     },
     transitionEffect: true,
     isInView: false,
+    height: 0,
   });
+
+  const elementTop = useRef(null);
+  const [height, setHeight] = useState(0);
+  useEffect(() => {
+    const element = elementTop.current.getBoundingClientRect().top;
+    console.log(element);
+    setHeight(element);
+  }, [height]);
+  console.log(height);
+
   const handleIsInViewChange = (newIsInView) => {
     setState({ ...state, isInView: newIsInView });
   };
-
-
 
   const handleOnMouseEnter = (element) => {
     if (!element.children[1]) {
@@ -87,15 +97,15 @@ function Home({ categories }) {
     }
   };
 
-  //* Transition Effect 
+  //* Transition Effect
   useEffect(() => {
     setTimeout(() => {
       setState({
         ...state,
         transitionEffect: false,
-      })}, 800);
+      });
+    }, 800);
   }, []);
-  console.log(state.isInView);
 
   return (
     <>
@@ -174,13 +184,15 @@ function Home({ categories }) {
                 </ScrollParallax>
 
                 {/** Skills */}
-                { item.experiences.map((experience) => (
-                  <ExperiencesList
-                    key={experience.title}
-                    experience={experience}
-                    handleOnMouseEnter={handleOnMouseEnter}
-                  />
-                ))}
+                <div ref={elementTop}>
+                  { item.experiences.map((experience) => (
+                    <ExperiencesList
+                      key={experience.title}
+                      experience={experience}
+                      handleOnMouseEnter={handleOnMouseEnter}
+                    />
+                  ))}
+                </div>
               </div>
             ))
             }
@@ -199,14 +211,17 @@ function Home({ categories }) {
                     </div>
                   </ScrollParallax>
 
-                  {/** Contact List */}
-                  {item.contacts.map((contact) => (
-                    <FormContactList
-                      key={contact.twitter}
-                      contact={contact}
-                      handleOnMouseEnter={handleOnMouseEnter}
-                    />
-                  ))}
+                  <ScrollParallax onIsInViewChange={handleIsInViewChange}>
+                    {/** Contact List */}
+                    {item.contacts.map((contact) => (
+                      <FormContactList
+                        key={contact.twitter}
+                        contact={contact}
+                        handleOnMouseEnter={handleOnMouseEnter}
+                        classIsview={state.isInView}
+                      />
+                    ))}
+                  </ScrollParallax>
 
                   {/** Form Contact */}
                   <div className={styles['footer-form-backcground']}>

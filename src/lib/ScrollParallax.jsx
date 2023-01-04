@@ -6,6 +6,7 @@ export default function ScrollParallax({ children, onIsInViewChange }) {
   useEffect(() => {
     onIsInViewChange(isInView);
   }, [isInView]);
+  
   return (
     <div ref={elementRef}>
       {children}

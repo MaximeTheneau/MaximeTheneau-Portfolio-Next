@@ -1,13 +1,26 @@
-import useScrollParallax from './useScrollParallax';
+import { useEffect, useRef } from 'react';
+import useMovableElements from './useMovableElements';
+import styles from '../styles/Home.module.scss';
 
-function ScrollParallax({ children }) {
-  const elementRef = useRef(null);
-  useScrollParallax(elementRef);
+export default function ScrollParallaxTop({ children, onTopChange, heightOfElement, widthOfElement }) {
+  const [elementRef, isTopChange] = useMovableElements();
+  useEffect(() => {
+    onTopChange(isTopChange);
+  }, [isTopChange]);
+
   return (
-    <div ref={elementRef}>
+    <>
       {children}
-    </div>
+      <div
+        ref={elementRef}
+        className={styles.home__experience__backgroundAnimation__element}
+        style={{
+          height: `${heightOfElement}px`,
+          width: `${widthOfElement}px`,
+          opacity: `${isTopChange / 500}`,
+        }}
+      />
+
+    </>
   );
 }
-
-export default ScrollParallax;

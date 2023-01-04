@@ -28,7 +28,6 @@
     }
     &-text{
       color: $color-primary;
-      background: $color-secondary;
       width: 50%;
       height: 100%;
       display: flex;
@@ -49,6 +48,16 @@
         &-github, &-site{
           display: flex;
         }
+      }
+    }
+    &__backgroundAnimation{
+      display: flex;
+      align-items: flex-end;
+      &__element{
+        background: $color-secondary;
+        max-height: 50vh;
+        z-index: -1;
+
       }
     }
   }
