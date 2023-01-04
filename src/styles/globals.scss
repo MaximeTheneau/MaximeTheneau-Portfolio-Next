@@ -142,6 +142,24 @@ g {
   color: rgba(15, 132, 161, 0.87) ;
 }
 // Animation
+.slideAnimation{
+  animation: slideAnimation 2s ease forwards;
+}
+@keyframes slideAnimation{
+  0%{
+    transform: translateX(-100%);
+  }
+  50%{
+    transform: translateX(10%);
+  }
+  70%{
+    transform: translateX(-10%);
+  }
+  100%{
+    transform: translateX(0);
+  }
+}
+
 .wave{
   animation: transitionEffectWave 0.5s;
 }

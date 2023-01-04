@@ -11,7 +11,6 @@ export default function ExperiencesList({ experience, handleOnMouseEnter }) {
   const handleChangeTop = (isTopChange) => {
     setIsTopChange(isTopChange);
   };
-  console.log(onTopChange);
   return (
     <div className={`section ${styles.home__experience}`}>
       <Image

@@ -19,7 +19,7 @@ import FormContactList from '../components/footer/formContactList';
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
 import ScrollParallax from '../lib/ScrollParallax';
-import useMovableElements from '../lib/useMovableElements';
+import ScrollParallaxText from '../lib/ScrollParallaxText';
 
 export async function getStaticProps() {
   // Fetch data from external API
@@ -51,20 +51,15 @@ function Home({ categories }) {
     },
     transitionEffect: true,
     isInView: false,
-    height: 0,
+    textOpacity: 1,
   });
-
-  const elementTop = useRef(null);
-  const [height, setHeight] = useState(0);
-  useEffect(() => {
-    const element = elementTop.current.getBoundingClientRect().top;
-    console.log(element);
-    setHeight(element);
-  }, [height]);
-  console.log(height);
 
   const handleIsInViewChange = (newIsInView) => {
     setState({ ...state, isInView: newIsInView });
+  };
+
+  const handleChangeOpacityText = (isTopChange) => {
+    setState({ ...state, textOpacity: isTopChange });
   };
 
   const handleOnMouseEnter = (element) => {
@@ -143,11 +138,8 @@ function Home({ categories }) {
           <div
             className={`section ${styles.about} ${state.isTextVisible ? 'active' : ''}}`}
           >
-            <ScrollParallax onIsInViewChange={handleIsInViewChange}>
+            <ScrollParallaxText onTopChange={handleChangeOpacityText}>
               <div>
-                <h3>
-                  Passionné par le développement web et le design.
-                </h3>
                 <p>
                   Fasciné par les possibilités offertes par le monde
                   numérique, j'ai commencé à créé mes propres sites web pour mes
@@ -165,7 +157,7 @@ function Home({ categories }) {
                   passionnants.
                 </p>
               </div>
-            </ScrollParallax>
+            </ScrollParallaxText>
 
           </div>
           {
@@ -184,15 +176,13 @@ function Home({ categories }) {
                 </ScrollParallax>
 
                 {/** Skills */}
-                <div ref={elementTop}>
-                  { item.experiences.map((experience) => (
-                    <ExperiencesList
-                      key={experience.title}
-                      experience={experience}
-                      handleOnMouseEnter={handleOnMouseEnter}
-                    />
-                  ))}
-                </div>
+                { item.experiences.map((experience) => (
+                  <ExperiencesList
+                    key={experience.title}
+                    experience={experience}
+                    handleOnMouseEnter={handleOnMouseEnter}
+                  />
+                ))}
               </div>
             ))
             }
