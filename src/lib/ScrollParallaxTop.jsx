@@ -16,7 +16,7 @@ export default function ScrollParallaxTop({ children, onTopChange, heightOfEleme
         className={styles.home__experience__backgroundAnimation__element}
         style={{
           height: `${heightOfElement}px`,
-          width: `${widthOfElement}px`,
+          width: `${widthOfElement}%`,
           opacity: `${isTopChange / 500}`,
         }}
       />

@@ -143,13 +143,16 @@ g {
 }
 // Animation
 .slideAnimation{
-  animation: slideAnimation 2s ease forwards;
+  animation: slideAnimation 1s ease forwards;
+  opacity: 0;
 }
 @keyframes slideAnimation{
   0%{
-    transform: translateX(-100%);
+    opacity: 0;
+    transform: translateX(-1000%);
   }
   50%{
+    opacity: 0.5;
     transform: translateX(10%);
   }
   70%{
@@ -157,6 +160,7 @@ g {
   }
   100%{
     transform: translateX(0);
+    opacity: 1;
   }
 }
 
