@@ -4,7 +4,6 @@ import Link from 'next/link';
 import styles from '../../styles/Home.module.scss';
 
 export default function AboutMain({ about }) {
-  console.log(about);
   return (
     <div className={styles['about-content']}>
       <p className={styles['about-content-italic']}>

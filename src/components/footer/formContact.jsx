@@ -120,7 +120,6 @@ export default function FormContact({ state, setState, handleOnMouseEnter }) {
       },
     });
     const textareaheight = state.form.textArea;
-    console.log(textareaheight);
     if (e.target.value.length > 250) {
       setState({
         ...state,

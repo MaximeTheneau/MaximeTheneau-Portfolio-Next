@@ -26,10 +26,13 @@ export async function getStaticProps() {
   const res = await fetch('http://back.theneaumaxime.fr/public/api/categories');
   const categories = await res.json();
 
-  return { props: { categories } };
+  const resExperiences = await fetch('http://back.theneaumaxime.fr/public/api/experiences');
+  const experiences = await resExperiences.json();
+
+  return { props: { categories, experiences } };
 }
 
-function Home({ categories }) {
+function Home({ categories, experiences }) {
   //* State
   const [state, setState] = useState({
     isTextVisible: false,
@@ -53,6 +56,8 @@ function Home({ categories }) {
     isInView: false,
     textOpacity: 1,
   });
+  const imageForMeta = experiences?.map((item) => (item.imageSvg));
+
 
   const handleIsInViewChange = (newIsInView) => {
     setState({ ...state, isInView: newIsInView });
@@ -106,7 +111,12 @@ function Home({ categories }) {
     <>
       <Head>
         <title>Theneau Maxime Développeur Web à Marseille</title>
-        <meta name="description" content="Theneau Maxime dévelloppeur web à Marseille." />
+        <meta name="description" content="Découvrez les compétences et services de développement web de [Nom], un développeur junior talentueux et passionné. Que vous ayez besoin de créer un site ou une application web, n'hésitez pas à le contacter pour obtenir un devis gratuit et découvrir comment il peut vous aider à atteindre vos objectifs." />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Theneau Maxime Développeur Web à Marseille" />
+        <meta property="og:description" content="Découvrez les compétences et services de développement web de [Nom], un développeur junior talentueux et passionné. Que vous ayez besoin de créer un site ou une application web, n'hésitez pas à le contacter pour obtenir un devis gratuit et découvrir comment il peut vous aider à atteindre vos objectifs." />
+        <meta property="og:site_name" content="https://theneaumaxime.fr" />
+        <meta property="og:image" content={imageForMeta[0]} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -176,7 +186,7 @@ function Home({ categories }) {
                 </ScrollParallax>
 
                 {/** Skills */}
-                { item.experiences.map((experience) => (
+                { experiences?.map((experience) => (
                   <ExperiencesList
                     key={experience.title}
                     experience={experience}
