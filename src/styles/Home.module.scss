@@ -1,32 +1,14 @@
 @import './variables.scss';
 
 
-
-// /*--Font--*/
-// $font-primary: 'Roboto', sans-serif;
-// $font-secondary: 'Roboto', sans-serif;
-// $font-size: 1.6rem;
-// $font-size-small: 1.4rem;
-// $font-size-medium: 1.8rem;
-// $font-size-bold: 900;
-
-
-
 //* Home
 .home{
-
   // Categories
   &__categories{
     position: relative;
     margin: 0 0 1rem;
-    &-title{
-      position:absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50%;
-      padding: 1rem 0;
-      background: rgba(255, 255, 255, 0.8);
+    &__title{
+      font-size: 15vw;
     }
     &-img{
       width: 100%;
@@ -37,7 +19,6 @@
   // Experiences
   &__experience{
     margin: 0 0 1rem;
-
     width: 100%;
     display: flex;
     &-img{
@@ -47,8 +28,8 @@
     }
     &-text{
       color: $color-primary;
-      background: $color-secondary;
       width: 50%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -63,9 +44,20 @@
         display: flex;
         justify-content: space-evenly;
         margin: 1rem 0 0 0;
+        flex-wrap: wrap;
         &-github, &-site{
           display: flex;
         }
+      }
+    }
+    &__backgroundAnimation{
+      display: flex;
+      align-items: flex-end;
+      &__element{
+        background: $color-secondary;
+        max-height: 50vh;
+        z-index: -1;
+
       }
     }
   }
@@ -74,33 +66,39 @@
 
 
 .footer{
-  &-author{
-    background: $color-secondary-dark;
-    color: $color-secondary;
-    padding: 0.5rem;
-    font-size: $font-size-small;
-    & i{
-      font-size: 2rem;
-    }
+  & button{
+    color: $color-green !important;
+    background: $color-primary !important;
   }
-  & h3{
-    padding: 1rem 0;
-  }
-  &-contact{
+  &__contact{
     line-height: 2rem;
-    &-list-social{
+    background: $color-secondary;
+    & button{
+      width: auto;
+      padding: 1rem;
+    }
+    &__listSocial{
       padding:  1.5rem 0;
       display: flex;
       justify-content: space-around;
-      background: $color-background;
+      & i {
+        color: $color-green !important;
+      }
     }
   }
+
+  & h3{
+    font-size: 1.5rem;
+    margin: 1rem 0 0 0;
+  }
+
   &-form{
     width: 80%;
     margin: auto;
-    //* Background
-    &-backcground{
-      background: $color-background;
+    & ::placeholder{
+      color: $color-primary;
+      font-family: $font-primary;
+      opacity: 0.5;
     }
     //* TextArea
     &-textarea{
@@ -147,13 +145,34 @@
     //*Message
     &-message{
       border-radius: 1rem;
-      background-color: $color-error;
+      background-color: $color-red;
       color: $color-red;
       margin: 1rem auto;
       padding: 1rem;
       width: 80%;
       animation: fadeIn 1.5s ease;
     }
+  }
+  &-author{
+    background: $color-primary;
+    color: $color-secondary;
+    padding: 0.5rem;
+    font-size: $font-size-small;
+  }
+}
+
+.activeText{
+  position: absolute;
+}
+.about{
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: -1;
+  & h3{
+    font-size: 1.3rem;
+    margin: 0 0 1rem 0;
   }
 }
 
@@ -185,9 +204,19 @@
 
 //* Media Queries
 
+@media screen and (min-width: 620px){
+  .home{
+    &__categories{
+      &__title{
+        font-size: 10vw;
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 720px) {
   .home{
-    &-experience{
+    &__experience{
       display: flex;
       align-items: center;
       &-img{
@@ -211,7 +240,7 @@
 
 @media screen and (min-width: 1024px) {
   .home{
-    &-experience{
+    &__experience{
 
       &-text{
         width: 60%;
@@ -222,7 +251,6 @@
       }
     }
   }
-
   .footer{
     &-form{
       &-textarea{
@@ -240,12 +268,9 @@
           width: 100%;
         }
       }
+    }
   }
-
-  }
-
 }
-
 .blur{
   filter: blur(0.2em);
 }

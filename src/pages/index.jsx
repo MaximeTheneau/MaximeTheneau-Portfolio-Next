@@ -1,8 +1,8 @@
 //* Import
+import React, { createRef } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import Image from 'next/image';
 import Head from 'next/head';
 
 //* Components
@@ -13,9 +13,13 @@ import ExperiencesList from '../components/main/experiencesList';
 import FormContact from '../components/footer/formContact';
 import FormContactList from '../components/footer/formContactList';
 
+//* Lib
+
 //* Styles
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
+import ScrollParallax from '../lib/ScrollParallax';
+import ScrollParallaxText from '../lib/ScrollParallaxText';
 
 export async function getStaticProps() {
   // Fetch data from external API
@@ -28,6 +32,7 @@ export async function getStaticProps() {
 function Home({ categories }) {
   //* State
   const [state, setState] = useState({
+    isTextVisible: false,
     toggleNav: true,
     toggleModal: false,
     loadingSticky: false,
@@ -44,7 +49,58 @@ function Home({ categories }) {
       confirmationSubject: 'change',
 
     },
+    transitionEffect: true,
+    isInView: false,
+    textOpacity: 1,
   });
+
+  const handleIsInViewChange = (newIsInView) => {
+    setState({ ...state, isInView: newIsInView });
+  };
+
+  const handleChangeOpacityText = (isTopChange) => {
+    setState({ ...state, textOpacity: isTopChange });
+  };
+
+  const handleOnMouseEnter = (element) => {
+    if (!element.children[1]) {
+      const cloneElement = element.children[0].cloneNode(true);
+      element.children[0].appendChild(cloneElement);
+      cloneElement.classList.remove('relative');
+      cloneElement.classList.add('absolute-content');
+      setTimeout(
+        () => {
+          cloneElement.classList.add('text-hover');
+        },
+        10,
+      );
+      setTimeout(
+        () => {
+          cloneElement.remove();
+        },
+        4000,
+      );
+    }
+    if (element.children[1] !== undefined) {
+      element.children[1].classList.add('text-hover');
+      setTimeout(
+        () => {
+          element.children[1].classList.remove('text-hover');
+        },
+        300,
+      );
+    }
+  };
+
+  //* Transition Effect
+  useEffect(() => {
+    setTimeout(() => {
+      setState({
+        ...state,
+        transitionEffect: false,
+      });
+    }, 800);
+  }, []);
 
   return (
     <>
@@ -67,53 +123,70 @@ function Home({ categories }) {
                 key={item.id}
                 imgWebp={item.imgWebp}
                 alt={item.title}
+                transitionEffect={state.transitionEffect}
               />
             ))}
-            <div className={stylesHeader['header-sticky-content']}>
-              <h1 className={styles['home-title']}>Theneau Maxime</h1>
-              <h2 className={styles['home-subtitle']}>Développeur Web à Marseille</h2>
+            <div className="titleBackground">
+              <h1>Theneau Maxime</h1>
+              <h2>Développeur Web à Marseille</h2>
             </div>
           </div>
         </header>
 
         <main className={styles.main}>
           {/** About */}
-          <div className={`section ${styles.about}`}>
-            <div className={styles['about-content']}>
-              <h3 className={styles['about-content-text']}>
-                Passionné par le développement web et le design.
-              </h3>
-              <p className={styles['about-content-text']}>
-                Développeur depuis adolescent, j'ai toujours été attiré par le monde du web.
-                J'ai commencé par créer des sites web pour mes propres site web pour mes
-                réalisations, puis j'ai décidé de me former pour devenir développeur web.
-              </p>
-              <div className={styles['about-cv']}>
-                <Link href="/cv-theneau-maxime.pdf">
-                  <button type="button" className={styles.button}>
-                    <span>Mon CV</span>
-                  </button>
-                </Link>
+          <div
+            className={`section ${styles.about} ${state.isTextVisible ? 'active' : ''}}`}
+          >
+            <ScrollParallaxText onTopChange={handleChangeOpacityText}>
+              <div>
+                <p>
+                  Fasciné par les possibilités offertes par le monde
+                  numérique, j'ai commencé à créé mes propres sites web pour mes
+                  réalisations personnelles.
+                </p>
+                <p>
+                  Inspiré par mes premières expériences de développement, j'ai poursuivi
+                  mes études dans ce domaine et suivi une formation pour acquis les
+                  compétences nécessaires pour réaliser des projets de qualité.
+                </p>
+                <p>
+                  Depuis, j'ai continué à apprendre et à me développer dans le domaine
+                  du développement web et je suis maintenant à la recherche de nouvelles
+                  opportunités pour mettre mes compétences et mon expérience au service de projets
+                  passionnants.
+                </p>
               </div>
-            </div>
+            </ScrollParallaxText>
 
           </div>
           {
-                categories?.filter((item) => item.idTitle === 'experiences').map((item) => (
-                  <div key={item.idTitle}>
+            categories?.filter((item) => item.idTitle === 'experiences').map((item) => (
+              <div key={item.idTitle}>
 
-                    {/** Title Categories */}
-                    <CategoriesMain item={item} key={item.id} />
-
-                    {/** Skills */}
-                    { item.experiences.map((experience) => (
-                      <ExperiencesList key={experience.title} experience={experience} />
-                    ))}
+                {/** Title Categories */}
+                <ScrollParallax onIsInViewChange={handleIsInViewChange}>
+                  <div className={state.isInView ? 'active wave' : ''}>
+                    <CategoriesMain
+                      experienceElement={state.isInView}
+                      item={item}
+                      key={item.id}
+                    />
                   </div>
-                ))
+                </ScrollParallax>
+
+                {/** Skills */}
+                { item.experiences.map((experience) => (
+                  <ExperiencesList
+                    key={experience.title}
+                    experience={experience}
+                    handleOnMouseEnter={handleOnMouseEnter}
+                  />
+                ))}
+              </div>
+            ))
             }
         </main>
-
         <footer className={styles.footer}>
 
           {/** Contact */}
@@ -121,28 +194,38 @@ function Home({ categories }) {
               categories?.filter((item) => item.idTitle === 'contact').map((item) => (
                 <>
                   {/** Title Categories */}
-                  <CategoriesMain key={item.id} item={item} />
+                  <ScrollParallax onIsInViewChange={handleIsInViewChange}>
+                    <div className={state.isInView ? 'active wave' : ''}>
+                      {/** Title Categories */}
+                      <CategoriesMain key={item.id} item={item} contactElement={state.isInView} />
+                    </div>
+                  </ScrollParallax>
+
+                  <ScrollParallax onIsInViewChange={handleIsInViewChange}>
+                    {/** Contact List */}
+                    {item.contacts.map((contact) => (
+                      <FormContactList
+                        key={contact.twitter}
+                        contact={contact}
+                        handleOnMouseEnter={handleOnMouseEnter}
+                        classIsview={state.isInView}
+                      />
+                    ))}
+                  </ScrollParallax>
 
                   {/** Form Contact */}
-                  <div className={`section ${styles['footer-form-backcground']}`}>
-                    <h3>Contactez-moi</h3>
-                    <FormContact setState={setState} state={state} />
-                  </div>
+                  <div className={styles['footer-form-backcground']}>
 
-                  {/** Contact List */}
-                  {item.contacts.map((contact) => (
-                    <FormContactList key={contact.twitter} contact={contact} />
-                  ))}
+                    <h3>Me contacter</h3>
+                    <FormContact
+                      setState={setState}
+                      state={state}
+                      handleOnMouseEnter={handleOnMouseEnter}
+                    />
+                  </div>
                 </>
               ))
             }
-          <div className={styles['footer-author']}>
-            <p>
-              Site réaliser par
-              {' '}
-              <i className="icon-signature" />
-            </p>
-          </div>
         </footer>
       </div>
     </>

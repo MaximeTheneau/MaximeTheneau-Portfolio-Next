@@ -1,22 +1,16 @@
-import Image from 'next/image';
 import PropTypes, { element } from 'prop-types';
 import styles from '../../styles/Home.module.scss';
+import SvgCategory from '../svgCategory';
 
-export default function CategoriesMain({ item, id }) {
+export default function CategoriesMain({ item, experienceElement, contactElement }) {
   return (
-
     <div
       className={`${styles.home__categories} section`}
-      id={id}
     >
-      <Image
-        src={item.imgWebp}
-        alt={item.title}
-        fill
-        className={styles['home-categories-img']}
-        priority
-      />
-      <h2 className={styles['home-categories-title']}>{item.title}</h2>
+      <SvgCategory experienceElement={experienceElement} contactElement={contactElement} />
+      <div className="titleBackground">
+        <h2 className={styles.home__categories__title}>{item.title}</h2>
+      </div>
     </div>
 
   );

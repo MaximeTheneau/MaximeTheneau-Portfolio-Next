@@ -1,8 +1,16 @@
 import Image from 'next/image';
-import PropTypes from 'prop-types';
+import Link from 'next/link';
+import PropTypes, { element } from 'prop-types';
+import { useRef, useState } from 'react';
+import ScrollParallaxTop from '../../lib/ScrollParallaxTop';
+
 import styles from '../../styles/Home.module.scss';
 
-export default function ExperiencesList({ experience }) {
+export default function ExperiencesList({ experience, handleOnMouseEnter }) {
+  const [onTopChange, setIsTopChange] = useState(false);
+  const handleChangeTop = (isTopChange) => {
+    setIsTopChange(isTopChange);
+  };
   return (
     <div className={`section ${styles.home__experience}`}>
       <Image
@@ -12,29 +20,70 @@ export default function ExperiencesList({ experience }) {
         height="1000"
         className={styles['home__experience-img']}
       />
-      <div className={styles['home__experience-text']}>
+
+      <div className={`relative ${styles['home__experience-text']}`}>
+        <div className={`absolute ${styles.home__experience__backgroundAnimation}`}>
+          <ScrollParallaxTop
+            onTopChange={handleChangeTop}
+            heightOfElement={onTopChange / 1.1}
+            widthOfElement={50}
+          />
+          <ScrollParallaxTop
+            onTopChange={handleChangeTop}
+            heightOfElement={onTopChange / 1.5}
+            widthOfElement={100}
+          />
+          <ScrollParallaxTop
+            onTopChange={handleChangeTop}
+            heightOfElement={onTopChange / 1.6}
+            widthOfElement={25}
+          />
+          <ScrollParallaxTop
+            onTopChange={handleChangeTop}
+            heightOfElement={onTopChange / 1.3}
+            widthOfElement={50}
+          />
+          <ScrollParallaxTop
+            onTopChange={handleChangeTop}
+            heightOfElement={onTopChange / 1.13}
+            widthOfElement={150}
+          />
+        </div>
         <h2>{experience.title}</h2>
         <h3>{experience.contents}</h3>
         <div className={styles['home__experience-text-link']}>
-          <div className={styles['home__experience-text-link-github']}>
-            <a href={experience.contents2}>
-              <i className="icon-github" />
-              <div>
+          <button
+            type="button"
+            className="button"
+          >
+            <Link
+              href={experience.contents2}
+              onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+              target="_blank"
+            >
+              <div className="relative f-center">
+                <i className="icon-github" />
                 Github
               </div>
-            </a>
-          </div>
-          <div className={styles['home__experience-text-link-site']}>
-            <a href={experience.contents3}>
-              <i className="icon-website" />
-              <div>
+            </Link>
+          </button>
+          <button
+            type="button"
+            className="button"
+          >
+            <Link
+              href={experience.contents3}
+              onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+              target="_blank"
+            >
+              <div className="relative f-center">
+                <i className="icon-website" />
                 Site
               </div>
-            </a>
-          </div>
+            </Link>
+          </button>
         </div>
       </div>
-
     </div>
   );
 }
