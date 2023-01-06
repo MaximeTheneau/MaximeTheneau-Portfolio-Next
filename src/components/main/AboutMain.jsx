@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import PropTypes from 'prop-types';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/Home.module.scss';
 
@@ -33,5 +33,9 @@ export default function AboutMain({ about }) {
   );
 }
 AboutMain.propTypes = {
-
+  about: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    imgWebp: PropTypes.string.isRequired,
+    contents2: PropTypes.string.isRequired,
+  }).isRequired,
 };

@@ -1,4 +1,4 @@
-import PropTypes, { element } from 'prop-types';
+import propTypes from 'prop-types';
 import styles from '../../styles/Home.module.scss';
 import SvgCategory from '../svgCategory';
 
@@ -15,8 +15,11 @@ export default function CategoriesMain({ item, experienceElement, contactElement
 
   );
 }
+
 CategoriesMain.propTypes = {
-  idTitle: PropTypes.string,
-  imgWebp: PropTypes.string,
-  title: PropTypes.string,
+  item: propTypes.shape({
+    title: propTypes.string.isRequired,
+  }).isRequired,
+  experienceElement: propTypes.bool.isRequired,
+  contactElement: propTypes.bool.isRequired,
 };

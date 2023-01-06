@@ -1,8 +1,6 @@
 //* Import
-import React, { createRef } from 'react';
-import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 //* Components
@@ -39,23 +37,11 @@ function Home({ categories, experiences }) {
     toggleNav: true,
     toggleModal: false,
     loadingSticky: false,
-    form: {
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-      confirmation: '',
-      textArea: 1,
-      confirmationMessage: 'change',
-      confirmationName: 'change',
-      confirmationEmail: 'change',
-      confirmationSubject: 'change',
-
-    },
     transitionEffect: true,
     isInView: false,
     textOpacity: 1,
   });
+
   const imageForMeta = experiences?.map((item) => (item.imageSvg));
 
 
@@ -105,7 +91,7 @@ function Home({ categories, experiences }) {
         transitionEffect: false,
       });
     }, 800);
-  }, []);
+  });
 
   return (
     <>
@@ -228,8 +214,6 @@ function Home({ categories, experiences }) {
 
                     <h3>Me contacter</h3>
                     <FormContact
-                      setState={setState}
-                      state={state}
                       handleOnMouseEnter={handleOnMouseEnter}
                     />
                   </div>
@@ -242,3 +226,19 @@ function Home({ categories, experiences }) {
   );
 }
 export default Home;
+
+Home.prototype = {
+  categories: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    idTitle: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    imgWebp: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+  }).isRequired,
+  experiences: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    imgWebp: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+  }).isRequired,
+};

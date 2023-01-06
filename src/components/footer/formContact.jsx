@@ -1,7 +1,26 @@
-import { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import styles from '../../styles/Home.module.scss';
 
-export default function FormContact({ state, setState, handleOnMouseEnter }) {
+export default function FormContact({ handleOnMouseEnter }) {
+  //* State
+  const [state, setState] = useState({
+    form: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+      confirmation: '',
+      textArea: 1,
+    },
+    confirmationMessage: null,
+    confirmationName: null,
+    confirmationEmail: null,
+    confirmationSubject: null,
+  });
+
+  const regex = /^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const requestOptions = {
@@ -25,203 +44,117 @@ export default function FormContact({ state, setState, handleOnMouseEnter }) {
       .catch((err) => console.log(err));
   };
 
-  const handleChangeName = (e) => {
-    setState({
-      ...state,
-      form: {
-        ...state.form,
-        confirmationName: 'change',
-        name: e.target.value,
-      },
-    });
-    if (e.target.value.length > 2) {
-      setState({
-        ...state,
-        form: {
-          ...state.form,
-          confirmationName: 'confirmation',
-          name: e.target.value,
-        },
-      });
-    } if (e.target.value.length > 25) {
-      setState({
-        ...state,
-        form: {
-          ...state.form,
-          confirmationName: 'error',
-          name: e.target.value,
-        },
-      });
-    }
-  };
-
-  const handleChangeEmail = (e) => {
-    setState({
-      ...state,
-      form: {
-        ...state.form,
-        confirmationEmail: 'change',
-        email: e.target.value,
-      },
-    });
-    if (e.target.value.length > 2) {
-      setState({
-        ...state,
-        form: {
-          ...state.form,
-          confirmationEmail: 'error',
-          email: e.target.value,
-        },
-      });
-    }
-    const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (regex.test(e.target.value)) {
-      setState({
-        ...state,
-        form: {
-          ...state.form,
-          confirmationEmail: 'confirmation',
-          email: e.target.value,
-        },
-      });
-    }
-  };
-
-  const handleChangeSubject = (e) => {
-    setState({ ...state, form: { ...state.form, subject: e.target.value } });
-    if (e.target.value.length > 2) {
-      setState({
-        ...state,
-        form: {
-          ...state.form,
-          confirmationSubject: 'confirmation',
-          subject: e.target.value,
-        },
-      });
-    } if (e.target.value.length > 25) {
-      setState({
-        ...state,
-        form: {
-          ...state.form,
-          confirmationSubject: 'error',
-          subject: e.target.value,
-        },
-      });
-    }
-  };
-
   const handleChangeMessage = (e) => {
-    const trows = e.target.value.split('\n').length - 1 == 0 ? 1 : e.target.value.split('\n').length - 1;
-
+    const trows = e.target.value.split('\n').length - 1 === 0 ? 1 : e.target.value.split('\n').length - 1;
     setState({
       ...state,
+      textArea: trows,
       form: {
-        ...state.form, message: e.target.value, textArea: trows, confirmationMessage: 'change',
+        ...state.form, message: e.target.value,
       },
     });
-    const textareaheight = state.form.textArea;
-    if (e.target.value.length > 250) {
-      setState({
-        ...state,
-        form: {
-          ...state.form,
-          confirmationMessage: 'confirmation',
-          message: e.target.value,
-          textArea: trows,
-        },
-      });
-    } if (e.target.value.length > 250) {
-      setState({
-        ...state,
-        form: {
-          ...state.form,
-          confirmationMessage: 'error',
-          message: e.target.value,
-          textArea: trows,
-
-        },
-      });
-    }
   };
 
   return (
     <form className={styles['footer-form']} onSubmit={handleSubmit}>
       <div className={styles['footer-form-top']}>
         <div className={styles['footer-form-input']}>
-          <i className={`icon-${state.form.confirmationName}`} />
+          { state.confirmationName === false ? <i className="icon-error" /> : '' }
           <input
             type="text"
             placeholder="Nom"
-            onChange={handleChangeName}
             value={state.form.name}
+            onChange={(e) => setState(
+              { ...state, form: { ...state.form, name: e.target.value } },
+            )}
+            onBlur={(e) => (
+              e.target.value.length > 2 && e.target.value.length < 35
+                ? setState({ ...state, confirmationName: true })
+                : setState({ ...state, confirmationName: false })
+            )}
             required
           />
         </div>
         <div className={styles['footer-form-input']}>
-          <i className={`icon-${state.form.confirmationEmail}`} />
+          { state.confirmationEmail === false ? <i className="icon-error" /> : '' }
           <input
             type="email"
             placeholder="Email"
-            onChange={handleChangeEmail}
             value={state.form.email}
+            onChange={(e) => setState(
+              { ...state, form: { ...state.form, email: e.target.value } },
+              (e.target.value.length > 2 && e.target.value.length < 35
+                ? setState({ ...state, confirmationEmail: true })
+                : setState({ ...state, confirmationEmail: false })),
+            )}
+            onBlur={(e) => (
+              regex.test(e.target.value)
+                ? setState({ ...state, confirmationEmail: true })
+                : setState({ ...state, confirmationEmail: false })
+            )}
+            required
           />
         </div>
 
         {/* Subject */}
         <div className={styles['footer-form-input']}>
-          <i className={`icon-${state.form.confirmationSubject}`} />
+          { state.confirmationSubject === false ? <i className="icon-error" /> : '' }
           <input
             type="text"
             placeholder="Sujet"
-            onChange={handleChangeSubject}
-            value={state.form.subject}
             className={styles[state.form.confirmationSubject]}
+            value={state.form.subject}
+            onChange={(e) => setState(
+              { ...state, form: { ...state.form, subject: e.target.value } },
+            )}
+            onBlur={(e) => (
+              e.target.value.length > 2 && e.target.value.length < 35
+                ? setState({ ...state, confirmationSubject: true })
+                : setState({ ...state, confirmationSubject: false })
+            )}
             required
           />
         </div>
       </div>
 
       {/* Error */}
-      {
-            state.form.confirmationEmail === 'error' ? (
-              <div
-                className={styles['footer-form-message']}
-              >
-                <p>L'email n'est pas valide</p>
-              </div>
-            ) : ''
-          }
-      {
-            state.form.confirmationSubject === 'error' ? (
-              <div className={styles['footer-form-message']}>
-                <p>Le sujet doit faire moins de 25 caractères</p>
-              </div>
-            ) : ''
-          }
+      { state.confirmationName === false ? (
+        <div className={styles['footer-form-message']}>
+          <p>Le nom doit faire moins de 25 caractères</p>
+        </div>
+      ) : ''}
 
-      {
-            state.form.confirmationName === 'error' ? (
-              <div className={styles['footer-form-message']}>
-                <p>Le nom doit faire moins de 25 caractères</p>
-              </div>
-            ) : ''
-          }
+      { state.confirmationEmail === false ? (
+        <div className={styles['footer-form-message']}>
+          <p>L&apos;email n&apos;est pas valide</p>
+        </div>
+      ) : ''}
+
+      { state.confirmationSubject === false ? (
+        <div className={styles['footer-form-message']}>
+          <p>Le sujet doit faire moins de 25 caractères</p>
+        </div>
+      ) : ''}
+
       {/* Message */}
       <div className={styles['footer-form-textarea']}>
-        <i className={`icon-${state.form.confirmationMessage}`} />
+        { state.confirmationMessage === false ? <i className="icon-error" /> : '' }
         <textarea
           placeholder="Message"
-          rows={state.form.textArea}
+          rows={state.textArea}
           wrap="off"
-          onChange={handleChangeMessage}
           value={state.form.message}
+          onChange={handleChangeMessage}
+          onBlur={(e) => (e.target.value.length > 2 && e.target.value.length < 250
+            ? setState({ ...state, confirmationMessage: true })
+            : setState({ ...state, confirmationMessage: false }))}
           required
         />
       </div>
       {
-            state.form.confirmationMessage === 'error' ? (
+            state.confirmationMessage === false ? (
               <div className={`${styles['footer-form-message']}`}>
-                <p>Le message doit faire moins de 25 caractères</p>
+                <p>Le message doit faire moins de 250 caractères</p>
               </div>
             ) : ''
           }
@@ -239,3 +172,7 @@ export default function FormContact({ state, setState, handleOnMouseEnter }) {
 
   );
 }
+
+FormContact.propTypes = {
+  handleOnMouseEnter: PropTypes.func.isRequired,
+};

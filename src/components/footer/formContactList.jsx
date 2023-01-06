@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styles from '../../styles/Home.module.scss';
 
@@ -22,7 +23,7 @@ export default function FormContactList({ contact, handleOnMouseEnter, classIsvi
           rel="noreferrer"
           onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
           className={classIsview ? 'slideAnimation' : ''}
-          style={{ animationDelay: '0.5s'}}
+          style={{ animationDelay: '0.5s' }}
         >
           <div className="relative">
             <i className="icon-github" />
@@ -34,7 +35,7 @@ export default function FormContactList({ contact, handleOnMouseEnter, classIsvi
           rel="noreferrer"
           onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
           className={classIsview ? 'slideAnimation' : ''}
-          style={{ animationDelay: '1s'}}
+          style={{ animationDelay: '1s' }}
         >
           <div className="relative">
             <i className="icon-linkedin" />
@@ -46,7 +47,7 @@ export default function FormContactList({ contact, handleOnMouseEnter, classIsvi
           rel="noreferrer"
           onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
           className={classIsview ? 'slideAnimation' : ''}
-          style={{ animationDelay: '1.5s'}}
+          style={{ animationDelay: '1.5s' }}
         >
           <div className="relative">
             <i className="icon-twitter" />
@@ -67,3 +68,16 @@ export default function FormContactList({ contact, handleOnMouseEnter, classIsvi
     </div>
   );
 }
+
+FormContactList.propTypes = {
+  contact: PropTypes.shape(
+    {
+      email: PropTypes.string.isRequired,
+      Github: PropTypes.string.isRequired,
+      Linkedin: PropTypes.string.isRequired,
+      twitter: PropTypes.string.isRequired,
+    },
+  ).isRequired,
+  handleOnMouseEnter: PropTypes.func.isRequired,
+  classIsview: PropTypes.bool.isRequired,
+};

@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Link from 'next/link';
-import PropTypes, { element } from 'prop-types';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import ScrollParallaxTop from '../../lib/ScrollParallaxTop';
 
 import styles from '../../styles/Home.module.scss';
@@ -95,5 +95,5 @@ ExperiencesList.propTypes = {
     contents2: PropTypes.string,
     contents3: PropTypes.string.isRequired,
   }).isRequired,
-
+  handleOnMouseEnter: PropTypes.func.isRequired,
 };

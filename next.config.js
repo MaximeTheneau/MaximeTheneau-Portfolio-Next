@@ -4,15 +4,6 @@ const nextConfig = {
     unoptimized: true,
     formats: ['image/webp'],
   },
-  extends: [
-    //...
-    'plugin:@next/next/recommended',
-  ],
-  exportPathMap: async function () {
-    return {
-      '/': { page: '/' },
-    }
-  },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -1,12 +1,15 @@
-import { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import useMovableElements from './useMovableElements';
 import styles from '../styles/Home.module.scss';
 
-export default function ScrollParallaxTop({ children, onTopChange, heightOfElement, widthOfElement }) {
+export default function ScrollParallaxTop({
+  children, onTopChange, heightOfElement, widthOfElement,
+}) {
   const [elementRef, isTopChange] = useMovableElements();
   useEffect(() => {
     onTopChange(isTopChange);
-  }, [isTopChange]);
+  });
 
   return (
     <>
@@ -24,3 +27,10 @@ export default function ScrollParallaxTop({ children, onTopChange, heightOfEleme
     </>
   );
 }
+
+ScrollParallaxTop.propTypes = {
+  children: PropTypes.node.isRequired,
+  onTopChange: PropTypes.func.isRequired,
+  heightOfElement: PropTypes.number.isRequired,
+  widthOfElement: PropTypes.number.isRequired,
+};
