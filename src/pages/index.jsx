@@ -44,7 +44,6 @@ function Home({ categories, experiences }) {
 
   const imageForMeta = experiences?.map((item) => (item.imageSvg));
 
-
   const handleIsInViewChange = (newIsInView) => {
     setState({ ...state, isInView: newIsInView });
   };
@@ -187,7 +186,7 @@ function Home({ categories, experiences }) {
 
           {/** Contact */}
           {
-              categories?.filter((item) => item.idTitle === 'contact').map((item) => (
+              categories.filter((item) => item.idTitle === 'contact').map((item) => (
                 <>
                   {/** Title Categories */}
                   <ScrollParallax onIsInViewChange={handleIsInViewChange}>
@@ -227,18 +226,28 @@ function Home({ categories, experiences }) {
 }
 export default Home;
 
-Home.prototype = {
-  categories: PropTypes.shape({
+Home.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     idTitle: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     imgWebp: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-  }).isRequired,
-  experiences: PropTypes.shape({
+    imgJpg: PropTypes.string.isRequired,
+    contacts: PropTypes.arrayOf(PropTypes.shape({
+      twitter: PropTypes.string.isRequired,
+      github: PropTypes.string.isRequired,
+      linkedin: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+    })).isRequired,
+  })).isRequired,
+  experiences: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    imgWebp: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-  }).isRequired,
+    skills: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      imgWebp: PropTypes.string.isRequired,
+      imgJpg: PropTypes.string.isRequired,
+    })).isRequired,
+  })).isRequired,
 };

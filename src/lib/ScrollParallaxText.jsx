@@ -7,7 +7,7 @@ export default function ScrollParallaxText({ children, onTopChange }) {
   const [elementRef, isTopChange] = useMovableElements();
   useEffect(() => {
     onTopChange(isTopChange);
-  });
+  }, [isTopChange]);
 
   return (
     <div

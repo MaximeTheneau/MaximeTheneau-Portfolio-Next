@@ -9,7 +9,7 @@ export default function ScrollParallaxTop({
   const [elementRef, isTopChange] = useMovableElements();
   useEffect(() => {
     onTopChange(isTopChange);
-  });
+  }, [isTopChange]);
 
   return (
     <>
