@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 //* Components
-import Confirmation from '../components/modal/confirmation';
 import Sticky from '../components/header/sticky';
 import CategoriesMain from '../components/main/categoriesMain';
 import ExperiencesList from '../components/main/experiencesList';
@@ -105,57 +104,53 @@ function Home({ categories, experiences }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/** Modal Confirmation */}
-      {state.toggleModal ? <Confirmation setState={setState} state={state} /> : ''}
-      <div className={state.toggleModal ? (styles.blur) : ''}>
+      {/** Header */}
+      <header className="section">
+        {/** Header Images Sticky */}
+        <div className={stylesHeader['header-sticky']}>
+          { categories?.filter((image) => image.idTitle === 'accueil').map((item) => (
+            <Sticky
+              key={item.id}
+              imgWebp={item.imgWebp}
+              alt={item.title}
+              transitionEffect={state.transitionEffect}
+            />
+          ))}
+          <div className="titleBackground">
+            <h1>Theneau Maxime</h1>
+            <h2>Développeur Web à Marseille</h2>
+          </div>
+        </div>
+      </header>
 
-        {/** Header */}
-        <header className="section">
-          {/** Header Images Sticky */}
-          <div className={stylesHeader['header-sticky']}>
-            { categories?.filter((image) => image.idTitle === 'accueil').map((item) => (
-              <Sticky
-                key={item.id}
-                imgWebp={item.imgWebp}
-                alt={item.title}
-                transitionEffect={state.transitionEffect}
-              />
-            ))}
-            <div className="titleBackground">
-              <h1>Theneau Maxime</h1>
-              <h2>Développeur Web à Marseille</h2>
+      <main className={styles.main}>
+        {/** About */}
+        <div
+          className={`section ${styles.about} ${state.isTextVisible ? 'active' : ''}}`}
+        >
+          <ScrollParallaxText onTopChange={handleChangeOpacityText}>
+            <div>
+              <p>
+                Fasciné par les possibilités offertes par le monde
+                numérique, j'ai commencé à créé mes propres sites web pour mes
+                réalisations personnelles.
+              </p>
+              <p>
+                Inspiré par mes premières expériences de développement, j'ai poursuivi
+                mes études dans ce domaine et suivi une formation pour acquis les
+                compétences nécessaires pour réaliser des projets de qualité.
+              </p>
+              <p>
+                Depuis, j'ai continué à apprendre et à me développer dans le domaine
+                du développement web et je suis maintenant à la recherche de nouvelles
+                opportunités pour mettre mes compétences et mon expérience au service de projets
+                passionnants.
+              </p>
             </div>
-          </div>
-        </header>
+          </ScrollParallaxText>
 
-        <main className={styles.main}>
-          {/** About */}
-          <div
-            className={`section ${styles.about} ${state.isTextVisible ? 'active' : ''}}`}
-          >
-            <ScrollParallaxText onTopChange={handleChangeOpacityText}>
-              <div>
-                <p>
-                  Fasciné par les possibilités offertes par le monde
-                  numérique, j'ai commencé à créé mes propres sites web pour mes
-                  réalisations personnelles.
-                </p>
-                <p>
-                  Inspiré par mes premières expériences de développement, j'ai poursuivi
-                  mes études dans ce domaine et suivi une formation pour acquis les
-                  compétences nécessaires pour réaliser des projets de qualité.
-                </p>
-                <p>
-                  Depuis, j'ai continué à apprendre et à me développer dans le domaine
-                  du développement web et je suis maintenant à la recherche de nouvelles
-                  opportunités pour mettre mes compétences et mon expérience au service de projets
-                  passionnants.
-                </p>
-              </div>
-            </ScrollParallaxText>
-
-          </div>
-          {
+        </div>
+        {
             categories?.filter((item) => item.idTitle === 'experiences').map((item) => (
               <div key={item.idTitle}>
 
@@ -181,11 +176,11 @@ function Home({ categories, experiences }) {
               </div>
             ))
             }
-        </main>
-        <footer className={styles.footer}>
+      </main>
+      <footer className={styles.footer}>
 
-          {/** Contact */}
-          {
+        {/** Contact */}
+        {
               categories.filter((item) => item.idTitle === 'contact').map((item) => (
                 <>
                   {/** Title Categories */}
@@ -219,8 +214,7 @@ function Home({ categories, experiences }) {
                 </>
               ))
             }
-        </footer>
-      </div>
+      </footer>
     </>
   );
 }
