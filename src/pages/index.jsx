@@ -1,6 +1,6 @@
 //* Import
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { cloneElement, useEffect, useState } from 'react';
 import Head from 'next/head';
 
 //* Components
@@ -15,7 +15,7 @@ import FormContactList from '../components/footer/formContactList';
 //* Styles
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
-import ScrollParallax from '../lib/ScrollParallax';
+import ScrollParallaxWave from '../lib/ScrollParallaxWave';
 import ScrollParallaxText from '../lib/ScrollParallaxText';
 
 export async function getStaticProps() {
@@ -43,42 +43,22 @@ function Home({ categories, experiences }) {
 
   const imageForMeta = experiences?.map((item) => (item.imageSvg));
 
-  const handleIsInViewChange = (newIsInView) => {
-    setState({ ...state, isInView: newIsInView });
-  };
 
   const handleChangeOpacityText = (isTopChange) => {
     setState({ ...state, textOpacity: isTopChange });
   };
 
   const handleOnMouseEnter = (element) => {
-    if (!element.children[1]) {
       const cloneElement = element.children[0].cloneNode(true);
-      element.children[0].appendChild(cloneElement);
-      cloneElement.classList.remove('relative');
+      element.appendChild(cloneElement);
+      cloneElement.classList.remove('textAnimation');
       cloneElement.classList.add('absolute-content');
-      setTimeout(
-        () => {
-          cloneElement.classList.add('text-hover');
-        },
-        10,
-      );
-      setTimeout(
-        () => {
-          cloneElement.remove();
-        },
-        4000,
-      );
-    }
-    if (element.children[1] !== undefined) {
-      element.children[1].classList.add('text-hover');
-      setTimeout(
-        () => {
-          element.children[1].classList.remove('text-hover');
-        },
-        300,
-      );
-    }
+      cloneElement.classList.add('textAnimation_hover');
+      element.children[0].classList.add('textAnimation');
+    setTimeout(() => {
+        cloneElement.remove();
+        element.children[0].classList.remove('textAnimation');
+      }, 1200);
   };
 
   //* Transition Effect
@@ -116,7 +96,7 @@ function Home({ categories, experiences }) {
               transitionEffect={state.transitionEffect}
             />
           ))}
-          <div className="titleBackground">
+          <div className="titleBackground" >
             <h1>Theneau Maxime</h1>
             <h2>Développeur Web à Marseille</h2>
           </div>
@@ -128,7 +108,7 @@ function Home({ categories, experiences }) {
         <div
           className={`section ${styles.about} ${state.isTextVisible ? 'active' : ''}}`}
         >
-          <ScrollParallaxText onTopChange={handleChangeOpacityText}>
+          <ScrollParallaxText >
             <div>
               <p>
                 Fasciné par les possibilités offertes par le monde
@@ -155,15 +135,10 @@ function Home({ categories, experiences }) {
               <div key={item.idTitle}>
 
                 {/** Title Categories */}
-                <ScrollParallax onIsInViewChange={handleIsInViewChange}>
-                  <div className={state.isInView ? 'active wave' : ''}>
-                    <CategoriesMain
-                      experienceElement={state.isInView}
-                      item={item}
-                      key={item.id}
-                    />
-                  </div>
-                </ScrollParallax>
+                <ScrollParallaxWave >
+                    {/** Title Categories */}
+                    <CategoriesMain key={item.id} item={item} contactElement={state.isInView} />
+                </ScrollParallaxWave>
 
                 {/** Skills */}
                 { experiences?.map((experience) => (
@@ -184,14 +159,12 @@ function Home({ categories, experiences }) {
               categories.filter((item) => item.idTitle === 'contact').map((item) => (
                 <>
                   {/** Title Categories */}
-                  <ScrollParallax onIsInViewChange={handleIsInViewChange}>
-                    <div className={state.isInView ? 'active wave' : ''}>
+                  <ScrollParallaxWave>
                       {/** Title Categories */}
                       <CategoriesMain key={item.id} item={item} contactElement={state.isInView} />
-                    </div>
-                  </ScrollParallax>
+                  </ScrollParallaxWave>
 
-                  <ScrollParallax onIsInViewChange={handleIsInViewChange}>
+                  
                     {/** Contact List */}
                     {item.contacts.map((contact) => (
                       <FormContactList
@@ -201,7 +174,6 @@ function Home({ categories, experiences }) {
                         classIsview={state.isInView}
                       />
                     ))}
-                  </ScrollParallax>
 
                   {/** Form Contact */}
                   <div className={styles['footer-form-backcground']}>

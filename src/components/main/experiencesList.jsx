@@ -60,8 +60,9 @@ export default function ExperiencesList({ experience, handleOnMouseEnter }) {
               href={experience.contents2}
               onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
               target="_blank"
+              className="relative f-center"
             >
-              <div className="relative f-center">
+              <div >
                 <i className="icon-github" />
                 Github
               </div>
@@ -75,8 +76,9 @@ export default function ExperiencesList({ experience, handleOnMouseEnter }) {
               href={experience.contents3}
               onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
               target="_blank"
+              className="relative f-center"
             >
-              <div className="relative f-center">
+              <div >
                 <i className="icon-website" />
                 Site
               </div>

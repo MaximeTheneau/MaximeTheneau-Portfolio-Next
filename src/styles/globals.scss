@@ -30,36 +30,49 @@ button{
   font-family: $font-secondary;
   border: none;
   font-size: 1.2rem;
-  background: #fff;
-  color: $color-primary;
+  background: $color-primary !important;
+  color: $color-white;
   cursor: pointer;
   font-weight: bold;
   border-radius: 0.5rem;
   margin: 1rem;
   padding: 0.5rem 0;
   width: 49%;
-  &:hover{
-    background: $color-primary;
-    color: #fff !important;
-    z-index: 1;
-  }
   & i{
     margin: 0 0.5rem 0 0;
   }
 
 }
-
-.text-hover{
-  color: #fff;
-  animation: textHover 1s linear forwards;
+div button:hover{
+  color: #fff !important;
 }
-@keyframes textHover{
+button:hover{
+  background: $color-secondary !important;
+}
+.textAnimation{
+  animation: textAnimation 0.5s linear forwards;
+  &_hover{
+    animation: textAnimation_hover 1s linear forwards;
+    width: 100%;
+  }
+}
+
+@keyframes textAnimation{
   0%{
-    transform: translate(-50%, 00%);
-    opacity: 0.2;
+    opacity: 0;
   }
   100%{
-    transform: translate(-50%, 50%);
+    opacity: 1;
+  }
+}
+
+@keyframes textAnimation_hover{
+  0%{
+    transform: translate(-50%, 00%);
+    opacity: 1;
+  }
+  100%{
+    transform: translate(-50%, 20%);
     opacity: 0;
   }
 }
@@ -144,12 +157,12 @@ g {
 // Animation
 .slideAnimation{
   animation: slideAnimation 1s ease forwards;
+  transform: translateX(-1000%);
+  opacity: 0;
   opacity: 0;
 }
 @keyframes slideAnimation{
   0%{
-    opacity: 0;
-    transform: translateX(-1000%);
   }
   50%{
     opacity: 0.6;

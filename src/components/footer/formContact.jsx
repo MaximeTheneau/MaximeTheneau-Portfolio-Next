@@ -153,8 +153,9 @@ export default function FormContact({ handleOnMouseEnter }) {
         <button
           type="submit"
           onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+          className="relative"
         >
-          <div className="relative f-center">
+          <div>
             <span>Envoyer</span>
             <i className="icon-paper-plane" />
           </div>

@@ -2,8 +2,8 @@
   "extends": ["next/core-web-vitals", "airbnb"],
   "rules": {
     // suppress errors for missing 'import React' in files
-   "react/react-in-jsx-scope": "off"
-  //  "react/prop-types": [<enabled>, { ignore: <ignore>, customValidators: <customValidator>, skipUndeclared: <skipUndeclared> }]
+   "react/react-in-jsx-scope": "off",
+    "react/prop-types": [<enabled>, { ignore: <ignore>, customValidators: <customValidator>, skipUndeclared: <skipUndeclared> }]
 
   }
   }

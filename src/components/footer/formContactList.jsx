@@ -1,70 +1,76 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styles from '../../styles/Home.module.scss';
+import ScrollParallaxLeft from '../../lib/ScrollParallaxLeft';
 
-export default function FormContactList({ contact, handleOnMouseEnter, classIsview }) {
+export default function FormContactList({ contact, handleOnMouseEnter }) {
   return (
     <div className={styles.footer__contact}>
       <div className={styles.footer__contact__listSocial}>
-        <a
-          href={contact.email}
-          target="_blank"
-          rel="noreferrer"
-          onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
-          className={classIsview ? 'slideAnimation' : ''}
-        >
-          <div className="relative">
-            <i className="icon-email" />
-          </div>
-        </a>
-        <a
-          href={contact.Github}
-          target="_blank"
-          rel="noreferrer"
-          onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
-          className={classIsview ? 'slideAnimation' : ''}
-          style={{ animationDelay: '0.5s' }}
-        >
-          <div className="relative">
-            <i className="icon-github" />
-          </div>
-        </a>
-        <a
-          href={contact.Linkedin}
-          target="_blank"
-          rel="noreferrer"
-          onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
-          className={classIsview ? 'slideAnimation' : ''}
-          style={{ animationDelay: '1s' }}
-        >
-          <div className="relative">
-            <i className="icon-linkedin" />
-          </div>
-        </a>
-        <a
-          href={contact.twitter}
-          target="_blank"
-          rel="noreferrer"
-          onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
-          className={classIsview ? 'slideAnimation' : ''}
-          style={{ animationDelay: '1.5s' }}
-        >
-          <div className="relative">
-            <i className="icon-twitter" />
-          </div>
-        </a>
+        <ScrollParallaxLeft delay={'1s'}>
+          <a
+            href={contact.email}
+            target="_blank"
+            rel="noreferrer"
+            onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+            className={`relative`}
+          >
+            <div>
+              <i className="icon-email" />
+            </div>
+          </a>
+        </ScrollParallaxLeft>
+        <ScrollParallaxLeft delay={'1.5s'}>
+          <a
+            href={contact.Github}
+            target="_blank"
+            rel="noreferrer"
+            onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+            className={`relative `}
+            
+          >
+            <div >
+              <i className="icon-github" />
+            </div>
+          </a>
+        </ScrollParallaxLeft>
+        <ScrollParallaxLeft delay={'2s'}>
+          <a
+            href={contact.Linkedin}
+            target="_blank"
+            rel="noreferrer"
+            onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+            className={`relative `}
+            >
+            <div className="relative">
+              <i className="icon-linkedin" />
+            </div>
+          </a>
+        </ScrollParallaxLeft>
+        <ScrollParallaxLeft delay={'2.5s'}>
+          <a
+            href={contact.twitter}
+            target="_blank"
+            rel="noreferrer"
+            onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+            className={`relative `}
+            
+          >
+            <div>
+              <i className="icon-twitter" />
+            </div>
+          </a>
+        </ScrollParallaxLeft>
       </div>
-      <button
-        type="button"
-        className={styles.button}
-        onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
-      >
-        <div className="relative">
-          <Link href="/cv-theneau-maxime.pdf" target="_blank">
-            <span>Mon CV</span>
-          </Link>
-        </div>
-      </button>
+      <Link href="/cv-theneau-maxime.pdf" target="_blank">
+        <button
+          type="button"
+          className="relative"
+          onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+        >
+          <div>Mon CV</div>
+        </button>
+      </Link>
     </div>
   );
 }

@@ -66,21 +66,23 @@
 
 
 .footer{
-  & button{
-    color: $color-green !important;
-    background: $color-primary !important;
-  }
   &__contact{
     line-height: 2rem;
     background: $color-secondary;
     & button{
       width: auto;
       padding: 1rem;
+      &:hover{
+        background: $color-primary !important;
+      }
     }
     &__listSocial{
       padding:  1.5rem 0;
       display: flex;
       justify-content: space-around;
+      &:hover{
+        color: $color-primary !important;
+      }
       & i {
         color: $color-green !important;
       }

@@ -1,22 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 
-function useScrollParallax() {
-  const ref = useRef(null);
-  const [isInView, setIsInView] = useState(false);
+function useScrollParallax(elementRef) {
+  const [isInViewport, setIsInViewport] = useState(false);
+  
   useEffect(() => {
-    const element = ref.current;
-    const handleScroll = () => {
-      const elementRect = element.getBoundingClientRect();
-      if (elementRect.top < window.innerHeight && elementRect.bottom > 0) {
-        setIsInView(true);
-      } else {
-        setIsInView(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  return [ref, isInView];
+    function handleScroll() {
+      const { top, bottom, left, right } = elementRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const windowWidth = window.innerWidth;
+      setIsInViewport(top < windowHeight && bottom >= 0 && left < windowWidth && right >= 0);
+    }
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    }
+  }, [elementRef]);
+
+  return isInViewport;
 }
 
 export default useScrollParallax;
