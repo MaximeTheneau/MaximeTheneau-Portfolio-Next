@@ -15,8 +15,8 @@ import FormContactList from '../components/footer/formContactList';
 //* Styles
 import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
-import ScrollParallaxWave from '../lib/ScrollParallaxWave';
-import ScrollParallaxText from '../lib/ScrollParallaxText';
+import ScrollParallaxWave from '../hooks/useMovableElement/wave/ScrollParallaxWave';
+import ScrollParallaxText from '../hooks/useMovableElement/textOpacity/ScrollParallaxText';
 import Script from 'next/script';
 
 export async function getStaticProps() {

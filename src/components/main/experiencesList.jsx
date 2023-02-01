@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import ScrollParallaxTop from '../../lib/ScrollParallaxTop';
+import ScrollParallaxTop from '../../hooks/useMovableElement/top/ScrollParallaxTop';
 
 import styles from '../../styles/Home.module.scss';
 

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import useMovableElements from './useMovableElements';
-import styles from '../styles/Home.module.scss';
+import styles from '../../../styles/Home.module.scss';
 
 export default function ScrollParallaxText({ children }) {
   const [elementRef, isTopChange] = useMovableElements();

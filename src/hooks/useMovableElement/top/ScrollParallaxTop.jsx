@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import useMovableElements from './useMovableElements';
-import styles from '../styles/Home.module.scss';
+import useMovableElements from '../textOpacity/useMovableElements';
+import styles from '../../../styles/Home.module.scss';
 
 export default function ScrollParallaxTop({
   children, onTopChange, heightOfElement, widthOfElement,
