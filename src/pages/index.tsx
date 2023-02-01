@@ -1,4 +1,5 @@
 //* Import
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { cloneElement, useEffect, useState } from 'react';
 import Head from 'next/head';
@@ -13,8 +14,7 @@ import FormContactList from '../components/footer/formContactList';
 //* Lib
 
 //* Styles
-import styles from '../styles/Home.module.scss';
-import stylesHeader from '../styles/Header.module.scss';
+import styles from '../components/main/Home.module.scss';
 import ScrollParallaxWave from '../hooks/useMovableElement/wave/ScrollParallaxWave';
 import ScrollParallaxText from '../hooks/useMovableElement/textOpacity/ScrollParallaxText';
 import Script from 'next/script';
@@ -32,7 +32,14 @@ export async function getStaticProps() {
   return { props: { categories, experiences, accueil } };
 }
 
-function Home({ categories, experiences, accueil }) {
+type Props = {
+  categories: any;
+  experiences: any;
+  accueil: any;
+};
+
+
+const Home = ({ categories, experiences, accueil }: Props) => {
   //* State
   const [state, setState] = useState({
     isTextVisible: false,
@@ -117,7 +124,6 @@ function Home({ categories, experiences, accueil }) {
       {/** Header */}
       <header className="section">
         {/** Header Images Sticky */}
-        <div className={stylesHeader['header-sticky']}>
           { categories?.filter((image) => image.idTitle === 'accueil').map((item) => (
             <Sticky
               key={item.id}
@@ -130,7 +136,6 @@ function Home({ categories, experiences, accueil }) {
             <h1>Theneau Maxime</h1>
             <h2>Développeur Web à Marseille</h2>
           </div>
-        </div>
       </header>
 
       <main className={styles.main}>

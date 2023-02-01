@@ -1,7 +1,22 @@
+import * as React from 'react'
 import PropTypes from 'prop-types';
-import styleModal from '../../styles/Modal.module.scss';
+import styleModal from './Modal.module.scss';
 
-export default function Confirmation({ state, setState }) {
+type Props = {
+  state: {
+    toggleModal: boolean;
+    form: {
+      name: string;
+      email: string;
+      subject: string;
+      message: string;
+    };
+  };
+  setState: (state: any) => void;
+};
+
+
+const Confirmation = ({ state: state, setState }: Props) => {
   const handleToggleModal = () => {
     setState({
       ...state,
@@ -28,8 +43,10 @@ export default function Confirmation({ state, setState }) {
         </button>
       </div>
     </div>
-  ) : '';
+  ) : null;
 }
+
+export default Confirmation;
 
 Confirmation.propTypes = {
   state: PropTypes.shape({

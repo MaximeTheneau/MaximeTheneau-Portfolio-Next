@@ -1,9 +1,10 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRef } from 'react';
 import useSlideTransition from './useSlideTansition';
 import styles from './SlideTransition.module.scss';
 
-export default function ScrollParallaxLeft({ children, className }) {
+const ScrollParallaxLeft = ({ children }: {children: React.ReactNode}) => {
   const elementRef = useRef(null);
   const isInViewport = useSlideTransition(elementRef);
 
@@ -16,3 +17,5 @@ export default function ScrollParallaxLeft({ children, className }) {
     </div>
   );
 }
+
+export default ScrollParallaxLeft;

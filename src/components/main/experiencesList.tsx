@@ -4,9 +4,18 @@ import Link from 'next/link';
 import { useState } from 'react';
 import ScrollParallaxTop from '../../hooks/useMovableElement/top/ScrollParallaxTop';
 
-import styles from '../../styles/Home.module.scss';
+import styles from './Home.module.scss';
 
-export default function ExperiencesList({ experience, handleOnMouseEnter }) {
+type Props = {
+  experience: {
+    title: string,
+    imageWebp: string,
+  },
+  handleOnMouseEnter: () => void,
+}
+
+
+const ExperiencesList = ({ experience, handleOnMouseEnter }: Props) => {
   const [onTopChange, setIsTopChange] = useState(false);
   const handleChangeTop = (isTopChange) => {
     setIsTopChange(isTopChange);
@@ -89,6 +98,9 @@ export default function ExperiencesList({ experience, handleOnMouseEnter }) {
     </div>
   );
 }
+
+export default ExperiencesList;
+
 ExperiencesList.propTypes = {
   experience: PropTypes.shape({
     imageWebp: PropTypes.string.isRequired,

@@ -1,8 +1,11 @@
-import PropTypes, { element } from 'prop-types';
-import { useState } from 'react';
+import React from 'react';
 import styles from './CloneTextWrapper.module.scss';
 
-export default function CloneTextWrapper({ children }) {
+type Props = {
+  children: string,
+};
+
+const CloneTextWrapper = ({ children }: Props) => {
   const handleClass = (e) => {
     e.children[0].classList.add(styles.animationText);
     e.children[1]?.classList.add(styles['animationText__cloned--active']);
@@ -31,3 +34,5 @@ export default function CloneTextWrapper({ children }) {
     </div>
   );
 }
+
+export default CloneTextWrapper;

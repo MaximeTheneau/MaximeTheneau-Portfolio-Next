@@ -1,14 +1,17 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import useMovableElements from './useMovableElements';
-import styles from '../../../styles/Home.module.scss';
 
-export default function ScrollParallaxText({ children }) {
+type Props = {
+  children: React.ReactNode;
+};
+
+const ScrollParallaxText = ({ children }: Props) => {
   const [elementRef, isTopChange] = useMovableElements();
   return (
     <div
       ref={elementRef}
-      className={styles.home__about}
       style={{
         opacity: `${isTopChange / 500 + 0.5}`,
         transform: `translateY(${isTopChange / 10}px)`,
@@ -18,6 +21,8 @@ export default function ScrollParallaxText({ children }) {
     </div>
   );
 }
+
+export default ScrollParallaxText;
 
 ScrollParallaxText.propTypes = {
   children: PropTypes.node.isRequired,

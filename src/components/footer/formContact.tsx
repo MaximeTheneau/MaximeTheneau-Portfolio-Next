@@ -1,10 +1,15 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { formMiddleware } from '../../middleware/middleware';
 import Confirmation from '../modal/confirmation';
-import styles from '../../styles/Home.module.scss';
+import styles from '../main/Home.module.scss';
 
-export default function FormContact({ handleOnMouseEnter }) {
+type Props = {
+  handleOnMouseEnter: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+};
+
+const FormContact = ({ handleOnMouseEnter }: Props) => {
   //* State
   const [state, setState] = useState({
     form: {
@@ -165,6 +170,8 @@ export default function FormContact({ handleOnMouseEnter }) {
 
   );
 }
+
+export default FormContact;
 
 FormContact.propTypes = {
   handleOnMouseEnter: PropTypes.func.isRequired,

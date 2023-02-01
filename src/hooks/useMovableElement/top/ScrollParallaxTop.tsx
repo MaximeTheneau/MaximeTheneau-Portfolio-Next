@@ -1,11 +1,19 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import useMovableElements from '../textOpacity/useMovableElements';
-import styles from '../../../styles/Home.module.scss';
+import styles from '../../../components/main/Home.module.scss';
 
-export default function ScrollParallaxTop({
+type Props = {
+  children: React.ReactNode;
+  onTopChange: (isTopChange: number) => void;
+  heightOfElement: number;
+  widthOfElement: number;
+};
+
+const ScrollParallaxTop = ({
   children, onTopChange, heightOfElement, widthOfElement,
-}) {
+}: Props) => {
   const [elementRef, isTopChange] = useMovableElements();
   useEffect(() => {
     onTopChange(isTopChange);
@@ -15,8 +23,8 @@ export default function ScrollParallaxTop({
     <>
       {children}
       <div
+        className={styles['home__experience__backgroundAnimation__element']}
         ref={elementRef}
-        className={styles.home__experience__backgroundAnimation__element}
         style={{
           height: `${heightOfElement}px`,
           width: `${widthOfElement}%`,
@@ -28,6 +36,8 @@ export default function ScrollParallaxTop({
     </>
   );
 }
+
+export default ScrollParallaxTop;
 
 ScrollParallaxTop.propTypes = {
   children: PropTypes.node.isRequired,

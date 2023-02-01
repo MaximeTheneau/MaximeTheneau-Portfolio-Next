@@ -1,12 +1,22 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import styles from '../../styles/Home.module.scss';
+import styles from '../main/Home.module.scss';
 import SlideTransition from '../../hooks/useSlideTransition/SlideTransition';
 
-export default function FormContactList({ contact, handleOnMouseEnter }) {
+type Props = {
+  contact: {
+    email: string;
+    Github: string;
+    Linkedin: string;
+    twitter: string;
+  };
+};
+
+const FormContactList = ({ contact }: Props) => {
   return (
     <div className={styles.footer__contact}>
-      <SlideTransition>
+      <SlideTransition >
         <div className={styles.footer__contact__listSocial}>
             <a
               href={contact.email}
@@ -62,6 +72,8 @@ export default function FormContactList({ contact, handleOnMouseEnter }) {
     </div>
   );
 }
+
+export default FormContactList;
 
 FormContactList.propTypes = {
   contact: PropTypes.shape(

@@ -1,7 +1,14 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import SvgCategory from '../svgCategory';
 
-export default function Sticky({ headerClass, headerElement, transitionEffect }) {
+type Props = {
+  headerClass: string;
+  headerElement: string;
+  transitionEffect: boolean;
+};
+
+const Sticky = ({ headerClass, headerElement, transitionEffect }: Props) => {
   return (
     <SvgCategory
       headerElement={headerElement}
@@ -10,6 +17,8 @@ export default function Sticky({ headerClass, headerElement, transitionEffect })
     />
   );
 }
+
+export default Sticky;
 
 Sticky.propTypes = {
   headerClass: PropTypes.string.isRequired,

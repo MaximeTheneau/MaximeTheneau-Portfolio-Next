@@ -1,10 +1,11 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styles from '../styles/SvgCategory.module.scss';
 
-function SvgCategory({
+const SvgCategory = ({
   headerClass, experienceElement, contactElement,
-}) {
+}) => {
   const [transitionWaveEffect, setTransitionWaveEffect] = useState(false);
   let colorsFond3 = '#2a1d37'; // $color-primary > Primary color
   if (headerClass) {
@@ -54,6 +55,7 @@ function SvgCategory({
     </div>
   );
 }
+
 export default SvgCategory;
 
 SvgCategory.propTypes = {

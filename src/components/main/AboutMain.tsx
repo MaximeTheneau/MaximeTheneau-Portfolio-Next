@@ -1,9 +1,18 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../../styles/Home.module.scss';
+import styles from './Home.module.scss';
 
-export default function AboutMain({ about }) {
+type Props = {
+  about: {
+    content: string,
+    imgWebp: string,
+    contents2: string,
+  }
+}
+
+const AboutMain = ({ about }: Props) => {
   return (
     <div className={styles['about-content']}>
       <p className={styles['about-content-italic']}>
@@ -14,7 +23,7 @@ export default function AboutMain({ about }) {
         alt="Theneau Maxime"
         width="1000"
         height="1000"
-        layout="fill"
+        fill
       />
       <p>
         {about.contents2}

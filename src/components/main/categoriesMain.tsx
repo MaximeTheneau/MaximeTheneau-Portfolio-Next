@@ -1,8 +1,17 @@
+import React from 'react';
 import propTypes from 'prop-types';
-import styles from '../../styles/Home.module.scss';
+import styles from './Home.module.scss';
 import SvgCategory from '../svgCategory';
 
-export default function CategoriesMain({ item, experienceElement, contactElement }) {
+type Props = {
+  item: {
+    title: string,
+  },
+  experienceElement: boolean,
+  contactElement: boolean,
+};
+
+const CategoriesMain = ({ item, experienceElement, contactElement }: Props) => {
   return (
     <div
       className={`${styles.home__categories} section`}
@@ -15,6 +24,8 @@ export default function CategoriesMain({ item, experienceElement, contactElement
 
   );
 }
+
+export default CategoriesMain;
 
 CategoriesMain.propTypes = {
   item: propTypes.shape({
