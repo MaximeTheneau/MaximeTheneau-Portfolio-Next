@@ -3,9 +3,11 @@
   src: url('../asset/font/title/title.woff2'),
     url('../asset/font/title/title.woff'),
     url('../asset/font/title/title.ttf');
+  font-display: swap;
 }
 @font-face {
   font-family: 'fontGeneral';
-  src: 
+  src: url('../asset/font/nunito/nunito.woff2'),
     url('../asset/font/nunito/nunito.ttf');
+  font-display: swap;
 }

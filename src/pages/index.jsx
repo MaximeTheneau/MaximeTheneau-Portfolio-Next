@@ -17,6 +17,7 @@ import styles from '../styles/Home.module.scss';
 import stylesHeader from '../styles/Header.module.scss';
 import ScrollParallaxWave from '../lib/ScrollParallaxWave';
 import ScrollParallaxText from '../lib/ScrollParallaxText';
+import Script from 'next/script';
 
 export async function getStaticProps() {
   // Fetch data from external API
@@ -26,10 +27,12 @@ export async function getStaticProps() {
   const resExperiences = await fetch('http://back.theneaumaxime.fr/public/api/experiences');
   const experiences = await resExperiences.json();
 
-  return { props: { categories, experiences } };
+  const accueil = categories?.filter((image) => image.idTitle === 'accueil')[0];
+
+  return { props: { categories, experiences, accueil } };
 }
 
-function Home({ categories, experiences }) {
+function Home({ categories, experiences, accueil }) {
   //* State
   const [state, setState] = useState({
     isTextVisible: false,
@@ -71,18 +74,45 @@ function Home({ categories, experiences }) {
     }, 800);
   });
 
+  const descriptionMeta = "Découvrez les compétences et services de développement web de Theneau Maxime, un développeur Front-End. Que vous ayez besoin de créer un site ou une application web, n'hésitez pas à le contacter.";
+
+  const jsonData = { 
+    context: 'https://schema.org',
+    type: 'Service',
+    name: accueil.title,
+    url: `${process.env.NEXT_PUBLIC_URL}`,
+    description: descriptionMeta,
+    category: 'Services, Web, Développement, React, Next.js, Js',
+    // image: `${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/Accueil.jpg`,
+    sameA: [
+      'https://www.linkedin.com/in/theneau-maxime/',
+      'https://twitter.com/MTheneau',
+      'https://github.com/MaximeTheneau'
+    ],
+  };
   return (
     <>
       <Head>
         <title>Theneau Maxime Développeur Web à Marseille</title>
-        <meta name="description" content="Découvrez les compétences et services de développement web de [Nom], un développeur junior talentueux et passionné. Que vous ayez besoin de créer un site ou une application web, n'hésitez pas à le contacter pour obtenir un devis gratuit et découvrir comment il peut vous aider à atteindre vos objectifs." />
+        <meta name="description" content={descriptionMeta} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Theneau Maxime Développeur Web à Marseille" />
-        <meta property="og:description" content="Découvrez les compétences et services de développement web de [Nom], un développeur junior talentueux et passionné. Que vous ayez besoin de créer un site ou une application web, n'hésitez pas à le contacter pour obtenir un devis gratuit et découvrir comment il peut vous aider à atteindre vos objectifs." />
-        <meta property="og:site_name" content="https://theneaumaxime.fr" />
+        <meta property="og:title" content={accueil.title} />
+        <meta property="og:description" content={descriptionMeta} />
+        <meta property="og:site_name" content={process.env.NEXT_PUBLIC_URL} />
         <meta property="og:image" content={imageForMeta[0]} />
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="canonical"
+          href={process.env.NEXT_PUBLIC_URL}
+          key="canonical"
+        />
       </Head>
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonData) }}
+        id="jsonld-schema"
+        defer
+      />
+
 
       {/** Header */}
       <header className="section">

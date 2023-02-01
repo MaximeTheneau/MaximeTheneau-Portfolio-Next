@@ -21,6 +21,7 @@ export default function ScrollParallaxTop({
           height: `${heightOfElement}px`,
           width: `${widthOfElement}%`,
           opacity: `${isTopChange / 500}`,
+          transition: 'all 0.5s ease',
         }}
       />
 

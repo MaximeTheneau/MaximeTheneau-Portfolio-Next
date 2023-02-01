@@ -1,76 +1,64 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styles from '../../styles/Home.module.scss';
-import ScrollParallaxLeft from '../../lib/ScrollParallaxLeft';
+import SlideTransition from '../../hooks/useSlideTransition/SlideTransition';
 
 export default function FormContactList({ contact, handleOnMouseEnter }) {
   return (
     <div className={styles.footer__contact}>
-      <div className={styles.footer__contact__listSocial}>
-        <ScrollParallaxLeft delay={'1s'}>
-          <a
-            href={contact.email}
-            target="_blank"
-            rel="noreferrer"
-            onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
-            className={`relative`}
-          >
-            <div>
-              <i className="icon-email" />
-            </div>
-          </a>
-        </ScrollParallaxLeft>
-        <ScrollParallaxLeft delay={'1.5s'}>
-          <a
-            href={contact.Github}
-            target="_blank"
-            rel="noreferrer"
-            onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
-            className={`relative `}
-            
-          >
-            <div >
-              <i className="icon-github" />
-            </div>
-          </a>
-        </ScrollParallaxLeft>
-        <ScrollParallaxLeft delay={'2s'}>
-          <a
-            href={contact.Linkedin}
-            target="_blank"
-            rel="noreferrer"
-            onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
-            className={`relative `}
+      <SlideTransition>
+        <div className={styles.footer__contact__listSocial}>
+            <a
+              href={contact.email}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Email"
             >
-            <div className="relative">
-              <i className="icon-linkedin" />
-            </div>
-          </a>
-        </ScrollParallaxLeft>
-        <ScrollParallaxLeft delay={'2.5s'}>
-          <a
-            href={contact.twitter}
-            target="_blank"
-            rel="noreferrer"
-            onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
-            className={`relative `}
-            
-          >
-            <div>
-              <i className="icon-twitter" />
-            </div>
-          </a>
-        </ScrollParallaxLeft>
-      </div>
-      <Link href="/cv-theneau-maxime.pdf" target="_blank">
+              <div>
+                <i className="icon-email" />
+              </div>
+            </a>
+            <a
+              aria-label='Github'
+              href={contact.Github}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div >
+                <i className="icon-github" />
+              </div>
+            </a>
+            <a
+              aria-label='Linkedin'
+              href={contact.Linkedin}
+              target="_blank"
+              rel="noreferrer"
+              >
+              <div >
+                <i className="icon-linkedin" />
+              </div>
+            </a>
+            <a
+              aria-label='Twitter'
+              href={contact.twitter}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div>
+                <i className="icon-twitter" />
+              </div>
+            </a>
+        </div>
+      </SlideTransition>
         <button
           type="button"
           className="relative"
-          onMouseEnter={(e) => handleOnMouseEnter(e.currentTarget)}
+          aria-label='CV'
         >
-          <div>Mon CV</div>
+          <Link href="/cv-theneau-maxime.pdf" target="_blank" >
+              <div>Mon CV</div>
+          </Link>
         </button>
-      </Link>
     </div>
   );
 }
