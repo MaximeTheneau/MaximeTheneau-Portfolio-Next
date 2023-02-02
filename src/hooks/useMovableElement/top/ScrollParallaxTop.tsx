@@ -1,8 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import useMovableElements from '../textOpacity/useMovableElements';
 import styles from '../../../components/main/Home.module.scss';
+
+type CustomStyle = {
+  objectPosition?: number;
+  objectFit?: number;
+  opacity?: number;
+};
 
 type Props = {
   children: React.ReactNode;
@@ -38,10 +43,3 @@ const ScrollParallaxTop = ({
 }
 
 export default ScrollParallaxTop;
-
-ScrollParallaxTop.propTypes = {
-  children: PropTypes.node.isRequired,
-  onTopChange: PropTypes.func.isRequired,
-  heightOfElement: PropTypes.number.isRequired,
-  widthOfElement: PropTypes.number.isRequired,
-};

@@ -1,8 +1,7 @@
-import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
 const useMovableElements = () => {
-  const [isTopChange, setIsTopChange] = useState(false);
+  const [isTopChange, setIsTopChange] = useState(null);
   const ref = useRef(null);
   useEffect(() => {
     const element = ref.current;

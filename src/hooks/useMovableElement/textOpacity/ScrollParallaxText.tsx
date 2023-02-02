@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useEffect } from 'react';
 import useMovableElements from './useMovableElements';
 
 type Props = {
@@ -23,8 +21,3 @@ const ScrollParallaxText = ({ children }: Props) => {
 }
 
 export default ScrollParallaxText;
-
-ScrollParallaxText.propTypes = {
-  children: PropTypes.node.isRequired,
-  onTopChange: PropTypes.func.isRequired,
-};

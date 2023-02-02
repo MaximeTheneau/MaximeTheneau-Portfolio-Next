@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -9,17 +8,22 @@ import styles from './Home.module.scss';
 type Props = {
   experience: {
     title: string,
+    contents: string,
+    contents2: string,
+    contents3: string,
     imageWebp: string,
   },
-  handleOnMouseEnter: () => void,
+  handleOnMouseEnter: (e: Event) => void,
 }
 
-
 const ExperiencesList = ({ experience, handleOnMouseEnter }: Props) => {
-  const [onTopChange, setIsTopChange] = useState(false);
+
+  const [onTopChange, setIsTopChange] = useState(null);
+ 
   const handleChangeTop = (isTopChange) => {
     setIsTopChange(isTopChange);
   };
+  
   return (
     <div className={`section ${styles.home__experience}`}>
       <Image
@@ -36,26 +40,31 @@ const ExperiencesList = ({ experience, handleOnMouseEnter }: Props) => {
             onTopChange={handleChangeTop}
             heightOfElement={onTopChange / 1.1}
             widthOfElement={50}
+            children={''}
           />
           <ScrollParallaxTop
             onTopChange={handleChangeTop}
             heightOfElement={onTopChange / 1.5}
             widthOfElement={100}
+            children={''}
           />
           <ScrollParallaxTop
             onTopChange={handleChangeTop}
             heightOfElement={onTopChange / 1.6}
             widthOfElement={25}
+            children={''}
           />
           <ScrollParallaxTop
             onTopChange={handleChangeTop}
             heightOfElement={onTopChange / 1.3}
             widthOfElement={50}
+            children={''}
           />
           <ScrollParallaxTop
             onTopChange={handleChangeTop}
             heightOfElement={onTopChange / 1.13}
             widthOfElement={150}
+            children={''}
           />
         </div>
         <h2>{experience.title}</h2>
@@ -100,14 +109,3 @@ const ExperiencesList = ({ experience, handleOnMouseEnter }: Props) => {
 }
 
 export default ExperiencesList;
-
-ExperiencesList.propTypes = {
-  experience: PropTypes.shape({
-    imageWebp: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    contents: PropTypes.string.isRequired,
-    contents2: PropTypes.string,
-    contents3: PropTypes.string.isRequired,
-  }).isRequired,
-  handleOnMouseEnter: PropTypes.func.isRequired,
-};

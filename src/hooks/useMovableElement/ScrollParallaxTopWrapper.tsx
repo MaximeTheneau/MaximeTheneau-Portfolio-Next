@@ -1,8 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import useMovableElements from './useMovableElements';
+
 
 type Props = {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ type Props = {
 };
 
 const ScrollParallaxTop = ({
-  children, src, alt, width, height,
+  children, src, alt, width, height
 }: Props) => {
   const elementRef = useRef(null);
 
@@ -25,7 +26,6 @@ const ScrollParallaxTop = ({
         alt={alt}
         width={width}
         height={height}
-        style={parralax.style}
         sizes="100vw"
       />
       {children}

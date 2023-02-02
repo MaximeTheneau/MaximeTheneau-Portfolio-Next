@@ -1,7 +1,6 @@
 //* Import
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { cloneElement, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 //* Components
@@ -11,8 +10,6 @@ import ExperiencesList from '../components/main/experiencesList';
 import FormContact from '../components/footer/formContact';
 import FormContactList from '../components/footer/formContactList';
 
-//* Lib
-
 //* Styles
 import styles from '../components/main/Home.module.scss';
 import ScrollParallaxWave from '../hooks/useMovableElement/wave/ScrollParallaxWave';
@@ -20,7 +17,6 @@ import ScrollParallaxText from '../hooks/useMovableElement/textOpacity/ScrollPar
 import Script from 'next/script';
 
 export async function getStaticProps() {
-  // Fetch data from external API
   const res = await fetch('http://back.theneaumaxime.fr/public/api/categories');
   const categories = await res.json();
 
@@ -40,6 +36,7 @@ type Props = {
 
 
 const Home = ({ categories, experiences, accueil }: Props) => {
+
   //* State
   const [state, setState] = useState({
     isTextVisible: false,
@@ -53,10 +50,6 @@ const Home = ({ categories, experiences, accueil }: Props) => {
 
   const imageForMeta = experiences?.map((item) => (item.imageSvg));
 
-
-  const handleChangeOpacityText = (isTopChange) => {
-    setState({ ...state, textOpacity: isTopChange });
-  };
 
   const handleOnMouseEnter = (element) => {
       const cloneElement = element.children[0].cloneNode(true);
@@ -124,17 +117,12 @@ const Home = ({ categories, experiences, accueil }: Props) => {
       {/** Header */}
       <header className="section">
         {/** Header Images Sticky */}
-          { categories?.filter((image) => image.idTitle === 'accueil').map((item) => (
-            <Sticky
-              key={item.id}
-              imgWebp={item.imgWebp}
-              alt={item.title}
-              transitionEffect={state.transitionEffect}
-            />
-          ))}
-          <div className="titleBackground" >
-            <h1>Theneau Maxime</h1>
-            <h2>Développeur Web à Marseille</h2>
+          <div className="relative">
+            <Sticky />
+            <div className="titleBackground" >
+              <h1>Theneau Maxime</h1>
+              <h2>Développeur Web à Marseille</h2>
+            </div>
           </div>
       </header>
 
@@ -172,7 +160,7 @@ const Home = ({ categories, experiences, accueil }: Props) => {
                 {/** Title Categories */}
                 <ScrollParallaxWave >
                     {/** Title Categories */}
-                    <CategoriesMain key={item.id} item={item} contactElement={state.isInView} />
+                    <CategoriesMain key={item.id} item={item} />
                 </ScrollParallaxWave>
 
                 {/** Skills */}
@@ -196,7 +184,7 @@ const Home = ({ categories, experiences, accueil }: Props) => {
                   {/** Title Categories */}
                   <ScrollParallaxWave>
                       {/** Title Categories */}
-                      <CategoriesMain key={item.id} item={item} contactElement={state.isInView} />
+                      <CategoriesMain key={item.id} item={item}/>
                   </ScrollParallaxWave>
 
                   
@@ -205,8 +193,6 @@ const Home = ({ categories, experiences, accueil }: Props) => {
                       <FormContactList
                         key={contact.twitter}
                         contact={contact}
-                        handleOnMouseEnter={handleOnMouseEnter}
-                        classIsview={state.isInView}
                       />
                     ))}
 
@@ -227,28 +213,3 @@ const Home = ({ categories, experiences, accueil }: Props) => {
 }
 export default Home;
 
-Home.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    idTitle: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    imgWebp: PropTypes.string.isRequired,
-    imgJpg: PropTypes.string.isRequired,
-    contacts: PropTypes.arrayOf(PropTypes.shape({
-      twitter: PropTypes.string.isRequired,
-      github: PropTypes.string.isRequired,
-      linkedin: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-    })).isRequired,
-  })).isRequired,
-  experiences: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    skills: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      imgWebp: PropTypes.string.isRequired,
-      imgJpg: PropTypes.string.isRequired,
-    })).isRequired,
-  })).isRequired,
-};

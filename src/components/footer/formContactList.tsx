@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styles from '../main/Home.module.scss';
 import SlideTransition from '../../hooks/useSlideTransition/SlideTransition';
@@ -74,16 +73,3 @@ const FormContactList = ({ contact }: Props) => {
 }
 
 export default FormContactList;
-
-FormContactList.propTypes = {
-  contact: PropTypes.shape(
-    {
-      email: PropTypes.string.isRequired,
-      Github: PropTypes.string.isRequired,
-      Linkedin: PropTypes.string.isRequired,
-      twitter: PropTypes.string.isRequired,
-    },
-  ).isRequired,
-  handleOnMouseEnter: PropTypes.func.isRequired,
-  classIsview: PropTypes.bool.isRequired,
-};

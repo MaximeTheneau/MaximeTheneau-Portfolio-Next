@@ -1,7 +1,6 @@
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Children, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import useScrollParallax from './useScrollParallax';
 
 type Props = {
