@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useSlideTransition(elementRef) {
+const useSlideTransition = (elementRef) => {
   const [isInViewport, setIsInViewport] = useState(false);
 
   useEffect(() => {
@@ -23,3 +23,5 @@ export default function useSlideTransition(elementRef) {
 
   return isInViewport;
 }
+
+export default useSlideTransition;

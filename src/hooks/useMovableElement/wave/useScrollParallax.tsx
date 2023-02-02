@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-function useScrollParallax(elementRef) {
+const useScrollParallax = (elementRef) => {
   const [isInViewport, setIsInViewport] = useState(false);
   
   useEffect(() => {

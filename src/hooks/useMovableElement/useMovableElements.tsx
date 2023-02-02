@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useMovableElements(elementRef) {
+const useMovableElements = (elementRef) =>{
   const defautTop = elementRef.current
     ? elementRef.current.getBoundingClientRect().top
     : 12;
@@ -31,3 +31,5 @@ export default function useMovableElements(elementRef) {
     },
   };
 }
+
+export default useMovableElements;  

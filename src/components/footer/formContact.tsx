@@ -1,10 +1,14 @@
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { useState } from 'react';
 import { formMiddleware } from '../../middleware/middleware';
 import Confirmation from '../modal/confirmation';
-import styles from '../../styles/Home.module.scss';
+import styles from '../main/Home.module.scss';
 
-export default function FormContact({ handleOnMouseEnter }) {
+type Props = {
+  handleOnMouseEnter: (e: EventTarget) => void;
+};
+
+const FormContact = ({ handleOnMouseEnter }: Props) => {
   //* State
   const [state, setState] = useState({
     form: {
@@ -73,10 +77,8 @@ export default function FormContact({ handleOnMouseEnter }) {
               placeholder="Email"
               value={state.form.email}
               onChange={(e) => setState(
-                { ...state, form: { ...state.form, email: e.target.value } },
-                (e.target.value.length > 2 && e.target.value.length < 35
-                  ? setState({ ...state, confirmationEmail: true })
-                  : setState({ ...state, confirmationEmail: false })),
+                { ...state, form: { ...state.form, email: e.target.value }, 
+                  confirmationEmail: e.target.value.length > 2 && e.target.value.length < 35 ? true : false  },
               )}
               onBlur={(e) => (
                 regex.test(e.target.value)
@@ -93,7 +95,6 @@ export default function FormContact({ handleOnMouseEnter }) {
             <input
               type="text"
               placeholder="Sujet"
-              className={styles[state.form.confirmationSubject]}
               value={state.form.subject}
               onChange={(e) => setState(
                 { ...state, form: { ...state.form, subject: e.target.value } },
@@ -166,6 +167,4 @@ export default function FormContact({ handleOnMouseEnter }) {
   );
 }
 
-FormContact.propTypes = {
-  handleOnMouseEnter: PropTypes.func.isRequired,
-};
+export default FormContact;

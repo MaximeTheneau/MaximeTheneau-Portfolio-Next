@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
-export default function useMovableElements() {
-  const [isTopChange, setIsTopChange] = useState(false);
+const useMovableElements = () => {
+  const [isTopChange, setIsTopChange] = useState(null);
   const ref = useRef(null);
   useEffect(() => {
     const element = ref.current;
@@ -14,3 +14,5 @@ export default function useMovableElements() {
   }, []);
   return [ref, isTopChange];
 }
+
+export default useMovableElements;

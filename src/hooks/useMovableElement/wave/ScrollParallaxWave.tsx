@@ -1,8 +1,12 @@
-import PropTypes from 'prop-types';
-import { Children, useEffect, useRef } from 'react';
+
+import React from 'react';
+import { useRef } from 'react';
 import useScrollParallax from './useScrollParallax';
 
-export default function ScrollParallaxWave({ children }) {
+type Props = {
+  children: React.ReactNode;
+};
+const ScrollParallaxWave = ({ children }: Props) => {
   const elementRef = useRef(null);
   const isInViewport = useScrollParallax(elementRef);
 
@@ -12,3 +16,5 @@ export default function ScrollParallaxWave({ children }) {
     </div>
   );
 }
+
+export default ScrollParallaxWave;
