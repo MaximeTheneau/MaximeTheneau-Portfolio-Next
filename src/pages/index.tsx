@@ -35,7 +35,7 @@ type Props = {
 };
 
 
-const Home = ({ categories, experiences, accueil }: Props) => {
+export default function Home({ categories, experiences, accueil }: Props) {
 
   //* State
   const [state, setState] = useState({
@@ -77,7 +77,7 @@ const Home = ({ categories, experiences, accueil }: Props) => {
   const jsonData = { 
     context: 'https://schema.org',
     type: 'Service',
-    name: accueil.title,
+    name: `${accueil?.title}`,
     url: `${process.env.NEXT_PUBLIC_URL}`,
     description: descriptionMeta,
     category: 'Services, Web, Développement, React, Next.js, Js',
@@ -94,7 +94,7 @@ const Home = ({ categories, experiences, accueil }: Props) => {
         <title>Theneau Maxime Développeur Web à Marseille</title>
         <meta name="description" content={descriptionMeta} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={accueil.title} />
+        <meta property="og:title" content={accueil?.title} />
         <meta property="og:description" content={descriptionMeta} />
         <meta property="og:site_name" content={process.env.NEXT_PUBLIC_URL} />
         <meta property="og:image" content="https://back.theneaumaxime.fr/public/images/svg/portfolio.png" />
@@ -177,7 +177,7 @@ const Home = ({ categories, experiences, accueil }: Props) => {
 
         {/** Contact */}
         {
-              categories.filter((item) => item.idTitle === 'contact').map((item) => (
+              categories?.filter((item) => item.idTitle === 'contact').map((item) => (
                 <>
                   {/** Title Categories */}
                   <ScrollParallaxWave>
@@ -209,5 +209,4 @@ const Home = ({ categories, experiences, accueil }: Props) => {
     </>
   );
 }
-export default Home;
 
