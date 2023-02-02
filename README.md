@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Maxime Theneau - Portfolio Next.js
 
-## Getting Started
+Portfolio Maxime Theneau réalisé avec Next.js et Symfony. Des temps de chargement rapides et une meilleure référencement pour les moteurs de recherche.
 
-First, run the development server:
+Next.js - Symfony
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[theneaumaxime.fr](https://theneaumaxime.fr)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+[Repository Front-End](https://github.com/MaximeTheneau/MaximeTheneau-Portfolio-Next)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+[Repository Back-End](https://github.com/MaximeTheneau/MaximeTheneau-Portfolio-back)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+---
 
-## Learn More
+### Wireframe
 
-To learn more about Next.js, take a look at the following resources:
+[![Wireframe](/docs/wireframes/tablet-home.jpg)](/docs/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Langages utilisés 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Front
 
-## Deploy on Vercel
+- [Next.js](https://nextjs.org/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Back
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Symfony](https://fr.reactjs.org/)
+
+## Auteurs
+
+* **Theneau Maxime** _alias_ [@MaximeTheneau](https://github.com/MaximeTheneau)
