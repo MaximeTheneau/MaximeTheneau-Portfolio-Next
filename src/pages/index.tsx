@@ -48,8 +48,6 @@ const Home = ({ categories, experiences, accueil }: Props) => {
     textOpacity: 1,
   });
 
-  const imageForMeta = experiences?.map((item) => (item.imageSvg));
-
 
   const handleOnMouseEnter = (element) => {
       const cloneElement = element.children[0].cloneNode(true);
@@ -99,7 +97,7 @@ const Home = ({ categories, experiences, accueil }: Props) => {
         <meta property="og:title" content={accueil.title} />
         <meta property="og:description" content={descriptionMeta} />
         <meta property="og:site_name" content={process.env.NEXT_PUBLIC_URL} />
-        <meta property="og:image" content={imageForMeta[0]} />
+        <meta property="og:image" content="https://back.theneaumaxime.fr/public/images/svg/portfolio.png" />
         <link
           rel="canonical"
           href={process.env.NEXT_PUBLIC_URL}

@@ -34,7 +34,7 @@ const ScrollParallaxTop = ({
           height: `${heightOfElement}px`,
           width: `${widthOfElement}%`,
           opacity: `${isTopChange / 500}`,
-          transition: 'all 0.5s ease',
+          transition: 'all 0.05s ease',
         }}
       />
 
