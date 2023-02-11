@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
+  eslint: {
+    dirs: ['src'],
+  },
+  images: {
     unoptimized: true,
     formats: ['image/webp'],
   },

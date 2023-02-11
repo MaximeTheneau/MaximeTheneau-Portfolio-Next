@@ -13,12 +13,12 @@ type Props = {
   height: number;
 };
 
-const ScrollParallaxTop = ({
+function ScrollParallaxTop({
   children, src, alt, width, height
-}: Props) => {
+}: Props) {
   const elementRef = useRef(null);
 
-  const parralax = useMovableElements(elementRef);
+useMovableElements(elementRef);
   return (
     <div ref={elementRef} className="relative h-30">
       <Image

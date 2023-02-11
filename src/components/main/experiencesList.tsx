@@ -1,3 +1,4 @@
+import { EventType } from '@testing-library/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -13,10 +14,10 @@ type Props = {
     contents3: string,
     imageWebp: string,
   },
-  handleOnMouseEnter: (e: Event) => void,
+  handleOnMouseEnter: (event: EventType) => void,
 }
 
-const ExperiencesList = ({ experience, handleOnMouseEnter }: Props) => {
+function ExperiencesList({ experience, handleOnMouseEnter }: Props) {
 
   const [onTopChange, setIsTopChange] = useState(null);
  
@@ -40,31 +41,26 @@ const ExperiencesList = ({ experience, handleOnMouseEnter }: Props) => {
             onTopChange={handleChangeTop}
             heightOfElement={onTopChange / 1.1}
             widthOfElement={50}
-            children={''}
           />
           <ScrollParallaxTop
             onTopChange={handleChangeTop}
             heightOfElement={onTopChange / 1.5}
             widthOfElement={100}
-            children={''}
           />
           <ScrollParallaxTop
             onTopChange={handleChangeTop}
             heightOfElement={onTopChange / 1.6}
             widthOfElement={25}
-            children={''}
           />
           <ScrollParallaxTop
             onTopChange={handleChangeTop}
             heightOfElement={onTopChange / 1.3}
             widthOfElement={50}
-            children={''}
           />
           <ScrollParallaxTop
             onTopChange={handleChangeTop}
             heightOfElement={onTopChange / 1.13}
             widthOfElement={150}
-            children={''}
           />
         </div>
         <h2>{experience.title}</h2>

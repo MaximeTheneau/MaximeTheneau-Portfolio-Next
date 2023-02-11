@@ -6,9 +6,10 @@ import styles from '../main/Home.module.scss';
 
 type Props = {
   handleOnMouseEnter: (e: EventTarget) => void;
+  onSubmit: (e: EventTarget) => void;
 };
 
-const FormContact = ({ handleOnMouseEnter }: Props) => {
+function FormContact({ handleOnMouseEnter, onSubmit }: Props) {
   //* State
   const [state, setState] = useState({
     form: {
@@ -29,7 +30,9 @@ const FormContact = ({ handleOnMouseEnter }: Props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    formMiddleware(state.form, Request);
+    const req = null;
+    const res = null;
+    formMiddleware(state.form, req, res);
     setState({
       ...state,
       toggleModal: true,
@@ -58,6 +61,7 @@ const FormContact = ({ handleOnMouseEnter }: Props) => {
             <input
               type="text"
               placeholder="Nom"
+              id="name"
               value={state.form.name}
               onChange={(e) => setState(
                 { ...state, form: { ...state.form, name: e.target.value } },
@@ -77,8 +81,11 @@ const FormContact = ({ handleOnMouseEnter }: Props) => {
               placeholder="Email"
               value={state.form.email}
               onChange={(e) => setState(
-                { ...state, form: { ...state.form, email: e.target.value }, 
-                  confirmationEmail: e.target.value.length > 2 && e.target.value.length < 35 ? true : false  },
+                {
+                  ...state,
+                  form: { ...state.form, email: e.target.value },
+                  confirmationEmail: !!(e.target.value.length > 2 && e.target.value.length < 35),
+                },
               )}
               onBlur={(e) => (
                 regex.test(e.target.value)

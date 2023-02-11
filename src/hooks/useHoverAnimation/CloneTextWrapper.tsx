@@ -5,7 +5,7 @@ type Props = {
   children: string,
 };
 
-const CloneTextWrapper = ({ children }: Props) => {
+function CloneTextWrapper({ children }: Props) {
   const handleClass = (e) => {
     e.children[0].classList.add(styles.animationText);
     e.children[1]?.classList.add(styles['animationText__cloned--active']);

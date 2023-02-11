@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 
 //* Components
 import Sticky from '../components/header/sticky';
@@ -14,7 +15,6 @@ import FormContactList from '../components/footer/formContactList';
 import styles from '../components/main/Home.module.scss';
 import ScrollParallaxWave from '../hooks/useMovableElement/wave/ScrollParallaxWave';
 import ScrollParallaxText from '../hooks/useMovableElement/textOpacity/ScrollParallaxText';
-import Script from 'next/script';
 
 export async function getStaticProps() {
   const res = await fetch('http://back.theneaumaxime.fr/public/api/categories');
@@ -34,9 +34,7 @@ type Props = {
   accueil: any;
 };
 
-
 export default function Home({ categories, experiences, accueil }: Props) {
-
   //* State
   const [state, setState] = useState({
     isTextVisible: false,
@@ -48,18 +46,17 @@ export default function Home({ categories, experiences, accueil }: Props) {
     textOpacity: 1,
   });
 
-
   const handleOnMouseEnter = (element) => {
-      const cloneElement = element.children[0].cloneNode(true);
-      element.appendChild(cloneElement);
-      cloneElement.classList.remove('textAnimation');
-      cloneElement.classList.add('absolute-content');
-      cloneElement.classList.add('textAnimation_hover');
-      element.children[0].classList.add('textAnimation');
+    const cloneElement = element.children[0].cloneNode(true);
+    element.appendChild(cloneElement);
+    cloneElement.classList.remove('textAnimation');
+    cloneElement.classList.add('absolute-content');
+    cloneElement.classList.add('textAnimation_hover');
+    element.children[0].classList.add('textAnimation');
     setTimeout(() => {
-        cloneElement.remove();
-        element.children[0].classList.remove('textAnimation');
-      }, 1200);
+      cloneElement.remove();
+      element.children[0].classList.remove('textAnimation');
+    }, 1200);
   };
 
   //* Transition Effect
@@ -74,7 +71,7 @@ export default function Home({ categories, experiences, accueil }: Props) {
 
   const descriptionMeta = "Découvrez les compétences et services de développement web de Theneau Maxime, un développeur Front-End. Que vous ayez besoin de créer un site ou une application web, n'hésitez pas à le contacter.";
 
-  const jsonData = { 
+  const jsonData = {
     context: 'https://schema.org',
     type: 'Service',
     name: `${accueil?.title}`,
@@ -85,7 +82,7 @@ export default function Home({ categories, experiences, accueil }: Props) {
     sameA: [
       'https://www.linkedin.com/in/theneau-maxime/',
       'https://twitter.com/MTheneau',
-      'https://github.com/MaximeTheneau'
+      'https://github.com/MaximeTheneau',
     ],
   };
   return (
@@ -111,17 +108,16 @@ export default function Home({ categories, experiences, accueil }: Props) {
         defer
       />
 
-
       {/** Header */}
-      <header className="section">
+      <header>
         {/** Header Images Sticky */}
-          <div className="relative">
-            <Sticky />
-            <div className="titleBackground" >
-              <h1>Theneau Maxime</h1>
-              <h2>Développeur Web à Marseille</h2>
-            </div>
+        <div className="relative section">
+          <Sticky />
+          <div className="titleBackground">
+            <h1>Theneau Maxime</h1>
+            <h2>Développeur Web à Marseille</h2>
           </div>
+        </div>
       </header>
 
       <main className={styles.main}>
@@ -129,20 +125,20 @@ export default function Home({ categories, experiences, accueil }: Props) {
         <div
           className={`section ${styles.about} ${state.isTextVisible ? 'active' : ''}}`}
         >
-          <ScrollParallaxText >
+          <ScrollParallaxText>
             <div>
               <p>
                 Fasciné par les possibilités offertes par le monde
-                numérique, j'ai commencé à créé mes propres sites web pour mes
+                numérique, j&apos;ai commencé à créé mes propres sites web pour mes
                 réalisations personnelles.
               </p>
               <p>
-                Inspiré par mes premières expériences de développement, j'ai poursuivi
+                Inspiré par mes premières expériences de développement, j&apos;ai poursuivi
                 mes études dans ce domaine et suivi une formation pour acquis les
                 compétences nécessaires pour réaliser des projets de qualité.
               </p>
               <p>
-                Depuis, j'ai continué à apprendre et à me développer dans le domaine
+                Depuis, j&apos;ai continué à apprendre et à me développer dans le domaine
                 du développement web et je suis maintenant à la recherche de nouvelles
                 opportunités pour mettre mes compétences et mon expérience au service de projets
                 passionnants.
@@ -152,13 +148,13 @@ export default function Home({ categories, experiences, accueil }: Props) {
 
         </div>
         {
-            categories?.filter((item) => item.idTitle === 'experiences').map((item) => (
+            categories?.filter((item: { idTitle: string; }) => item.idTitle === 'experiences').map((item) => (
               <div key={item.idTitle}>
 
                 {/** Title Categories */}
-                <ScrollParallaxWave >
-                    {/** Title Categories */}
-                    <CategoriesMain key={item.id} item={item} />
+                <ScrollParallaxWave>
+                  {/** Title Categories */}
+                  <CategoriesMain key={item.id} item={item} />
                 </ScrollParallaxWave>
 
                 {/** Skills */}
@@ -181,18 +177,17 @@ export default function Home({ categories, experiences, accueil }: Props) {
                 <>
                   {/** Title Categories */}
                   <ScrollParallaxWave>
-                      {/** Title Categories */}
-                      <CategoriesMain key={item.id} item={item}/>
+                    {/** Title Categories */}
+                    <CategoriesMain key={item.id} item={item} />
                   </ScrollParallaxWave>
 
-                  
-                    {/** Contact List */}
-                    {item.contacts.map((contact) => (
-                      <FormContactList
-                        key={contact.twitter}
-                        contact={contact}
-                      />
-                    ))}
+                  {/** Contact List */}
+                  {item.contacts.map((contact) => (
+                    <FormContactList
+                      key={contact.twitter}
+                      contact={contact}
+                    />
+                  ))}
 
                   {/** Form Contact */}
                   <div className={styles['footer-form-backcground']}>
@@ -200,6 +195,7 @@ export default function Home({ categories, experiences, accueil }: Props) {
                     <h3>Me contacter</h3>
                     <FormContact
                       handleOnMouseEnter={handleOnMouseEnter}
+                      onSubmit={() => {}}
                     />
                   </div>
                 </>
@@ -209,4 +205,3 @@ export default function Home({ categories, experiences, accueil }: Props) {
     </>
   );
 }
-

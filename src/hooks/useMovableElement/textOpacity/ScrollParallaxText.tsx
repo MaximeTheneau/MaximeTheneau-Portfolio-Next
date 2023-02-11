@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const ScrollParallaxText = ({ children }: Props) => {
+function ScrollParallaxText({ children }: Props) {
   const [elementRef, isTopChange] = useMovableElements();
   return (
     <div
