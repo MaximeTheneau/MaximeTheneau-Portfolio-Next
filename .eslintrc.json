@@ -1,9 +1,18 @@
 {
-  "extends": ["next/core-web-vitals", "airbnb"],
+  "extends": ["next/core-web-vitals", "airbnb", "prettier"],
   "rules": {
-    // suppress errors for missing 'import React' in files
-   "react/react-in-jsx-scope": "off",
-    "react/prop-types": [<enabled>, { ignore: <ignore>, customValidators: <customValidator>, skipUndeclared: <skipUndeclared> }]
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", "ts", "tsx"] }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+   ],
 
   }
   }

@@ -1,0 +1,50 @@
+@import '../../styles/variables.scss';
+
+.footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: $color-white;
+  &__links{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 1rem;
+    & ul{
+      margin: 1rem 0;
+    }
+    & li{
+      display: flex;
+      padding: 0.5rem;
+      & a{
+        display: flex;
+        align-items: center;
+      }
+      & i{
+        margin-right: 0.5rem;
+        font-size: 1rem;
+      }
+    }
+  }
+  &__author{
+    opacity: 0.8;
+    margin: 1rem auto;
+  }
+
+}
+
+//* Media Queries
+
+@media screen and (min-width: 600px) {
+  .footer{
+    &__links{
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+}

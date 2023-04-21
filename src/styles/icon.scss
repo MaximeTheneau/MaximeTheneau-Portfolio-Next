@@ -1,12 +1,8 @@
 @import './variables.scss';
 @font-face {
   font-family: 'iconTheneauM';
-  src: url('../asset/font/icon/iconTheneauM.woff2') format('woff2'),
-    url('../asset/font/icon/iconTheneauM.woff?7bufwb') format('woff'),
-    url('../asset/font/icon/iconTheneauM.eot?7bufwb#iefix') format('embedded-opentype'),
-    url('../asset/font/icon/iconTheneauM.ttf?7bufwb') format('truetype'),
-    url('../asset/font/icon/iconTheneauM.svg?7bufwb#iconSocial') format('svg');
-
+  src: url('../asset/font/icon/iconTheneauM.woff') format('woff'),
+    url('../asset/font/icon/iconTheneauM.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -19,22 +15,37 @@
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.8rem;
 }
 
-.icon-signature:before {
-  content: "\e999";
+.icon-search:before {
+  content: "\e92e";
 }
-.icon-scroll:before {
+.icon-navbar:before {
   content: "\e900";
+}
+.icon-x:before {
+  content: "\e902";
+}
+.icon-confirmation1:before {
+  content: "\e904";
+}
+.icon-error:before {
+  content: "\e905";
+}
+.icon-scroll {
+  transform: rotate(124deg);
+  &:before {
+    content: "\e903"; 
+  }
 }
 .icon-paper-plane:before {
   content: "\e901";
 }
-.icon-website:before {
-  content: "\e902";
+.icon-phone:before {
+  content: "\e907";
 }
 .icon-twitter:before {
   content: "\e946";
@@ -42,35 +53,12 @@
 .icon-github:before {
   content: "\e947";
 }
-.icon-email:before {
-  content: "\e948";
-}
 .icon-angle-right:before {
   content: "\e930";
-}
-.icon-navbar:before {
-  content: "\e949";
-}
-.icon-x:before {
-  content: "\e94a";
 }
 .icon-linkedin:before {
   content: "\e94b";
 }
 .icon-location:before {
   content: "\e94c";
-}
-
-//* Message error
-.icon-change:before {
-  opacity: 0.5;
-  content: "\e903";
-}
-.icon-confirmation:before {
-  color: $color-green;
-  content: "\e904";
-}
-.icon-error:before {
-  color: $color-red;
-  content: "\e905";
 }
