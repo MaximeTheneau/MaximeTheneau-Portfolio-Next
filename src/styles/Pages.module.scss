@@ -59,7 +59,8 @@
       object-fit: cover;
     }
     &__title{
-      transform: translateY(-10%);
+      margin: 0 0 0 5vw;
+      z-index: 2;
       & h1{
         line-height: 7vw;
         font-size: $font-size-large;
@@ -91,7 +92,8 @@
       object-fit: cover;
     }
     &__title{
-      transform: translateY(5vw);
+      margin: 0 0 0 5vw;
+      z-index: 2;
       & h2{
         line-height: 7vw;
         font-size: $font-size-large;

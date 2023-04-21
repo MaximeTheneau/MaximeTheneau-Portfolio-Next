@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Cards from '../components/cards/cards';
 import Faq from '../components/faq/faq';
 import styles from '../styles/Pages.module.scss';;
-import ScrollParallaxTop from '../hooks/useMovableElement/ScrollWrapper';
+import SlideTransition from '../hooks/useSlideTransition/SlideTransition';
 import imageLoaderFull from '../utils/imageLoaderFull';
 import Image from 'next/image';
 import imageThumbnail from '../utils/imageThumbnail';
@@ -129,10 +129,11 @@ export default function Home({
                   ))
 
               }
-            <Link href="/contact" className="button">
-              Contactez-moi
-              <i className="icon-x" />
-            </Link>
+
+              <Link href="/contact" className="button">
+                Contactez-moi
+                <i className="icon-x" />
+              </Link>
           </div>
 
           {/* <ScrollParallaxTop>
@@ -154,35 +155,54 @@ export default function Home({
         {/* --Création--*/}
         <div>
           {creation.map((creation) => (
-            <div className={styles.home__creation} key={creation.id}>
-              <div className={styles.home__creation__header}>
-                <div className={styles.home__creation__title}>
-                  <h2>{creation.title}</h2>
+              <div className={styles.home__creation} key={creation.id}>
+                <div className={styles.home__creation__header}>
+                  <div className={styles.home__creation__title}>
+                    <SlideTransition
+                      translate={"-100%, 0%"}
+                      delay={0.5}
+                    >
+                      <h2>{creation.title}</h2>
+                    </SlideTransition>
+                  </div>
+                    <div className={styles.home__creation__video}>
+                      <SlideTransition
+                        translate={"100%, 0%"}
+                        delay={0}
+                      >
+                        <video
+                          autoPlay
+                          loop
+                          muted
+                          width={1080}
+                          height={720}
+                          className={styles.home__creation__video}
+                        >
+                          <source
+                            src={`${process.env.NEXT_PUBLIC_CLOUD_URL_VIDEO}/${creation.slug}.webm`}
+                          />
+                        </video>
+                      </SlideTransition>
+                    </div>
                 </div>
-                <div className={styles.home__creation__video}>
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    width={1080}
-                    height={720}
-                    className={styles.home__creation__video}
+                <div className={styles.home__creation__footer}>
+                  <SlideTransition
+                    translate={"0%, 100%"}
+                    delay={0.4}
                   >
-                    <source
-                      src={`${process.env.NEXT_PUBLIC_CLOUD_URL_VIDEO}/${creation.slug}.webm`}
-                    />
-                  </video>
+                    <p>{creation.contents}</p>
+                  </SlideTransition>
+                  <SlideTransition
+                    translate={"-100%, 0%"}
+                    delay={0.5}
+                  >
+                    <Link href={`/Creation/${creation.slug}`} className={`button ${styles.home__creation__footer__button}`} >
+                      En savoir plus
+                      <i className="icon-scroll" />
+                    </Link>
+                  </SlideTransition>
                 </div>
               </div>
-              <div className={styles.home__creation__footer}>
-                <p>{creation.contents}</p>
-                <Link href={`/Creation/${creation.slug}`} className={`button ${styles.home__creation__footer__button}`} >
-                  En savoir plus
-                  <i className="icon-scroll" />
-                </Link>
-
-              </div>
-            </div>
           ))}
 
         </div>
