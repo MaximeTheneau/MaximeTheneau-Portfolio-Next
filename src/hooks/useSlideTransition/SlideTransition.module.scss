@@ -3,9 +3,11 @@
     transform: translate(0, 0);
     opacity: 1;
     transition: all 0.5s ease var(--delay);
-    &__hidden{
+    overflow: hidden;
+    &__hidden {
         opacity: 0;
-        transform: translate(var(--translate),);
-
+        transform: translate(var(--translate));
+        transition: all 0.5s ease var(--delay);
+        overflow: hidden;
     }
 }

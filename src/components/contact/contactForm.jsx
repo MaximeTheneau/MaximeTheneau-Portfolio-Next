@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { formMiddleware } from '../../middleware/middleware';
-import AnimationHover from '../../hooks/useHoverAnimation/CloneTextWrapper';
+import AnimationHover from '../../hooks/useTextAnimation/CloneTextWrapper';
 import Confirmation from '../modal/Confirmation';
 
 import styles from './Contact.module.scss';
@@ -12,7 +12,7 @@ export default function ContactForm() {
       name: '',
       email: '',
       message: '',
-      subject: 'Demande de devis',
+      subject: 'Demande de renseignements',
     },
     textArea: 1,
     toggleModal: false,
@@ -92,8 +92,8 @@ export default function ContactForm() {
               { ...state, form: { ...state.form, subject: e.target.value } },
             )}
           >
-            <option value="Demande de devis">Demande de devis</option>
             <option value="Demande de renseignements">Demande de renseignements</option>
+            <option value="Demande de devis">Demande de devis</option>
             <option value="Autre">Autre</option>
           </select>
         </div>

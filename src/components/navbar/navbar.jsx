@@ -1,12 +1,35 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Navbar.module.scss';
 import SvgLogo from '../../asset/svg/logo-une-taupe-chez-vous.svg';
-import AnimationHover from '../../hooks/useHoverAnimation/CloneTextWrapper';
+import AnimationHover from '../../hooks/useTextAnimation/CloneTextWrapper';
 import Image from 'next/image';
 
 export default function Navbar() {
   const [toggleNav, setToggleNav] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+
+  useEffect(() => {
+    let prevScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (prevScrollY > currentScrollY) {
+        setIsNavVisible(true);
+      } else {
+        setIsNavVisible(false);
+      }
+
+      prevScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleMouseLeave = () => {
       toggleNav === true ? (setTimeout(() => (
@@ -22,7 +45,7 @@ export default function Navbar() {
        * @see Navbar.module.scss
        */ 
       }
-      <nav className={`${styles.navbar__720} ${styles.navbar}`} >
+      <nav className={` ${isNavVisible ? styles.navbar__720+ ' ' + styles.navbar : styles['navbar--hidden']}`} >
         {/** Logo */}
         <Link href="/">
           {/* <SvgLogo className={styles.navbar__720__logo} /> */}
@@ -30,11 +53,11 @@ export default function Navbar() {
         </Link>
         <ul className={styles.navbar__720__list}>
           {/** Link */}
-            <li className={styles['navbar__720__list-item']}>
+            {/* <li className={styles['navbar__720__list-item']}>
               <Link href="/Taupier-agree-professionnel-depuis-1994">
                   Qui-sommes-nous
               </Link>
-            </li>
+            </li> */}
           {/** Link */}
             <li className={styles['navbar__720__list-item']}>
               <Link href="/contact">
@@ -76,7 +99,7 @@ export default function Navbar() {
             ), 500)
             )}
           >
-            <Link href="/">
+            {/* <Link href="/">
               <li className={styles['navbar__responsive__list-item']}>
                 <span className={styles['navbar__responsive__list-item-link']}>Accueil</span>
               </li>
@@ -85,12 +108,12 @@ export default function Navbar() {
               <li className={styles['navbar__responsive__list-item']}>
                 <span className={styles['navbar__responsive__list-item-link']}>Qui-sommes-nous</span>
               </li>
-            </Link>
-            <Link href="/contact">
+            </Link> */}
               <li className={styles['navbar__responsive__list-item']}>
-                <span className={styles['navbar__responsive__list-item-link']}>Contact</span>
+                <Link href="/contact">
+                  <span className={styles['navbar__responsive__list-item-link']}>Contact</span>
+                </Link>
               </li>
-            </Link>
           </ul>
         ) : ''}
       </nav>

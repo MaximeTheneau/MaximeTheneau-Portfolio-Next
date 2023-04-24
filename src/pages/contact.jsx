@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Head from 'next/head';
 import ContactForm from '../components/contact/contactForm';
-import styles from '../styles/Pages.module.scss';
+import styles from './Pages.module.scss';
 import imageLoaderFull from '../utils/imageLoaderFull';
 
 export async function getStaticProps() {

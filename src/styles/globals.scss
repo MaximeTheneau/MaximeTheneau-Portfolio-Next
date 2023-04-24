@@ -11,8 +11,15 @@ body {
   font-family: 'fontGeneral', sans-serif;
   color: $font-color ;
   white-space: pre-line;
-  overflow-x: hidden !important; 
+  overflow-x: hidden !important;
+  max-width: 100%;
 }
+
+a:hover .cursor {
+  border: none !important;
+}
+
+
 h1,h2,h3,h4,h5,h6{
   font-family: 'fontTitle';
 }
@@ -46,16 +53,21 @@ img{
   display: block;
   height: auto;
 }
-
-main{
+.w-responsive{
   width: $width-responsive;
-  margin: 0 auto;
+  margin: 1rem auto;
+}
+main{
+  min-height: 70vh;
 }
 footer{
   min-height: 10vh;
   background: $color-secondary;
 }
+header{
+  min-height: 3rem;
 
+}
 
 //* Form
 input,
@@ -163,7 +175,7 @@ strong{
 }
 
 @media screen and (min-width: 640px) {
-  main{
+  .w-responsive{
     width: $width-desktop;
   }
 
@@ -175,4 +187,67 @@ strong{
     margin: 1rem 0 ;
   }
   
+}
+
+.text-animation{
+  display: inline-block;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.text-animation span {
+  display: inline-block;
+  z-index: 1;
+  animation: move-left 4s infinite linear;
+}
+
+@keyframes move-left {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(-50%);
+
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.text__animation__clone {
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
+
+.text__animation__clone--done {
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+
+.text__animation {
+  position: absolute;
+  overflow: hidden;
+  transform: all 1s ease-in-out;
+}
+
+.text__animation--done {
+  animation: text-animation 1s ease-in-out;
+  opacity: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+@keyframes text-animation {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+    display: inline;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
 }

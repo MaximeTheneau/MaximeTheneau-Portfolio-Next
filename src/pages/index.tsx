@@ -1,10 +1,12 @@
 /* eslint-disable quote-props */
+import * as React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Cards from '../components/cards/cards';
 import Faq from '../components/faq/faq';
-import styles from '../styles/Pages.module.scss';;
+import styles from './Pages.module.scss';;
 import SlideTransition from '../hooks/useSlideTransition/SlideTransition';
+import HoverAnimation from '../hooks/useTextAnimation/TextAnimationWrapper';
 import imageLoaderFull from '../utils/imageLoaderFull';
 import Image from 'next/image';
 import imageThumbnail from '../utils/imageThumbnail';
@@ -44,7 +46,7 @@ export default function Home({
   creation,
   //  articles, faq, reviews,
 }) {
-  const descriptionMeta = 'Taupier professionnels agréé de la lutte contre les taupes, fouines et ragondins. Intervention en Eure (28), Yvelines (78) et Essonne (91). Devis gratuit.';
+  const descriptionMeta:string = 'Taupier professionnels agréé de la lutte contre les taupes, fouines et ragondins. Intervention en Eure (28), Yvelines (78) et Essonne (91). Devis gratuit.';
   
   // schema.org
   function addProductJsonLd() {
@@ -56,16 +58,7 @@ export default function Home({
       "image": "${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/Accueil.jpg",
       "description": "${descriptionMeta}",
       "slogan": "${descriptionMeta}",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "FR",
-        "postalCode": "27780",
-        "streetAddress": "71 rue marie curie",
-        "addressLocality": "Garrenne sur Eure"
-      },
-      "url": "${process.env.NEXT_PUBLIC_URL}",
-      "telephone": "+33232264958"
-      
+      "url": "${process.env.NEXT_PUBLIC_URL}"      
     }
   `,
   };
@@ -74,7 +67,6 @@ export default function Home({
   return (
     <>
       <Head>
-        <meta name="google-site-verification" content="yObJd5noBtjUBky_GRbOOETV42Q9qAHf7w00PPz1-ss" />
         <title>{accueil.title}</title>
         <meta name="description" content={descriptionMeta} />
         <meta property="og:type" content="website" />
@@ -102,7 +94,7 @@ export default function Home({
               <Image
                 src={`Theneau-Maxime.webp`}
                 alt={accueil.altImg || accueil.title}
-                loader={imageThumbnail}
+                loader={imageLoaderFull}
                 quality={90}
                 width={600}
                 height={600}
@@ -117,14 +109,20 @@ export default function Home({
               </Link>
             </div>
           </div>
-        {/* --Articles--*/}
 
+        {/* --About--*/}
         <div className={styles.home__about} >
           <div >
               {accueil.paragraphPosts.map((paragraphArticle) => (
                 <>
-                  <h2>{paragraphArticle.subtitle}</h2>
-                  <p>{paragraphArticle.paragraph}</p>
+                      <div className={styles.home__about}>
+                      <h2>
+                        <HoverAnimation>
+                          {paragraphArticle.subtitle}
+                        </HoverAnimation>
+                      </h2>
+                  </div>
+                  <p className='w-responsive'>{paragraphArticle.paragraph}</p>
                 </>
                   ))
 
@@ -167,7 +165,7 @@ export default function Home({
                   </div>
                     <div className={styles.home__creation__video}>
                       <SlideTransition
-                        translate={"100%, 0%"}
+                        translate={"0%, 50%"}
                         delay={0}
                       >
                         <video
@@ -204,7 +202,6 @@ export default function Home({
                 </div>
               </div>
           ))}
-
         </div>
 
         {/* --Contact--*/}

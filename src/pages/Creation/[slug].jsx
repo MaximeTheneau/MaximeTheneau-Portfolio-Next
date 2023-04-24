@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
-import styles from '../../styles/Pages.module.scss';
+import styles from '../Pages.module.scss';
 import Page404 from '../404';
 import imageLoaderFull from '../../utils/imageLoaderFull';
 import Link from 'next/link';
@@ -104,6 +104,23 @@ function addProductJsonLd() {
             </>
               ))
               }
+              {post.listPosts.filter(post => post.title !== "GitHub" && post.title !== "Website").map(post => (
+                <h3 key={post.id}>
+                  {post.title}
+                </h3>
+              ))}
+              {post.listPosts.filter(post => post.title == "GitHub").map(post => (
+                <Link href={post.description} key={post.id} className="button">
+                  {post.title}
+                  <i className="icon-github"/>
+                </Link>
+              ))}
+              {post.listPosts.filter(post => post.title == "Website").map(post => (
+                <Link href={post.description} key={post.id} className="button">
+                  {post.title}
+                  <i className="icon-confirmation1"/>
+                </Link>
+              ))}
           <Link href="/contact" className='button'>
             Contactez-nous
           </Link>
