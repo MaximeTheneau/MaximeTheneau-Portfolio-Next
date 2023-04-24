@@ -5,11 +5,10 @@ import useMovableElements from './useMovableElements';
 
 export default function ScrollParallaxTop({
   children,
-  effect
 }) {
   const elementRef = useRef(null);
 
-  const paralax = useMovableElements(elementRef, effect);
+  const paralax = useMovableElements(elementRef);
   return (
     <div ref={elementRef} style={paralax.style}>
       {children}

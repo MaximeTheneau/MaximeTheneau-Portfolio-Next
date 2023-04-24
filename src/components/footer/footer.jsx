@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from './Footer.module.scss';
-import AnimationHover from '../../hooks/useHoverAnimation/CloneTextWrapper';
+import AnimationHover from '../../hooks/useTextAnimation/CloneTextWrapper';
 
 export default function Footer({services}) {
   return (

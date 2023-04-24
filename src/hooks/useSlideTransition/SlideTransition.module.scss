@@ -1,19 +1,13 @@
 
 .slideTransition {
-    transform: translateX(0);
+    transform: translate(0, 0);
     opacity: 1;
-    transition: transform 1s ease, opacity 1s ease;
-    &__hidden{
-      opacity: 0;
-      transform: translateX(100%);
-    }
-}
-
-@keyframes hidden {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(0);
+    transition: all 0.5s ease var(--delay);
+    overflow: hidden;
+    &__hidden {
+        opacity: 0;
+        transform: translate(var(--translate));
+        transition: all 0.5s ease var(--delay);
+        overflow: hidden;
     }
 }

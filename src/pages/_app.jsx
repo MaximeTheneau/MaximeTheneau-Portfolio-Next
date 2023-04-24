@@ -14,6 +14,16 @@ function MyApp({ Component, pageProps }) {
     }, 600);
   }, [router.pathname]);
 
+  // Mouse cursor
+  // useEffect(() => {
+  //   const cursor = document.querySelector('.cursor');
+
+  //   document.addEventListener('mousemove', (e) => {
+      
+  //     cursor.setAttribute('style', 'top:'+(e.pageY)+"px; left:"+(e.pageX)+"px;")
+  //   });
+
+  // }, []);
   
   return (
     <>
@@ -24,6 +34,7 @@ function MyApp({ Component, pageProps }) {
         {animateTransition && <div className="transition" />}
         <Component {...pageProps} />
       </Layout>
+        {/* <div className="cursor" /> */}
     </>
   );
 }
