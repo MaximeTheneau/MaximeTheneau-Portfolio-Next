@@ -740,7 +740,7 @@
     lz-string "^1.4.4"
     pretty-format "^27.0.2"
 
-"@testing-library/jest-dom@5.16.4":
+"@testing-library/jest-dom@^5.16.4":
   version "5.16.4"
   resolved "https://registry.npmjs.org/@testing-library/jest-dom/-/jest-dom-5.16.4.tgz"
   integrity sha512-Gy+IoFutbMQcky0k+bqqumXZ1cTGswLsFqmNLzNdSKkU9KGV2u9oXhukCbbJ9/LRPKiqwxEE8VpV/+YZlfkPUA==

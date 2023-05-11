@@ -22,9 +22,11 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "middleware.js"  ],
+    "**/*.tsx",
+    "middleware.js"
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "jest"
   ]
 }

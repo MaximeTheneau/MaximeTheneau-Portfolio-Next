@@ -1,9 +1,12 @@
-
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import Navbar from './navbar/navbar';
 import Footer from './footer/footer';
 
-export default function Layout({ children,  }) {
+type LayoutProps = {
+  children: React.ReactNode;
+  }
+
+export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <header>
@@ -18,7 +21,3 @@ export default function Layout({ children,  }) {
     </>
   );
 }
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-};

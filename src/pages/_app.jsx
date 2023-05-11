@@ -7,12 +7,12 @@ import '../styles/globals.scss';
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [animateTransition, setAnimateTransition] = useState(false);
-  useEffect(() => {
-    setAnimateTransition(true);
-    setTimeout(() => {
-      setAnimateTransition(false);
-    }, 600);
-  }, [router.pathname]);
+  // useEffect(() => {
+  //   setAnimateTransition(true);
+  //   setTimeout(() => {
+  //     setAnimateTransition(false);
+  //   }, 600);
+  // }, [router.pathname]);
 
   // Mouse cursor
   // useEffect(() => {
@@ -27,9 +27,7 @@ function MyApp({ Component, pageProps }) {
   
   return (
     <>
-      <Head>
-        
-      </Head>
+      <Head />
       <Layout {...pageProps} >
         {animateTransition && <div className="transition" />}
         <Component {...pageProps} />

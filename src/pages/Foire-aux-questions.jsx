@@ -1,7 +1,5 @@
-import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Head from 'next/head';
-import Script from 'next/script';
 import styles from './Pages.module.scss';
 import Faq from '../components/faq/faq';
 
@@ -17,7 +15,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Slug({ post, desc }) {
+export default function Slug({ post }) {
 
 
   const descriptionMeta = post.contents === null
@@ -88,9 +86,7 @@ export default function Slug({ post, desc }) {
           ))}
         </div>
       </div>
-      <div>
-
-      </div>
+      <div />
 
 
 

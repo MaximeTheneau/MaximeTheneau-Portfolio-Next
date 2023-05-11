@@ -1,52 +1,45 @@
+import { useEffect, useRef, useState } from 'react';
 import styles from './CloneTextWrapper.module.scss';
-import { useEffect, useRef } from 'react';
 
-export default function TextAnimationWrapper({ children, cycles = 10 }) {
-  const textRef = useRef(children);
-  const textRefClone = useRef(children);
-
+export default function TextAnimationWrapper({ children }) {
+  const [message, setMessage] = useState(children);
+  const [displayed, updateDisplay] = useState('');
+  const animIDRef = useRef(null);
+  const wrapperRef = useRef(null);
   useEffect(() => {
-    if (textRef.current) {
-      const originalText = textRef.current.textContent;
+    const handleScroll = () => {
+      const wrapperElement = wrapperRef.current;
+      const { top, bottom } = wrapperElement.getBoundingClientRect();
+      const isInViewport = top < window.innerHeight && bottom > 0;
 
-      // Définir une fonction de mélange qui prend en compte le nombre de cycles
-      function shuffleString(str) {
-        const arr = str.split('');
-        for (let i = 0; i < cycles; i++) {
-          arr.sort(() => Math.random() - 0.5);
-        }
-        return arr.join('');
+      if (isInViewport) {
+        animIDRef.current = setInterval(typeLetter, 30);
+        wrapperRef.current.classList.add('animationText--animate');
+      } else {
+        clearInterval(animIDRef.current);
+        wrapperRef.current.classList.remove('animationText--animate');
       }
+    };
 
-      // Mélanger le texte à intervalles réguliers
-      let counter = 0;
-      const interval = setInterval(() => {
-        counter++;
-        const shuffledText = shuffleString(originalText);
-        textRef.current.textContent = shuffledText;
-        if (counter >= cycles) {
-          clearInterval(interval);
-          textRef.current.setAttribute('data-animation', 'true');
-          textRef.current.classList.remove('text-animation');
-          textRef.current.classList.add('text__animation--done');
-          textRefClone.current.classList.remove('text__animation__clone');
-          textRefClone.current.classList.add('text__animation__clone--done');
-        }
-      }, 50);
+    updateDisplay(message.charAt(0));
+    handleScroll();
 
-      textRef.current.classList.add('text-animation');
-    }
-  }, []);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      clearInterval(animIDRef.current);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [message]);
+
+  const typeLetter = () => {
+    updateDisplay((prevText) => {
+      if (message.length <= prevText.length) clearInterval(animIDRef.current);
+      return prevText.concat(message.charAt(prevText.length));
+    });
+  };
 
   return (
-    <>
-      <span ref={textRef}>
-        {children}
-      </span>
-      <span ref={textRefClone} className='text__animation__clone'>
-        {children}
-      </span>
-    
-    </>
+    <span ref={wrapperRef} className={styles.animationText}>{displayed}</span>
   );
 }

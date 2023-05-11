@@ -118,6 +118,10 @@ iframe {
   display: block;
   animation: opacity 0.5s ease 0s;
 }
+
+.m-1{
+  margin: 1rem;
+}
 @keyframes opacity{
   0%{
     opacity: 0;
