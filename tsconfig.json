@@ -24,7 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "middleware.js"
-  ],
+, "src/components/cursor/cursor.tsx"  ],
   "exclude": [
     "node_modules",
     "jest"

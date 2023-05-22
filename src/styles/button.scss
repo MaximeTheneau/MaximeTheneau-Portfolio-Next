@@ -9,7 +9,7 @@ button,
   width: 100%;
   font-family: $font-secondary;
   font-size: $font-size;
-  background: $color-primary !important;
+  background: $color-secondary !important;
   color: $color-white;
   border-radius: 0 0 1rem 0;
   cursor: pointer;
@@ -23,9 +23,10 @@ button,
   }
   border: 0.2rem solid rgba(255, 255, 255, 0);
   &:hover{
+    background: $color-primary !important;
     font-size: $font-size-small;
-    background: $color-secondary !important;
     border: 0.2rem solid $color-white;
+
     & i{
       transform: rotate(21deg) scale(1.2) !important;
     }

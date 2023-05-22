@@ -3,6 +3,7 @@
 @use './icon.scss';
 @use './button.scss';
 @import './variables.scss';
+@import './cursor.scss';
 
 html,
 body {
@@ -17,7 +18,9 @@ body {
 
 a:hover .cursor {
   border: none !important;
+
 }
+
 
 
 h1,h2,h3,h4,h5,h6{
@@ -40,6 +43,8 @@ a {
 * {
   box-sizing: border-box;
   // box-shadow: 0 0 0 3px red !important;
+  // cursor: none;
+
 }
 
 p{
@@ -103,6 +108,7 @@ select{
   color: $font-color;
   background: none;
   padding: 0.5rem;
+  cursor: pointer;
   &:focus{
     outline: none;
   }
