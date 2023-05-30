@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Confirmation from '../components/modal/Confirmation';
 
-export function formMiddleware(req: NextApiRequest, handleResponse200, handleResponseError) {
+export function formMiddleware(req, handleResponse200, handleResponseError) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

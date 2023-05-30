@@ -36,7 +36,7 @@ export default function Footer() {
             maxime @ theneaumaxime.fr
           </li>
           <li>
-            <Link href="/contact">
+            <Link href="/Contact">
               Formulaire de contact
             </Link>
           </li>

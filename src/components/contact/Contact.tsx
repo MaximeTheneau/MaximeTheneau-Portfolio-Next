@@ -1,16 +1,39 @@
-import { useEffect, useState } from 'react';
-import { formMiddleware } from '../../middleware/middleware';
-import AnimationHover from '../../hooks/useTextAnimation/CloneTextWrapper';
-import Confirmation from '../modal/Confirmation';
-
-import styles from './Contact.module.scss';
-import styleModal from '../modal/Modal.module.scss';
-import confirmation from '../modal/Confirmation';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { formMiddleware } from '../../middleware/middleware';
+import Confirmation from '../modal/Confirmation';
+import styles from './Contact.module.scss';
+import ContactAbout from './ContactAbout';
+import Select from './form/Select';
+import Input from './form/Input';
+import { NextApiRequest } from 'next';
+
+interface FormState {
+  name: string;
+  email: string;
+  message: string;
+  subject: string;
+}
+
+interface ModalState {
+  title: string;
+  message: string;
+  toggleModal: boolean;
+}
+
+interface ContactFormState {
+  form: FormState;
+  textArea: number;
+  confirmationName: boolean | null;
+  confirmationEmail: boolean | null;
+  confirmationMessage: boolean | null;
+  modal: ModalState;
+}
+
 // == Composant
 export default function ContactForm() {
   const router = useRouter();
-  const [state, setState] = useState({
+  const [state, setState] = useState<ContactFormState>({
     form: {
       name: '' ,
       email: '',
@@ -45,15 +68,17 @@ export default function ContactForm() {
   }, []);
 
 
-  const handleChangeMessage = (e) => {
+  const handleChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const trows = e.target.value.split('\n').length - 1 === 0 ? 1 : e.target.value.split('\n').length - 1;
-    setState({
-      ...state,
+    setState((prevState) => ({
+      ...prevState,
       textArea: trows,
       form: {
-        ...state.form, message: e.target.value, confirmationMessage: true,
+        ...prevState.form,
+        message: e.target.value,
+        confirmationMessage: true,
       },
-    });
+    }));
   };
 
   const regex = /^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -124,6 +149,7 @@ export default function ContactForm() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
     setState({
       ...state,
       modal: {
@@ -132,6 +158,7 @@ export default function ContactForm() {
         toggleModal: true,
       },
     });
+
     formMiddleware(state.form, handleResponse200, handleResponseError);
   };
 
@@ -141,63 +168,60 @@ export default function ContactForm() {
         state={state}
         setState={setState}
       />
-
-      <form className={styles.contact} onSubmit={handleSubmit}>
+      <div className={styles.contact}>
+        <div className={styles.contact__block} itemType="https://schema.org/PostalAdress">
+          <ContactAbout />
+        </div>
+      <form className={styles.contact__block} onSubmit={handleSubmit}>
         <div className={styles.contact__input}>
-          <select
-            title="Sujet"
-            name="subject"
-            id="subject"
-            className="contact-form-input"
-            onChange={(e) => setState(
+          <Select
+            value={state.form.subject}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setState(
               { ...state, form: { ...state.form, subject: e.target.value } },
             )}
-          >
-            <option value="Demande de renseignements">Demande de renseignements</option>
-            <option value="Demande de devis">Demande de devis</option>
-            <option value="Autre">Autre</option>
-          </select>
+          />
         </div>
         <div className={styles.contact__input}>
           {classErrorOrConfirmation(state.confirmationName)}
-          <input
+          <Input 
             type="text"
-            className="contact-form-input"
             title="Nom"
-            name="user_name"
             value={state.form.name}
-            onChange={(e) => setState(
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setState(
               { ...state, form: { ...state.form, name: e.target.value } },
             )}
-            onBlur={(e) => (
+            onBlur={(e: ChangeEvent<HTMLInputElement>) => (
               e.target.value.length > 2 && e.target.value.length < 35
                 ? setState({ ...state, confirmationName: true })
                 : setState({ ...state, confirmationName: false })
             )}
             placeholder="Nom Prénom / Société"
-            required
+            required={true}
           />
         </div>
         <div className={styles.contact__input}>
           {classErrorOrConfirmation(state.confirmationEmail)}
-          <input
+          <Input
             type="email"
-            name="email"
             title="Email"
             value={state.form.email}
             placeholder="exemple@email.fr"
-            required
-            onChange={(e) => setState(
-              { ...state, form: { ...state.form, email: e.target.value } },
-              (e.target.value.length > 2 && e.target.value.length < 35
-                ? setState({ ...state, confirmationEmail: true })
-                : setState({ ...state, confirmationEmail: false })),
-            )}
-            onBlur={(e) => (
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setState((prevState) => ({
+                ...prevState,
+                form: {
+                  ...prevState.form,
+                  email: e.target.value,
+                },
+                confirmationEmail: e.target.value.length > 2 && e.target.value.length < 35,
+              }))
+            }
+            onBlur={(e: ChangeEvent<HTMLInputElement>) => (
               regex.test(e.target.value)
                 ? setState({ ...state, confirmationEmail: true })
                 : setState({ ...state, confirmationEmail: false })
             )}
+            required={true}
           />
         </div>
         <div className={styles.contact__textarea}>
@@ -207,9 +231,10 @@ export default function ContactForm() {
             title="Message"
             value={state.form.message}
             onChange={handleChangeMessage}
-            onBlur={(e) => (e.target.value.length > 2 && e.target.value.length < 250
+            onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => (
+              e.target.value.length > 5 && e.target.value.length < 500
               ? setState({ ...state, confirmationMessage: true })
-              : null)}
+              : setState({ ...state, confirmationMessage: false }))}
             name="message"
             wrap="off"
             placeholder="Votre message"
@@ -223,6 +248,7 @@ export default function ContactForm() {
           </button>
         </div>
       </form>
+      </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/react';
-import FormContact from '../components/contact/contactForm';
+import FormContact from '../components/contact/Contact';
 import fetch from 'isomorphic-fetch'
 
 describe('ContactForm', () => {

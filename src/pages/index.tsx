@@ -9,7 +9,7 @@ import SlideTransition from '../hooks/useSlideTransition/SlideTransition';
 import HoverAnimation from '../hooks/useTextAnimation/TextAnimationWrapper';
 import imageLoaderFull from '../utils/imageLoaderFull';
 import imageThumbnail from '../utils/imageThumbnail';
-import ContactForm from '../components/contact/contactForm';
+import ContactForm from '../components/contact/Contact';
 import VideoLoader from '../utils/videoLoader';
 import HeadComponents from '../components/head/HeadComponents';
 

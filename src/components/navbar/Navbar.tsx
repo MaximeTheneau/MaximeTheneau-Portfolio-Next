@@ -53,7 +53,7 @@ export default function Navbar() {
         <ul className={styles.navbar__720__list}>
           {/** Link */}
           <li className={styles['navbar__720__list-item']}>
-            <Link href="/contact">
+            <Link href="/Contact">
               Contact
             </Link>
           </li>

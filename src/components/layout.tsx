@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Cursor from './cursor/cursor';
-import Navbar from './navbar/navbar';
+import Navbar from './navbar/Navbar';
 import Footer from './footer/footer';
 
 type LayoutProps = {
