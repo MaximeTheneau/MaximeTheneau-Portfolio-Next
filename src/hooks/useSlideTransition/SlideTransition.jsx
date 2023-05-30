@@ -2,15 +2,14 @@ import { useRef } from 'react';
 import useSlideTransition from './useSlideTansition';
 import styles from './SlideTransition.module.scss';
 
-export default function SlideTransition({ children, translate, delay }) {
+export default function SlideTransition({ children, delay }) {
   const elementRef = useRef(null);
-  const isInViewport = useSlideTransition(elementRef);
-
+  const paralax = useSlideTransition(elementRef, delay);
+  const elementStyle = elementRef.current;
   return (
     <div
       ref={elementRef}
-      className={` ${isInViewport ? styles.slideTransition : styles.slideTransition__hidden}`}
-      style={{ '--translate': translate, '--delay': `${delay}s` }}
+      style={{ ...paralax.style, ...elementStyle }}
     >
       {children}
     </div>

@@ -1,32 +1,40 @@
 import PropTypes from 'prop-types';
 import styleModal from './Modal.module.scss';
+import { useState } from 'react';
 
-export default function confirmation({ onClickConfirmation }) {
-  setTimeout(() => {
-    onClickConfirmation(false);
-  }, 10000);
+export default function confirmation({  state, setState }) {
+  const { title, message, toggleModal } = state.modal;
+
+  const onClickConfirmation = () => {
+    setState({
+      ...state,
+      modal:{
+        toggleModal: false,
+      }
+    });
+  };
   return (
-    <div className={styleModal.modal}>
+    <>
+    {toggleModal ? (
+      <>
+        <div className={styleModal.modal__blur} />
+        <div className={styleModal.modal}>
 
-      <h2>
-        <i className="icon-confirmation" />
-        {' '}
-        Bien Reçu, merci !
-      </h2>
-      <p>Votre message a bien été envoyé, on vous réponds aux plus vite</p>
-      <div>
-        <button
-          type="button"
-          className="button-submit"
-          onClick={onClickConfirmation}
-        >
-          Fermer
-        </button>
+        <h2>{title}</h2>
+        <p>{message}</p>
+        <div>
+          <button
+            type="button"
+            className="button-submit"
+            onClick={onClickConfirmation}
+          >
+            Fermer
+          </button>
+        </div>
       </div>
-    </div>
+      </>
+    ) : ''}
+    </>
+   
   );
 }
-
-confirmation.propTypes = {
-  onClickConfirmation: PropTypes.func.isRequired,
-};

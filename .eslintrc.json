@@ -1,4 +1,7 @@
 {
+  "env": {
+    "jest/globals": true
+  },
   "extends": ["next/core-web-vitals", "airbnb"],
   "rules": {
     // suppress errors for missing 'import React' in files

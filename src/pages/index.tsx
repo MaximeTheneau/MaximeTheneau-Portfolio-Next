@@ -87,11 +87,8 @@ export default function Home({
             />
           </div>
           <div className={styles.home__header__title}>
-            <h1>{process.env.NEXT_PUBLIC_DESCRIPTION}</h1>
+            <h1>{accueil.title}</h1>
             <h2>{accueil.contents}</h2>
-            <Link href="/contact" className="button">
-              Yep
-            </Link>
           </div>
         </div>
 
@@ -140,7 +137,7 @@ export default function Home({
               <div className={styles.home__creation__header}>
                 <div className={styles.home__creation__title}>
                   <SlideTransition
-                    translate="-100%, 0%"
+                    translate="0, 10%"
                     delay={0.5}
                   >
                     <h2>{creations.title}</h2>
@@ -158,12 +155,12 @@ export default function Home({
               <div className={styles.home__creation__footer}>
                 <SlideTransition
                   translate="0%, 100%"
-                  delay={0.4}
+                  delay={0.1}
                 >
                   <p>{creations.contents}</p>
                 </SlideTransition>
                 <SlideTransition
-                  translate="-100%, 0%"
+                  translate="0, 100%"
                   delay={0.5}
                 >
                   <Link

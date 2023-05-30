@@ -13,7 +13,6 @@ export default function HeadComponents({
     image: string,
     addProduct: any,
     }) {
-  const dangerouslyInnerHTML = { __html: addProduct };
   return (
     <Head>
       <title>{title}</title>

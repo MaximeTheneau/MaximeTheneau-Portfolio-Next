@@ -1,38 +1,21 @@
-:root{
-  --color-cursor: #3e3d42 ;
-  --color-cursor-hover: #fe6938;
-  --color-cursor-clicked: #fe6938;
+
+
+.cursor__expand {
   --cursor-size: 20px;
-  --cursor-size-large: calc(var(--cursor-size) * 1.5);
-  --size-cursor-large: 106px;
-}
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  pointer-events: none;
+  z-index: 9999;
+  background-color: $color-primary;
+  transition: top 0.2s, left 0.2s, width 0.2s, height 0.2s;
+  animation: cursorAnim .5s forwards;
   
-.cursor {
-  width: var(--cursor-size);
-  height: var(--cursor-size);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  pointer-events: none;
-  z-index: 9999;
-  background-color: $color-primary;
-  transition: top 0.2s, left 0.2s, width 0.2s, height 0.2s;
-}
-.cursor__outline {
-  width: var(--cursor-size);
-  height: var(--cursor-size);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  pointer-events: none;
-  z-index: 9999;
-  background-color: $color-primary;
-  transition: top 0.2s, left 0.2s, width 0.2s, height 0.2s;
 }
 
- 
-  
-  @keyframes cursorAnim {
+@keyframes cursorAnim {
   0% {
   transform: scale(1);
   }
@@ -43,16 +26,4 @@
   transform: scale(1);
   opacity: 0;
   }
-  }
-  .expand {
-  animation: cursorAnim .5s forwards;
-  --color-cursor: var(--color-cursor-hover);
-  }
-
-  .hovered {
-    --cursor-size: var(--size-cursor-large);
-    cursor: pointer;
-    opacity: 0.2;
-    border: 1px solid var(--color-cursor-hover);
-
   }

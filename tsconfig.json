@@ -22,11 +22,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "middleware.js"
-, "src/components/cursor/cursor.tsx"  ],
+    "**/*.tsx"
+  ],
   "exclude": [
-    "node_modules",
-    "jest"
+    "node_modules"
   ]
 }

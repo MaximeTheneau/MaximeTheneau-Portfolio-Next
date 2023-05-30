@@ -1,9 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './Navbar.module.scss';
-import SvgLogo from '../../asset/svg/logo-une-taupe-chez-vous.svg';
-import AnimationHover from '../../hooks/useTextAnimation/CloneTextWrapper';
-import Image from 'next/image';
 
 export default function Navbar() {
   const [toggleNav, setToggleNav] = useState(false);
@@ -32,20 +29,22 @@ export default function Navbar() {
   }, []);
 
   const handleMouseLeave = () => {
-      toggleNav === true ? (setTimeout(() => (
-        setToggleNav(false)
-      ), 5500)) : null
+    if (toggleNav) {
+      setTimeout(() => {
+        setToggleNav(false);
+      }, 5500);
+    }
   };
   return (
     <>
-      { 
+      {
       /**
        * Navbar for tablet and desktop
        * @media screen and (min-width: 720px)
        * @see Navbar.module.scss
-       */ 
+       */
       }
-      <nav className={` ${isNavVisible ? styles.navbar__720+ ' ' + styles.navbar : styles['navbar--hidden']}`} >
+      <nav className={` ${isNavVisible ? `${styles.navbar__720} ${styles.navbar}` : styles['navbar--hidden']}`}>
         {/** Logo */}
         <Link href="/">
           {/* <SvgLogo className={styles.navbar__720__logo} /> */}
@@ -53,17 +52,11 @@ export default function Navbar() {
         </Link>
         <ul className={styles.navbar__720__list}>
           {/** Link */}
-            {/* <li className={styles['navbar__720__list-item']}>
-              <Link href="/Taupier-agree-professionnel-depuis-1994">
-                  Qui-sommes-nous
-              </Link>
-            </li> */}
-          {/** Link */}
-            <li className={styles['navbar__720__list-item']}>
-              <Link href="/contact">
-                  Contact
-              </Link>
-            </li>
+          <li className={styles['navbar__720__list-item']}>
+            <Link href="/contact">
+              Contact
+            </Link>
+          </li>
         </ul>
       </nav>
       {
@@ -85,7 +78,7 @@ export default function Navbar() {
           }}
         >
           {toggleNav ? (
-            <i className="icon-x" />
+            <i className="icon-x rotate" />
           ) : (
             <i className="icon-navbar" />
           )}
@@ -99,21 +92,16 @@ export default function Navbar() {
             ), 500)
             )}
           >
-            {/* <Link href="/">
-              <li className={styles['navbar__responsive__list-item']}>
+            <li className={styles['navbar__responsive__list-item']}>
+              <Link href="/">
                 <span className={styles['navbar__responsive__list-item-link']}>Accueil</span>
-              </li>
-            </Link>
-            <Link href="/Taupier-agree-professionnel-depuis-1994">
-              <li className={styles['navbar__responsive__list-item']}>
-                <span className={styles['navbar__responsive__list-item-link']}>Qui-sommes-nous</span>
-              </li>
-            </Link> */}
-              <li className={styles['navbar__responsive__list-item']}>
-                <Link href="/contact">
-                  <span className={styles['navbar__responsive__list-item-link']}>Contact</span>
-                </Link>
-              </li>
+              </Link>
+            </li>
+            <li className={styles['navbar__responsive__list-item']}>
+              <Link href="/contact">
+                <span className={styles['navbar__responsive__list-item-link']}>Contact</span>
+              </Link>
+            </li>
           </ul>
         ) : ''}
       </nav>
