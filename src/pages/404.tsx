@@ -5,7 +5,7 @@ export default function Custom404() {
   return (
     <>
       <Head>
-        <meta name="robots" content="noindex"/>
+        <meta name="robots" content="noindex" />
       </Head>
       <section>
         <h1>Désolé</h1>
@@ -14,7 +14,7 @@ export default function Custom404() {
           <Link
             href="/"
           >
-              Page d&apos;accueil
+            Page d&apos;accueil
           </Link>
         </button>
       </section>

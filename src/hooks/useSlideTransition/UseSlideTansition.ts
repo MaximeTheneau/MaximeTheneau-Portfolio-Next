@@ -1,17 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, RefObject } from 'react';
 
-export default function useSlideTransition(elementRef, delay) {
-  const [isInViewport, setIsInViewport] = useState(false);
-  const [offset, setOffset] = useState(null);
+type Offset = {
+  opacity: number;
+};
+export default function useSlideTransition(
+  elementRef: RefObject<HTMLDivElement>,
+): Offset {
+  const [offset, setOffset] = useState<Offset>({
+    opacity: null,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
-      if (elementRef.current) {
-        const scrollTop = window.pageYOffset;
-        const { top } = elementRef.current.getBoundingClientRect();
+      const { top } = elementRef.current.getBoundingClientRect();
+      const opacity = 1 - (top / (window.innerHeight * 3));
+      if (opacity >= 0.5 && opacity <= 1) {
         setOffset({
-          opacity: top / 100,
-          translateY: top / 100,
+          opacity,
         });
 
         // setIsInViewport(isInViewportTest);
@@ -29,8 +34,7 @@ export default function useSlideTransition(elementRef, delay) {
   useEffect(() => {
     if (!elementRef.current) return;
     elementRef.current.style.setProperty('opacity', `${offset?.opacity}`);
-    elementRef.current.style.setProperty('transform', `translateY(-${offset?.translateY}px) rotateX(${offset?.opacity}deg)`);
   }, [elementRef, offset]);
 
-  return isInViewport;
+  return offset;
 }

@@ -4,7 +4,7 @@ import Head from 'next/head';
 import styles from '../../../styles/Pages.module.scss';
 import Cards from '../../../components/cards/cards';
 import Category from '../../../components/category/category';
-import imageLoaderFull from '../../../utils/imageLoaderFull';
+import ImageLoaderFull from '../../../utils/ImageLoaderFull';
 
 export async function getStaticPaths() {
 
@@ -122,7 +122,7 @@ export default function Slug({ post, desc }) {
           <Image
             src={`${post.slug}.webp`}
             alt={post.altImg || post.title}
-            loader={imageLoaderFull}
+            loader={ImageLoaderFull}
             quality={100}
             width='1080'
             height='720'

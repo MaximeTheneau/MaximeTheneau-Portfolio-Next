@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Cursor from './cursor/cursor';
+import Cursor from './cursor/Cursor';
 import Navbar from './navbar/Navbar';
-import Footer from './footer/footer';
+import Footer from './footer/Footer';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -10,7 +10,6 @@ type LayoutProps = {
 export default function Layout({ children }: LayoutProps) {
   return (
     <>
-      <Cursor />
       <header>
         <Navbar />
       </header>
@@ -20,6 +19,7 @@ export default function Layout({ children }: LayoutProps) {
       <footer>
         <Footer />
       </footer>
+      <Cursor />
     </>
   );
 }

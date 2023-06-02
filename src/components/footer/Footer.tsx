@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import styles from './Footer.module.scss';
-import AnimationHover from '../../hooks/useTextAnimation/CloneTextWrapper';
+import NotCopie from '../notCopie/NotCopie';
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   return (
     <div className={styles.footer}>
       <div className={styles.footer__links}>
@@ -32,8 +32,8 @@ export default function Footer() {
           <li>
             <h3>Contact</h3>
           </li>
-          <li className="notCopie" onMouseDown={(e) => e.preventDefault()}>
-            maxime @ theneaumaxime.fr
+          <li>
+            <NotCopie />
           </li>
           <li>
             <Link href="/Contact">
@@ -52,13 +52,6 @@ export default function Footer() {
               Twitter
             </Link>
           </li>
-
-          {/* <li>
-            <Link href="https://www.facebook.com/unetaupechezvous/" target="_blank">
-                <i className="icon-facebook" />
-                Facebook
-            </Link>
-          </li> */}
         </ul>
       </div>
     </div>

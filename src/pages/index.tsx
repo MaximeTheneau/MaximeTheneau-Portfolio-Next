@@ -2,15 +2,16 @@ import * as React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import Cards from '../components/cards/cards';
-import Faq from '../components/faq/faq';
+import type { NextPageWithLayout } from './_app';
+import Cards from '../components/cards/Cards';
+import Faq from '../components/faq/Faq';
 import styles from './Pages.module.scss';
 import SlideTransition from '../hooks/useSlideTransition/SlideTransition';
 import HoverAnimation from '../hooks/useTextAnimation/TextAnimationWrapper';
-import imageLoaderFull from '../utils/imageLoaderFull';
-import imageThumbnail from '../utils/imageThumbnail';
+import ImageLoaderFull from '../utils/ImageLoaderFull';
+import imageThumbnail from '../utils/ImageThumbnail';
 import ContactForm from '../components/contact/Contact';
-import VideoLoader from '../utils/videoLoader';
+import VideoLoader from '../utils/VideoLoader';
 import HeadComponents from '../components/head/HeadComponents';
 
 export async function getStaticProps() {
@@ -23,11 +24,8 @@ export async function getStaticProps() {
   // const responseServices = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Services`);
   // const services = await responseServices.json();
 
-  // const responseArticles = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Articles`);
-  // const articles = await responseArticles.json();
-
-  // const responseFaq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
-  // const faq = await responseFaq.json();
+  const responseFaq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
+  const faq = await responseFaq.json();
 
   return {
     props: {
@@ -35,7 +33,7 @@ export async function getStaticProps() {
       creation,
       // services,
       // articles,
-      // faq,
+      faq,
     },
   };
 }
@@ -44,8 +42,9 @@ export default function Home({
   accueil,
   services,
   creation,
+  faq,
   //  articles, faq, reviews,
-}) {
+}): NextPageWithLayout {
   const descriptionMeta:string = 'Taupier professionnels agréé de la lutte contre les taupes, fouines et ragondins. Intervention en Eure (28), Yvelines (78) et Essonne (91). Devis gratuit.';
 
   // schema.org
@@ -76,14 +75,8 @@ export default function Home({
       <section>
         <div className={styles.home__header}>
           <div className={styles.home__header__image}>
-            <Image
-              src="Theneau-Maxime.webp"
-              alt={accueil.altImg || accueil.title}
-              loader={imageLoaderFull}
-              quality={90}
-              width={600}
-              height={600}
-              className={styles.home__header__image}
+            <VideoLoader
+              src={accueil.slug}
             />
           </div>
           <div className={styles.home__header__title}>
@@ -95,17 +88,19 @@ export default function Home({
         {/* --About--*/}
         <div className={styles.home__about}>
           <div>
+
             {accueil.paragraphPosts.map((paragraphArticle) => (
-              <div key={paragraphArticle.subtitle}>
-                <div className={styles.home__about}>
-                  <h2>
-                    <HoverAnimation>
-                      {paragraphArticle.subtitle}
-                    </HoverAnimation>
-                  </h2>
-                </div>
+              <>
+                <h2 key={paragraphArticle.subtitle}>
+                  {paragraphArticle.subtitle}
+                </h2>
+                <ul>
+                  {accueil.listPosts.map((listArticle) => (
+                    <li key={listArticle.id}>{listArticle.title}</li>
+                  ))}
+                </ul>
                 <p className="w-responsive">{paragraphArticle.paragraph}</p>
-              </div>
+              </>
             ))}
 
             <Link href="/contact" className="button">
@@ -114,55 +109,23 @@ export default function Home({
             </Link>
           </div>
 
-          {/* <ScrollParallaxTop>
-            <Image
-              src={`Articles.webp`}
-              alt={accueil.altImg || accueil.title}
-              loader={imageLoaderFull}
-              quality={100}
-              width={1080}
-              height={720}
-              sizes="100vw"
-              className={styles.home__category__image}
-              style={{ objectPosition: '0 var(--topImg)' }}
-            />
-          </ScrollParallaxTop> */}
-          {/* <Cards cards={services} path="services" /> */}
         </div>
 
         {/* --Création--*/}
         <div>
           {creation.map((creations) => (
-            <div className={styles.home__creation} key={creations.title}>
-              <div className={styles.home__creation__header}>
-                <div className={styles.home__creation__title}>
-                  <SlideTransition
-                    translate="0, 10%"
-                    delay={0.5}
-                  >
+            <SlideTransition delay={1}>
+              <div className={styles.home__creation} key={creations.title}>
+                <div className={styles.home__creation__header}>
+                  <div className={styles.home__creation__header__title}>
                     <h2>{creations.title}</h2>
-                  </SlideTransition>
-                </div>
-                <div className={styles.home__creation__video}>
-                  <SlideTransition
-                    translate="0%, 50%"
-                    delay={0}
-                  >
+                  </div>
+                  <div className={styles.home__creation__header__video}>
                     <VideoLoader src={creations.slug} />
-                  </SlideTransition>
+                  </div>
                 </div>
-              </div>
-              <div className={styles.home__creation__footer}>
-                <SlideTransition
-                  translate="0%, 100%"
-                  delay={0.1}
-                >
+                <div className={styles.home__creation__footer}>
                   <p>{creations.contents}</p>
-                </SlideTransition>
-                <SlideTransition
-                  translate="0, 100%"
-                  delay={0.5}
-                >
                   <Link
                     href={`/Creation/${creations.slug}`}
                     className={`button ${styles.home__creation__footer__button}`}
@@ -170,14 +133,21 @@ export default function Home({
                     En savoir plus
                     <i className="icon-scroll" />
                   </Link>
-                </SlideTransition>
+                </div>
               </div>
-            </div>
+            </SlideTransition>
           ))}
         </div>
 
-        {/* --Contact--*/}
+        {/* --FAQ--*/}
+        <div>
+          <Link href={faq.slug}>
+            <h2 className="title__faqs">{faq.title}</h2>
+          </Link>
+          <Faq faq={faq} />
+        </div>
 
+        {/* --Contact--*/}
         <div className={styles.home__contact}>
           <div className={styles.home__contact__title}>
             <h2>{accueil.titleContact}</h2>
@@ -186,13 +156,6 @@ export default function Home({
             <ContactForm />
           </div>
         </div>
-
-        {/* <div>
-          <Link href={faq.slug}>
-            <h2 className="title__faqs">{faq.title}</h2>
-          </Link>
-          <Faq faq={faq} />
-        </div> */}
       </section>
     </>
   );

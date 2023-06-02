@@ -23,9 +23,9 @@ button,
   }
   border: 0.2rem solid rgba(255, 255, 255, 0);
   &:hover{
-    background: $color-primary !important;
-    font-size: $font-size-small;
-    border: 0.2rem solid $color-white;
+    background: $color-secondary-light !important;
+    transform: scale(0.9) !important;
+    border: 0.2rem solid $color-white !important;
 
     & i{
       transform: rotate(21deg) scale(1.2) !important;

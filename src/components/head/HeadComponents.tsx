@@ -28,14 +28,13 @@ export default function HeadComponents({
         href={process.env.NEXT_PUBLIC_URL + url}
         key="canonical"
       />
-      {addProduct && (  
+      {addProduct && (
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={addProduct}
         key="product-jsonld"
       />
-      )
-    }
+      )}
     </Head>
   );
 }

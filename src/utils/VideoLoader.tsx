@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import imageLoaderFull from './imageLoaderFull';
+import ImageLoaderFull from './ImageLoaderFull';
 
 interface VideoLoaderProps {
   src: string;
@@ -24,11 +24,10 @@ export default function VideoLoader({ src }: VideoLoaderProps) {
                 />
                 <Image
                   src={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${src}.webp`}
-                  loader={imageLoaderFull}
+                  loader={ImageLoaderFull}
                   width={1080}
                   height={720}
                   alt="Video"
-                  layout="fill"
                 />
               </video>
         </div>

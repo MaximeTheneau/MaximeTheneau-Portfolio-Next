@@ -1,8 +1,14 @@
 import Link from 'next/link';
 import styles from './Category.module.scss';
 
+type CategoryProps = {
+  category: {
+    slug: string;
+    name: string;
+  };
+};
 
-export default function category({ category }) {
+export default function Category({ category }: CategoryProps) {
   return (
     <nav>
         <ul className={styles.category}>

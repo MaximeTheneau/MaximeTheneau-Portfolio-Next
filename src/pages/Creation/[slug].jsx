@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../Pages.module.scss';
 import Page404 from '../404';
-import imageLoaderFull from '../../utils/imageLoaderFull';
+import ImageLoaderFull from '../../utils/ImageLoaderFull';
 
 export async function getStaticPaths() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&category=Creations`);
@@ -81,7 +81,7 @@ export default function Slug({ post }) {
           <Image
             src={`${post.slug}.webp`}
             alt={post.altImg || post.title}
-            loader={imageLoaderFull}
+            loader={ImageLoaderFull}
             quality={100}
             width="1080"
             height="720"
