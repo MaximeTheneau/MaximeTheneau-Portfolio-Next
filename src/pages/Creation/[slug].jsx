@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../Pages.module.scss';
+import styles from '../../styles/Pages.module.scss';
 import Page404 from '../404';
 import ImageLoaderFull from '../../utils/ImageLoaderFull';
 
@@ -38,15 +38,11 @@ export default function Slug({ post }) {
     "dateModified": "${post.updatedAt}",
     "author": {
       "@type": "Person",
-      "name": "Laurent THENEAU"
+      "name": "THENEAU Maxime"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Une taupe chez vous",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "${process.env.NEXT_PUBLIC_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/Logo-Une-Taupe-Chez-Vous.jpg"
-      }
+      "name": "THENEAU Maxime",
     }
   }
 `,
@@ -93,13 +89,7 @@ export default function Slug({ post }) {
         <div>
           <h1>{post.title}</h1>
           {/* Button Technologies */}
-          <ul className={styles.page__list}>
-            {post.listPosts.filter((postLinks) => postLinks.title !== 'GitHub' && postLinks.title !== 'Website').map((postLink) => (
-              <li key={postLink.title} className={styles.page__list__item}>
-                {postLink.title}
-              </li>
-            ))}
-          </ul>
+
           <p>{post.contents}</p>
           {post.paragraphPosts.map((paragraphPosts) => (
             <>
@@ -107,24 +97,22 @@ export default function Slug({ post }) {
               <p>{paragraphPosts.paragraph}</p>
             </>
           ))}
-          <div className={styles.page__list__links}>
-            {/* Links : */}
-            {post.listPosts.filter((post) => post.title == 'GitHub').map((post) => (
-              <Link href={post.description} key={post.id} className="button">
-                {post.title}
-                <i className="icon-github" />
-              </Link>
-            ))}
-            {post.listPosts.filter((post) => post.title == 'Website').map((post) => (
-              <Link href={post.description} key={post.id} className="button">
-                {post.title}
-                <i className="icon-confirmation1" />
-              </Link>
-            ))}
-          </div>
+            <div className={styles.page__list__links}>
+              {post.github && (
+                <Link href={post.github} className="button">
+                  Github
+                  <i className="icon-github" />
+                </Link>
+              )}
+              {post.website && (
+                <Link href={post.website} className="button">
+                  Website
+                  <i className="icon-website" />
+                </Link>
+              )}
+            </div>
         </div>
       </div>
-
     </>
   );
 }

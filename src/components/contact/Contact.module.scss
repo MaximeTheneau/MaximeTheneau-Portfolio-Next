@@ -3,6 +3,8 @@
 .contact{
     width: 100%;
     margin: 0 auto;
+    background: $color-secondary-light;
+    padding: 1rem;
     &__input{
         margin: 1.5rem 0;
         display: flex;

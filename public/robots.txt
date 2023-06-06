@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://theneaumaxime.fr
+
+# Sitemaps
+Sitemap: https://theneaumaxime.fr/sitemap.xml

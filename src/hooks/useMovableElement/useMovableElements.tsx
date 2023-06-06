@@ -5,10 +5,8 @@ type MovableElementsStyle = {
 };
 
 type UseMovableElementsProps = {
-  elementRef: MutableRefObject<HTMLElement | null>;
 };
-
-export default function useMovableElements({ elementRef }: UseMovableElementsProps) {
+export const useMovableElements = ({ elementRef }: { elementRef: React.MutableRefObject<HTMLDivElement> }) => {
   const [offset, setOffset] = useState<number | null>(null);
 
   useEffect(() => {
@@ -24,4 +22,6 @@ export default function useMovableElements({ elementRef }: UseMovableElementsPro
   const style: MovableElementsStyle = { '--topImg': `${offset}%`, height: '30vw' };
 
   return { style };
-}
+};
+
+

@@ -22,11 +22,6 @@ export default function Footer(): JSX.Element {
               Foire aux questions
             </Link>
           </li>
-          <li>
-            <Link href="/articles">
-              Articles
-            </Link>
-          </li>
         </ul>
         <ul>
           <li>

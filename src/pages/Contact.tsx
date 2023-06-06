@@ -1,5 +1,5 @@
 import ContactForm from '../components/contact/Contact';
-import styles from './Pages.module.scss';
+import styles from '../styles/Pages.module.scss';
 import HeadComponents from '../components/head/HeadComponents';
 
 type ContactPageProps = {
@@ -38,7 +38,6 @@ export default function Contact({ page }: ContactPageProps) {
         <p>
           {page.contents}
         </p>
-        <h2>Contactez-nous - Devis gratuit</h2>
         <ContactForm />
       </section>
     </>

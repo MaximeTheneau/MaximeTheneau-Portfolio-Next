@@ -1,13 +1,9 @@
 import * as React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
-import type { NextPageWithLayout } from './_app';
-import Cards from '../components/cards/Cards';
 import Faq from '../components/faq/Faq';
-import styles from './Pages.module.scss';
+import styles from '../styles/Pages.module.scss';
 import SlideTransition from '../hooks/useSlideTransition/SlideTransition';
-import HoverAnimation from '../hooks/useTextAnimation/TextAnimationWrapper';
 import ImageLoaderFull from '../utils/ImageLoaderFull';
 import imageThumbnail from '../utils/ImageThumbnail';
 import ContactForm from '../components/contact/Contact';
@@ -44,7 +40,7 @@ export default function Home({
   creation,
   faq,
   //  articles, faq, reviews,
-}): NextPageWithLayout {
+}) {
   const descriptionMeta:string = 'Taupier professionnels agréé de la lutte contre les taupes, fouines et ragondins. Intervention en Eure (28), Yvelines (78) et Essonne (91). Devis gratuit.';
 
   // schema.org
@@ -112,9 +108,15 @@ export default function Home({
         </div>
 
         {/* --Création--*/}
+        <div className={styles['home__creation--title']}>
+          <h2>Mes projets :</h2>
+          <Link href="/Creation" >
+            Voir tous mes projets
+          </Link>
+        </div>
         <div>
           {creation.map((creations) => (
-            <SlideTransition delay={1}>
+            <SlideTransition >
               <div className={styles.home__creation} key={creations.title}>
                 <div className={styles.home__creation__header}>
                   <div className={styles.home__creation__header__title}>
@@ -140,7 +142,7 @@ export default function Home({
         </div>
 
         {/* --FAQ--*/}
-        <div>
+        <div className={styles.home__faq}>
           <Link href={faq.slug}>
             <h2 className="title__faqs">{faq.title}</h2>
           </Link>

@@ -1,6 +1,7 @@
 @import '../styles/variables.scss';
 
 .page{
+  padding: 1rem;
   &__contents{
     display: flex;
     flex-direction: column;
@@ -116,6 +117,15 @@
   }
   &__creation{
     margin: 2rem 0;
+    &--title{
+      margin: 1rem;
+      & h2{
+        font-size: $font-size-large;
+        color: $color-secondary;
+        padding: 0 0 5%;
+      }
+  
+    }
     &__footer{
       width: 100%;
       &__button{
@@ -138,7 +148,9 @@
       }
     }
   }
-
+  &__faq{
+    padding: 2rem 2vw;
+  }
   
 }
 
@@ -216,18 +228,33 @@
       }
     }
     &__creation{
+      &--title{
+        font-size: 2rem;
+        display: flex;
+        justify-content: space-between;
+        & h2{
+          font-size: 2rem;
+          padding: 0;
+        }
+        & a{
+          font-size: 1rem;
+          padding: 0;
+        }
+      }
       &__header{
         display: flex;
+        justify-content: center;
+        align-items: center;
         &__video{
-          width: 40%;
+          width: 30%;
           height: auto;
           object-fit: cover;
         }
         &__title{
-          width: 60%;
+          width: 40%;
           transform: translate(10%, 20%);
           & h2{
-            font-size: $font-size-large;
+            font-size: $font-size-medium;
           }
         }
       }
