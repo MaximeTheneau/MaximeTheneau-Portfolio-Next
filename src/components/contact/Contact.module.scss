@@ -3,6 +3,8 @@
 .contact{
     width: 100%;
     margin: 0 auto;
+    background: $color-secondary-light;
+    padding: 1rem;
     &__input{
         margin: 1.5rem 0;
         display: flex;
@@ -28,17 +30,14 @@
 }
 
 //* Media Queries
-
-@media screen and (min-width: 720px) {
-    .contact{
+@media screen and (min-width: 768px){
+      .contact{
+        display: flex;
+        &__block{
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        }
     }
-
-
-}
-  
-@media screen and (min-width: 1024px) {
-    .contact{
-
-    }
-}
-  

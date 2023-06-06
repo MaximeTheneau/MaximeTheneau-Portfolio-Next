@@ -3,6 +3,7 @@
 @use './icon.scss';
 @use './button.scss';
 @import './variables.scss';
+@import './cursor.scss';
 
 html,
 body {
@@ -13,23 +14,34 @@ body {
   white-space: pre-line;
   overflow-x: hidden !important;
   max-width: 100%;
+  
 }
 
-a:hover .cursor {
-  border: none !important;
+a:hover,
+select:hover,
+input:hover,
+textarea:hover,
+input:focus-visible,
+textarea:focus,
+select:focus,
+button:hover,
+form > div:hover > ::placeholder,
+.faq-question:hover{
+  color: $color-primary !important;
+  transform: scale(calc(100% / 1.02));
+  font-size: calc(100% / 1.02) !important;
+  transition: all 0.1s ease-in-out;
 }
 
 
-h1,h2,h3,h4,h5,h6{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
   font-family: 'fontTitle';
-}
-h1{
-  font-size: $font-size-large;
-}
-h2{
-  font-size: $font-size-medium;
-  margin: 0 0 1rem 0;
-  display: inline-block;
 }
 
 a {
@@ -40,6 +52,8 @@ a {
 * {
   box-sizing: border-box;
   // box-shadow: 0 0 0 3px red !important;
+  // cursor: none;
+
 }
 
 p{
@@ -103,6 +117,7 @@ select{
   color: $font-color;
   background: none;
   padding: 0.5rem;
+  cursor: pointer;
   &:focus{
     outline: none;
   }
@@ -117,6 +132,10 @@ iframe {
 .block{
   display: block;
   animation: opacity 0.5s ease 0s;
+}
+
+.m-1{
+  margin: 1rem;
 }
 @keyframes opacity{
   0%{
@@ -165,9 +184,6 @@ iframe {
 }
 
 .notCopie{
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 strong{
@@ -251,3 +267,5 @@ strong{
     transform: translateY(-100%);
   }
 }
+
+

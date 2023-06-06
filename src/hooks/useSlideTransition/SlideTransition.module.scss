@@ -1,13 +1,8 @@
 
 .slideTransition {
-    transform: translate(0, 0);
-    opacity: 1;
-    transition: all 0.5s ease var(--delay);
-    overflow: hidden;
+    transform-origin: 50% 50%;
     &__hidden {
         opacity: 0;
         transform: translate(var(--translate));
-        transition: all 0.5s ease var(--delay);
-        overflow: hidden;
     }
 }

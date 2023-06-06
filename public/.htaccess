@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+
+
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+RewriteRule !\.\w{2,4}$ %{REQUEST_URI}.html [L]
+
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+RewriteRule !\.\w{2,4}$ %{REQUEST_URI}.html [L]
+
+ErrorDocument 404 /404.html
+
+
+</IfModule>
+

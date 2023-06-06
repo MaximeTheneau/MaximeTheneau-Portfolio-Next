@@ -1,17 +1,14 @@
-/* eslint-disable quote-props */
 import * as React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Cards from '../components/cards/cards';
-import Faq from '../components/faq/faq';
-import styles from './Pages.module.scss';;
+import Faq from '../components/faq/Faq';
+import styles from '../styles/Pages.module.scss';
 import SlideTransition from '../hooks/useSlideTransition/SlideTransition';
-import HoverAnimation from '../hooks/useTextAnimation/TextAnimationWrapper';
-import imageLoaderFull from '../utils/imageLoaderFull';
-import Image from 'next/image';
-import imageThumbnail from '../utils/imageThumbnail';
-import ContactForm from '../components/contact/contactForm';
-
+import ImageLoaderFull from '../utils/ImageLoaderFull';
+import imageThumbnail from '../utils/ImageThumbnail';
+import ContactForm from '../components/contact/Contact';
+import VideoLoader from '../utils/VideoLoader';
+import HeadComponents from '../components/head/HeadComponents';
 
 export async function getStaticProps() {
   const responseAccueil = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Accueil`);
@@ -23,11 +20,8 @@ export async function getStaticProps() {
   // const responseServices = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Services`);
   // const services = await responseServices.json();
 
-  // const responseArticles = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Articles`);
-  // const articles = await responseArticles.json();
-
-  // const responseFaq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
-  // const faq = await responseFaq.json();
+  const responseFaq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
+  const faq = await responseFaq.json();
 
   return {
     props: {
@@ -35,7 +29,7 @@ export async function getStaticProps() {
       creation,
       // services,
       // articles,
-      // faq,
+      faq,
     },
   };
 }
@@ -44,10 +38,11 @@ export default function Home({
   accueil,
   services,
   creation,
+  faq,
   //  articles, faq, reviews,
 }) {
   const descriptionMeta:string = 'Taupier professionnels agréé de la lutte contre les taupes, fouines et ragondins. Intervention en Eure (28), Yvelines (78) et Essonne (91). Devis gratuit.';
-  
+
   // schema.org
   function addProductJsonLd() {
     return {
@@ -61,151 +56,100 @@ export default function Home({
       "url": "${process.env.NEXT_PUBLIC_URL}"      
     }
   `,
-  };
-}
+    };
+  }
 
   return (
     <>
-      <Head>
-        <title>{accueil.title}</title>
-        <meta name="description" content={descriptionMeta} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={accueil.title} />
-        <meta property="og:description" content={descriptionMeta} />
-        <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
-        <meta property="og:site_name" content={process.env.NEXT_PUBLIC_URL} />
-        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/Accueil.jpg`} />
-        <meta name="google-site-verification" content="yObJd5noBtjUBky_GRbOOETV42Q9qAHf7w00PPz1-ss" />
-        <link
-          rel="canonical"
-          href={process.env.NEXT_PUBLIC_URL}
-          key="canonical"
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={addProductJsonLd()}
-          key="product-jsonld"
-        />
-        </Head> 
-      <>
-        <section>
-          <div className={styles.home__header} >
-            <div className={styles.home__header__image}>
-              <Image
-                src={`Theneau-Maxime.webp`}
-                alt={accueil.altImg || accueil.title}
-                loader={imageLoaderFull}
-                quality={90}
-                width={600}
-                height={600}
-                className={styles.home__header__image}
-              />
-            </div>
-            <div className={styles.home__header__title}>
-              <h1>{accueil.title}</h1>  
-              <h2>{accueil.contents}</h2>
-              <Link href="/contact" className="button">
-                Yep
-              </Link>
-            </div>
+      <HeadComponents
+        title={accueil.title}
+        descriptionMeta={process.env.NEXT_PUBLIC_DESCRIPTION}
+        url=""
+        image="Accueil"
+        addProduct={addProductJsonLd()}
+      />
+      <section>
+        <div className={styles.home__header}>
+          <div className={styles.home__header__image}>
+            <VideoLoader
+              src={accueil.slug}
+            />
           </div>
+          <div className={styles.home__header__title}>
+            <h1>{accueil.title}</h1>
+            <h2>{accueil.contents}</h2>
+          </div>
+        </div>
 
         {/* --About--*/}
-        <div className={styles.home__about} >
-          <div >
-              {accueil.paragraphPosts.map((paragraphArticle) => (
-                <>
-                      <div className={styles.home__about}>
-                      <h2>
-                        <HoverAnimation>
-                          {paragraphArticle.subtitle}
-                        </HoverAnimation>
-                      </h2>
-                  </div>
-                  <p className='w-responsive'>{paragraphArticle.paragraph}</p>
-                </>
-                  ))
+        <div className={styles.home__about}>
+          <div>
 
-              }
+            {accueil.paragraphPosts.map((paragraphArticle) => (
+              <>
+                <h2 key={paragraphArticle.subtitle}>
+                  {paragraphArticle.subtitle}
+                </h2>
+                <ul>
+                  {accueil.listPosts.map((listArticle) => (
+                    <li key={listArticle.id}>{listArticle.title}</li>
+                  ))}
+                </ul>
+                <p className="w-responsive">{paragraphArticle.paragraph}</p>
+              </>
+            ))}
 
-              <Link href="/contact" className="button">
-                Contactez-moi
-                <i className="icon-x" />
-              </Link>
+            <Link href="/contact" className="button">
+              Contactez-moi
+              <i className="icon-x" />
+            </Link>
           </div>
 
-          {/* <ScrollParallaxTop>
-            <Image
-              src={`Articles.webp`}
-              alt={accueil.altImg || accueil.title}
-              loader={imageLoaderFull}
-              quality={100}
-              width={1080}
-              height={720}
-              sizes="100vw"
-              className={styles.home__category__image}
-              style={{ objectPosition: '0 var(--topImg)' }}
-            />
-          </ScrollParallaxTop> */}
-          {/* <Cards cards={services} path="services" /> */}
         </div>
 
         {/* --Création--*/}
+        <div className={styles['home__creation--title']}>
+          <h2>Mes projets :</h2>
+          <Link href="/Creation" >
+            Voir tous mes projets
+          </Link>
+        </div>
         <div>
-          {creation.map((creation) => (
-              <div className={styles.home__creation} key={creation.id}>
+          {creation.map((creations) => (
+            <SlideTransition >
+              <div className={styles.home__creation} key={creations.title}>
                 <div className={styles.home__creation__header}>
-                  <div className={styles.home__creation__title}>
-                    <SlideTransition
-                      translate={"-100%, 0%"}
-                      delay={0.5}
-                    >
-                      <h2>{creation.title}</h2>
-                    </SlideTransition>
+                  <div className={styles.home__creation__header__title}>
+                    <h2>{creations.title}</h2>
                   </div>
-                    <div className={styles.home__creation__video}>
-                      <SlideTransition
-                        translate={"0%, 50%"}
-                        delay={0}
-                      >
-                        <video
-                          autoPlay
-                          loop
-                          muted
-                          width={1080}
-                          height={720}
-                          className={styles.home__creation__video}
-                        >
-                          <source
-                            src={`${process.env.NEXT_PUBLIC_CLOUD_URL_VIDEO}/${creation.slug}.webm`}
-                          />
-                        </video>
-                      </SlideTransition>
-                    </div>
+                  <div className={styles.home__creation__header__video}>
+                    <VideoLoader src={creations.slug} />
+                  </div>
                 </div>
                 <div className={styles.home__creation__footer}>
-                  <SlideTransition
-                    translate={"0%, 100%"}
-                    delay={0.4}
+                  <p>{creations.contents}</p>
+                  <Link
+                    href={`/Creation/${creations.slug}`}
+                    className={`button ${styles.home__creation__footer__button}`}
                   >
-                    <p>{creation.contents}</p>
-                  </SlideTransition>
-                  <SlideTransition
-                    translate={"-100%, 0%"}
-                    delay={0.5}
-                  >
-                    <Link href={`/Creation/${creation.slug}`} className={`button ${styles.home__creation__footer__button}`} >
-                      En savoir plus
-                      <i className="icon-scroll" />
-                    </Link>
-                  </SlideTransition>
+                    En savoir plus
+                    <i className="icon-scroll" />
+                  </Link>
                 </div>
               </div>
+            </SlideTransition>
           ))}
         </div>
 
-        {/* --Contact--*/}
+        {/* --FAQ--*/}
+        <div className={styles.home__faq}>
+          <Link href={faq.slug}>
+            <h2 className="title__faqs">{faq.title}</h2>
+          </Link>
+          <Faq faq={faq} />
+        </div>
 
+        {/* --Contact--*/}
         <div className={styles.home__contact}>
           <div className={styles.home__contact__title}>
             <h2>{accueil.titleContact}</h2>
@@ -214,15 +158,7 @@ export default function Home({
             <ContactForm />
           </div>
         </div>
-
-        {/* <div>
-          <Link href={faq.slug}>
-            <h2 className="title__faqs">{faq.title}</h2>
-          </Link>
-          <Faq faq={faq} />
-        </div> */}
-        </section>
-      </>
+      </section>
     </>
   );
 }

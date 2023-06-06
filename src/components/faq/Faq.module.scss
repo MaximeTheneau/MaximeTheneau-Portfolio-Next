@@ -9,6 +9,8 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        font-size: $font-size;
+        padding: 0 ;
         & i{
             font-size: 1rem;
         }
