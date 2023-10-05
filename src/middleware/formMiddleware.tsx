@@ -4,7 +4,7 @@ export default function formMiddleware(req, handleResponse200, handleResponseErr
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(req),
   };
-  fetch(`${process.env.NEXT_PUBLIC_API_CONTACT}`, requestOptions)
+  fetch(`https://back.theneau-maxime.fr/api/contacteee`, requestOptions)
     .then((response) => {
 
       if (response.ok) {

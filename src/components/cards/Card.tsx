@@ -18,21 +18,23 @@ type CardProps = {
 export default function Card({ card, path }: CardProps) {
   const pathCard = card.subcategory ? `${path}/${card.subcategory.slug}` : path;
   return (
-    <Link href={`/${pathCard}/${card.slug}`}>
-      <Image
-        src={`${card.slug}.webp`}
-        alt={card.altImg || card.title}
-        width={330}
-        height={310}
-        loader={imageThumbnail}
-        quality={70}
-        sizes="100vw"
-        style={{
-          width: '100%',
-          height: 'auto',
-        }}
-      />
-      <h3 className={styles.card__content}>{card.title}</h3>
-    </Link>
+    <li className={styles.card}>
+      <Link href={`/${pathCard}/${card.slug}`}>
+        <Image
+          src={`${card.slug}.webp`}
+          alt={card.altImg || card.title}
+          width={330}
+          height={310}
+          loader={imageThumbnail}
+          quality={70}
+          sizes="100vw"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+        />
+        <h3 className={styles.card__content}>{card.title}</h3>
+      </Link>
+    </li>
   );
 }

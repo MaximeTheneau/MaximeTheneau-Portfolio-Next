@@ -12,8 +12,8 @@ export default function Category({ category }: CategoryProps) {
   return (
     <nav>
         <ul className={styles.category}>
-          <li className='button'>
-            <Link href="/articles">
+          <li className='button' role='link'>
+            <Link href="/articles" data-testid="articles-link"  >
               Articles
             </Link>
           </li>

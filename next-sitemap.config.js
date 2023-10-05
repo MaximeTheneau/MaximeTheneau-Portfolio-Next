@@ -1,5 +1,5 @@
 const config = {
-  siteUrl: 'https://theneaumaxime.fr',
+  siteUrl: 'https://unetaupechezvous.fr',
   generateRobotsTxt: true,
   changefreq: 'daily',
   priority: 0.7,

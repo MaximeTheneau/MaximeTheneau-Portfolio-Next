@@ -101,7 +101,7 @@ export default function Home({
 
             <Link href="/contact" className="button">
               Contactez-moi
-              <i className="icon-x" />
+              <i className="icon-scroll" />
             </Link>
           </div>
 

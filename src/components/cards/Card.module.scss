@@ -10,11 +10,13 @@
 }
 .card{
   width: 90%;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px 0 rgba(99,99,99,.2);
 
   & img{
     border-radius: 0.5rem;
-    max-height: 202px;
-    object-fit: cover;
+    height: 202px !important;
+    object-fit: contain;
   }
   &__content{
     padding: 5%;
@@ -22,8 +24,6 @@
     text-align: center;
   }
   &:hover{
-    background-color: $color-primary;
-    color: $color-white;
     border-radius: $border-radius;
   }
 }

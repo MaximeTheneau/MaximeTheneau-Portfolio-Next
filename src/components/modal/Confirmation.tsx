@@ -8,7 +8,7 @@ export default function Confirmation({
       <div className={styleModal.modal__blur} />
       <div className={styleModal.modal}>
 
-        <h2>{title}</h2>
+        <h2 title='Response'>{title}</h2>
         <p>{message}</p>
         <button
           type="button"

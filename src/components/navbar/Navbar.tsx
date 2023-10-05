@@ -67,7 +67,7 @@ export default function Navbar() {
          */
        }
       <nav
-        className={`${styles.navbar__responsive} ${styles.navbar}`}
+        className={`${isNavVisible ? `${styles.navbar__responsive} ${styles.navbar}` : styles['navbar--hidden']}`}
         onMouseLeave={handleMouseLeave}
       >
         <div
@@ -98,7 +98,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li className={styles['navbar__responsive__list-item']}>
-              <Link href="/contact">
+              <Link href="/Contact">
                 <span className={styles['navbar__responsive__list-item-link']}>Contact</span>
               </Link>
             </li>
