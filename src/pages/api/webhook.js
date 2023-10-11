@@ -9,6 +9,7 @@ export default async function handler(req, res) {
 
   if (token !== `Bearer ${authToken}`) {
     res.status(401).send('Non autorisé');
+    
     return;
   }
   gitPull.stdout.on('data', (data) => {
