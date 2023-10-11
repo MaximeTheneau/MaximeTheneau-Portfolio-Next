@@ -22,6 +22,16 @@ export default function Footer(): JSX.Element {
               Foire aux questions
             </Link>
           </li>
+          <li>
+            <Link href="/Mentions-legales">
+              Mentions légales
+            </Link>
+          </li>
+          <li>
+            <Link href="/Creation">
+              Mes projets
+            </Link>
+          </li>
         </ul>
         <ul>
           <li>

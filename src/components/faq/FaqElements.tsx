@@ -19,7 +19,7 @@ function FaqElements({ faq, toggleFAQ }: FaqElementsProps) {
     <li className={styles.faqs} onClick={() => toggleFAQ(faq.id)}>
       <h2 className="faq-question">
         {faq.title}
-        {faq.open ? <i className="icon-x" /> : <i className="icon-open" />}
+        {faq.open ? <i className="icon-x" /> : <i className="icon-scroll" />}
       </h2>
       <p className={`faq-answer ${faq.open ? 'block' : 'none'}`}>
         {faq.description}

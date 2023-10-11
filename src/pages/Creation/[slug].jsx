@@ -107,7 +107,7 @@ export default function Slug({ post }) {
               {post.website && (
                 <Link href={post.website} className="button">
                   Website
-                  <i className="icon-website" />
+                  <i className="icon-scroll" />
                 </Link>
               )}
             </div>
