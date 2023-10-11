@@ -1,7 +1,7 @@
 import { spawn } from 'child_process';
 
 export default async function handler(req, res) {
-  const branch = 'main'; // La branche que vous souhaitez mettre à jour
+  const branch = 'main'; 
   const gitPull = spawn('git', ['pull', 'origin', branch]);
 
   const authToken = process.env.AUTH_TOKEN;
