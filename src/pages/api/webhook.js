@@ -14,8 +14,8 @@ export default async function handler(req, res) {
 
   gitPull.on('close', (code) => {
     if (code === 0) {
-      console.log('Git pull successful Yep.');
-      res.status(200).send('Git pull successful Yep.');
+      console.log('Git pull successful :).');
+      res.status(200).send('Git pull successful :).');
     } else {
       console.error(`Git pull failed with code ${code}`);
       res.status(500).send(`Git pull failed with code ${code}`);
