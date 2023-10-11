@@ -17,6 +17,12 @@ export default async function handler(req, res) {
   }
 
   const branch = 'main'; 
+  const gitStash = spawn('git', ['stash']);
+
+  gitStash.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+  });
+  
   const gitPull = spawn('git', ['pull', 'origin', branch]);
 
   gitPull.stdout.on('data', (data) => {
