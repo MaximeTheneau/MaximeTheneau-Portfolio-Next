@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3001",
     "export": "next export",
     "test": "jest --watch",
-    "sitemap": "next-sitemap",
+    "sitemap": "next-sitemap ",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
   "dependencies": {

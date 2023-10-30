@@ -33,9 +33,3 @@ Next.js - Symfony
 * **Theneau Maxime** _alias_ [@MaximeTheneau](https://github.com/MaximeTheneau)
 
 
-
-sudo ln -s "$(pwd)/symfony.conf" /etc/nginx/sites-available/back.unetaupechezvous.fr.conf
-
-
-
-sudo certbot certonly --standalone -d unetaupechezvous.fr
