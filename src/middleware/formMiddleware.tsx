@@ -3,7 +3,7 @@ export default function formMiddleware(req, handleResponse200, handleResponseErr
     method: 'POST',
     body: JSON.stringify(req),
   };
-  fetch(`https://back.theneau-maxime.fr/api/contact`, requestOptions)
+  fetch(`https://back.theneaumaxime.fr/api/contact`, requestOptions)
     .then((response) => {
       if (response.ok) {
         handleResponse200();
