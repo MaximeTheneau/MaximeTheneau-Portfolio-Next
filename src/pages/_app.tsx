@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import type { AppProps } from 'next/app';
 import Layout from '../components/layout';
 import '../styles/globals.scss';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -16,10 +17,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.pathname]);
 
   return (
-    <Layout>
+    <>
+      <Head>
+        <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_WEBMASTER} />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </Head>
+      <Layout>
       {animateTransition && <div className="transition" />}
       <Component {...pageProps} />
     </Layout>
+    </>
+   
   );
 }
 
