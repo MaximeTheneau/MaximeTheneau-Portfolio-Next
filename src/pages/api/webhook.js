@@ -4,7 +4,7 @@ import { createHmac } from 'crypto';
 export default async function handler(req, res) {
   const authToken = process.env.AUTH_TOKEN;
 
-  const signature = req.headers['x-hub-signature-256'];
+  const signature = req.headers['X-Hub-Signature-256'];
   const body = JSON.stringify(req.body);
   
   const hmac = createHmac('sha256', authToken);
