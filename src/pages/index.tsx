@@ -99,7 +99,7 @@ export default function Home({
               </>
             ))}
 
-            <Link href="/contact" className="button">
+            <Link href="/Contact" className="button">
               Contactez-moi
               <i className="icon-scroll" />
             </Link>

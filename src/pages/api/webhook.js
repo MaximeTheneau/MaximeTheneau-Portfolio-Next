@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   const calculatedSignature = `sha256=${hmac.digest('hex')}`;
 
   if (signature !== calculatedSignature) {
-    res.status(401).send('Unauthorized request!');
+    res.status(401).send(signature);
     
     return;
   }
