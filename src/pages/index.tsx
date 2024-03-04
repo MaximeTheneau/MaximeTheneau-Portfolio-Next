@@ -76,7 +76,7 @@ export default function Home({
             />
           </div>
           <div className={styles.home__header__title}>
-            <h1>{accueil.title}</h1>
+            <h1 className="text-3xl font-bold underline">{accueil.title}</h1>
             <h2>{accueil.contents}</h2>
           </div>
         </div>
