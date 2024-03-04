@@ -140,7 +140,7 @@ export default function ContactForm() {
       },
     });
     const req = state.form;
-    formMiddleware(req, handleResponse200, handleResponseError);
+    formMiddleware(req, 'contact', handleResponse200, handleResponseError);
   };
 
   return (

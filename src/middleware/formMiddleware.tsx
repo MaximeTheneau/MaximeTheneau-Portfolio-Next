@@ -1,9 +1,9 @@
-export default function formMiddleware(req, handleResponse200, handleResponseError) {
+export default function formMiddleware(req, apiPath, handleResponse200, handleResponseError) {
   const requestOptions = {
     method: 'POST',
     body: JSON.stringify(req),
   };
-  fetch(`https://back.theneaumaxime.fr/api/contact`, requestOptions)
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}${apiPath}`, requestOptions)
     .then((response) => {
       if (response.ok) {
         handleResponse200();

@@ -1,5 +1,13 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  reactStrictMode: true,
+  swcMinify: true,
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     loader: 'custom',

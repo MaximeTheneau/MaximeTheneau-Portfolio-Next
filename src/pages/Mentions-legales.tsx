@@ -42,17 +42,7 @@ export default function MentionsLegal({ page }: MentionsLegalProps): JSX.Element
       <>
         <section className={styles.page__image}>
           <h1>{page.title}</h1>
-          <Image
-            src={`${page.slug}.webp`}
-            alt={page.altImg || page.title}
-            width="1080"
-            height="720"
-            quality={100}
-            loader={ImageLoaderFull}
-            sizes="(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
-            33vw"
-          />
+          
         </section>
         <section>
           <h2>{page.subtitle}</h2>
