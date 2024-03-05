@@ -17,10 +17,10 @@ export default function useSlideTransition(
       const opacity = 1 - (top / (window.innerHeight * 3));
       if (opacity >= 0.5 && opacity <= 1) {
         setOffset({
-          opacity
+          opacity,
         });
+      }
     };
-  };
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleScroll);
 
