@@ -1,7 +1,4 @@
-import Head from 'next/head';
-import Image from 'next/image';
 import styles from '../styles/Pages.module.scss';
-import ImageLoaderFull from '../utils/ImageLoaderFull';
 import HeadComponents from '../components/head/HeadComponents';
 
 type Page = {
@@ -28,7 +25,7 @@ export async function getStaticProps() {
 }
 
 // == Composant
-export default function MentionsLegal({ page }: MentionsLegalProps): JSX.Element {
+export default function MentionsLegal({ page }: MentionsLegalProps) {
   return (
     <>
       <HeadComponents
@@ -42,7 +39,6 @@ export default function MentionsLegal({ page }: MentionsLegalProps): JSX.Element
       <>
         <section className={styles.page__image}>
           <h1>{page.title}</h1>
-          
         </section>
         <section>
           <h2>{page.subtitle}</h2>

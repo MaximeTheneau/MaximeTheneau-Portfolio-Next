@@ -4,6 +4,10 @@
 @use './button.scss';
 @import './variables.scss';
 @import './cursor.scss';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 
 html,
 body {
@@ -17,7 +21,6 @@ body {
   
 }
 
-a:hover,
 select:hover,
 input:hover,
 textarea:hover,
@@ -154,6 +157,7 @@ iframe {
 .m-center{
   margin: 0 auto;
 }
+
 .relative{
   position: relative;
 }
