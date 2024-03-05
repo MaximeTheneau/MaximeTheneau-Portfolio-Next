@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Head from 'next/head';
 import styles from '../styles/Pages.module.scss';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './Footer.module.scss';
 import NotCopie from '../notCopie/NotCopie';
 
-export default function Footer(): JSX.Element {
+export default function Footer() {
   return (
     <div className={styles.footer}>
       <div className={styles.footer__links}>

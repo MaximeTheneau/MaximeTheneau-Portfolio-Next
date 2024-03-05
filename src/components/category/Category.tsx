@@ -11,21 +11,22 @@ type CategoryProps = {
 export default function Category({ category }: CategoryProps) {
   return (
     <nav>
-        <ul className={styles.category}>
-          <li className='button' role='link'>
-            <Link href="/articles" data-testid="articles-link"  >
-              Articles
-            </Link>
-          </li>
-          {category && 
-            <li className='button'>
+      <ul className={styles.category}>
+        <li className="button">
+          <Link href="/articles" data-testid="articles-link">
+            Articles
+          </Link>
+        </li>
+        {category
+            && (
+            <li className="button">
               <Link href={`/articles/${category.slug}`}>
                 {category.name}
               </Link>
             </li>
-          }
-        </ul>
+            )}
+      </ul>
     </nav>
-   
+
   );
 }

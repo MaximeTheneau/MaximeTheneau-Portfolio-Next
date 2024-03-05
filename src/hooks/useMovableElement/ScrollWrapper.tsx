@@ -1,5 +1,5 @@
 import React, { useRef, ReactNode } from 'react';
-import { useMovableElements } from "./useMovableElements";
+import { useMovableElements } from './useMovableElements';
 
 type ScrollParallaxTopProps = {
   children: ReactNode;
@@ -7,12 +7,12 @@ type ScrollParallaxTopProps = {
 
 export default function ScrollParallaxTop({
   children,
-}: ScrollParallaxTopProps): JSX.Element {
+}: ScrollParallaxTopProps) {
   const elementRef = useRef<HTMLDivElement>(null);
 
-  const parallax = useMovableElements( { elementRef });
+  const parallax = useMovableElements({ elementRef });
   return (
-    <div ref={elementRef} style={parallax.style }>
+    <div ref={elementRef} style={parallax.style}>
       {children}
     </div>
   );
