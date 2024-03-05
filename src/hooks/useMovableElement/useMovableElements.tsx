@@ -1,11 +1,10 @@
-import { useState, useEffect, MutableRefObject } from 'react';
+/* eslint-disable */
+import { useState, useEffect } from 'react';
 
 type MovableElementsStyle = {
   [key: string]: string;
 };
 
-type UseMovableElementsProps = {
-};
 export const useMovableElements = ({ elementRef }: { elementRef: React.MutableRefObject<HTMLDivElement> }) => {
   const [offset, setOffset] = useState<number | null>(null);
 
@@ -23,5 +22,3 @@ export const useMovableElements = ({ elementRef }: { elementRef: React.MutableRe
 
   return { style };
 };
-
-

@@ -1,16 +1,14 @@
-import Link from "next/link";
-import NotCopie from "../notCopie/NotCopie";
-import styles from './Contact.module.scss';
+import NotCopie from '../notCopie/NotCopie';
 
 export default function ContactAbout() {
   return (
-    <> 
-          <p itemProp="address">
-              <strong>Adresse : </strong>
-              <span itemProp="postalCode">13008 </span>
-              <span itemProp="addressLocality">Marseille</span>
-            </p>
-            <NotCopie />
-          </>
-          )
+    <>
+      <p itemProp="address">
+        <strong>Adresse : </strong>
+        <span itemProp="postalCode">13008 </span>
+        <span itemProp="addressLocality">Marseille</span>
+      </p>
+      <NotCopie />
+    </>
+  );
 }

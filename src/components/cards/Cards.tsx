@@ -1,5 +1,6 @@
 import Card from './Card';
 import styles from './Card.module.scss';
+
 type CardType = {
   id: number;
   subcategory: {

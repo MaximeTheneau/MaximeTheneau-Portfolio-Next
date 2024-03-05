@@ -2,9 +2,12 @@ import React from 'react';
 
 export default function NotCopie() {
   return (
-    <p itemProp="email" className="notCopie" onMouseDown={(e) => e.preventDefault()}>
-              <strong>Email : </strong>
-              maxime @ theneaumaxime.fr
-            </p>
-    )
+    <p
+      itemProp="email"
+      className="select-none"
+    >
+      <strong>Email : </strong>
+      maxime @ theneaumaxime.fr
+    </p>
+  );
 }

@@ -97,20 +97,20 @@ export default function Slug({ post }) {
               <p>{paragraphPosts.paragraph}</p>
             </>
           ))}
-            <div className={styles.page__list__links}>
-              {post.github && (
-                <Link href={post.github} className="button">
-                  Github
-                  <i className="icon-github" />
-                </Link>
-              )}
-              {post.website && (
-                <Link href={post.website} className="button">
-                  Website
-                  <i className="icon-scroll" />
-                </Link>
-              )}
-            </div>
+          <div className={styles.page__list__links}>
+            {post.github && (
+            <Link href={post.github} className="button">
+              Github
+              <i className="icon-github" />
+            </Link>
+            )}
+            {post.website && (
+            <Link href={post.website} className="button">
+              Website
+              <i className="icon-scroll" />
+            </Link>
+            )}
+          </div>
         </div>
       </div>
     </>

@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 
-export function GenerateHTML(component) {
+export default function GenerateHTML(component) {
   const html = `<!DOCTYPE html>${renderToStaticMarkup(component)}`;
   return html;
 }

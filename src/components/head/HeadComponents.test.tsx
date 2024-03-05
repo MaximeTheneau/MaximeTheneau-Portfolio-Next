@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { render } from '@testing-library/react';
 import HeadComponents from './HeadComponents';
 
@@ -22,7 +23,5 @@ describe('HeadComponents', () => {
     // Vérifier si les éléments sont rendus correctement
     const titleElement = document.querySelector('title');
     expect(titleElement?.innerHTML).toBe(title);
-    
-
   });
 });

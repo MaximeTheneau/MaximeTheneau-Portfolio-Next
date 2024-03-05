@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { render, act } from '@testing-library/react';
 import Card from './Card';
@@ -18,38 +19,35 @@ describe('Card component', () => {
   test('renders card with correct title', () => {
     act(() => {
       const { getByText } = render(<Card card={mockCard} path={mockPath} />);
-      const titleElement = getByText(mockCard.title);
-      expect(titleElement).toBeInTheDocument();
+      expect(getByText(mockCard.title)).toBeInTheDocument();
     });
   });
 
-  
   test('renders card with correct image source', () => {
-      act(() => {
-        const { getByRole } = render(<Card card={mockCard} path={mockPath} />);
-        const imageElement = getByRole('img');
-        const expectedSrc = 'card-slug.webp';
-  
-        expect(imageElement).toHaveAttribute('src');
-        expect(imageElement.getAttribute('src')).toContain(expectedSrc);
-      });
+    act(() => {
+      const { getByRole } = render(<Card card={mockCard} path={mockPath} />);
+      const imageElement = getByRole('img');
+      const expectedSrc = 'card-slug.webp';
+
+      expect(imageElement).toHaveAttribute('src');
+      expect(imageElement.getAttribute('src')).toContain(expectedSrc);
     });
-    test('renders card with correct link destination', () => {
-      act(() => {
-        const { getByRole } = render(<Card card={mockCard} path={mockPath} />);
-        const linkElement = getByRole('link');
-        expect(linkElement).toHaveAttribute('href');
-        expect(linkElement.getAttribute('href')).toContain(`${mockPath}/${mockCard.subcategory.slug}/${mockCard.slug}`);
-      });
+  });
+  test('renders card with correct link destination', () => {
+    act(() => {
+      const { getByRole } = render(<Card card={mockCard} path={mockPath} />);
+      const linkElement = getByRole('link');
+      expect(linkElement).toHaveAttribute('href');
+      expect(linkElement.getAttribute('href')).toContain(`${mockPath}/${mockCard.subcategory.slug}/${mockCard.slug}`);
     });
-  
-    test('renders card with correct alt text', () => {
-      act(() => {
-        const { getByRole } = render(<Card card={mockCard} path={mockPath} />);
-        const imageElement = getByRole('img');
-        expect(imageElement).toHaveAttribute('alt');
-        expect(imageElement.getAttribute('alt')).toContain(mockCard.altImg);
-      });
+  });
+
+  test('renders card with correct alt text', () => {
+    act(() => {
+      const { getByRole } = render(<Card card={mockCard} path={mockPath} />);
+      const imageElement = getByRole('img');
+      expect(imageElement).toHaveAttribute('alt');
+      expect(imageElement.getAttribute('alt')).toContain(mockCard.altImg);
     });
   });
 });
