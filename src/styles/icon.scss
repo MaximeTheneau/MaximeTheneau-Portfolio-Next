@@ -17,7 +17,6 @@
   text-transform: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.8rem;
 }
 
 .icon-search:before {
@@ -43,7 +42,6 @@
   content: "\e905";
 }
 .icon-scroll {
-  transform: rotate(124deg);
   &:before {
     content: "\e903"; 
   }

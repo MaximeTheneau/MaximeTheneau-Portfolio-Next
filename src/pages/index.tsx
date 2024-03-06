@@ -57,8 +57,9 @@ export default function Home({
         addProduct={addProductJsonLd()}
       />
       <section>
-        <div className="w-full relative">
+        <div className="relative">
           <VideoLoader
+            className="w-full sm:h-96 object-cover object-center"
             src={accueil.slug}
           />
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full text-center bg-whiteOpacity">
@@ -110,23 +111,26 @@ export default function Home({
         </Link>
         <div>
           {creation.map((creations) => (
-            <div className="mt-10 bg-secondaryLight">
+            <div className="mt-10 ">
               <Link href={`/Creation/${creations.slug}`} key={creations.title}>
-                <div className="grid sm:grid-cols-2">
-                  <div className="flex flex-col m-4 ">
-                    <h2 className="text-lg">{creations.title}</h2>
+                <div className="grid sm:grid-cols-4 sm:gap-4 relative">
+                  <div className="col-span-1" />
+                  <div className="flex flex-col p-4 sm:col-span-1 bg-secondaryLight min-h-96">
+                    <h2 className=" text-lg">{creations.title}</h2>
                     <p>{creations.contents}</p>
-                    <Button
-                      text="En savoir plus"
-                      link={null}
-                      icon="icon-paper-plane"
+                    <span className="font-bold  hover:underline transition-all  duration-300">
+                      En savoir plus
+                      {' '}
+                      <i className="icon-angle-right text-base" />
+                    </span>
+
+                  </div>
+                  <div className="order-first sm:order-last sm:col-span-1 sm:-translate-x-12 sm:translate-y-4">
+                    <VideoLoader
+                      src={creations.slug}
                     />
                   </div>
-                  <div className="order-first sm:order-last">
-                    <VideoLoader src={creations.slug} />
-                  </div>
                 </div>
-                <div className="w-70" />
               </Link>
             </div>
           ))}
