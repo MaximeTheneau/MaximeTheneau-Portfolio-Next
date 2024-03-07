@@ -15,19 +15,10 @@ type FaqProps = {
 export default function Faq({ faq }: FaqProps) {
   const [faqs, setFaqs] = useState<FaqItem[]>(faq.listPosts);
 
-  const toggleFAQ = (index: number): void => {
-    setFaqs((prevFaqs) => prevFaqs.map((item) => {
-      if (item.id === index) {
-        return { ...item, open: !item.open };
-      }
-      return { ...item, open: false };
-    }));
-  };
-
   return (
-    <ul>
+    <ul className="sm:w-6/12 mx-auto">
       {faqs.map((itemLists) => (
-        <FaqElements faq={itemLists} key={itemLists.id} toggleFAQ={toggleFAQ} />
+        <FaqElements faq={itemLists} key={itemLists.id} setFaqs={setFaqs} />
       ))}
     </ul>
   );
