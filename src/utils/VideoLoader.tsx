@@ -14,8 +14,8 @@ function VideoLoader({ src, className }: VideoLoaderProps) {
   return (
     <video
       className={className}
-      // autoPlay
-      // loop
+      autoPlay
+      loop
       muted
       playsInline
       preload="auto"
