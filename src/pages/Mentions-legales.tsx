@@ -1,4 +1,3 @@
-import styles from '../styles/Pages.module.scss';
 import HeadComponents from '../components/head/HeadComponents';
 
 type Page = {
