@@ -28,7 +28,7 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
 
   return (
     <li
-      className="border-slate-100 transition-all duration-300 ease-in-out bg-secondaryLight mb-4 p-4 rounded-lg cursor-pointer"
+      className=" transition-all duration-300 ease-in-out bg-secondaryLight mb-4 p-4 rounded-lg cursor-pointer"
       onClick={toggleFAQ}
       aria-hidden="true"
     >

@@ -12,11 +12,11 @@ export default function Footer() {
               Informations
             </h3>
           </li>
-          {/* <li>
-            <Link href="/contact">
-                Contact
+          <li>
+            <Link href="/A-propos">
+              Qui suis-je ?
             </Link>
-          </li> */}
+          </li>
           <li>
             <Link href="/Foire-aux-questions">
               Foire aux questions
@@ -52,7 +52,7 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <Link href="https://twitter.com/maximethe" target="_blank">
+            <Link href="https://twitter.com/MTheneau" target="_blank">
               <i className="icon-twitter" />
               Twitter
             </Link>

@@ -13,12 +13,12 @@ type Page = {
   }[];
 };
 
-type MentionsLegalProps = {
+type PagesProps = {
   page: Page;
 };
 
 export async function getStaticProps() {
-  const responsePage = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Mentions-Legales`);
+  const responsePage = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/A-propos`);
   const page = await responsePage.json();
 
   return {
@@ -29,7 +29,7 @@ export async function getStaticProps() {
 }
 
 // == Composant
-export default function MentionsLegal({ page }: MentionsLegalProps) {
+export default function APropos({ page }: PagesProps) {
   return (
     <>
       <HeadComponents
