@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../../styles/Pages.module.scss';
 import Page404 from '../404';
 import ImageLoaderFull from '../../utils/ImageLoaderFull';
 
@@ -71,8 +70,8 @@ export default function Slug({ post }) {
           key="product-jsonld"
         />
       </Head>
-      <div className={styles.page}>
-        <div className={styles.page__image}>
+      <div>
+        <div>
 
           <Image
             src={`${post.slug}.webp`}
@@ -97,15 +96,15 @@ export default function Slug({ post }) {
               <p>{paragraphPosts.paragraph}</p>
             </>
           ))}
-          <div className={styles.page__list__links}>
+          <div>
             {post.github && (
-            <Link href={post.github} className="button">
+            <Link href={post.github}>
               Github
               <i className="icon-github" />
             </Link>
             )}
             {post.website && (
-            <Link href={post.website} className="button">
+            <Link href={post.website}>
               Website
               <i className="icon-scroll" />
             </Link>

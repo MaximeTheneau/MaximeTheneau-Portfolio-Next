@@ -2,7 +2,6 @@ import React, { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import formMiddleware from '../../middleware/formMiddleware';
 import Confirmation from '../modal/Confirmation';
-import styles from './Contact.module.scss';
 import ContactAbout from './ContactAbout';
 import Select from './form/Select';
 import Input from './form/Input';
@@ -63,17 +62,6 @@ export default function ContactForm() {
     }));
   };
 
-  const regex = /^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  function classErrorOrConfirmation(message) {
-    if (message === true) {
-      return (<i className="icon-confirmation" />);
-    } if (message === false) {
-      return (<i className="icon-error" />);
-    }
-    return '';
-  }
-
   const changeField = (value, field) => {
     setState((prevState) => ({
       ...prevState,
@@ -117,16 +105,6 @@ export default function ContactForm() {
         toggleModal: true,
       },
     });
-
-    // setState((prevState) => {
-    //   const updatedState = {
-    //     ...prevState,
-    //     modal: {
-    //       title: 'Oups !',
-    //       message: error,
-    //       toggleModal: true,
-    //     },
-    //   };
   };
 
   const handleSubmit = (evt) => {
@@ -158,81 +136,50 @@ export default function ContactForm() {
           },
         })}
       />
-      <div className={styles.contact}>
-        <div className={styles.contact__block} itemType="https://schema.org/PostalAdress">
+      <div className="w-full bg-secondaryLight sm:flex sm:justify-around pt-4 pb-4">
+        <div className="sm:w-1/2 sm:flex sm:flex-col sm:justify-center sm:justify-center sm:text-center">
           <ContactAbout />
         </div>
-        <form className={styles.contact__block} onSubmit={handleSubmit}>
-          <div className={styles.contact__input}>
-            <Select
-              value={state.form.subject}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setState(
-                { ...state, form: { ...state.form, subject: e.target.value } },
-              )}
-            />
-          </div>
-          <div className={styles.contact__input}>
-            {classErrorOrConfirmation(state.confirmationName)}
-            <Input
-              type="text"
-              title="Nom"
-              placeholder="Nom Prénom / Société"
-              value={state.form.name}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'name')}
-              onBlur={(e: ChangeEvent<HTMLInputElement>) => {
-                setState((prevState) => {
-                  const newState = { ...prevState, isFocused: true };
-
-                  if (e.target.value.length > 2 && e.target.value.length < 35) {
-                    newState.confirmationName = true;
-                  } else {
-                    newState.confirmationName = false;
-                  }
-
-                  return newState;
-                });
-              }}
-
-            />
-          </div>
-          <div className={styles.contact__input}>
-            {classErrorOrConfirmation(state.confirmationEmail)}
-            <Input
-              type="email"
-              title="Email"
-              value={state.form.email}
-              placeholder="exemple@email.fr"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'email')}
-              onBlur={(e: ChangeEvent<HTMLInputElement>) => (
-                regex.test(e.target.value)
-                  ? setState({ ...state, confirmationEmail: true })
-                  : setState({ ...state, confirmationEmail: false })
-              )}
-            />
-          </div>
-          <div className={styles.contact__textarea}>
-            {classErrorOrConfirmation(state.confirmationMessage)}
+        <form className="w-full sm:w-1/2 sm:flex sm:flex-col sm:justify-center pr-4" onSubmit={handleSubmit}>
+          <Select
+            value={state.form.subject}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setState(
+              { ...state, form: { ...state.form, subject: e.target.value } },
+            )}
+            required
+          />
+          <Input
+            type="text"
+            title="Nom"
+            placeholder="Nom Prénom / Société"
+            value={state.form.name}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'name')}
+            required
+          />
+          <Input
+            type="email"
+            title="Email"
+            value={state.form.email}
+            placeholder="exemple@email.fr"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'email')}
+            required
+          />
+          <div className="m-1">
             <textarea
               rows={state.textArea}
               title="Message"
               value={state.form.message}
               onChange={handleChangeMessage}
-              onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => (
-                e.target.value.length > 5 && e.target.value.length < 500
-                  ? setState({ ...state, confirmationMessage: true })
-                  : setState({ ...state, confirmationMessage: false }))}
               name="message"
               wrap="off"
               placeholder="Votre message"
               required
             />
           </div>
-          <div className="contact-form_button">
-            <button type="submit">
-              Envoyer
-              <i className="icon-paper-plane" />
-            </button>
-          </div>
+          <button type="submit">
+            Envoyer
+            <i className="icon-paper-plane" />
+          </button>
         </form>
       </div>
     </>

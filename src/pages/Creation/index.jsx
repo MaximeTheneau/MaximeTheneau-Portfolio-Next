@@ -1,7 +1,6 @@
 /* eslint-disable quote-props */
 import Head from 'next/head';
 import Cards from '../../components/cards/Cards';
-import styles from '../../styles/Pages.module.scss';
 
 export async function getStaticProps() {
   const responseArticles = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&category=Creations`);
@@ -38,7 +37,6 @@ export default function Home({ articles, page }) {
       </Head>
       <>
         <section>
-
           <h1>{page.title}</h1>
           <p>
             {page.contents}
@@ -46,7 +44,7 @@ export default function Home({ articles, page }) {
         </section>
         {/* --Articles--*/}
         <h2>Mes projets :</h2>
-        <div className={styles.home}>
+        <div>
           <Cards cards={articles} path="Creation" />
         </div>
 

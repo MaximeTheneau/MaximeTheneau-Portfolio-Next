@@ -3,10 +3,13 @@ import NotCopie from '../notCopie/NotCopie';
 export default function ContactAbout() {
   return (
     <>
-      <p itemProp="address">
+      <p>
+        <strong>Theneau Maxime</strong>
+      </p>
+      <p>
         <strong>Adresse : </strong>
-        <span itemProp="postalCode">13008 </span>
-        <span itemProp="addressLocality">Marseille</span>
+        <span>13008 </span>
+        <span>Marseille</span>
       </p>
       <NotCopie />
     </>

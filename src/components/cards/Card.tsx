@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from './Card.module.scss';
 import imageThumbnail from '../../utils/ImageThumbnail';
 
 type CardProps = {
@@ -18,8 +17,8 @@ type CardProps = {
 export default function Card({ card, path }: CardProps) {
   const pathCard = card.subcategory ? `${path}/${card.subcategory.slug}` : path;
   return (
-    <li className={styles.card}>
-      <Link href={`/${pathCard}/${card.slug}`}>
+    <li className="sm:w-1/3 w-full p-4 ">
+      <Link href={`/${pathCard}/${card.slug}`} className="p-2 flex flex-col justify-between me-4 block shadow-lg rounded-lg ">
         <Image
           src={`${card.slug}.webp`}
           alt={card.altImg || card.title}
@@ -30,10 +29,11 @@ export default function Card({ card, path }: CardProps) {
           sizes="100vw"
           style={{
             width: '100%',
-            height: 'auto',
+            height: '202px',
+            objectFit: 'contain',
           }}
         />
-        <h3 className={styles.card__content}>{card.title}</h3>
+        <h3>{card.title}</h3>
       </Link>
     </li>
   );

@@ -4,7 +4,7 @@ export default function Input({
   value,
   placeholder,
   onChange,
-  onBlur,
+  required,
 }) {
   return (
     <input
@@ -13,8 +13,7 @@ export default function Input({
       value={value}
       placeholder={placeholder}
       onChange={onChange}
-      onBlur={onBlur}
-      required
+      required={required}
     />
   );
 }

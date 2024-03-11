@@ -102,54 +102,63 @@ export default function Home({
         {/* --Création--*/}
         <Link
           href="/Creation"
-          className="w-full flex items-center justify-between bg-secondary p-2 text-white mt-4"
+          className="w-ful relative"
         >
-          <h2 className="text-lg">Mes projets :</h2>
-          <span>
-            Voir tous mes projets
-          </span>
+          <div className="w-full flex items-center justify-between p-2 mt-4 z-10">
+            <h2>Mes projets :</h2>
+            <span>
+              Voir tous mes projets
+            </span>
+          </div>
+          <VideoLoader
+            className="w-full  object-cover top-0  absolute h-full -z-10 opacity-25"
+            src={accueil.slug}
+          />
         </Link>
-        <div>
-          {creation.map((creations) => (
-            <div className="mt-10 ">
-              <Link href={`/Creation/${creations.slug}`} key={creations.title}>
-                <div className="grid sm:grid-cols-4 sm:gap-4 relative">
-                  <div className="col-span-1" />
-                  <div className="flex flex-col p-4 sm:col-span-1 bg-secondaryLight min-h-96">
-                    <h2 className=" text-lg">{creations.title}</h2>
-                    <p>{creations.contents}</p>
-                    <span className="font-bold  hover:underline transition-all  duration-300">
-                      En savoir plus
-                      {' '}
-                      <i className="icon-angle-right text-base" />
-                    </span>
-
-                  </div>
-                  <div className="order-first sm:order-last sm:col-span-1 sm:-translate-x-12 sm:translate-y-4">
-                    <VideoLoader
-                      src={creations.slug}
-                    />
-                  </div>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div>
-        {/* --FAQ--*/}
-        <div>
-          <Link
-            href={faq.slug}
-            className="w-full flex items-center justify-between bg-secondary p-2 text-white mt-4"
-          >
-            <h2>{faq.title}</h2>
-          </Link>
-          <Faq faq={faq} />
-        </div>
       </section>
-      {/* --Contact--*/}
-      <div className="w-100 bg-secondaryLight p-4">
+      <section>
+        {creation.map((creations) => (
+          <div className="mt-10 ">
+            <Link href={`/Creation/${creations.slug}`} key={creations.title}>
+              <div className="grid sm:grid-cols-4 sm:gap-4 relative">
+                <div className="col-span-1" />
+                <div className="flex flex-col sm:pr-10 pl-2 sm:col-span-1 bg-secondaryLight min-h-96">
+                  <h2 className=" text-lg">{creations.title}</h2>
+                  <p>{creations.contents}</p>
+                  <span className="font-bold  hover:underline transition-all  duration-300">
+                    En savoir plus
+                    {' '}
+                    <i className="icon-angle-right text-base" />
+                  </span>
+
+                </div>
+                <div className="order-first sm:order-last sm:col-span-1 sm:-translate-x-12 sm:translate-y-4">
+                  <VideoLoader
+                    src={creations.slug}
+                  />
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </section>
+      {/* --FAQ--*/}
+      <section>
+        <Link
+          href="/Foire-aux-questions"
+          className="w-ful relative "
+        >
+          <div className="w-full flex items-center justify-between p-2 mt-4 z-10 m-2">
+            <h2>Foire aux Question</h2>
+          </div>
+          <VideoLoader
+            className="w-full  object-cover top-0  absolute h-full -z-10 opacity-25"
+            src={accueil.slug}
+          />
+        </Link>
+        <Faq faq={faq} />
         <ContactForm />
-      </div>
+      </section>
     </>
   );
 }

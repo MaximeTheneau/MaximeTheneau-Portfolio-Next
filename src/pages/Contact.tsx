@@ -1,5 +1,4 @@
 import ContactForm from '../components/contact/Contact';
-import styles from '../styles/Pages.module.scss';
 import HeadComponents from '../components/head/HeadComponents';
 
 type ContactPageProps = {
@@ -33,7 +32,7 @@ export default function Contact({ page }: ContactPageProps) {
         addProduct={false}
       />
 
-      <section className={styles.page}>
+      <section>
         <h1>{page.title}</h1>
         <p>
           {page.contents}

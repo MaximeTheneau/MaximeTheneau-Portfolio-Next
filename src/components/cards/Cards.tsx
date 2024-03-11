@@ -1,5 +1,4 @@
 import Card from './Card';
-import styles from './Card.module.scss';
 
 type CardType = {
   id: number;
@@ -18,7 +17,7 @@ type CardsProps = {
 
 export default function Cards({ cards, path }: CardsProps) {
   return (
-    <ul className={styles.cards}>
+    <ul className="flex flex-wrap justify-between items-start">
       {cards.map((card) => (
         <Card
           key={card.id}

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import styles from '../styles/Pages.module.scss';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 
@@ -54,8 +53,8 @@ export default function Slug({ post }: SlugProps) {
         image={post.slug}
         addProduct={false}
       />
-      <div className={styles.page}>
-        <div className={styles.page__contents}>
+      <div>
+        <div>
           <h1>{post.title}</h1>
           <p>{post.contents}</p>
           <Faq faq={{ listPosts: post.listPosts }} />
@@ -65,10 +64,9 @@ export default function Slug({ post }: SlugProps) {
                 <h2 key={paragraphArticle.id}>{paragraphArticle.subtitle}</h2>
               )}
               {paragraphArticle.paragraph && (
-                <p key={paragraphArticle.id} className={styles.page__contents__paragraph}>
+                <p key={paragraphArticle.id}>
                   {paragraphArticle.imgPostParagh && (
                     <Image
-                      className={styles.page__contents__paragraph}
                       src={`${paragraphArticle.imgPostParagh}.webp`}
                       alt={paragraphArticle.subtitle}
                       quality={100}
