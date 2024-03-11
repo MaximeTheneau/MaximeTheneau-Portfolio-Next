@@ -62,8 +62,8 @@ export default function Home({
             className="w-full sm:h-96 object-cover object-center"
             src={accueil.slug}
           />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full text-center bg-whiteOpacity">
-            <h1 className="text-title">
+          <div className="absolute dark:text-black top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full text-center bg-whiteOpacity">
+            <h1 className="text-title ">
               {accueil.title}
             </h1>
             <h2>{accueil.contents}</h2>

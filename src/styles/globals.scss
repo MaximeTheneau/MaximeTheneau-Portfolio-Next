@@ -7,6 +7,14 @@
 @import 'tailwindcss/utilities';
 
 
+:root{
+  --white-color: #fff;
+  --primary-color: #0d6efd7;
+  --secondary-color: #615ca6;
+  --color-secondary-light: #f6f9fe;
+  --black-color: #17181d;
+}
+
 html,
 body {
   padding: 0;
@@ -16,7 +24,6 @@ body {
   white-space: pre-line;
   overflow-x: hidden !important;
   max-width: 100%;
-  
 }
 
 h1,
@@ -56,6 +63,7 @@ textarea{
   font-size: $font-size;
   font-family: $font-primary;
   width: 100%;
+  color: var(--black-color);
   padding: 0.5rem;
   background: none;
   &:focus{
@@ -77,11 +85,37 @@ select{
   font-size: $font-size;
   font-family: $font-primary;
   border-radius: $border-radius;
-  color: $font-color;
   background: none;
   padding: 0.5rem;
   cursor: pointer;
   &:focus{
     outline: none;
   }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --color-secondary-light:#302e52;
+    --secondary-color: #1d1c31;
+  }
+  body {
+    background-color: var(--black-color);
+    color: var(--white-color);
+  }
+
+  input,
+  textarea,
+  input::placeholder,
+  textarea::placeholder{
+    color: var(--white-color);
+  }
+
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--white-color);
+    color: var(--black-color);
+  }
+
 }

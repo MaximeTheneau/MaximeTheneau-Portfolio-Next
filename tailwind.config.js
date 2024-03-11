@@ -10,9 +10,9 @@ module.exports = {
         title: 'calc(1.5rem + ((2vw - 0.48rem) * 1.3889))',
       },
       colors: {
-        primary: '#0d6efd',
-        secondaryLight: '#f6f9fe',
-        secondary: '#605ba7',
+        primary: 'var(--primary-color)',
+        secondaryLight: 'var(--secondary-light-color)',
+        secondary: 'var(--secondary-color)',
         white: '#ffffff',
         whiteOpacity: 'rgba(255, 255, 255, 0.5)',
       },
