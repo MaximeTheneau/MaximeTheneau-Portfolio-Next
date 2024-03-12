@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev ",
-    "build": "next build",
+    "build": "npm run generate && next build",
     "start-cache": "next start -p 3001",
     "start": "node --env-file=.env.local server.js",
     "pm2": "pm2 start ecosystem.config.js",
