@@ -23,7 +23,7 @@ export default function HeadComponents({
       <meta property="og:image" content={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/${image}.jpg`} />
       <link
         rel="canonical"
-        href={process.env.NEXT_PUBLIC_URL + url}
+        href={`${process.env.NEXT_PUBLIC_URL}/${url}`}
         key="canonical"
       />
     </Head>
