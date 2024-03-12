@@ -37,7 +37,6 @@ export default function APropos({ page }: PagesProps) {
         descriptionMeta={page.contents}
         url={page.url}
         image={page.slug}
-        addProduct={false}
       />
       <section>
         <h1>{page.title}</h1>

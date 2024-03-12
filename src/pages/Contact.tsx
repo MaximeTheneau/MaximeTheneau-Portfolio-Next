@@ -29,7 +29,6 @@ export default function Contact({ page }: ContactPageProps) {
         descriptionMeta={page.contents}
         url={page.slug}
         image={page.slug}
-        addProduct={false}
       />
 
       <section>

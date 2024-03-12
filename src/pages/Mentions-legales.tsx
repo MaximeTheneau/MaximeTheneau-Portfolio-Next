@@ -36,9 +36,7 @@ export default function MentionsLegal({ page }: MentionsLegalProps) {
         descriptionMeta={page.contents}
         url={page.slug}
         image={page.slug}
-        addProduct={false}
       />
-
       <section>
         <h1>{page.title}</h1>
         <h2>{page.subtitle}</h2>
