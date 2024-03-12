@@ -23,7 +23,6 @@ app.post('/api/webhook', (req, res) => {
   const accessOriginHeader = req.headers['access-origin'];
   const signature = req.headers['x-hub-signature-256'];
   const { body } = req;
-  console.log('accessOriginHeader', accessOriginHeader);
   if (!verifySignature(signature, body) || accessOriginHeader !== accessOrigin) {
     return res.status(401).send('Unauthorized');
   }
