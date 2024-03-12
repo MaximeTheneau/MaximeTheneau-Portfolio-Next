@@ -20,6 +20,7 @@ type ListPost = {
 type Post = {
   title: string;
   contents: string;
+  url: string;
   slug: string;
   paragraphPosts: ParagraphArticle[];
   listPosts: ListPost[];
@@ -50,7 +51,7 @@ export default function Slug({ post }: SlugProps) {
       <HeadComponents
         title={post.title}
         descriptionMeta={descriptionMeta}
-        url={post.slug}
+        url={post.url}
         image={post.slug}
       />
       <FaqJsonLd listPosts={post.listPosts} />

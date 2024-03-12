@@ -4,6 +4,7 @@ type Page = {
   title: string;
   contents: string;
   slug: string;
+  url: string;
   altImg?: string;
   subtitle: string;
   paragraphPosts: {
@@ -34,7 +35,7 @@ export default function MentionsLegal({ page }: MentionsLegalProps) {
       <HeadComponents
         title={page.title}
         descriptionMeta={page.contents}
-        url={page.slug}
+        url={page.url}
         image={page.slug}
       />
       <section>

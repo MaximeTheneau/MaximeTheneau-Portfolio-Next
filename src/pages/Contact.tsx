@@ -6,6 +6,7 @@ type ContactPageProps = {
     title: string,
     contents: string,
     slug: string,
+    url: string,
   },
 };
 
@@ -27,7 +28,7 @@ export default function Contact({ page }: ContactPageProps) {
       <HeadComponents
         title={page.title}
         descriptionMeta={page.contents}
-        url={page.slug}
+        url={page.url}
         image={page.slug}
       />
 

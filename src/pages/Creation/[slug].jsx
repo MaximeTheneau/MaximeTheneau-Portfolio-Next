@@ -1,8 +1,9 @@
-import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import ArticleJsonLd from '../../components/jsonLd/ArticleJsonLd';
 import Page404 from '../404';
 import ImageLoaderFull from '../../utils/ImageLoaderFull';
+import HeadComponents from '../../components/head/HeadComponents';
 
 export async function getStaticPaths() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&category=Creations`);
@@ -23,53 +24,15 @@ export default function Slug({ post }) {
   if (!post) return <Page404 />;
   const descriptionMeta = post.contents.substring(0, 155).replace(/[\r\n]+/gm, '');
 
-  // schema.org
-  function addProductJsonLd() {
-    return {
-      __html: `{
-    "@context": "https://schema.org/",
-    "@type": "Article",
-    "name": "${post.title}",
-    "headline": "${post.title}",
-    "description": "${descriptionMeta}",
-    "image": "${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/${post.slug}.jpg",
-    "datePublished": "${post.createdAt}",
-    "dateModified": "${post.updatedAt}",
-    "author": {
-      "@type": "Person",
-      "name": "THENEAU Maxime"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "THENEAU Maxime",
-    }
-  }
-`,
-    };
-  }
   return (
     <>
-      <Head>
-        <title>{post.title}</title>
-        <meta name="description" content={descriptionMeta} />
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_URL}/${post.url}`} />
-        <meta property="og:description" content={descriptionMeta} />
-        <meta property="og:site_name" content={`${process.env.NEXT_PUBLIC_URL}/${post.url}`} />
-        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/${post.slug}.jpg`} />
-        <link
-          rel="canonical"
-          href={`${process.env.NEXT_PUBLIC_URL}${post.url}`}
-          key="canonical"
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={addProductJsonLd()}
-          key="product-jsonld"
-        />
-      </Head>
+      <HeadComponents
+        title={post.title}
+        description={descriptionMeta}
+        image={post.image}
+        url={post.url}
+      />
+      <ArticleJsonLd post={post} />
       <div>
         <div>
 
@@ -87,8 +50,6 @@ export default function Slug({ post }) {
         </div>
         <div>
           <h1>{post.title}</h1>
-          {/* Button Technologies */}
-
           <p>{post.contents}</p>
           {post.paragraphPosts.map((paragraphPosts) => (
             <>
