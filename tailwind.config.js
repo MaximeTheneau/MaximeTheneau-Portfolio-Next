@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        lg: 'calc(1rem + ((2vw - 0.48rem) * 1.3889))',
+        lg: 'calc(1rem + ((1vw - 0.48rem) * 1.3889))',
         title: 'calc(1.5rem + ((2vw - 0.48rem) * 1.3889))',
       },
       colors: {

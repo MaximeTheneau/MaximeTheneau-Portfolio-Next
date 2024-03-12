@@ -6,4 +6,4 @@ Allow: /
 Host: https://theneaumaxime.fr
 
 # Sitemaps
-Sitemap: https://theneaumaxime.fr/sitemap.xml
+Sitemap: https://theneaumaxime.fr/sitemap_index.xml
