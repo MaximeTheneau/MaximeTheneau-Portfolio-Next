@@ -20,8 +20,8 @@ export default function Home({ articles, page }) {
   return (
     <>
       <HeadComponents
-        title={page.title}
-        description={page.description}
+        title={page.heading}
+        description={page.metaDescription}
         image={page.image}
         url={page.url}
       />

@@ -19,6 +19,8 @@ type ListPost = {
 
 type Post = {
   title: string;
+  heading: string;
+  metaDescription: string;
   contents: string;
   url: string;
   slug: string;
@@ -42,15 +44,11 @@ export async function getStaticProps() {
 }
 
 export default function Slug({ post }: SlugProps) {
-  const descriptionMeta = post.contents === null
-    ? `Articles de blog ${post.title}`
-    : post.contents.substring(0, 165).replace(/[\r\n]+/gm, '');
-
   return (
     <>
       <HeadComponents
-        title={post.title}
-        descriptionMeta={descriptionMeta}
+        title={post.heading}
+        description={post.metaDescription}
         url={post.url}
         image={post.slug}
       />

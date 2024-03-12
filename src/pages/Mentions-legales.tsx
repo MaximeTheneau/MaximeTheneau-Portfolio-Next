@@ -5,6 +5,8 @@ type Page = {
   contents: string;
   slug: string;
   url: string;
+  heading: string;
+  metaDescription: string;
   altImg?: string;
   subtitle: string;
   paragraphPosts: {
@@ -33,8 +35,8 @@ export default function MentionsLegal({ page }: MentionsLegalProps) {
   return (
     <>
       <HeadComponents
-        title={page.title}
-        descriptionMeta={page.contents}
+        title={page.heading}
+        description={page.metaDescription}
         url={page.url}
         image={page.slug}
       />

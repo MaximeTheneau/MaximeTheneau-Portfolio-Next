@@ -5,6 +5,8 @@ type ContactPageProps = {
   page: {
     title: string,
     contents: string,
+    heading: string,
+    metaDescription: string,
     slug: string,
     url: string,
   },
@@ -26,8 +28,8 @@ export default function Contact({ page }: ContactPageProps) {
   return (
     <>
       <HeadComponents
-        title={page.title}
-        descriptionMeta={page.contents}
+        title={page.heading}
+        description={page.metaDescription}
         url={page.url}
         image={page.slug}
       />

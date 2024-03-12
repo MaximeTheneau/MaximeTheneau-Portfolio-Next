@@ -4,6 +4,8 @@ type Page = {
   title: string;
   contents: string;
   slug: string;
+  heading: string;
+  metaDescription: string;
   altImg?: string;
   subtitle: string;
   url: string;
@@ -33,8 +35,8 @@ export default function APropos({ page }: PagesProps) {
   return (
     <>
       <HeadComponents
-        title={page.title}
-        descriptionMeta={page.contents}
+        title={page.heading}
+        description={page.metaDescription}
         url={page.url}
         image={page.slug}
       />

@@ -22,13 +22,12 @@ export async function getStaticProps({ params }) {
 
 export default function Slug({ post }) {
   if (!post) return <Page404 />;
-  const descriptionMeta = post.contents.substring(0, 155).replace(/[\r\n]+/gm, '');
 
   return (
     <>
       <HeadComponents
-        title={post.title}
-        description={descriptionMeta}
+        title={post.heading}
+        description={post.metaDescription}
         image={post.image}
         url={post.url}
       />

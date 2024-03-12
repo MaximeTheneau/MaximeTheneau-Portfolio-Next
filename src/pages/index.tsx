@@ -35,8 +35,8 @@ export default function Home({
   return (
     <>
       <HeadComponents
-        title={accueil.title}
-        descriptionMeta={process.env.NEXT_PUBLIC_DESCRIPTION}
+        title={accueil.heading}
+        description={accueil.metaDescription}
         url=""
         image="Accueil"
       />
