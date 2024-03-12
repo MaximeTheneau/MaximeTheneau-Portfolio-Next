@@ -6,6 +6,7 @@ type Page = {
   slug: string;
   altImg?: string;
   subtitle: string;
+  url: string;
   paragraphPosts: {
     subtitle: string;
     paragraph: string;
@@ -34,11 +35,10 @@ export default function APropos({ page }: PagesProps) {
       <HeadComponents
         title={page.title}
         descriptionMeta={page.contents}
-        url={page.slug}
+        url={page.url}
         image={page.slug}
         addProduct={false}
       />
-
       <section>
         <h1>{page.title}</h1>
         <h2>{page.subtitle}</h2>

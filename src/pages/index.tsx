@@ -5,6 +5,8 @@ import ContactForm from '../components/contact/Contact';
 import VideoLoader from '../utils/VideoLoader';
 import HeadComponents from '../components/head/HeadComponents';
 import Button from '../components/button/Button';
+import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
+import Person from '../components/jsonLd/PersonJsonLd';
 
 export async function getStaticProps() {
   const responseAccueil = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Accueil`);
@@ -30,23 +32,6 @@ export default function Home({
   creation,
   faq,
 }) {
-  const descriptionMeta:string = 'Taupier professionnels agréé de la lutte contre les taupes, fouines et ragondins. Intervention en Eure (28), Yvelines (78) et Essonne (91). Devis gratuit.';
-
-  // schema.org
-  function addProductJsonLd() {
-    return {
-      __html: `{
-      "@context": "https://schema.org/",
-      "@type": "Corporation",
-      "name": "${accueil.title}",
-      "image": "${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/Accueil.jpg",
-      "description": "${descriptionMeta}",
-      "slogan": "${descriptionMeta}",
-      "url": "${process.env.NEXT_PUBLIC_URL}"      
-    }
-  `,
-    };
-  }
   return (
     <>
       <HeadComponents
@@ -54,7 +39,12 @@ export default function Home({
         descriptionMeta={process.env.NEXT_PUBLIC_DESCRIPTION}
         url=""
         image="Accueil"
-        addProduct={addProductJsonLd()}
+      />
+      <Person />
+      <LogoJsonLd
+        name="Theneau Maxime"
+        url={process.env.NEXT_PUBLIC_URL}
+        logoUrl={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/theneau-maxime.png`}
       />
       <section>
         <div className="relative">

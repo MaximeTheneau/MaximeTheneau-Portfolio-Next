@@ -5,13 +5,11 @@ export default function HeadComponents({
   descriptionMeta,
   url,
   image,
-  addProduct,
 } : {
     title: string,
     descriptionMeta: string,
     url: string,
     image: string,
-    addProduct: any,
     }) {
   return (
     <Head>
@@ -28,13 +26,6 @@ export default function HeadComponents({
         href={process.env.NEXT_PUBLIC_URL + url}
         key="canonical"
       />
-      {addProduct && (
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={addProduct}
-        key="product-jsonld"
-      />
-      )}
     </Head>
   );
 }

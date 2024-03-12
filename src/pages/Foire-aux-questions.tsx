@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
+import FaqJsonLd from '../components/jsonLd/FaqJsonLd';
 
 type ParagraphArticle = {
   id: number;
@@ -51,8 +52,8 @@ export default function Slug({ post }: SlugProps) {
         descriptionMeta={descriptionMeta}
         url={post.slug}
         image={post.slug}
-        addProduct={false}
       />
+      <FaqJsonLd listPosts={post.listPosts} />
       <div>
         <div>
           <h1>{post.title}</h1>
