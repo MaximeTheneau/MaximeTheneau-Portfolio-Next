@@ -11,7 +11,7 @@
   --white-color: #fff;
   --primary-color: #0d6efd7;
   --secondary-color: #615ca6;
-  --color-secondary-light: #f6f9fe;
+  --secondary-light-color: #f6f9fe;
   --black-color: #17181d;
 }
 
@@ -20,7 +20,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'fontGeneral', sans-serif;
-  color: $font-color ;
+  color: var(--black-color);
+  background: var(--white-color);
   white-space: pre-line;
   overflow-x: hidden !important;
   max-width: 100%;
@@ -95,27 +96,9 @@ select{
 
 @media (prefers-color-scheme: dark) {
   :root{
-    --color-secondary-light:#302e52;
+    --secondary-light-color:#302e52;
     --secondary-color: #1d1c31;
+    --black-color: #fff;
+    --white-color: #17181d;
   }
-  body {
-    background-color: var(--black-color);
-    color: var(--white-color);
-  }
-
-  input,
-  textarea,
-  input::placeholder,
-  textarea::placeholder{
-    color: var(--white-color);
-  }
-
-}
-
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--white-color);
-    color: var(--black-color);
-  }
-
 }

@@ -52,8 +52,8 @@ export default function Home({
             className="w-full sm:h-96 object-cover object-center"
             src={accueil.slug}
           />
-          <div className="absolute dark:text-black top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full text-center bg-whiteOpacity">
-            <h1 className="text-title ">
+          <div className="absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full text-center bg-whiteOpacity">
+            <h1 className="text-title  dark:text-[#17181d]">
               {accueil.title}
               <span className="block text-lg">{accueil.contents}</span>
             </h1>
@@ -112,7 +112,7 @@ export default function Home({
             <Link href={`/Creation/${creations.slug}`} key={creations.title}>
               <div className="grid sm:grid-cols-4 sm:gap-4 relative">
                 <div className="col-span-1" />
-                <div className="flex flex-col sm:pr-10 pl-2 sm:col-span-1 bg-secondaryLight min-h-96">
+                <div className="flex flex-col rounded sm:pr-10 pl-2 sm:col-span-1 bg-secondaryLight min-h-96">
                   <h2 className=" text-lg">{creations.title}</h2>
                   <p>{creations.contents}</p>
                   <span className="font-bold  hover:underline transition-all  duration-300">
@@ -122,7 +122,7 @@ export default function Home({
                   </span>
 
                 </div>
-                <div className="order-first sm:order-last sm:col-span-1 sm:-translate-x-12 sm:translate-y-4">
+                <div className=" order-first sm:order-last sm:col-span-1 sm:-translate-x-12 sm:translate-y-4">
                   <VideoLoader
                     src={creations.slug}
                   />

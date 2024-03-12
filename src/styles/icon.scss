@@ -25,13 +25,13 @@
   content: "\e900";
 }
 
-.icon-x:before {
-  content: "\e902";
-}
 .icon-x {
   display: inline-block;
   transform: rotate(180deg);
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  &:before {
+    content: "\e902";
+  }
 }
 
 .icon-confirmation1:before {

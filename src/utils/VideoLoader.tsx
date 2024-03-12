@@ -24,12 +24,15 @@ function VideoLoader({ src, className }: VideoLoaderProps) {
     >
       <source
         src={`${process.env.NEXT_PUBLIC_CLOUD_URL_VIDEO}${src}.mp4`}
+        type="video/mp4"
       />
       <source
         src={`${process.env.NEXT_PUBLIC_CLOUD_URL_VIDEO}${src}.webm`}
+        type="video/webm"
       />
       <source
         src={`${process.env.NEXT_PUBLIC_CLOUD_URL_VIDEO}${src}.ogg`}
+        type="video/ogg"
       />
       <Image
         src={`${process.env.NEXT_PUBLIC_CLOUD_URL}${src}.webp`}

@@ -8,7 +8,7 @@ export default function Navbar() {
     setToggleNav(false);
   };
   return (
-    <nav className={`${toggleNav ? 'bg-white' : 'bg-whiteOpacity'} w-full z-10 fixed h-auto font-bold `}>
+    <nav className={`${toggleNav ? 'bg-secondary' : 'bg-whiteOpacity'} w-full z-10 fixed h-auto font-bold `}>
       <div
         aria-hidden="true"
         className="text-primary p-2 cursor-pointer"
@@ -22,7 +22,7 @@ export default function Navbar() {
           <i className="icon-navbar" />
         )}
       </div>
-      <div className={`${toggleNav ? 'block bg-white' : 'hidden bg-whiteOpacity'} fixed w-full h-auto pt-1 pb-4 text-center `}>
+      <div className={`${toggleNav ? 'block bg-secondary' : 'hidden bg-whiteOpacity'} fixed w-full h-auto pt-1 pb-4 text-center `}>
         <ul className="list-none">
           <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2">
             <Link href="/" onClick={() => closeNav()}> Accueil</Link>

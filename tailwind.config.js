@@ -15,6 +15,7 @@ module.exports = {
         secondary: 'var(--secondary-color)',
         white: '#ffffff',
         whiteOpacity: 'rgba(255, 255, 255, 0.5)',
+        black: 'var(--black-color)',
       },
     },
   },

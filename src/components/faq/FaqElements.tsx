@@ -33,8 +33,14 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
       aria-hidden="true"
     >
       <h2 className="w-full flex items-center justify-between pt-4 pb-4 border-b-2 border-slate-400 border-solid">
+        {faq.open ?
+          <span className="pr-2 ">
+            <i className="icon-x" />
+          </span>
+         : <span className="pr-2 ">
+          <i className="icon-scroll" />
+          </span>}
         {faq.title}
-        {faq.open ? <i className="icon-x" /> : <i className="icon-scroll" />}
       </h2>
       <p className={faq.open ? 'block' : 'hidden'}>
         {faq.description}
