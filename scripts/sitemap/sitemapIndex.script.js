@@ -12,9 +12,6 @@ const generateSitemapIndex = () => {
       <sitemap>
         <loc>${urlFront}/sitemap/sitemap_all_links.xml</loc>
       </sitemap>
-      <sitemap>
-        <loc>${urlFront}/sitemap/sitemap_news_articles.xml</loc>
-      </sitemap>
     </sitemapindex>`;
 
   fs.writeFileSync('./public/sitemap_index.xml', sitemapIndex);
