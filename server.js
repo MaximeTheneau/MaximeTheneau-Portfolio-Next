@@ -2,7 +2,6 @@ const http = require('http');
 
 const port = process.env.PORT;
 const authToken = process.env.AUTH_TOKEN;
-const accessOrigin = process.env.ACCESS_ORIGIN;
 
 const express = require('express');
 const { createHmac } = require('crypto');
@@ -20,10 +19,9 @@ function verifySignature(signature, body) {
 }
 
 app.post('/api/webhook', (req, res) => {
-  const accessOriginHeader = req.headers['access-origin'];
   const signature = req.headers['x-hub-signature-256'];
   const { body } = req;
-  if (!verifySignature(signature, body) || accessOriginHeader !== accessOrigin) {
+  if (!verifySignature(signature, body)) {
     return res.status(401).send('Unauthorized');
   }
 
