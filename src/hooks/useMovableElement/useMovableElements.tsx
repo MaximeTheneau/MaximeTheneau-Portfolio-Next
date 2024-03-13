@@ -1,24 +1,24 @@
-/* eslint-disable */
-import { useState, useEffect } from 'react';
+import {
+  useEffect, useState, RefObject,
+} from 'react';
 
-type MovableElementsStyle = {
-  [key: string]: string;
-};
-
-export const useMovableElements = ({ elementRef }: { elementRef: React.MutableRefObject<HTMLDivElement> }) => {
-  const [offset, setOffset] = useState<number | null>(null);
+const useScrollParallaxTop = (elementRef: RefObject<HTMLDivElement>) => {
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!elementRef.current) return;
       const { top } = elementRef.current.getBoundingClientRect();
-      setOffset(top < 0 ? 0 : top / window.innerHeight * 100);
+      const parallacEffect = (top / window.innerHeight) * 20;
+      setScrollPosition(parallacEffect);
     };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [elementRef]);
 
-  const style: MovableElementsStyle = { '--topImg': `${offset}%`, height: '30vw' };
-
-  return { style };
+  return { scrollPosition };
 };
+
+export default useScrollParallaxTop;

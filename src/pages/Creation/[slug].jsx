@@ -32,7 +32,7 @@ export default function Slug({ post }) {
         url={post.url}
       />
       <ArticleJsonLd post={post} />
-      <div>
+      <section className="m-4">
         <div>
 
           <Image
@@ -71,7 +71,7 @@ export default function Slug({ post }) {
             )}
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

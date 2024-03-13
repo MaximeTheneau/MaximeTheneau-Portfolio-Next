@@ -7,7 +7,7 @@ export default function Custom404() {
       <Head>
         <meta name="robots" content="noindex" />
       </Head>
-      <section>
+      <section className="m-4">
         <h1>Désolé</h1>
         <p>Oups la page que vous recherche est innaccessible</p>
         <button type="button">

@@ -8,7 +8,6 @@ export default function useSlideTransition(
 ): Offset {
   const [offset, setOffset] = useState<Offset>({
     opacity: null,
-
   });
 
   useEffect(() => {

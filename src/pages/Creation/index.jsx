@@ -25,20 +25,13 @@ export default function Home({ articles, page }) {
         image={page.image}
         url={page.url}
       />
-      <>
-        <section>
-          <h1>{page.title}</h1>
-          <p>
-            {page.contents}
-          </p>
-        </section>
-        {/* --Articles--*/}
-        <h2>Mes projets :</h2>
-        <div>
-          <Cards cards={articles} path="Creation" />
-        </div>
-
-      </>
+      <section className="m-4">
+        <h1>{page.title}</h1>
+        <p>
+          {page.contents}
+        </p>
+        <Cards cards={articles} path="Creation" />
+      </section>
     </>
   );
 }

@@ -53,7 +53,7 @@ export default function Slug({ post }: SlugProps) {
         image={post.slug}
       />
       <FaqJsonLd listPosts={post.listPosts} />
-      <div>
+      <section className="p-4">
         <div>
           <h1>{post.title}</h1>
           <p>{post.contents}</p>
@@ -84,8 +84,7 @@ export default function Slug({ post }: SlugProps) {
             </>
           ))}
         </div>
-      </div>
-      <div />
+      </section>
     </>
   );
 }

@@ -7,6 +7,7 @@ import HeadComponents from '../components/head/HeadComponents';
 import Button from '../components/button/Button';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
+import ScrollParallaxTop from '../hooks/useMovableElement/ScrollWrapper';
 
 export async function getStaticProps() {
   const responseAccueil = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Accueil`);
@@ -88,25 +89,23 @@ export default function Home({
           </div>
         </div>
       </section>
-      <section className="m-2">
+      <section className="m-4">
         {/* --Création--*/}
         <Link
           href="/Creation"
           className="w-ful relative"
         >
-          <div className="w-full flex items-center justify-between p-2 mt-4 z-10">
-            <h2>Mes projets :</h2>
-            <span>
-              Voir tous mes projets
-            </span>
-          </div>
-          <VideoLoader
-            className="w-full  object-cover top-0  absolute h-full -z-10 opacity-25"
-            src={accueil.slug}
-          />
+          <ScrollParallaxTop>
+            <div className="w-full flex items-center justify-between p-2 mt-4 z-10 mix-blend-difference text-white">
+              <h2>Mes projets :</h2>
+              <span>
+                Voir tous mes projets
+              </span>
+            </div>
+          </ScrollParallaxTop>
         </Link>
       </section>
-      <section>
+      <section className="p-4">
         {creation.map((creations) => (
           <div className="mt-10 ">
             <Link href={`/Creation/${creations.slug}`} key={creations.title}>
@@ -120,7 +119,6 @@ export default function Home({
                     {' '}
                     <i className="icon-angle-right text-base" />
                   </span>
-
                 </div>
                 <div className=" order-first sm:order-last sm:col-span-1 sm:-translate-x-12 sm:translate-y-4">
                   <VideoLoader
@@ -138,13 +136,11 @@ export default function Home({
           href="/Foire-aux-questions"
           className="w-ful relative "
         >
-          <div className="w-full flex items-center justify-between p-2 mt-4 z-10 m-2">
-            <h2>Foire aux Question</h2>
-          </div>
-          <VideoLoader
-            className="w-full  object-cover top-0  absolute h-full -z-10 opacity-25"
-            src={accueil.slug}
-          />
+          <ScrollParallaxTop>
+            <div className="w-full flex items-center justify-between p-2 mt-4 z-10 m-2 mix-blend-difference text-white">
+              <h2>Foire aux Question</h2>
+            </div>
+          </ScrollParallaxTop>
         </Link>
         <Faq faq={faq} />
         <ContactForm />

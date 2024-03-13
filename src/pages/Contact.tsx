@@ -34,7 +34,7 @@ export default function Contact({ page }: ContactPageProps) {
         image={page.slug}
       />
 
-      <section>
+      <section className="p-4">
         <h1>{page.title}</h1>
         <p>
           {page.contents}

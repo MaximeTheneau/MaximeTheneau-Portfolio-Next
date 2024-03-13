@@ -40,7 +40,7 @@ export default function MentionsLegal({ page }: MentionsLegalProps) {
         url={page.url}
         image={page.slug}
       />
-      <section>
+      <section className="p-4">
         <h1>{page.title}</h1>
         <h2>{page.subtitle}</h2>
         <p>
