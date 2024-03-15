@@ -8,6 +8,7 @@ import HeadComponents from '../components/head/HeadComponents';
 import Button from '../components/button/Button';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
+import ScrollingTextWrapper from '../hooks/useScrollingText/ScrollingTextWrapper';
 
 export async function getStaticProps() {
   const responseAccueil = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Accueil`);
@@ -68,16 +69,6 @@ export default function Home({
                 <h2>
                   {paragraphArticle.subtitle}
                 </h2>
-                {/* <ul>
-                  {accueil.listPosts.map((listArticle) => (
-                    <li
-                      key={listArticle.id}
-                      className="list-disc list-inside w-responsive text-left p-2"
-                    >
-                      {listArticle.title}
-                    </li>
-                  ))}
-                </ul> */}
                 <p className="w-responsive">{paragraphArticle.paragraph}</p>
               </div>
             ))}
@@ -132,6 +123,11 @@ export default function Home({
           </div>
         ))}
       </section>
+      {accueil.paragraphPosts.map((paragraphArticle) => (
+        <div key={paragraphArticle.subtitle}>
+          <ScrollingTextWrapper accueil={accueil} />
+        </div>
+      ))}
       {/* --FAQ--*/}
       <section className="m-4 ">
         <Link
