@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import ArticleJsonLd from '../../components/jsonLd/ArticleJsonLd';
 import Page404 from '../404';
 import ImageLoaderFull from '../../utils/ImageLoaderFull';
