@@ -16,7 +16,7 @@ export default function Faq({ faq }: FaqProps) {
   const [faqs, setFaqs] = useState<FaqItem[]>(faq.listPosts);
 
   return (
-    <ul className="sm:w-6/12 mx-auto">
+    <ul className="sm:w-6/12 mx-auto text-white ">
       {faqs.map((itemLists) => (
         <FaqElements faq={itemLists} key={itemLists.id} setFaqs={setFaqs} />
       ))}

@@ -10,7 +10,7 @@ function Cursor() {
         setShowCursor(false);
       } else {
         setShowCursor(true);
-        const cursorElement = document.createElement('div');
+        const cursorElement = document?.createElement('div');
         cursorElement.classList.add(
           'w-10',
           'h-10',
@@ -26,10 +26,10 @@ function Cursor() {
         );
         cursorElement.style.top = `${e.pageY}px`;
         cursorElement.style.left = `${e.pageX}px`;
-        cursorRef.current.appendChild(cursorElement);
+        cursorRef.current?.appendChild(cursorElement);
 
         setTimeout(() => {
-          cursorRef.current.removeChild(cursorElement);
+          cursorRef.current?.removeChild(cursorElement);
         }, 300);
       }
     };

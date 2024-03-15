@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Faq from '../components/faq/Faq';
 import ContactForm from '../components/contact/Contact';
 import VideoLoader from '../utils/VideoLoader';
@@ -7,7 +8,6 @@ import HeadComponents from '../components/head/HeadComponents';
 import Button from '../components/button/Button';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
-import ScrollParallaxTop from '../hooks/useMovableElement/ScrollWrapper';
 
 export async function getStaticProps() {
   const responseAccueil = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Accueil`);
@@ -61,14 +61,14 @@ export default function Home({
           </div>
         </div>
         {/* --About--*/}
-        <div className="p-8 w-full flex bg-secondaryLight">
+        <div className="p-8 w-full flex">
           <div>
             {accueil.paragraphPosts.map((paragraphArticle) => (
-              <>
-                <h2 key={paragraphArticle.subtitle}>
+              <div key={paragraphArticle.subtitle}>
+                <h2>
                   {paragraphArticle.subtitle}
                 </h2>
-                <ul>
+                {/* <ul>
                   {accueil.listPosts.map((listArticle) => (
                     <li
                       key={listArticle.id}
@@ -77,9 +77,9 @@ export default function Home({
                       {listArticle.title}
                     </li>
                   ))}
-                </ul>
+                </ul> */}
                 <p className="w-responsive">{paragraphArticle.paragraph}</p>
-              </>
+              </div>
             ))}
             <Button
               text="Contactez-moi"
@@ -89,40 +89,42 @@ export default function Home({
           </div>
         </div>
       </section>
-      <section className="m-4">
+      <section className="m-4 bg-secondaryLight">
         {/* --Création--*/}
         <Link
           href="/Creation"
-          className="w-ful relative"
+          className="w-ful relative text-white"
         >
-          <ScrollParallaxTop>
-            <div className="w-full flex items-center justify-between p-2 mt-4 z-10 mix-blend-difference text-white">
-              <h2>Mes projets :</h2>
-              <span>
-                Voir tous mes projets
-              </span>
-            </div>
-          </ScrollParallaxTop>
+          <div className="w-full flex items-center justify-between p-2 mt-4 bg-secondary rounded">
+            <h2>Mes projets :</h2>
+            <span>
+              Voir tous mes projets
+            </span>
+          </div>
         </Link>
-      </section>
-      <section className="p-4">
         {creation.map((creations) => (
-          <div className="mt-10 ">
-            <Link href={`/Creation/${creations.slug}`} key={creations.title}>
+          <div className="mt-10" key={creations.title}>
+            <Link href={`/Creation/${creations.slug}`}>
               <div className="grid sm:grid-cols-4 sm:gap-4 relative">
-                <div className="col-span-1" />
-                <div className="flex flex-col rounded sm:pr-10 pl-2 sm:col-span-1 bg-secondaryLight min-h-96">
-                  <h2 className=" text-lg">{creations.title}</h2>
-                  <p>{creations.contents}</p>
-                  <span className="font-bold  hover:underline transition-all  duration-300">
-                    En savoir plus
-                    {' '}
-                    <i className="icon-angle-right text-base" />
-                  </span>
+                <div className="sm:col-span-2 sm:col-span-2">
+                  <div className="flex flex-col rounded sm:pr-10 pl-2 bg-secondary text-white min-h-96 p-4">
+                    <h2 className="text-lg">{creations.title}</h2>
+                    <p>{creations.contents}</p>
+                    <span className="font-bold hover:underline transition-all duration-300">
+                      En savoir plus
+                      {' '}
+                      <i className="icon-angle-right text-base" />
+                    </span>
+                  </div>
                 </div>
-                <div className=" order-first sm:order-last sm:col-span-1 sm:-translate-x-12 sm:translate-y-4">
-                  <VideoLoader
-                    src={creations.slug}
+                <div className=" order-first sm:order-last sm:col-span-1 sm:-translate-x-12 sm:translate-y-4 w-full">
+                  <Image
+                    src={`${creations.slug}.webp`}
+                    width={1080}
+                    height={720}
+                    quality={70}
+                    alt="src"
+                    className="rounded"
                   />
                 </div>
               </div>
@@ -131,16 +133,14 @@ export default function Home({
         ))}
       </section>
       {/* --FAQ--*/}
-      <section>
+      <section className="m-4 ">
         <Link
           href="/Foire-aux-questions"
-          className="w-ful relative "
+          className="text-white"
         >
-          <ScrollParallaxTop>
-            <div className="w-full flex items-center justify-between p-2 mt-4 z-10 m-2 mix-blend-difference text-white">
-              <h2>Foire aux Question</h2>
-            </div>
-          </ScrollParallaxTop>
+          <div className="w-full flex items-center justify-between p-2 mt-4 m-2 bg-secondary rounded">
+            <h2>Foire aux Question</h2>
+          </div>
         </Link>
         <Faq faq={faq} />
         <ContactForm />

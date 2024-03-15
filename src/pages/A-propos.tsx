@@ -47,12 +47,12 @@ export default function APropos({ page }: PagesProps) {
           {page.contents}
         </p>
         {page.paragraphPosts.map((paragraphArticle) => (
-          <>
-            <h2 key={paragraphArticle.subtitle}>
+          <div key={paragraphArticle.subtitle}>
+            <h2>
               {paragraphArticle.subtitle}
             </h2>
             <p>{paragraphArticle.paragraph}</p>
-          </>
+          </div>
         ))}
       </section>
     </>

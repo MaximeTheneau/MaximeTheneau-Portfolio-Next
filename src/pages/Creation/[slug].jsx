@@ -4,6 +4,7 @@ import ArticleJsonLd from '../../components/jsonLd/ArticleJsonLd';
 import Page404 from '../404';
 import ImageLoaderFull from '../../utils/ImageLoaderFull';
 import HeadComponents from '../../components/head/HeadComponents';
+import Button from '../../components/button/Button';
 
 export async function getStaticPaths() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&category=Creations`);
@@ -33,43 +34,41 @@ export default function Slug({ post }) {
       />
       <ArticleJsonLd post={post} />
       <section className="m-4">
-        <div>
-
-          <Image
-            src={`${post.slug}.webp`}
-            alt={post.altImg || post.title}
-            loader={ImageLoaderFull}
-            quality={100}
-            width="1080"
-            height="720"
-            sizes="(max-width: 768px) 100vw,
+        <Image
+          src={`${post.slug}.webp`}
+          alt={post.altImg || post.title}
+          loader={ImageLoaderFull}
+          quality={100}
+          width="1080"
+          height="720"
+          sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
-          />
-        </div>
-        <div>
-          <h1>{post.title}</h1>
-          <p>{post.contents}</p>
-          {post.paragraphPosts.map((paragraphPosts) => (
-            <>
-              <h2>{paragraphPosts.subtitle}</h2>
-              <p>{paragraphPosts.paragraph}</p>
-            </>
-          ))}
-          <div>
-            {post.github && (
-            <Link href={post.github}>
-              Github
-              <i className="icon-github" />
-            </Link>
-            )}
-            {post.website && (
-            <Link href={post.website}>
-              Website
-              <i className="icon-scroll" />
-            </Link>
-            )}
+        />
+
+        <h1>{post.title}</h1>
+        <p>{post.contents}</p>
+        {post.paragraphPosts.map((paragraphPosts) => (
+          <div key={paragraphPosts.subtitle}>
+            <h2>{paragraphPosts.subtitle}</h2>
+            <p>{paragraphPosts.paragraph}</p>
           </div>
+        ))}
+        <div>
+          {post.github && (
+            <Button
+              text="Dépôt GitHub"
+              link={post.github}
+              icon="icon-github"
+            />
+          )}
+          {post.website && (
+            <Button
+              text="Site web"
+              link={post.website}
+              icon="icon-paper-plane"
+            />
+          )}
         </div>
       </section>
     </>

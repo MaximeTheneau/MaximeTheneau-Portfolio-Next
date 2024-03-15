@@ -35,11 +35,11 @@ function VideoLoader({ src, className }: VideoLoaderProps) {
         type="video/ogg"
       />
       <Image
-        src={`${process.env.NEXT_PUBLIC_CLOUD_URL}${src}.webp`}
+        src={`${src}.webp`}
         loader={ImageLoaderFull}
         width={1080}
         height={720}
-        alt="Video"
+        alt="src"
       />
     </video>
 

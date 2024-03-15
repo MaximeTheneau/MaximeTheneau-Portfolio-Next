@@ -176,9 +176,12 @@ export default function ContactForm() {
               required
             />
           </div>
-          <button type="submit">
+          <button
+            className="text-base text-white sm:w-ful bg-secondary p-2 rounded   hover:scale-90  hover:text-white p-4 m-4"
+            type="submit"
+          >
             Envoyer
-            <i className="icon-paper-plane" />
+            <i className="icon-paper-plane pl-1" />
           </button>
         </form>
       </div>

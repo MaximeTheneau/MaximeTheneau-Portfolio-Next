@@ -10,18 +10,17 @@ export default function ScrollParallaxTop({
 }: ScrollParallaxTopProps) {
   const elementRef = useRef<HTMLDivElement>(null);
   const { scrollPosition } = useScrollParallaxTop(elementRef);
+
   return (
-    <div className="relative">
+    <div className="relative z-0">
+      {children}
       <div
         ref={elementRef}
         style={{
-          top: `-${scrollPosition * 5}%`,
-          left: `${scrollPosition}%`,
-          opacity: 1 - scrollPosition / 20,
+          top: `${scrollPosition + -100}px`,
         }}
-        className="bg-secondaryLight absolute w-full h-full top-0 left-0"
+        className="absolute w-full h-40 bg-secondaryLight -z-10"
       />
-      {children}
     </div>
   );
 }
