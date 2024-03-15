@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function ScrollingTextWrapper({ accueil }) {
   const [bot, setBot] = useState(true);
@@ -6,15 +6,7 @@ export default function ScrollingTextWrapper({ accueil }) {
   if (navigator.userAgent.includes('Googlebot')) {
     setBot(false);
   }
-  let elementDuplicate;
 
-  if (typeof window !== 'undefined' && bot) {
-    const originalElement = document.getElementById('animate-infinite-scroll');
-    if (originalElement) {
-      elementDuplicate = originalElement.cloneNode(true);
-    }
-  }
-  console.log(elementDuplicate);
   return (
     <div className="w-full inline-flex flex-nowrap bg-secondaryLight p-4">
       <ul
