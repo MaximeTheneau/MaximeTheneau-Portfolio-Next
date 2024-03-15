@@ -4,7 +4,7 @@ export default function ScrollingTextWrapper({ accueil }) {
   const [bot, setBot] = useState(true);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' || navigator?.userAgent.includes('Googlebot')) {
+    if (navigator.userAgent.includes('Googlebot')) {
       setBot(false);
     }
   }, []);
