@@ -3,9 +3,9 @@ import { useState } from 'react';
 export default function ScrollingTextWrapper({ accueil }) {
   const [bot, setBot] = useState(true);
 
-  if (navigator?.userAgent.includes('Googlebot')) {
-    setBot(false);
-  }
+  //   if (navigator?.userAgent.includes('Googlebot')) {
+  //     setBot(false);
+  //   }
 
   return (
     <div className="w-full inline-flex flex-nowrap bg-secondaryLight p-4">
