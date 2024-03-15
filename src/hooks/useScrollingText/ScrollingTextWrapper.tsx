@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default function ScrollingTextWrapper({ accueil }) {
   const [bot, setBot] = useState(true);
 
-  if (navigator.userAgent.includes('Googlebot')) {
+  if (navigator?.userAgent.includes('Googlebot')) {
     setBot(false);
   }
 
