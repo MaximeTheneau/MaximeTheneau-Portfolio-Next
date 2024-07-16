@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+import { useEffect, useState } from "react";
+
 type ToggleFAQ = (id: number) => void;
 
 type Faq = {
@@ -15,6 +17,7 @@ type FaqElementsProps = {
 };
 
 function FaqElements({ faq, setFaqs }: FaqElementsProps) {
+  const [bot, setBot] = useState(true);
   const toggleFAQ = (): void => {
     setFaqs((prevFaqs: Faq[]) =>
       prevFaqs.map((item) => {
@@ -26,6 +29,11 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
     );
   };
 
+  useEffect(() => {
+    if (navigator.userAgent.includes('Googlebot')) {
+      setBot(false);
+    }
+  }, []);
   return (
     <li
       className=" transition-all duration-300 ease-in-out bg-secondary mb-4 p-4 rounded-lg cursor-pointer"
@@ -42,7 +50,7 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
           </span>}
         {faq.title}
       </h2>
-      <p className={faq.open ? 'block' : 'hidden'}>
+      <p className={faq.open || !bot ? 'block' : 'hidden'}>
         {faq.description}
       </p>
     </li>
