@@ -25,7 +25,7 @@ app.post('/api/webhook', (req, res) => {
     return res.status(401).send('Unauthorized');
   }
 
-  if (req.headers['x-taupe-event'] === 'build') {
+  if (req.headers['x-github-event'] === 'build') {
     console.log('Received build event');
     exec('npm run build', (error, stdout) => {
       if (error) {
