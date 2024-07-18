@@ -27,7 +27,7 @@ app.post('/api/webhook', (req, res) => {
 
   if (req.headers['x-github-event'] === 'build') {
     console.log('Received build event');
-    exec('npm run build', (error, stdout) => {
+    exec('pnpm run build', (error, stdout) => {
       if (error) {
         console.error(`Error running npm run build: ${error}`);
         return;
@@ -58,12 +58,12 @@ app.post('/api/webhook', (req, res) => {
       if (code === 0) {
         console.log('Git pull successful :).');
         res.status(200).send('Git pull successful :).');
-        exec('npm run build', (error, stdout) => {
+        exec('pnpm run build', (error, stdout) => {
           if (error) {
             console.error(`Error running npm run build: ${error}`);
             return;
           }
-          console.log(`npm run build output: ${stdout}`);
+          console.log(`pnpm run build output: ${stdout}`);
         });
       }
     });
