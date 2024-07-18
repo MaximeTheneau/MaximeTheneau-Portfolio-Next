@@ -6,7 +6,7 @@
     "dev": "next dev ",
     "build": "npm run sitemap && next build",
     "start-cache": "next start -p 3002",
-    "start": "node --env-file=.env.local server.js",
+    "start": "node --env-file=.env server.js",
     "pm2": "pm2 start ecosystem.config.js",
     "export": "next export",
     "test": "jest --watch",
