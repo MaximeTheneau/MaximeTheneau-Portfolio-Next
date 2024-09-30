@@ -1,7 +1,7 @@
 require('dotenv').config({ path: '.env.local' });
 const fs = require('fs');
 
-const urlFront = process.env.NEXT_PUBLIC_URL;
+const urlFront = 'https://theneaumaxime.fr';
 
 const generateSitemapIndex = () => {
   const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
