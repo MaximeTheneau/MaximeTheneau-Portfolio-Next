@@ -83,7 +83,7 @@ export default function Home({
       <section className="m-4 bg-secondaryLight">
         {/* --Création--*/}
         <Link
-          href="/Creation"
+          href="/Creations"
           className="w-ful relative text-white"
         >
           <div className="w-full flex items-center justify-between p-2 mt-4 bg-secondary rounded">
@@ -95,7 +95,7 @@ export default function Home({
         </Link>
         {creation.map((creations) => (
           <div className="mt-10" key={creations.title}>
-            <Link href={`/Creation/${creations.slug}`}>
+            <Link href={`/Creations/${creations.slug}`}>
               <div className="grid sm:grid-cols-4 sm:gap-4 relative">
                 <div className="sm:col-span-2 sm:col-span-2">
                   <div className="flex flex-col rounded sm:pr-10 pl-2 bg-secondary text-white min-h-96 p-4">

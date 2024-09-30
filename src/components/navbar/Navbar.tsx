@@ -28,7 +28,7 @@ export default function Navbar() {
             <Link href="/" onClick={() => closeNav()}> Accueil</Link>
           </li>
           <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2">
-            <Link href="/Creation" onClick={() => closeNav()}>
+            <Link href="/Creations" onClick={() => closeNav()}>
               Créations
             </Link>
           </li>

@@ -26,7 +26,7 @@ export default function Footer() {
           </Link>
         </li>
         <li>
-          <Link href="/Creation">
+          <Link href="/Creations">
             Mes projets
           </Link>
         </li>
