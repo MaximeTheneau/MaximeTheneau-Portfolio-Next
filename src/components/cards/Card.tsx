@@ -10,12 +10,13 @@ type CardProps = {
     slug: string;
     altImg?: string;
     title: string;
+    url: string;
   };
 };
 
 export default function Card({ card }: CardProps) {
   return (
-    <Link href={`${card.url}`} className="p-2 flex flex-col justify-between me-4 block shadow-lg rounded-lg ">
+    <Link href={card.url} className="p-2 flex flex-col justify-between me-4 block shadow-lg rounded-lg ">
       <Image
         src={`${card.slug}.webp`}
         alt={card.altImg || card.title}
