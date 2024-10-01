@@ -22,7 +22,6 @@ export async function getStaticProps({ params }) {
 
 export default function Slug({ post }) {
   if (!post) return <Page404 />;
-  console.log(post.url);
   return (
     <>
       <HeadComponents

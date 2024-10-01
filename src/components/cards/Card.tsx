@@ -11,13 +11,11 @@ type CardProps = {
     altImg?: string;
     title: string;
   };
-  path: string;
 };
 
-export default function Card({ card, path }: CardProps) {
-  const pathCard = card.subcategory ? `${path}/${card.subcategory.slug}` : path;
+export default function Card({ card }: CardProps) {
   return (
-    <Link href={`/${pathCard}/${card.slug}`} className="p-2 flex flex-col justify-between me-4 block shadow-lg rounded-lg ">
+    <Link href={`${card.url}`} className="p-2 flex flex-col justify-between me-4 block shadow-lg rounded-lg ">
       <Image
         src={`${card.slug}.webp`}
         alt={card.altImg || card.title}
