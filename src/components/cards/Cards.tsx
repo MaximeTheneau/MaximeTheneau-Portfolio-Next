@@ -8,6 +8,7 @@ type CardType = {
   slug: string;
   altImg?: string;
   title: string;
+  url: string;
 };
 
 type CardsProps = {
