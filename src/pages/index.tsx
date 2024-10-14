@@ -69,7 +69,7 @@ export default function Home({
                 <h2>
                   {paragraphArticle.subtitle}
                 </h2>
-                <p className="w-responsive">{paragraphArticle.paragraph}</p>
+                <p className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
               </div>
             ))}
             <Button

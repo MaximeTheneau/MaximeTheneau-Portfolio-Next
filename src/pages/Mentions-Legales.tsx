@@ -51,7 +51,7 @@ export default function MentionsLegal({ page }: MentionsLegalProps) {
             <h2 key={paragraphArticle.subtitle}>
               {paragraphArticle.subtitle}
             </h2>
-            <p>{paragraphArticle.paragraph}</p>
+            <p className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
           </>
         ))}
       </section>

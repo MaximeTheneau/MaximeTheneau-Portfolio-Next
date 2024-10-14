@@ -36,9 +36,7 @@ export default function Contact({ page }: ContactPageProps) {
 
       <section className="p-4">
         <h1>{page.title}</h1>
-        <p>
-          {page.contents}
-        </p>
+        <p className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
         <ContactForm />
       </section>
     </>

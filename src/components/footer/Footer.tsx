@@ -21,7 +21,7 @@ export default function Footer() {
           </Link>
         </li>
         <li>
-          <Link href="/Mentions-legales">
+          <Link href="/Mentions-Legales">
             Mentions légales
           </Link>
         </li>
