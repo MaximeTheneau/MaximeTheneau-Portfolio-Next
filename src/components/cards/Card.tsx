@@ -16,7 +16,7 @@ type CardProps = {
 
 export default function Card({ card }: CardProps) {
   return (
-    <Link href={card.url} className="p-2 flex flex-col justify-between me-4 block shadow-lg rounded-lg ">
+    <Link href={card.url} className="p-2 flex flex-col justify-between me-4 block shadow-lg rounded-lg  z-10 transition-opacity duration-300 hover:opacity-80">
       <Image
         src={`${card.slug}.webp`}
         alt={card.altImg || card.title}

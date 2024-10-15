@@ -51,7 +51,7 @@ export default function APropos({ page }: PagesProps) {
             <h2>
               {paragraphArticle.subtitle}
             </h2>
-            <p className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
+            <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
           </div>
         ))}
       </section>

@@ -39,20 +39,20 @@ export default function Footer() {
           <NotCopie />
         </li>
         <li>
+          <strong><a href="tel:+33622068036">06 22 06 80 36</a></strong>
+        </li>
+        <li>
           <Link href="/Contact">
             Formulaire de contact
           </Link>
         </li>
-        <li>
-          <Link href="https://fr.linkedin.com/in/maxime-theneau" target="_blank">
+        <li className="w-16 flex justify-between">
+          <Link href="https://fr.linkedin.com/in/maxime-theneau" tria-label="Linkedin page" target="_blank" rel="noopener noreferrer" prefetch={false}>
             <i className="icon-linkedin" />
-            Linkedin
           </Link>
-        </li>
-        <li>
-          <Link href="https://twitter.com/MTheneau" target="_blank">
+          {' '}
+          <Link href="https://twitter.com/MTheneau" tria-label="Twitter page" target="_blank" rel="noopener noreferrer">
             <i className="icon-twitter" />
-            Twitter
           </Link>
         </li>
       </ul>

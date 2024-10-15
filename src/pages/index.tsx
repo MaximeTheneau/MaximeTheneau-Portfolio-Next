@@ -69,7 +69,7 @@ export default function Home({
                 <h2>
                   {paragraphArticle.subtitle}
                 </h2>
-                <p className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
+                <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
               </div>
             ))}
             <Button
@@ -94,7 +94,7 @@ export default function Home({
           </div>
         </Link>
         {creation.map((creations) => (
-          <div className="mt-10" key={creations.title}>
+          <div className="mt-10 duration-300 hover:opacity-80" key={creations.title}>
             <Link href={`/Creations/${creations.slug}`}>
               <div className="grid sm:grid-cols-4 sm:gap-4 relative">
                 <div className="sm:col-span-2 sm:col-span-2">
