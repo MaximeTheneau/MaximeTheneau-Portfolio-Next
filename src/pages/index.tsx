@@ -9,6 +9,7 @@ import Button from '../components/button/Button';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
 import ScrollingTextWrapper from '../hooks/useScrollingText/ScrollingTextWrapper';
+import ImageLoaderFull from '../utils/ImageLoaderFull';
 
 export async function getStaticProps() {
   const responseAccueil = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Accueil`);
@@ -40,7 +41,7 @@ export default function Home({
         title={accueil.heading}
         description={accueil.metaDescription}
         url=""
-        image="Accueil"
+        image="Theneau-Maxime"
       />
       <Person />
       <LogoJsonLd
@@ -54,7 +55,18 @@ export default function Home({
             className="w-full sm:h-96 object-cover object-center"
             src={accueil.slug}
           />
-          <div className="absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full text-center bg-whiteOpacity">
+          <div className="flex flex-col items-center absolute  top-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full h-auto text-center bg-whiteOpacity">
+            <Image
+              src="Theneau-Maxime.webp"
+              alt={accueil.altImg || accueil.title}
+              loader={ImageLoaderFull}
+              quality={100}
+              width="150"
+              height="150"
+              sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
+            />
             <h1 className="text-title  dark:text-[#17181d]">
               {accueil.title}
               <span className="block text-lg">{accueil.contents}</span>
