@@ -13,7 +13,7 @@ export default function Layout({ children }: LayoutProps) {
       <header className="min-h-10">
         <Navbar />
       </header>
-      <main className="flex-grow">
+      <main className="flex-grow ">
         {children}
       </main>
       <footer>

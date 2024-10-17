@@ -8,9 +8,21 @@ import Input from './form/Input';
 
 interface FormState {
   name: string;
+  nameSociety?: string;
+  siret?: string;
   email: string;
   message: string;
   subject: string;
+  postalCode: string;
+  phone?: string;
+  adress?: string;
+  intervention?: string;
+  interventionOther?: string;
+  status?: string;
+  emailReturn?: boolean;
+  image?: File | null;
+  date?: string;
+  surface?: number;
 }
 
 interface ModalState {
@@ -34,9 +46,21 @@ export default function ContactForm() {
   const [state, setState] = useState<ContactFormState>({
     form: {
       name: '',
+      nameSociety: '',
+      siret: '',
       email: '',
       message: '',
-      subject: 'Demande de renseignements',
+      subject: 'Demande de devis',
+      postalCode: '',
+      phone: '',
+      date: '',
+      surface: 0,
+      adress: '',
+      intervention: '',
+      interventionOther: '',
+      emailReturn: true,
+      status: '',
+      image: null,
     },
     textArea: 1,
     confirmationName: null,
@@ -80,6 +104,7 @@ export default function ContactForm() {
         email: '',
         message: '',
         subject: 'Demande de devis',
+        ...state.form,
       },
       modal: {
         title: 'Merci !',
@@ -127,14 +152,6 @@ export default function ContactForm() {
         title={state.modal.title}
         message={state.modal.message}
         toggleModal={state.modal.toggleModal}
-        onClick={() => setState({
-          ...state,
-          modal: {
-            title: '',
-            message: '',
-            toggleModal: false,
-          },
-        })}
       />
       <div className="w-full bg-secondaryLight sm:flex sm:justify-around pt-4 pb-4">
         <div className="sm:w-1/2 sm:flex sm:flex-col sm:justify-center sm:justify-center sm:text-center">

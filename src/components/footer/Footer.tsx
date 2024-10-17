@@ -42,6 +42,11 @@ export default function Footer() {
           <strong><a href="tel:+33622068036">06 22 06 80 36</a></strong>
         </li>
         <li>
+          <Link href="/devis-en-ligne">
+            Demande de devis en ligne
+          </Link>
+        </li>
+        <li>
           <Link href="/Contact">
             Formulaire de contact
           </Link>

@@ -55,13 +55,13 @@ a{
 input,
 textarea{
   border: none;
-  border-bottom: 0.5px solid $font-color;
   font-size: $font-size;
   font-family: $font-primary;
   width: 100%;
   color: var(--black-color);
   padding: 0.5rem;
-  background: none;
+  background: #e5e5e6;
+  border-radius: 0.25rem;
   &:focus{
     outline: none;
     background: none;

@@ -1,3 +1,5 @@
+import { InputHTMLAttributes } from 'react';
+
 export default function Input({
   type,
   title,
@@ -5,7 +7,8 @@ export default function Input({
   placeholder,
   onChange,
   required,
-}) {
+  ...props
+}: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       type={type}
@@ -14,6 +17,7 @@ export default function Input({
       placeholder={placeholder}
       onChange={onChange}
       required={required}
+      {...props}
     />
   );
 }

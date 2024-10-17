@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/pages/404.jsx"  ],
+, "src/pages/404.jsx", "src/middleware/formMiddleware.jsx"  ],
   "exclude": [
     "node_modules"
   ]

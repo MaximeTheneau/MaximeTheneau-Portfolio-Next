@@ -68,9 +68,9 @@ export default function Home({
             33vw"
             />
             <h1 className="text-title  dark:text-[#17181d]">
-              {accueil.title}
-              <span className="block text-lg">{accueil.contents}</span>
+              {accueil.heading}
             </h1>
+            <p className="block text-lg">{accueil.contents}</p>
           </div>
         </div>
         {/* --About--*/}
