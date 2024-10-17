@@ -136,10 +136,9 @@ export default function Home({
         ))}
       </section>
       {accueil.paragraphPosts.map((paragraphArticle) => (
-        <div key={paragraphArticle.subtitle}>
-          <ScrollingTextWrapper accueil={accueil} />
-        </div>
+        <div key={paragraphArticle.subtitle} />
       ))}
+      <ScrollingTextWrapper accueil={accueil} />
       {/* --FAQ--*/}
       <section className="m-4 ">
         <Link
