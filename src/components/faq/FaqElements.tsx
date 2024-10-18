@@ -39,20 +39,19 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
       className=" transition-all duration-300 ease-in-out bg-form mb-4 p-4 rounded-lg cursor-pointer"
       onClick={toggleFAQ}
       aria-hidden="true"
+      aria-controls={`faq-${faq.id}`} 
     >
-      <h3 className="w-full flex items-center justify-between pt-4 pb-4 border-b-2 ">
-        {faq.title}
-        {faq.open ?
-          <span className="pr-2 ">
-            <i className="icon-x" />
-          </span>
-         : <span className="pr-2 ">
-          <i className="icon-scroll" />
-          </span>}
-      </h3>
-      <p className={faq.open || !bot ? 'block' : 'hidden'}>
-        {faq.description}
-      </p>
+       <article>
+        <h3 className="w-full flex items-center justify-between pt-4 pb-4 border-b-2">
+          <span id={`faq-${faq.id}`}>{faq.title}</span>  
+          <button aria-label={faq.open ? "Fermer la réponse" : "Ouvrir la réponse"} className="pr-2">
+            {faq.open ? <i className="icon-x" /> : <i className="icon-scroll" />}
+          </button>
+        </h3>
+        <p className={faq.open || !bot ? 'block' : 'hidden'}>
+          {faq.description}
+        </p>
+      </article>
     </li>
   );
 }
