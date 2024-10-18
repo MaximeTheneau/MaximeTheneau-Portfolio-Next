@@ -57,7 +57,7 @@ export default function Slug({ post }: SlugProps) {
         <div>
           <h1>{post.title}</h1>
           <p>{post.contents}</p>
-          <Faq faq={{ listPosts: post.listPosts }} />
+          <Faq faq={post.listPosts} />
           {post.paragraphPosts.map((paragraphArticle) => (
             <>
               {paragraphArticle.subtitle && (

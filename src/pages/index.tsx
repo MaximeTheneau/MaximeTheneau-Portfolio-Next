@@ -2,7 +2,6 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Faq from '../components/faq/Faq';
-import ContactForm from '../components/contact/Contact';
 import VideoLoader from '../utils/VideoLoader';
 import HeadComponents from '../components/head/HeadComponents';
 import Button from '../components/button/Button';
@@ -21,11 +20,13 @@ export async function getStaticProps() {
   const responseFaq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
   const faq = await responseFaq.json();
 
+  const filteredFaq = faq.listPosts.slice(0, 3);
+
   return {
     props: {
       accueil,
       creation,
-      faq,
+      faq: filteredFaq,
     },
   };
 }
@@ -93,13 +94,13 @@ export default function Home({
           </div>
         </div>
       </section>
-      <section className="m-4 bg-secondaryLight">
+      <section className="m-4 ">
         {/* --Création--*/}
         <Link
           href="/Creations"
-          className="w-ful relative text-white"
+          className="w-ful relative "
         >
-          <div className="w-full flex items-center justify-between p-2 mt-4 bg-secondary rounded">
+          <div className="w-full flex items-center justify-between p-2 mt-4 ">
             <h2>Mes projets :</h2>
             <span>
               Voir tous mes projets
@@ -139,19 +140,40 @@ export default function Home({
       {accueil.paragraphPosts.map((paragraphArticle) => (
         <div key={paragraphArticle.subtitle} />
       ))}
-      <ScrollingTextWrapper accueil={accueil} />
       {/* --FAQ--*/}
       <section className="m-4 ">
         <Link
           href="/Foire-aux-questions"
-          className="text-white"
+          className="text-2xl font-bold p-2 my-4"
         >
-          <div className="w-full flex items-center justify-between p-2 mt-4 m-2 bg-secondary rounded">
-            <h2>Foire aux Question</h2>
-          </div>
+          Foire aux Question
         </Link>
         <Faq faq={faq} />
-        <ContactForm />
+        <Link
+          href="/Foire-aux-questions"
+          className="mx-4"
+        >
+          Découvrez toutes les réponses à vos questions ici
+        </Link>
+      </section>
+
+      <ScrollingTextWrapper accueil={accueil} />
+      <section className="m-4 ">
+
+        <Link
+          href="/devis-en-ligne"
+          className=" w-full block p-2 my-4 bg-form rounded"
+        >
+          <h2>Demande de devis pour la créations de devis en ligne </h2>
+          <p>
+            Si vous souhaitez obtenir un devis personnalisé pour la création de votre site web,
+            n&apos;hésitez pas à nous contacter.
+            Nous serons ravis de vous aider à réaliser votre projet en ligne.
+            Remplissez le formulaire ci-dessous pour que nous puissions discuter
+            de vos besoins et vous fournir une estimation précise.
+          </p>
+          Découvrez toutes les réponses à vos questions ici
+        </Link>
       </section>
     </>
   );

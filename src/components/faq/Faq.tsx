@@ -8,15 +8,13 @@ type FaqItem = {
   description: string;
 };
 type FaqProps = {
-  faq: {
-    listPosts: FaqItem[];
-  };
+  faq: FaqItem[];
 };
 export default function Faq({ faq }: FaqProps) {
-  const [faqs, setFaqs] = useState<FaqItem[]>(faq.listPosts);
+  const [faqs, setFaqs] = useState<FaqItem[]>(faq);
 
   return (
-    <ul className="sm:w-6/12 mx-auto text-white ">
+    <ul className="w-full mx-auto my-4">
       {faqs.map((itemLists) => (
         <FaqElements faq={itemLists} key={itemLists.id} setFaqs={setFaqs} />
       ))}

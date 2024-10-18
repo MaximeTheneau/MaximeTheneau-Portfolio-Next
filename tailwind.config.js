@@ -17,6 +17,7 @@ module.exports = {
         whiteOpacity: 'rgba(255, 255, 255, 0.5)',
         black: 'var(--black-color)',
         red: '#be0202',
+        form: '#f3f4f6',
       },
       animation: {
         'infinite-scroll': 'infinite-scroll 10s linear infinite',

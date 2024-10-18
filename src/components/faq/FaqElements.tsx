@@ -36,11 +36,12 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
   }, []);
   return (
     <li
-      className=" transition-all duration-300 ease-in-out bg-secondary mb-4 p-4 rounded-lg cursor-pointer"
+      className=" transition-all duration-300 ease-in-out bg-form mb-4 p-4 rounded-lg cursor-pointer"
       onClick={toggleFAQ}
       aria-hidden="true"
     >
-      <h2 className="w-full flex items-center justify-between pt-4 pb-4 border-b-2 border-slate-400 border-solid">
+      <h3 className="w-full flex items-center justify-between pt-4 pb-4 border-b-2 ">
+        {faq.title}
         {faq.open ?
           <span className="pr-2 ">
             <i className="icon-x" />
@@ -48,8 +49,7 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
          : <span className="pr-2 ">
           <i className="icon-scroll" />
           </span>}
-        {faq.title}
-      </h2>
+      </h3>
       <p className={faq.open || !bot ? 'block' : 'hidden'}>
         {faq.description}
       </p>
