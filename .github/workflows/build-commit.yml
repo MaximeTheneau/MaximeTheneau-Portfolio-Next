@@ -1,6 +1,8 @@
-name: Build on Commit 
+name: Build Next.js Application
 
 on:
+  repository_dispatch:
+    types: [trigger-nextjs-build]
   push:
     branches:
       - main  
