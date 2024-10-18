@@ -50,24 +50,25 @@ export default function Home({
         logoUrl={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/theneau-maxime.png`}
       />
       <section>
-        <div className="relative">
+        <div className="relative h-auto	 ">
           <VideoLoader
-            className="w-full sm:h-96 object-cover object-center"
+            className="w-full sm:h-96  object-cover object-center"
             src={accueil.slug}
           />
-          <div className="flex flex-col items-center absolute  top-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full h-auto text-center bg-whiteOpacity">
+          <div className="flex  p-2 flex-col items-center  absolute  top-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full text-center bg-whiteOpacity">
             <Image
               src="Theneau-Maxime.webp"
               alt={accueil.altImg || accueil.title}
               loader={ImageLoaderFull}
-              quality={100}
-              width="150"
-              height="150"
+              quality={80}
+              width="96"
+              height="96"
               sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
+              className="mt-2 w-1/6 sm:w-24"
             />
-            <h1 className="text-title  dark:text-[#17181d]">
+            <h1 className="sm:text-title px-2  dark:text-[#17181d]">
               {accueil.heading}
             </h1>
             <p className="block text-lg">{accueil.contents}</p>
@@ -110,7 +111,7 @@ export default function Home({
             <Link href={`/Creations/${creations.slug}`}>
               <div className="grid sm:grid-cols-4 sm:gap-4 relative">
                 <div className="sm:col-span-2 sm:col-span-2">
-                  <div className="flex flex-col rounded sm:pr-10 pl-2 bg-secondary text-white min-h-96 p-4">
+                  <div className="flex flex-col justify-around rounded sm:pr-10 pl-2 bg-secondary text-white min-h-96 p-4">
                     <h2 className="text-lg">{creations.title}</h2>
                     <p>{creations.contents}</p>
                     <span className="font-bold hover:underline transition-all duration-300">

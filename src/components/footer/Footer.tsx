@@ -3,7 +3,7 @@ import NotCopie from '../notCopie/NotCopie';
 
 export default function Footer() {
   return (
-    <div className="flex text-white justify-around sm:flex-row flex-col p-4 leading-loose bg-secondary">
+    <div className="flex text-white justify-around sm:flex-row flex-col p-4  bg-secondary">
       <ul className="">
         <li>
           <h3>
@@ -56,7 +56,7 @@ export default function Footer() {
             <i className="icon-linkedin" />
           </Link>
           {' '}
-          <Link href="https://twitter.com/MTheneau" tria-label="Twitter page" target="_blank" rel="noopener noreferrer">
+          <Link href="https://twitter.com/MTheneau" tria-label="Twitter page" target="_blank" rel="noopener noreferrer" prefetch={false}>
             <i className="icon-twitter" />
           </Link>
         </li>
