@@ -50,7 +50,7 @@ export default function Home({
         logoUrl={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/theneau-maxime.png`}
       />
       <section>
-        <div className="relative h-auto	 ">
+        <div className="relative h-auto">
           <VideoLoader
             className="w-full sm:h-96  object-cover object-center"
             src={accueil.slug}
