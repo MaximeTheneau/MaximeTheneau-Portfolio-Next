@@ -3,7 +3,7 @@ import NotCopie from '../notCopie/NotCopie';
 
 export default function Footer() {
   return (
-    <div className="flex text-white justify-around sm:flex-row flex-col p-4  bg-secondary">
+    <div className="flex text-white justify-around sm:flex-row flex-col p-4 leading-loose bg-secondary">
       <ul className="">
         <li>
           <h3>

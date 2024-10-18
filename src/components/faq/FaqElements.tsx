@@ -1,8 +1,4 @@
-/* eslint-disable */
-
-import { useEffect, useState } from "react";
-
-type ToggleFAQ = (id: number) => void;
+import React, { useEffect, useState } from 'react';
 
 type Faq = {
   id: number;
@@ -13,20 +9,18 @@ type Faq = {
 
 type FaqElementsProps = {
   faq: Faq;
-  setFaqs: React.Dispatch<React.SetStateAction<Faq[]>>; 
+  setFaqs: React.Dispatch<React.SetStateAction<Faq[]>>;
 };
 
 function FaqElements({ faq, setFaqs }: FaqElementsProps) {
   const [bot, setBot] = useState(true);
   const toggleFAQ = (): void => {
-    setFaqs((prevFaqs: Faq[]) =>
-      prevFaqs.map((item) => {
-        if (item.id === faq.id) {
-          return { ...item, open: !item.open };
-        }
-        return { ...item, open: false };
-      })
-    );
+    setFaqs((prevFaqs: Faq[]) => prevFaqs.map((item) => {
+      if (item.id === faq.id) {
+        return { ...item, open: !item.open };
+      }
+      return { ...item, open: false };
+    }));
   };
 
   useEffect(() => {
@@ -39,12 +33,12 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
       className=" transition-all duration-300 ease-in-out bg-form mb-4 p-4 rounded-lg cursor-pointer"
       onClick={toggleFAQ}
       aria-hidden="true"
-      aria-controls={`faq-${faq.id}`} 
+      aria-controls={`faq-${faq.id}`}
     >
-       <article>
+      <article>
         <h3 className="w-full flex items-center justify-between pt-4 pb-4 border-b-2">
-          <span id={`faq-${faq.id}`}>{faq.title}</span>  
-          <button aria-label={faq.open ? "Fermer la réponse" : "Ouvrir la réponse"} className="pr-2">
+          <span id={`faq-${faq.id}`}>{faq.title}</span>
+          <button type="button" aria-label={faq.open ? 'Fermer la réponse' : 'Ouvrir la réponse'} className="pr-2">
             {faq.open ? <i className="icon-x" /> : <i className="icon-scroll" />}
           </button>
         </h3>
