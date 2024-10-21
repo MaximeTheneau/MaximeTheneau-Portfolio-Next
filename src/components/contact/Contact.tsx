@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import formMiddleware from '../../middleware/formMiddleware';
 import Confirmation from '../modal/Confirmation';
 import ContactAbout from './ContactAbout';
-import Select from './form/Select';
-import Input from './form/Input';
+// import Select from './form/Select';
+// import Input from './form/Input';
 
 interface FormState {
   name: string;
