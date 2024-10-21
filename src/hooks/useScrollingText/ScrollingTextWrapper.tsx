@@ -10,7 +10,7 @@ export default function ScrollingTextWrapper({ accueil }) {
   }, []);
 
   return (
-    <div className="w-full inline-flex flex-nowrap bg-secondaryLight p-4">
+    <div className="w-full inline-flex flex-nowrap bg-secondaryLight p-4 overflow-x-hidden">
       <ul
         id="animate-infinite-scroll"
         className={
