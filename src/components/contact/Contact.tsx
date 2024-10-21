@@ -50,7 +50,7 @@ export default function ContactForm() {
       siret: '',
       email: '',
       message: '',
-      subject: 'Demande de devis',
+      subject: 'Demande de renseignements',
       postalCode: '',
       phone: '',
       date: '',
@@ -62,7 +62,7 @@ export default function ContactForm() {
       status: '',
       image: null,
     },
-    textArea: 1,
+    textArea: 3,
     confirmationName: null,
     confirmationEmail: null,
     confirmationMessage: null,
@@ -103,7 +103,7 @@ export default function ContactForm() {
         name: '',
         email: '',
         message: '',
-        subject: 'Demande de devis',
+        subject: 'Demande de renseignements',
         ...state.form,
       },
       modal: {
@@ -125,7 +125,7 @@ export default function ContactForm() {
     setState({
       ...state,
       modal: {
-        title: 'Oups !',
+        title: 'Erreur',
         message: error,
         toggleModal: true,
       },
@@ -148,41 +148,48 @@ export default function ContactForm() {
 
   return (
     <>
-      <Confirmation
-        title={state.modal.title}
-        message={state.modal.message}
-        toggleModal={state.modal.toggleModal}
-      />
+
       <div className="w-full bg-secondaryLight sm:flex sm:justify-around pt-4 pb-4">
         <div className="sm:w-1/2 sm:flex sm:flex-col sm:justify-center sm:justify-center sm:text-center">
           <ContactAbout />
         </div>
         <form className="w-full sm:w-1/2 sm:flex sm:flex-col sm:justify-center pr-4" onSubmit={handleSubmit}>
-          <Select
+          {/* <Select
             value={state.form.subject}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setState(
               { ...state, form: { ...state.form, subject: e.target.value } },
             )}
             required
-          />
-          <Input
-            type="text"
-            title="Nom"
-            placeholder="Nom Prénom / Société"
-            value={state.form.name}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'name')}
-            required
-          />
-          <Input
-            type="email"
-            title="Email"
-            value={state.form.email}
-            placeholder="exemple@email.fr"
-            onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'email')}
-            required
-          />
-          <div className="m-1">
+          /> */}
+          <label htmlFor="name">
+            Nom Ou Société:
+            <input
+              id="name"
+              type="text"
+              title="Nom"
+              placeholder="Nom Prénom / Société"
+              value={state.form.name}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'name')}
+              required
+            />
+          </label>
+          <label htmlFor="email">
+            Email:
+            <input
+              id="email"
+              type="email"
+              title="Email"
+              value={state.form.email}
+              placeholder="exemple@email.fr"
+              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'email')}
+              required
+            />
+          </label>
+
+          <label htmlFor="message">
+            Message:
             <textarea
+              id="message"
               rows={state.textArea}
               title="Message"
               value={state.form.message}
@@ -192,7 +199,7 @@ export default function ContactForm() {
               placeholder="Votre message"
               required
             />
-          </div>
+          </label>
           <button
             className="text-base text-white sm:w-ful bg-secondary p-2 rounded   hover:scale-90  hover:text-white p-4 m-4"
             type="submit"
@@ -202,6 +209,11 @@ export default function ContactForm() {
           </button>
         </form>
       </div>
+      <Confirmation
+        title={state.modal.title}
+        message={state.modal.message}
+        toggleModal={state.modal.toggleModal}
+      />
     </>
   );
 }

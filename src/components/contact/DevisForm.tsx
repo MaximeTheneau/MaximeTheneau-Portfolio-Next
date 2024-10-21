@@ -256,7 +256,7 @@ export default function DevisForm() {
         </div>
         { state.form.status === 'Société' && (
         <>
-          <div className="{styles.contact__input}">
+          <div className="">
             <input
               type="text"
               title="Société"
@@ -573,8 +573,12 @@ export default function DevisForm() {
           </label>
         </div>
         <div className="contact-form_button">
-          <button type="submit" className="button">
+          <button
+            type="submit"
+            className="text-base text-white sm:w-ful bg-secondary p-2 rounded   hover:scale-90  hover:text-white p-4 m-4"
+          >
             Envoyer
+            {' '}
             <i className="icon-paper-plane" />
           </button>
         </div>
