@@ -1,6 +1,4 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
  type ProductOption = {
     label: string;
