@@ -22,10 +22,9 @@ export default function DevisEnLigne({ page }) {
         image={page.slug}
       />
       <section className="mx-4">
-        <h1>{page.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: page.contentsHTML }} />
+        <h1>Devis en ligne - Création de site internet </h1>
+        <div dangerouslySetInnerHTML={{ __html: page.contents }} />
         <div>
-          <h2>Remplissez le formulaire :</h2>
           <DevisForm />
           {page.paragraphPosts.map((paragraphArticle) => (
             <div key={paragraphArticle.subtitle}>
