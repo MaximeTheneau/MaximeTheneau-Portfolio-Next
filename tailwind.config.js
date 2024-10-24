@@ -17,6 +17,7 @@ module.exports = {
         whiteOpacity: 'rgba(255, 255, 255, 0.5)',
         black: 'var(--black-color)',
         red: '#be0202',
+        green: '#4bbe02',
         form: '#f3f4f6',
       },
       animation: {

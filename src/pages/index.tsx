@@ -4,14 +4,14 @@ import Image from 'next/image';
 import Faq from '../components/faq/Faq';
 import VideoLoader from '../utils/VideoLoader';
 import HeadComponents from '../components/head/HeadComponents';
-import Button from '../components/button/Button';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
 import ScrollingTextWrapper from '../hooks/useScrollingText/ScrollingTextWrapper';
 import ImageLoaderFull from '../utils/ImageLoaderFull';
+import ProductsList from '../components/cards/ProductsList';
 
 export async function getStaticProps() {
-  const responseAccueil = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Accueil`);
+  const responseAccueil = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/home`);
   const accueil = await responseAccueil.json();
 
   const responseCreation = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Creations`);
@@ -24,7 +24,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      accueil,
+      accueil: accueil.home,
+      products: accueil.products,
       creation,
       faq: filteredFaq,
     },
@@ -33,6 +34,7 @@ export async function getStaticProps() {
 
 export default function Home({
   accueil,
+  products,
   creation,
   faq,
 }) {
@@ -76,7 +78,7 @@ export default function Home({
           </div>
         </div>
         {/* --About--*/}
-        <div className="p-8 w-full flex">
+        <div className="px-8 pt-4 w-full flex">
           <div>
             {accueil.paragraphPosts.map((paragraphArticle) => (
               <div key={paragraphArticle.subtitle}>
@@ -86,14 +88,10 @@ export default function Home({
                 <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
               </div>
             ))}
-            <Button
-              text="Contactez-moi"
-              link="/Contact"
-              icon="icon-paper-plane"
-            />
           </div>
         </div>
       </section>
+      <ProductsList products={products} />
       <section className="m-4 ">
         {/* --Création--*/}
         <Link
