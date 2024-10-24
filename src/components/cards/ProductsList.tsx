@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
  type ProductOption = {
     label: string;
@@ -18,16 +20,26 @@ type ProductProps = {
 }
 
 export default function ProductsList({ products }: ProductProps) {
+  const router = useRouter();
+
+  const handleClick = (url) => {
+    router.push(url);
+  };
+
   return (
-    <section className="m-4 sm:flex sm:flex-wrap sm:justify-between text-xs">
+    <section
+      className="m-4 sm:flex sm:flex-wrap sm:justify-between text-xs"
+    >
       {products.map((product) => (
         <article
           className="w-full p-4 sm:w-[30%] sm:mr-4 mb-4 bg-form rounded hover:opacity-80 "
         >
-          <Link
-            href={product.url}
-            prefetch={false}
+          <div
+            onClick={() => handleClick(product.url)} // Utilisation d'une fonction anonyme
+            role="button"
+            tabIndex={0}
             className="flex flex-col justify-between h-full "
+            onKeyUp={(e) => { if (e.key === 'Enter') handleClick(product.url); }}
           >
             <header>
               <h2>{product.name}</h2>
@@ -56,7 +68,7 @@ export default function ProductsList({ products }: ProductProps) {
               {' '}
               €
             </p>
-          </Link>
+          </div>
         </article>
       ))}
     </section>
