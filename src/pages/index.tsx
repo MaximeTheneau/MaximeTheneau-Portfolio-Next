@@ -5,6 +5,7 @@ import Faq from '../components/faq/Faq';
 import VideoLoader from '../utils/VideoLoader';
 import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
+import ProductJsonLd from '../components/jsonLd/ProductJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
 import ScrollingTextWrapper from '../hooks/useScrollingText/ScrollingTextWrapper';
 import ImageLoaderFull from '../utils/ImageLoaderFull';
@@ -52,6 +53,7 @@ export default function Home({
         url={process.env.NEXT_PUBLIC_URL}
         logoUrl={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/theneau-maxime.png`}
       />
+      {products.map((product) => <ProductJsonLd product={product} />)}
       <section>
         <div className="relative h-auto">
           <VideoLoader
