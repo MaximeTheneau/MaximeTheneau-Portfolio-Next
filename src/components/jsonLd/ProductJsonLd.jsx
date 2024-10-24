@@ -13,6 +13,7 @@ export default function ProductJsonLd({ product }) {
       availability: 'https://schema.org/InStock',
       price: product.price,
       priceCurrency: 'EUR',
+      priceValidUntil: '2025-12-31',
     },
   };
 
