@@ -27,7 +27,14 @@ export default function ProductsList({ products }: ProductProps) {
           itemScope
           itemType="http://schema.org/Product"
         >
-          <Link href={product.url} className="flex flex-col justify-between h-full ">
+          <Link
+            href={{ pathname: '/devis-en-ligne' }}
+            as={{
+              pathname: '/devis-en-ligne',
+              query: 'product=simple',
+            }}
+            className="flex flex-col justify-between h-full "
+          >
             <header>
               <h2 itemProp="name">{product.name}</h2>
             </header>

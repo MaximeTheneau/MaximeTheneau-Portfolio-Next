@@ -42,21 +42,19 @@ interface ContactFormState {
   modal: ModalState;
 }
 
+const productSurfaceMap: Record<string, number> = {
+  simple: 4,
+  pro: 6,
+  premium: 15,
+};
+
 // == Composant
 export default function DevisForm() {
   const router = useRouter();
 
   const { product } = router.query;
 
-  let surface: number;
-
-  if (product === 'simple') {
-    surface = 4;
-  } if (product === 'pro') {
-    surface = 6;
-  } if (product === 'premium') {
-    surface = 15;
-  }
+  const surface = productSurfaceMap[product as string] || 0;
 
   const [state, setState] = useState<ContactFormState>({
     form: {
@@ -69,7 +67,7 @@ export default function DevisForm() {
       postalCode: '',
       phone: '',
       date: '',
-      surface: surface || 0,
+      surface,
       adress: '',
       intervention: product ? 'site' : '',
       interventionOther: '',
