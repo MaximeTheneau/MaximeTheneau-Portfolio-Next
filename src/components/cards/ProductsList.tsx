@@ -22,12 +22,12 @@ export default function ProductsList({ products }: ProductProps) {
     <section className="m-4 sm:flex sm:flex-wrap sm:justify-between text-xs">
       {products.map((product) => (
         <article
-          className="w-full p-4 sm:w-[30%] sm:mr-4 mb-4 bg-form rounded "
+          className="w-full p-4 sm:w-[30%] sm:mr-4 mb-4 bg-form rounded hover:opacity-80 "
           key={product.name}
           itemScope
           itemType="http://schema.org/Product"
         >
-          <Link href={product.url}>
+          <Link href={product.url} className="flex flex-col justify-between h-full ">
             <header>
               <h2 itemProp="name">{product.name}</h2>
             </header>

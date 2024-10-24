@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 // import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import FormMiddleware from '../../middleware/formMiddleware';
 import Confirmation from '../modal/Confirmation';
 import Input from './form/Input';
@@ -43,7 +44,20 @@ interface ContactFormState {
 
 // == Composant
 export default function DevisForm() {
-  // const router = useRouter();
+  const router = useRouter();
+
+  const { product } = router.query;
+
+  let surface: number;
+
+  if (product === 'simple') {
+    surface = 4;
+  } if (product === 'pro') {
+    surface = 6;
+  } if (product === 'premium') {
+    surface = 15;
+  }
+
   const [state, setState] = useState<ContactFormState>({
     form: {
       name: '',
@@ -55,9 +69,9 @@ export default function DevisForm() {
       postalCode: '',
       phone: '',
       date: '',
-      surface: 0,
+      surface: surface || 0,
       adress: '',
-      intervention: '',
+      intervention: product ? 'site' : '',
       interventionOther: '',
       emailReturn: true,
       status: '',
@@ -211,7 +225,7 @@ export default function DevisForm() {
     });
   };
   return (
-    <div className="max-w-sm bg-gray-100 p-4 rounded my-4">
+    <div className="max-w-sm bg-gray-100 p-4 rounded my-4 mx-auto">
       <form
         onSubmit={handleSubmit}
       >
@@ -427,6 +441,7 @@ export default function DevisForm() {
                   className="w-4 h-4 mr-2"
                   onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'intervention')}
                   required
+                  checked={!!product}
                 />
                 <span>
                   Site Web

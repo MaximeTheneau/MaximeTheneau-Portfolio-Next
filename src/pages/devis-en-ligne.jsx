@@ -26,9 +26,7 @@ export default function DevisEnLigne({ page }) {
         <div dangerouslySetInnerHTML={{ __html: page.contentsHTML }} />
         <div>
           <h2>Remplissez le formulaire :</h2>
-          <div className="bg-form">
-            <DevisForm />
-          </div>
+          <DevisForm />
           {page.paragraphPosts.map((paragraphArticle) => (
             <div key={paragraphArticle.subtitle}>
               <h2>
