@@ -13,6 +13,7 @@
   --secondary-color: #615ca6;
   --secondary-light-color: #f6f9fe;
   --black-color: #17181d;
+  --form-color: #f3f4f6;
 }
 
 html,
@@ -92,8 +93,9 @@ select{
 @media (prefers-color-scheme: dark) {
   :root{
     --secondary-light-color:#302e52;
-    --secondary-color: #1d1c31;
+    --secondary-color: #d2cfff;
     --black-color: #fff;
     --white-color: #17181d;
+    --form-color: #444546;
   }
 }

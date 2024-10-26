@@ -223,7 +223,7 @@ export default function DevisForm() {
     });
   };
   return (
-    <div className="max-w-sm bg-gray-100 p-4 rounded my-4 mx-auto">
+    <div className="max-w-sm bg-gray-100 p-4 rounded my-4 mx-auto dark:bg-secondaryLight dark:text">
       <form
         onSubmit={handleSubmit}
       >
@@ -588,7 +588,7 @@ export default function DevisForm() {
         <div className="contact-form_button">
           <button
             type="submit"
-            className="text-base text-white sm:w-ful bg-secondary p-2 rounded   hover:scale-90  hover:text-white p-4 m-4"
+            className="text-base text-white sm:w-ful bg-secondary p-2 rounded  p-4 m-4"
           >
             Envoyer
             {' '}
