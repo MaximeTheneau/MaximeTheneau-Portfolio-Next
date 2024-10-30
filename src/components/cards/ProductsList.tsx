@@ -8,7 +8,8 @@ import { useRouter } from 'next/router';
  type Product = {
     name: string;
     url: string;
-    price: string;
+    price: number;
+    discountedPrice: number;
     description: string;
     productOptions: ProductOption[];
   };
@@ -23,7 +24,6 @@ export default function ProductsList({ products }: ProductProps) {
   const handleClick = (url) => {
     router.push(url);
   };
-
   return (
     <section
       className="m-4 sm:flex sm:flex-wrap sm:justify-between text-xs"
@@ -61,10 +61,18 @@ export default function ProductsList({ products }: ProductProps) {
                 </li>
               ))}
             </ul>
-            <p className="font-bold text-sm">
-              <span>{product.price}</span>
+            <p className="font-bold text-sm mx-auto text-xl">
+              <span className="line-through text-red ">
+                {product.price}
+                {' '}
+                €
+              </span>
               {' '}
-              €
+              <span className="">
+                {product.discountedPrice}
+                {' '}
+                €
+              </span>
             </p>
           </div>
         </article>

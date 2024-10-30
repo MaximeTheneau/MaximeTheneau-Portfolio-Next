@@ -234,9 +234,7 @@ export default function DevisForm() {
               {' '}
               <span className="text-red">*</span>
             </legend>
-            <div
-              className="s"
-            >
+            <div>
               <label htmlFor="statusParticular" className="block m-2 text-sm">
                 <input
                   type="radio"

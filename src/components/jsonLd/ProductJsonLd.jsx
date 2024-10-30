@@ -5,15 +5,35 @@ export default function ProductJsonLd({ product }) {
   const jsonLdData = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    description: product.metaDescription,
+    description: product.description,
     name: product.name,
     image: `${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/theneau-maxime.jpg`,
+    termsOfService: 'https://theneaumaxime.fr/Mentions-Legales',
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceUrl: 'https://theneaumaxime.fr/contact',
+      availableLanguage: ['Fr'],
+    },
     offers: {
       '@type': 'Offer',
       availability: 'https://schema.org/InStock',
-      price: product.price,
+      price: product.discountedPrice,
       priceCurrency: 'EUR',
-      priceValidUntil: '2025-12-31',
+      priceValidUntil: '2024-12-31',
+      priceSpecification: [
+        {
+          '@type': 'UnitPriceSpecification',
+          priceCurrency: 'EUR',
+          price: product.price,
+          description: 'Prix original',
+        },
+        {
+          '@type': 'UnitPriceSpecification',
+          priceCurrency: 'EUR',
+          price: product.discountedPrice,
+          description: 'Prix après réduction',
+        },
+      ],
     },
   };
 

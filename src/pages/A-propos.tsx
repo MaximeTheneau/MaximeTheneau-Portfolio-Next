@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import HeadComponents from '../components/head/HeadComponents';
+import ImageLoaderFull from '../utils/ImageLoaderFull';
 
 type Page = {
   title: string;
@@ -41,6 +43,17 @@ export default function APropos({ page }: PagesProps) {
         image={page.slug}
       />
       <section className="p-4">
+        <Image
+          src={`${page.slug}.webp`}
+          alt={page.altImg || page.title}
+          loader={ImageLoaderFull}
+          quality={80}
+          width="656"
+          height="656"
+          sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
+        />
         <h1>{page.title}</h1>
         <h2>{page.subtitle}</h2>
         <p>
