@@ -3,7 +3,7 @@ import Cards from '../../components/cards/Cards';
 
 export async function getStaticProps() {
   const responseArticles = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&category=Creations`);
-  const responsePage = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Creation`);
+  const responsePage = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Creations`);
 
   const articles = await responseArticles.json();
   const page = await responsePage.json();
