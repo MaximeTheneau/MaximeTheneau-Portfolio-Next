@@ -2,7 +2,6 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Faq from '../components/faq/Faq';
-import VideoLoader from '../utils/VideoLoader';
 import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import ProductJsonLd from '../components/jsonLd/ProductJsonLd';
@@ -59,9 +58,13 @@ export default function Home({
       {products.map((product) => <ProductJsonLd product={product} />)}
       <section>
         <div className="relative h-auto">
-          <VideoLoader
+          <Image
             className="w-full sm:h-96  object-cover object-center"
-            src={accueil.slug}
+            src="A-propos.webp"
+            alt={accueil.altImg || accueil.title}
+            width="1080"
+            height="96"
+            quality={80}
           />
           <div className="flex  p-2 flex-col items-center  absolute  top-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full text-center bg-whiteOpacity">
             <Image
