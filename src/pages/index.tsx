@@ -75,9 +75,6 @@ export default function Home({
               quality={80}
               width="96"
               height="96"
-              sizes="(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
-            33vw"
               priority
               className="mt-2 w-1/6 sm:w-24"
             />
