@@ -59,11 +59,11 @@ export default function Home({
       <section>
         <div className="relative h-auto">
           <Image
-            className="w-full sm:h-96  object-cover object-center"
+            className=" object-cover object-center mx-auto"
             src="A-propos.webp"
             alt={accueil.altImg || accueil.title}
-            width="1080"
-            height="96"
+            width="595"
+            height="595"
             quality={80}
             priority
           />
