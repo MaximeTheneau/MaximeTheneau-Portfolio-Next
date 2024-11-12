@@ -65,6 +65,7 @@ export default function Home({
             width="1080"
             height="96"
             quality={80}
+            priority
           />
           <div className="flex  p-2 flex-col items-center  absolute  top-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full text-center bg-whiteOpacity">
             <Image
@@ -77,6 +78,7 @@ export default function Home({
               sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
+              priority
               className="mt-2 w-1/6 sm:w-24"
             />
             <h1 className="sm:text-title px-2  dark:text-[#17181d]">
