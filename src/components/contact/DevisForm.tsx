@@ -525,7 +525,7 @@ export default function DevisForm() {
         </div>
         <div className="w-full ">
           <label htmlFor="image">
-            Télécharger une image
+            Ajouter une image
             <input
               type="file"
               id="image"
