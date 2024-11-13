@@ -223,146 +223,46 @@ export default function DevisForm() {
     });
   };
   return (
-    <div className="max-w-sm bg-gray-100 p-4 rounded my-4 mx-auto dark:bg-secondaryLight dark:text">
+    <div className="w-full  bg-gray-100 p-4 rounded my-4  dark:bg-secondaryLight dark:text">
       <form
         onSubmit={handleSubmit}
+        className="flex flex-wrap"
       >
-        <div>
-          <fieldset>
-            <legend>
-              Status
+        <div className="sm:w-1/2 pr-4">
+          <label htmlFor="name">
+            <p>
+              Nom
               {' '}
               <span className="text-red">*</span>
-            </legend>
-            <div>
-              <label htmlFor="statusParticular" className="block m-2 text-sm">
-                <input
-                  type="radio"
-                  id="statusParticular"
-                  value="Particulier"
-                  name="status"
-                  className="w-4 h-4 mr-2"
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'status')}
-                />
-                <span>
-                  Particulier
-                </span>
-              </label>
-              <label htmlFor="statusSociety" className="block ms-2 text-sm">
-                <input
-                  id="statusSociety"
-                  type="radio"
-                  value="Société"
-                  name="status"
-                  className="w-4 h-4 mr-2"
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'status')}
-                />
-                <span>
-                  Société
-                </span>
-              </label>
-            </div>
-          </fieldset>
-        </div>
-        { state.form.status === 'Société' && (
-        <>
-          <div className="">
-            <input
+            </p>
+            <Input
               type="text"
-              title="Société"
-              placeholder="Nom de la société"
-              value={state.form.nameSociety}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'nameSociety')}
+              id="name"
+              title="Nom"
+              placeholder="Nom Prénom"
+              value={state.form.name}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'name')}
+              onBlur={(e: ChangeEvent<HTMLInputElement>) => {
+                setState((prevState) => {
+                  const newState = { ...prevState, isFocused: true };
+                  if (e.target.value.length > 2 && e.target.value.length < 35) {
+                    newState.confirmationName = true;
+                  } else {
+                    newState.confirmationName = false;
+                  }
+                  return newState;
+                });
+              }}
             />
-          </div>
-          <div className=" ">
-            <input
-              type="text"
-              title="Siret"
-              placeholder="Siret"
-              value={state.form.siret}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'siret')}
-            />
-          </div>
-        </>
-        )}
-        <div className=" ">
-          <p className=" ">
-            Nom
-            {' '}
-            <span className="text-red">*</span>
-          </p>
-          <Input
-            type="text"
-            title="Nom"
-            placeholder="Nom Prénom"
-            value={state.form.name}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'name')}
-            onBlur={(e: ChangeEvent<HTMLInputElement>) => {
-              setState((prevState) => {
-                const newState = { ...prevState, isFocused: true };
-                if (e.target.value.length > 2 && e.target.value.length < 35) {
-                  newState.confirmationName = true;
-                } else {
-                  newState.confirmationName = false;
-                }
-                return newState;
-              });
-            }}
-          />
-          {state.confirmationName === false
+            {state.confirmationName === false
               && (
               <span>
                 Veuillez renseigner votre nom (entre 3 et 35 caractères)
               </span>
               )}
-        </div>
-        <div>
-          <p>
-            Adresse
-          </p>
-          <input
-            type="text"
-            name="address"
-            placeholder="Adresse"
-            value={state.form.adress}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'adress')}
-          />
-        </div>
-        <div>
-          <label htmlFor="postalcode">
-            <p>
-              Code postal
-              {' '}
-              <span className="text-red">*</span>
-            </p>
-            <input
-              id="postalcode"
-              type="number"
-              className="contact-form-input"
-              name="postalCode"
-              value={state.form.postalCode}
-              onChange={(e) => setState(
-                { ...state, form: { ...state.form, postalCode: e.target.value } },
-              )}
-              onBlur={(e) => (
-                e.target.value.length === 5
-                  ? setState({ ...state, confirmationCodePostal: true })
-                  : setState({ ...state, confirmationCodePostal: false })
-              )}
-              placeholder="Code postal*"
-              minLength={2}
-              required
-            />
           </label>
-          {state.confirmationCodePostal === false
-                && (
-                <span>
-                  Veuillez renseigner votre code postal (5 chiffres)
-                </span>
-                )}
         </div>
-        <div>
+        <div className="sm:w-1/2 ">
           <label htmlFor="email">
             <p>
               Email
@@ -390,8 +290,85 @@ export default function DevisForm() {
                 </span>
                 )}
         </div>
-        <div>
-          <label htmlFor="phone">
+        <div className="sm:w-1/2 pr-4">
+          <label htmlFor="society">
+            <p>
+              Société
+            </p>
+            <input
+              type="text"
+              id="society"
+              title="Société"
+              placeholder="Nom de la société"
+              value={state.form.nameSociety}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'nameSociety')}
+            />
+          </label>
+        </div>
+        <div className="sm:w-1/2">
+          <label htmlFor="siret">
+            <p>
+              Siret
+            </p>
+            <input
+              type="text"
+              id="siret"
+              title="Siret"
+              placeholder="Siret"
+              value={state.form.siret}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'siret')}
+            />
+          </label>
+        </div>
+        <div className="w-full ">
+          <label htmlFor="address">
+            <p>
+              Adresse
+            </p>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="Adresse"
+              value={state.form.adress}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'adress')}
+            />
+          </label>
+        </div>
+        {/* <div>
+          <label htmlFor="postalcode">
+            <p>
+              Code postal
+            </p>
+            <input
+              id="postalcode"
+              type="number"
+              className="contact-form-input"
+              name="postalCode"
+              value={state.form.postalCode}
+              onChange={(e) => setState(
+                { ...state, form: { ...state.form, postalCode: e.target.value } },
+              )}
+              onBlur={(e) => (
+                e.target.value.length === 5
+                  ? setState({ ...state, confirmationCodePostal: true })
+                  : setState({ ...state, confirmationCodePostal: false })
+              )}
+              placeholder="Code postal"
+              minLength={2}
+              required
+            />
+          </label>
+          {state.confirmationCodePostal === false
+                && (
+                <span>
+                  Veuillez renseigner votre code postal (5 chiffres)
+                </span>
+                )}
+        </div> */}
+
+        <div className="w-full">
+          <label htmlFor="phone" className="sm:w-1/2 sm:mr-4 block">
             <p>
               Téléphone
             </p>
@@ -402,11 +379,12 @@ export default function DevisForm() {
               placeholder="Téléphone"
               value={state.form.phone}
               onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'phone')}
+              className=""
             />
           </label>
         </div>
         {state.form.phone && (
-        <div>
+        <div className="">
           <label htmlFor="date">
             <p>
               Etre rappelé le
@@ -422,13 +400,13 @@ export default function DevisForm() {
           </label>
         </div>
         )}
-        <div>
+        <div className="w-full">
           <fieldset>
             <legend>
               Quels sont vos besoins ?
             </legend>
             <div>
-              <label htmlFor="site" className="block m-2 text-sm">
+              <label htmlFor="site" className="block m-2">
                 <input
                   type="radio"
                   name="intervention"
@@ -437,13 +415,10 @@ export default function DevisForm() {
                   className="w-4 h-4 mr-2"
                   onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'intervention')}
                   required
-                  checked={!!product}
                 />
-                <span>
-                  Site Web
-                </span>
+                Site Web
               </label>
-              <label htmlFor="boutique" className="block m-2 text-sm">
+              <label htmlFor="boutique" className="block m-2 ">
                 <input
                   type="radio"
                   name="intervention"
@@ -457,7 +432,7 @@ export default function DevisForm() {
                   Boutique en ligne
                 </span>
               </label>
-              <label htmlFor="application" className="block m-2 text-sm">
+              <label htmlFor="application" className="block m-2 ">
                 <input
                   type="radio"
                   name="intervention"
@@ -471,7 +446,7 @@ export default function DevisForm() {
                   Application
                 </span>
               </label>
-              <label htmlFor="Autre" className="block m-2 text-sm">
+              <label htmlFor="Autre" className="block m-2">
                 <input
                   type="radio"
                   name="intervention"
@@ -500,7 +475,7 @@ export default function DevisForm() {
           </fieldset>
         </div>
         {(state.form.intervention === 'site' || state.form.intervention === 'blog') && (
-        <div>
+        <div className="w-full">
           <p>
             Nombre de pages estimé :
           </p>
@@ -530,7 +505,7 @@ export default function DevisForm() {
         </div>
         )}
 
-        <div>
+        <div className="w-full">
           <p>
             Ajouter un message
           </p>
@@ -548,17 +523,16 @@ export default function DevisForm() {
             placeholder="Message"
           />
         </div>
-        <div>
+        <div className="w-full ">
           <label htmlFor="image">
-            <p>
-              Ajouter une image (facultatif)
-            </p>
+            Télécharger une image
             <input
               type="file"
               id="image"
               name="image"
-              accept="image/*"
+              accept="image/jpg, image/jpeg, image/webp"
               onChange={handleFileChange}
+              className="hidden"
             />
           </label>
           {state.confirmationImage === false
@@ -568,7 +542,7 @@ export default function DevisForm() {
                 </span>
                 )}
         </div>
-        <div>
+        <div className="w-full ">
           <label htmlFor="emailReturn">
             <input
               type="checkbox"
