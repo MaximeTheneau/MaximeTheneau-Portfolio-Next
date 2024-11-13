@@ -20,6 +20,9 @@ module.exports = {
         green: '#4bbe02',
         form: 'var(--form-color)',
       },
+      width: {
+        595: '595px',
+      },
       animation: {
         'infinite-scroll': 'infinite-scroll 10s linear infinite',
       },

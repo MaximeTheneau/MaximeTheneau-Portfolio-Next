@@ -39,7 +39,7 @@ export default function ProductsList({ products }: ProductProps) {
             className="flex flex-col justify-between h-full "
             onKeyUp={(e) => { if (e.key === 'Enter') handleClick(product.url); }}
           >
-            <header>
+            <header className="underline">
               <h2>{product.name}</h2>
             </header>
             <div

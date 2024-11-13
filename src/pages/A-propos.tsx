@@ -59,6 +59,7 @@ export default function APropos({ page }: PagesProps) {
         <p>
           {page.contents}
         </p>
+
         {page.paragraphPosts.map((paragraphArticle) => (
           <div key={paragraphArticle.subtitle}>
             <h2>

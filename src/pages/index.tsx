@@ -6,7 +6,6 @@ import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import ProductJsonLd from '../components/jsonLd/ProductJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
-import ScrollingTextWrapper from '../hooks/useScrollingText/ScrollingTextWrapper';
 import ImageLoaderFull from '../utils/ImageLoaderFull';
 import ProductsList from '../components/cards/ProductsList';
 
@@ -57,7 +56,7 @@ export default function Home({
       />
       {products.map((product) => <ProductJsonLd product={product} />)}
       <section>
-        <div className="relative h-auto">
+        <div className="relative h-auto ">
           <Image
             className=" object-cover object-center mx-auto"
             src="A-propos.webp"
@@ -78,10 +77,9 @@ export default function Home({
               priority
               className="mt-2 w-1/6 sm:w-24"
             />
-            <h1 className="sm:text-title px-2  dark:text-[#17181d]">
+            <h1 className="sm:text-title px-2  dark:text-[#17181d] sm:w-595">
               {accueil.heading}
             </h1>
-            <p className="block text-lg">{accueil.contents}</p>
           </div>
         </div>
         {/* --About--*/}
@@ -98,6 +96,7 @@ export default function Home({
           </div>
         </div>
       </section>
+      {/* --Product--*/}
       <ProductsList products={products} />
       <section className="m-4 ">
         {/* --Création--*/}
@@ -112,35 +111,25 @@ export default function Home({
             </span>
           </div>
         </Link>
-        {creation.map((creations) => (
-          <div className="mt-10 duration-300 hover:opacity-80" key={creations.title}>
-            <Link href={`/Creations/${creations.slug}`}>
-              <div className="grid sm:grid-cols-4 sm:gap-4 relative">
-                <div className="sm:col-span-2 sm:col-span-2">
-                  <div className="flex flex-col justify-around rounded sm:pr-10 pl-2 bg-secondary text-white min-h-96 p-4">
-                    <h2 className="text-lg">{creations.title}</h2>
-                    <p>{creations.contents}</p>
-                    <span className="font-bold hover:underline transition-all duration-300">
-                      En savoir plus
-                      {' '}
-                      <i className="icon-angle-right text-base" />
-                    </span>
-                  </div>
-                </div>
-                <div className=" order-first sm:order-last sm:col-span-1 sm:-translate-x-12 sm:translate-y-4 w-full">
-                  <Image
-                    src={`${creations.slug}.webp`}
-                    width={1080}
-                    height={720}
-                    quality={70}
-                    alt="src"
-                    className="rounded"
-                  />
-                </div>
-              </div>
-            </Link>
-          </div>
-        ))}
+        <div className="sm:flex">
+
+          {creation.map((creations) => (
+            <div
+              className="duration-300 flex flex-col justify-between hover:opacity-80 w-full sm:w-1/3 m-4 p-4 bg-form"
+              key={creations.title}
+            >
+              <h2>{creations.title}</h2>
+              <p className="no-underline">{creations.contents}</p>
+              <Link href={`/Creations/${creations.slug}`}>
+                <span className="font-bold hover:underline transition-all duration-300">
+                  En savoir plus
+                  {' '}
+                  <i className="icon-angle-right text-base" />
+                </span>
+              </Link>
+            </div>
+          ))}
+        </div>
       </section>
       {accueil.paragraphPosts.map((paragraphArticle) => (
         <div key={paragraphArticle.subtitle} />
@@ -162,23 +151,19 @@ export default function Home({
         </Link>
       </section>
 
-      <ScrollingTextWrapper accueil={accueil} />
       <section className="m-4 ">
-
         <Link
           href="/devis-en-ligne"
-          className=" w-full block p-2 my-4 bg-form rounded"
         >
           <h2>Demande de devis pour la créations de devis en ligne </h2>
-          <p>
-            Si vous souhaitez obtenir un devis personnalisé pour la création de votre site web,
-            n&apos;hésitez pas à nous contacter.
-            Nous serons ravis de vous aider à réaliser votre projet en ligne.
-            Remplissez le formulaire ci-dessous pour que nous puissions discuter
-            de vos besoins et vous fournir une estimation précise.
-          </p>
-          Découvrez toutes les réponses à vos questions ici
         </Link>
+        <p>
+          Si vous souhaitez obtenir un devis personnalisé pour la création de votre site web,
+          n&apos;hésitez pas à nous contacter.
+          Nous serons ravis de vous aider à réaliser votre projet en ligne.
+          Remplissez le formulaire ci-dessous pour que nous puissions discuter
+          de vos besoins et vous fournir une estimation précise.
+        </p>
       </section>
     </>
   );
