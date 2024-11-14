@@ -12,14 +12,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_WEBMASTER} />
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </Head>
-      <Layout>
-        <CookiesProvider>
-          <CookiesModal />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </CookiesProvider>
-      </Layout>
+      <CookiesProvider>
+        <CookiesModal />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </CookiesProvider>
     </>
 
   );
