@@ -27,9 +27,7 @@ export default function Home({ articles, page }) {
       />
       <section className="m-4">
         <h1>{page.title}</h1>
-        <p>
-          {page.contents}
-        </p>
+        <div dangerouslySetInnerHTML={{ __html: page.contents }} />
         <Cards cards={articles} path="Creation" />
       </section>
     </>

@@ -30,6 +30,11 @@ export default function Footer() {
             Mes projets
           </Link>
         </li>
+        <li>
+          <Link href="/blog">
+            Blog
+          </Link>
+        </li>
       </ul>
       <ul>
         <li>

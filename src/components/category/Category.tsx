@@ -6,24 +6,27 @@ type CategoryProps = {
     slug: string;
     name: string;
   };
+  slug: string;
 };
 
-export default function Category({ category }: CategoryProps) {
+export default function Category({ category, slug }: CategoryProps) {
   return (
     <nav>
-      <ul className={styles.category}>
-        <li className="button">
-          <Link href="/articles" data-testid="articles-link">
-            Articles
-          </Link>
-        </li>
+      <ul className={`${styles.category} mt-4`}>
         {category
             && (
-            <li className="button">
-              <Link href={`/articles/${category.slug}`}>
-                {category.name}
-              </Link>
-            </li>
+              <>
+                <li className="list-none font-bold">
+                  <Link href={`/${category.slug}`}>
+                    {category.name}
+
+                  </Link>
+                </li>
+                <li className="list-none text-blackOpacity ">
+                  {' | '}
+                  {slug}
+                </li>
+              </>
             )}
       </ul>
     </nav>
