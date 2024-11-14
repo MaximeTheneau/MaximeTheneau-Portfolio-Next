@@ -30,6 +30,7 @@ export default function ProductsList({ products }: ProductProps) {
     >
       {products.map((product) => (
         <article
+          key={product.name}
           className="w-full p-4 sm:w-[30%] sm:mr-4 mb-4 bg-form rounded hover:opacity-80 "
         >
           <div
@@ -50,7 +51,7 @@ export default function ProductsList({ products }: ProductProps) {
               {product.productOptions.map((option) => (
                 <li
                   className={`flex p-2 ${option.active ? 'bg-white' : 'inactive'}`}
-                  key={option.label.length}
+                  key={option.label}
                 >
                   {option.active ? (
                     <i className="icon-confirmation1 text-green" />

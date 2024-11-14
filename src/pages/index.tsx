@@ -54,7 +54,7 @@ export default function Home({
         url={process.env.NEXT_PUBLIC_URL}
         logoUrl={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/theneau-maxime.png`}
       />
-      {products.map((product) => <ProductJsonLd product={product} />)}
+      {products.map((product) => <ProductJsonLd key={product.name} product={product} />)}
       <section>
         <div className="relative h-auto ">
           <Image
@@ -131,9 +131,7 @@ export default function Home({
           ))}
         </div>
       </section>
-      {accueil.paragraphPosts.map((paragraphArticle) => (
-        <div key={paragraphArticle.subtitle} />
-      ))}
+
       {/* --FAQ--*/}
       <section className="m-4 ">
         <Link
