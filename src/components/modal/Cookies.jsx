@@ -60,19 +60,19 @@ export default function CookiesModal() {
   }, []);
 
   useEffect(() => {
-    if (window.localStorage.getItem('cookiesAdsense')) {
-      updateCookies('cookiesAdsense', true);
-      const scriptAdsense = document.createElement('script');
-      scriptAdsense.async = true;
-      scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
-      scriptAdsense.id = 'google-adsense';
-      const existingScriptAd = document.getElementById('google-adsense');
+    // if (window.localStorage.getItem('cookiesAdsense')) {
+    //   updateCookies('cookiesAdsense', true);
+    //   const scriptAdsense = document.createElement('script');
+    //   scriptAdsense.async = true;
+    //   scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
+    //   scriptAdsense.id = 'google-adsense';
+    //   const existingScriptAd = document.getElementById('google-adsense');
 
-      if (existingScriptAd) {
-        document.head.removeChild(existingScriptAd);
-      }
-      document.head.appendChild(scriptAdsense);
-    }
+    //   if (existingScriptAd) {
+    //     document.head.removeChild(existingScriptAd);
+    //   }
+    //   document.head.appendChild(scriptAdsense);
+    // }
 
     if (window.localStorage.getItem('cookiesGoogle')) {
       updateCookies('cookiesGoogle', window.localStorage.getItem('cookiesGoogle'));

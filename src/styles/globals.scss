@@ -32,10 +32,15 @@ h4,
 h5,
 h6{
   font-family: 'fontTitle', sans-serif;
+  margin: 1rem 0 ;
 }
 
 h2{
  font-size: 1.25rem;
+}
+h3{
+ font-size: 1.12rem;
+
 }
 
 img{
@@ -49,6 +54,20 @@ a{
   text-decoration: underline;
   &:hover{
     color: var(--primary-color) !important;
+  }
+}
+button a,
+nav a
+{
+  text-decoration: none;
+}
+
+footer{
+  a {
+    text-decoration: none;
+  }
+  h3{
+    margin: 0;
   }
 }
 
@@ -89,7 +108,7 @@ select{
     outline: none;
   }
 }
-section li{
+article li{
  list-style: disc;
  margin-left: 1rem;
 }

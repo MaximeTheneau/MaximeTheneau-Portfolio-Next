@@ -31,7 +31,7 @@ export default function Slug({ post }) {
         url={post.url}
       />
       <ArticleJsonLd post={post} />
-      <section className="m-4">
+      <article className="m-4">
         <Image
           src={`${post.slug}.webp`}
           alt={post.altImg || post.title}
@@ -68,7 +68,7 @@ export default function Slug({ post }) {
             />
           )}
         </div>
-      </section>
+      </article>
     </>
   );
 }

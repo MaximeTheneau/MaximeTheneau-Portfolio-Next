@@ -26,14 +26,17 @@ export default function DevisEnLigne({ page }) {
         <div dangerouslySetInnerHTML={{ __html: page.contents }} />
         <div>
           <DevisForm />
-          {page.paragraphPosts.map((paragraphArticle) => (
-            <div key={paragraphArticle.subtitle}>
-              <h2>
-                {paragraphArticle.subtitle}
-              </h2>
-              <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
-            </div>
-          ))}
+          <article>
+
+            {page.paragraphPosts.map((paragraphArticle) => (
+              <div key={paragraphArticle.subtitle}>
+                <h2>
+                  {paragraphArticle.subtitle}
+                </h2>
+                <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
+              </div>
+            ))}
+          </article>
         </div>
       </section>
     </>
