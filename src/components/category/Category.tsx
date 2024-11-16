@@ -11,8 +11,8 @@ type CategoryProps = {
 export default function Category({ category, title }: CategoryProps) {
   return (
     <nav>
-      <ul className="flex mt-4">
-        <li className={`${category ? 'list-none font-bold' : 'list-none text-blackOpacity'}`}>
+      <ul className=" mt-4">
+        <li className={`inline-block list-none${category ? ' font-bold' : 'text-blackOpacity'}`}>
           <Link href="/blog">
             Blog
           </Link>
@@ -20,15 +20,13 @@ export default function Category({ category, title }: CategoryProps) {
         {category
             && (
               <>
-                <li className="list-none font-bold">
+                <li className="inline-block list-none font-bold ml-2">
                   <Link href={`/blog/${category.slug}`}>
-                    {' | '}
                     {category.name}
                   </Link>
                 </li>
-                <li className="list-none text-blackOpacity">
+                <li className="inline-block list-none text-blackOpacity ml-2">
                   {title}
-                  {' | '}
                 </li>
               </>
             )}
