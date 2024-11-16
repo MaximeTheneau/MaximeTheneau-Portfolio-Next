@@ -7,11 +7,13 @@ const useScrollParallaxTop = (elementRef: RefObject<HTMLDivElement>) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const { top } = elementRef.current.getBoundingClientRect();
-      const parallacEffect = (top / window.innerHeight) * 20;
+      if (elementRef.current) {
+        const { top } = elementRef.current.getBoundingClientRect();
+        const parallaxEffect = (top / window.innerHeight) * 20;
 
-      if (parallacEffect >= 0 && parallacEffect <= 100) {
-        setScrollPosition(parallacEffect * 5);
+        if (parallaxEffect >= 0 && parallaxEffect <= 100) {
+          setScrollPosition(parallaxEffect * 5);
+        }
       }
     };
 

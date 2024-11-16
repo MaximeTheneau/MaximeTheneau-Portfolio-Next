@@ -104,13 +104,13 @@ export default function CookiesModal() {
 
   const handleRefuseCookies = () => {
     document.body.classList.remove('overflow-hidden');
-    updateCookies('cookiesModal', null);
+    updateCookies('cookiesModal', false);
   };
-
+  if (!cookies.cookiesModal === false) {
+    return null;
+  }
   return (
-    cookies.cookiesModal === false && (
     <div className="bottom-0 fixed bg-primary z-10 p-4 w-full shadow-custom ">
-
       {cookies.cookiesChoice ? (
         <div>
           <table className="w-full ">
@@ -166,6 +166,5 @@ export default function CookiesModal() {
         </>
       )}
     </div>
-    )
   );
 }

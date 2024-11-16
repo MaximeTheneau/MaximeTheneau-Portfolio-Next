@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import imageThumbnail from '../../utils/ImageThumbnail';
 
 type CardProps = {
   card: {
@@ -22,7 +21,6 @@ export default function Card({ card }: CardProps) {
         alt={card.altImg || card.title}
         width={330}
         height={310}
-        loader={imageThumbnail}
         quality={70}
         sizes="100vw"
         style={{

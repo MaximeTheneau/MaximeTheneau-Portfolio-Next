@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import {
+  JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect, useState,
+} from 'react';
 
-export default function ScrollingTextWrapper({ accueil }) {
+export default function ScrollingTextWrapper({ accueil }:any) {
   const [bot, setBot] = useState(true);
 
   useEffect(() => {
@@ -13,19 +15,26 @@ export default function ScrollingTextWrapper({ accueil }) {
     <div className="w-full inline-flex flex-nowrap bg-secondaryLight p-4 overflow-x-hidden">
       <ul
         id="animate-infinite-scroll"
-        className={
+        className={`
           bot && (
             'flex text-title items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll'
-          )
-        }
+          )`}
       >
-        {accueil.listPosts.map((listArticle) => listArticle.title && (
-        <li
-          key={listArticle.id}
-          className="list-none pr-4"
-        >
-          {listArticle.title}
-        </li>
+        {accueil.listPosts.map((listArticle:
+        { title:
+          string
+          | number
+          | boolean
+          | ReactElement<any, string
+          | JSXElementConstructor<any>>
+          | ReactFragment
+          | ReactPortal | null | undefined; id: Key | null | undefined; }) => listArticle.title && (
+          <li
+            key={listArticle.id}
+            className="list-none pr-4"
+          >
+            {listArticle.title}
+          </li>
         ))}
       </ul>
       {bot && (
@@ -33,14 +42,25 @@ export default function ScrollingTextWrapper({ accueil }) {
           id="animate-infinite-scroll"
           className="flex text-title items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
         >
-          {accueil.listPosts.map((listArticle) => listArticle.title && (
-          <li
-            key={listArticle.id}
-            className="list-none pr-4"
-          >
-            {listArticle.title}
-          </li>
-          ))}
+          {accueil.listPosts.map(
+            (listArticle:
+              { title:
+                string |
+                 number |
+                  boolean |
+                  ReactFragment
+                  | ReactPortal
+                   | ReactElement<any, string |
+                    JSXElementConstructor<any>> |
+                     null | undefined; id: Key | null | undefined; }) => listArticle.title && (
+                     <li
+                       key={listArticle.id}
+                       className="list-none pr-4"
+                     >
+                       {listArticle.title}
+                     </li>
+            ),
+          )}
         </ul>
       )}
     </div>

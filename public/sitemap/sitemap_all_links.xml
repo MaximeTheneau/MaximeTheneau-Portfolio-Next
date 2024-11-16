@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
-          <loc>https://theneaumaxime.fr/blog</loc>
-          <lastmod>2024-11-14T13:23:44+00:00</lastmod>
+          <loc>https://theneaumaxime.fr/site-web</loc>
+          <lastmod>2024-11-16T12:23:46+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
-          <loc>https://theneaumaxime.fr/blog/Les-10-Meilleures-Agences-de-Creation-de-Sites-Web-a-Marseille</loc>
-          <lastmod>2024-11-14T14:14:36+00:00</lastmod>
+          <loc>https://theneaumaxime.fr/Pages/hebergeur/hebergeur</loc>
+          <lastmod>2024-11-16T11:44:09+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://theneaumaxime.fr/blog/hebergeur/pourquoi-j-ai-choisi-hostinger-comme-hebergeur-ver</loc>
+          <lastmod>2024-11-16T10:41:44+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://theneaumaxime.fr/blog/site-web/5-Raisons-d-Eviter-les-Sites-Gratuits-pour-Votre-Presence-en-Ligne</loc>
+          <lastmod>2024-11-16T10:38:01+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://theneaumaxime.fr/blog/site-web/Guide-Complet-pour-Creer-un-Site-Gratuit-en-7-Etapes</loc>
+          <lastmod>2024-11-16T10:37:46+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://theneaumaxime.fr/blog</loc>
+          <lastmod>2024-11-14T17:12:16+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://theneaumaxime.fr/blog/site-web/Les-10-Meilleures-Agences-de-Creation-de-Sites-Web-a-Marseille</loc>
+          <lastmod>2024-11-16T10:33:51+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/devis-en-ligne</loc>
@@ -30,7 +50,7 @@
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/A-propos</loc>
-          <lastmod>2024-10-26T10:55:19+00:00</lastmod>
+          <lastmod>2024-11-14T16:04:26+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/Creations/CupPlante</loc>
@@ -42,7 +62,7 @@
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/Foire-aux-questions</loc>
-          <lastmod>2024-10-26T10:44:29+00:00</lastmod>
+          <lastmod>2024-11-14T16:21:19+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/Creations/O-miam</loc>

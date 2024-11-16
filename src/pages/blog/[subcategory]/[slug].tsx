@@ -1,29 +1,58 @@
 import Image from 'next/image';
-import ArticleJsonLd from '../../components/jsonLd/ArticleJsonLd';
-import Page404 from '../404';
-import Category from '../../components/category/Category';
-import ImageLoaderFull from '../../utils/ImageLoaderFull';
-import HeadComponents from '../../components/head/HeadComponents';
-import Button from '../../components/button/Button';
-import BreadcrumbJsonLd from '../../components/jsonLd/BreadcrumbJsonLd';
-import TableOfContents from '../../components/tableOfContents/TableOfContents';
+import ArticleJsonLd from '@/components/jsonLd/ArticleJsonLd';
+import Page404 from '@/pages/404';
+import Category from '@/components/category/Category';
+import HeadComponents from '@/components/head/HeadComponents';
+import Button from '@/components/button/Button';
+import BreadcrumbJsonLd from '@/components/jsonLd/BreadcrumbJsonLd';
+import TableOfContents from '@/components/tableOfContents/TableOfContents';
+import fetcher from '@/utils/fetcher';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&category=blog`);
-  const posts = await res.json();
+type Post = {
+  slug: string;
+  heading: string;
+  metaDescription: string;
+  image: string;
+  url: string;
+  altImg?: string;
+  title: string;
+  formattedDate: string;
+  category: string;
+  subcategory: { slug: string; name: string; };
+  contents: string;
+  paragraphPosts: {
+    slug: string;
+    subtitle: string;
+    paragraph: string;
+  }[];
+  github?: string;
+  website?: string;
+};
 
-  const paths = posts.map((post) => ({ params: { slug: post.slug } }));
-  return { paths, fallback: false };
+interface SlugProps {
+  post: Post | null;
 }
 
-export async function getStaticProps({ params }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/${params.slug}`);
-  const post = await res.json();
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts&category=blog`);
+
+  const paths = posts.map((post: { subcategory: { slug: any; }; slug: any; }) => ({
+    params: {
+      subcategory: post.subcategory.slug,
+      slug: post.slug,
+    },
+  }));
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps<SlugProps> = async ({ params }) => {
+  const post = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/${params?.slug}`);
 
   return { props: { post } };
-}
+};
 
-export default function Slug({ post }) {
+export default function Slug({ post }: SlugProps) {
   if (!post) return <Page404 />;
   return (
     <>
@@ -33,14 +62,13 @@ export default function Slug({ post }) {
         image={post.image}
         url={post.url}
       />
-      <ArticleJsonLd post={post} />
+      <ArticleJsonLd post={post} urlPost={post.url} />
       <BreadcrumbJsonLd paragraphPosts={post.paragraphPosts} urlPost={post.url} />
       <article className="m-4">
         <figure>
           <Image
             src={`${post.slug}.webp`}
             alt={post.altImg || post.title}
-            loader={ImageLoaderFull}
             quality={100}
             width="1080"
             height="720"
@@ -57,11 +85,11 @@ export default function Slug({ post }) {
             {post.formattedDate}
           </span>
           <span> • </span>
-          <span class="text-gray-500">Écrit par Maxime Freelance</span>
+          <span className="text-gray-500">Écrit par Maxime Freelance</span>
         </p>
         <Category
-          category={post.category}
-          slug={post.slug}
+          category={post.subcategory}
+          title={post.title}
         />
         <h1>{post.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: post.contents }} />

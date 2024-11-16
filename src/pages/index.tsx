@@ -39,7 +39,7 @@ export default function Home({
   products,
   creation,
   faq,
-}) {
+}:any) {
   return (
     <>
       <HeadComponents
@@ -54,7 +54,7 @@ export default function Home({
         url={process.env.NEXT_PUBLIC_URL}
         logoUrl={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/theneau-maxime.png`}
       />
-      {products.map((product) => <ProductJsonLd key={product.name} product={product} />)}
+      {products.map((product:any) => <ProductJsonLd key={product.name} product={product} />)}
       <section>
         <div className="relative h-auto ">
           <Image
@@ -70,7 +70,6 @@ export default function Home({
             <Image
               src="Theneau-Maxime.webp"
               alt={accueil.altImg || accueil.title}
-              loader={ImageLoaderFull}
               quality={80}
               width="96"
               height="96"
@@ -85,13 +84,20 @@ export default function Home({
         {/* --About--*/}
         <div className="px-8 pt-4 w-full flex">
           <div>
-            {accueil.paragraphPosts.map((paragraphArticle) => (
-              <div key={paragraphArticle.subtitle}>
-                <h2>
-                  {paragraphArticle.subtitle}
-                </h2>
-                <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
-              </div>
+            {accueil.paragraphPosts.map((item: React.Key | null | undefined, paragraphArticle:
+            { subtitle:
+              boolean
+              | React.Key
+              | React.ReactElement<any, string
+              | React.JSXElementConstructor<any>>
+              | React.ReactFragment | null
+              | undefined; paragraph: any; }) => (
+                <div key={item}>
+                  <h2>
+                    {paragraphArticle.subtitle}
+                  </h2>
+                  <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
+                </div>
             ))}
           </div>
         </div>
@@ -113,21 +119,31 @@ export default function Home({
         </Link>
         <div className="sm:flex">
 
-          {creation.map((creations) => (
-            <div
-              className="duration-300 flex flex-col justify-between hover:opacity-80 w-full sm:w-1/3 m-4 p-4 bg-form"
-              key={creations.title}
-            >
-              <h2>{creations.title}</h2>
-              <p className="no-underline">{creations.contents}</p>
-              <Link href={`/Creations/${creations.slug}`}>
-                <span className="font-bold hover:underline transition-all duration-300">
-                  En savoir plus
-                  {' '}
-                  <i className="icon-angle-right text-base" />
-                </span>
-              </Link>
-            </div>
+          {creation.map((item: any, creations: {
+           title: boolean
+           | React.Key
+           | React.ReactFragment
+           | React.ReactElement<any, string
+           | React.JSXElementConstructor<any>>
+           | null | undefined; contents: string
+           | number | boolean | React.ReactFragment
+           | React.ReactElement<any, string
+           | React.JSXElementConstructor<any>>
+           | React.ReactPortal | null | undefined; slug: any; }) => (
+             <div
+               className="duration-300 flex flex-col justify-between hover:opacity-80 w-full sm:w-1/3 m-4 p-4 bg-form"
+               key={item}
+             >
+               <h2>{creations.title}</h2>
+               <p className="no-underline">{creations.contents}</p>
+               <Link href={`/Creations/${creations.slug}`}>
+                 <span className="font-bold hover:underline transition-all duration-300">
+                   En savoir plus
+                   {' '}
+                   <i className="icon-angle-right text-base" />
+                 </span>
+               </Link>
+             </div>
           ))}
         </div>
       </section>

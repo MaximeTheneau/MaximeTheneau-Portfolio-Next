@@ -1,4 +1,4 @@
-export default function Select({ onChange, value, required }) {
+export default function Select({ onChange, value, required }:any) {
   return (
     <select
       title="Sujet"

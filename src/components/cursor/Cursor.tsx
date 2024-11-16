@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
 function Cursor() {
-  const cursorRef = useRef(null);
+  const cursorRef = useRef<HTMLDivElement | null>(null);
   const [showCursor, setShowCursor] = useState(false);
 
   useEffect(() => {
-    const handleClick = (e) => {
+    const handleClick = (e: { pageY: any; pageX: any; }) => {
       if (showCursor) {
         setShowCursor(false);
       } else {

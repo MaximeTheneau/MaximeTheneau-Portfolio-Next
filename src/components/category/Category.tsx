@@ -1,30 +1,34 @@
 import Link from 'next/link';
-import styles from './Category.module.scss';
 
 type CategoryProps = {
   category: {
     slug: string;
     name: string;
   };
-  slug: string;
+  title: string;
 };
 
-export default function Category({ category, slug }: CategoryProps) {
+export default function Category({ category, title }: CategoryProps) {
   return (
     <nav>
-      <ul className={`${styles.category} mt-4`}>
+      <ul className="flex mt-4">
+        <li className={`${category ? 'list-none font-bold' : 'list-none text-blackOpacity'}`}>
+          <Link href="/blog">
+            Blog
+          </Link>
+        </li>
         {category
             && (
               <>
                 <li className="list-none font-bold">
-                  <Link href={`/${category.slug}`}>
+                  <Link href={`/blog/${category.slug}`}>
+                    {' | '}
                     {category.name}
-
                   </Link>
                 </li>
-                <li className="list-none text-blackOpacity ">
+                <li className="list-none text-blackOpacity">
+                  {title}
                   {' | '}
-                  {slug}
                 </li>
               </>
             )}

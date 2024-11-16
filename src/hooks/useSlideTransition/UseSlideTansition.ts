@@ -7,17 +7,19 @@ export default function useSlideTransition(
   elementRef: RefObject<HTMLDivElement>,
 ): Offset {
   const [offset, setOffset] = useState<Offset>({
-    opacity: null,
+    opacity: 1,
   });
 
   useEffect(() => {
     const handleScroll = () => {
-      const { top } = elementRef.current.getBoundingClientRect();
-      const opacity = 1 - (top / (window.innerHeight * 3));
-      if (opacity >= 0.5 && opacity <= 1) {
-        setOffset({
-          opacity,
-        });
+      if (elementRef.current) {
+        const { top } = elementRef.current.getBoundingClientRect();
+        const opacity = 1 - (top / (window.innerHeight * 3));
+        if (opacity >= 0.5 && opacity <= 1) {
+          setOffset({
+            opacity,
+          });
+        }
       }
     };
     window.addEventListener('scroll', handleScroll);

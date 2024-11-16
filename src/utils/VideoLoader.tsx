@@ -36,7 +36,6 @@ function VideoLoader({ src, className }: VideoLoaderProps) {
       />
       <Image
         src={`${src}.webp`}
-        loader={ImageLoaderFull}
         width={1080}
         height={720}
         alt="src"

@@ -46,7 +46,6 @@ export default function APropos({ page }: PagesProps) {
         <Image
           src={`${page.slug}.webp`}
           alt={page.altImg || page.title}
-          loader={ImageLoaderFull}
           quality={80}
           width="656"
           height="656"

@@ -1,3 +1,4 @@
+import { Url } from 'next/dist/shared/lib/router/router';
 import { useRouter } from 'next/router';
 
  type ProductOption = {
@@ -21,7 +22,7 @@ type ProductProps = {
 export default function ProductsList({ products }: ProductProps) {
   const router = useRouter();
 
-  const handleClick = (url) => {
+  const handleClick = (url: Url) => {
     router.push(url);
   };
   return (

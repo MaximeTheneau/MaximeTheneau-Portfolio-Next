@@ -86,7 +86,7 @@ export default function ContactForm() {
     }));
   };
 
-  const changeField = (value, field) => {
+  const changeField = (value: string, field: string) => {
     setState((prevState) => ({
       ...prevState,
       form: {
@@ -99,13 +99,6 @@ export default function ContactForm() {
   const handleResponse200 = () => {
     setState({
       ...state,
-      form: {
-        name: '',
-        email: '',
-        message: '',
-        subject: 'Demande de renseignements',
-        ...state.form,
-      },
       modal: {
         title: 'Merci !',
         message: 'On vous répondra au plus vite',
@@ -121,7 +114,7 @@ export default function ContactForm() {
     );
   };
 
-  const handleResponseError = (error) => {
+  const handleResponseError = (error: any) => {
     setState({
       ...state,
       modal: {
@@ -132,7 +125,7 @@ export default function ContactForm() {
     });
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = (evt: { preventDefault: () => void; }) => {
     evt.preventDefault();
     setState({
       ...state,

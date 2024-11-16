@@ -1,22 +1,23 @@
+import fetcher from '@/utils/fetcher';
 import HeadComponents from '../../components/head/HeadComponents';
 import Cards from '../../components/cards/Cards';
+import CategoryPage from '../../components/category/CategoryPage';
 
 export async function getStaticProps() {
-  const responseArticles = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&category=blog`);
-  const responsePage = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/blog`);
-
-  const articles = await responseArticles.json();
-  const page = await responsePage.json();
+  const articles = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts&category=blog`);
+  const page = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/blog`);
+  const subcategoryList = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts&filter=subcategory`);
 
   return {
     props: {
       articles,
       page,
+      subcategoryList,
     },
   };
 }
 
-export default function Home({ articles, page }) {
+export default function Home({ articles, page, subcategoryList }) {
   return (
     <>
       <HeadComponents
@@ -28,6 +29,11 @@ export default function Home({ articles, page }) {
       <section className="m-4">
         <h1>{page.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: page.contents }} />
+        <CategoryPage
+          category={false}
+          subcategoryPost={page.slug}
+          subcategoryList={subcategoryList}
+        />
         <Cards cards={articles} path="Creation" />
       </section>
     </>

@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         <url>
+                  <loc>https://theneaumaxime.fr/site-web</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/Accueil.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/Pages/hebergeur/hebergeur</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/Accueil.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/hebergeur/pourquoi-j-ai-choisi-hostinger-comme-hebergeur-ver</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/pourquoi-j-ai-choisi-hostinger-comme-hebergeur-ver.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/site-web/5-Raisons-d-Eviter-les-Sites-Gratuits-pour-Votre-Presence-en-Ligne</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/5-Raisons-d-Eviter-les-Sites-Gratuits-pour-Votre-Presence-en-Ligne.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/site-web/Guide-Complet-pour-Creer-un-Site-Gratuit-en-7-Etapes</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/Guide-Complet-pour-Creer-un-Site-Gratuit-en-7-Etapes.webp</image:loc>
+                  </image:image>
+                </url><url>
                   <loc>https://theneaumaxime.fr/blog</loc>
                   <image:image>
                     <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/Accueil.webp</image:loc>
                   </image:image>
                 </url><url>
-                  <loc>https://theneaumaxime.fr/blog/Les-10-Meilleures-Agences-de-Creation-de-Sites-Web-a-Marseille</loc>
+                  <loc>https://theneaumaxime.fr/blog/site-web/Les-10-Meilleures-Agences-de-Creation-de-Sites-Web-a-Marseille</loc>
                   <image:image>
                     <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/Les-10-Meilleures-Agences-de-Creation-de-Sites-Web-a-Marseille.webp</image:loc>
                   </image:image>
