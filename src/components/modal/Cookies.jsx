@@ -46,15 +46,9 @@ export default function CookiesModal() {
   };
 
   useEffect(() => {
-    if (!window.localStorage.getItem('cookiesModal')) {
-      setTimeout(() => {
-        updateCookies('cookiesModal', false);
-      }, 1000);
-    }
-
     if (!window.localStorage.getItem('cookiesGoogle')) {
       setTimeout(() => {
-        updateCookies('cookiesGoogle', false);
+        updateCookies('cookiesModal', false);
       }, 1000);
     }
   }, []);
@@ -97,18 +91,20 @@ export default function CookiesModal() {
     window.localStorage.setItem('cookiesModal', true);
     window.localStorage.setItem('cookiesGoogle', true);
     window.localStorage.setItem('cookiesAdsense', true);
-    updateCookies('cookiesModal', true);
+    updateCookies('cookiesModal', null);
     updateCookies('cookiesGoogle', true);
     updateCookies('cookiesAdsense', true);
   };
 
   const handleRefuseCookies = () => {
     document.body.classList.remove('overflow-hidden');
-    updateCookies('cookiesModal', false);
+    updateCookies('cookiesModal', null);
   };
-  if (!cookies.cookiesModal === false) {
+
+  if (cookies.cookiesModal === null) {
     return null;
   }
+
   return (
     <div className="bottom-0 fixed bg-primary z-10 p-4 w-full shadow-custom ">
       {cookies.cookiesChoice ? (
@@ -131,6 +127,7 @@ export default function CookiesModal() {
               className="bg-form"
               onClick={() => {
                 handleCookieChange('cookiesModal');
+                updateCookies('cookiesModal', null);
               }}
             >
               Confirmer

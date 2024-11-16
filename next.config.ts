@@ -1,4 +1,3 @@
-
 /**
  * @type {import('next').NextConfig}
  */
@@ -13,8 +12,7 @@ const nextConfig = {
     minimumCacheTTL: 60,
   },
   eslint: {
-    dirs: ['pages', 'utils'], 
+    dirs: ['pages', 'utils'],
   },
 };
- 
 export default nextConfig;
