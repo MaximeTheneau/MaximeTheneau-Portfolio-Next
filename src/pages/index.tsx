@@ -1,20 +1,19 @@
 import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import fetcher from '@/utils/fetcher';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import ProductJsonLd from '../components/jsonLd/ProductJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
-import ImageLoaderFull from '../utils/ImageLoaderFull';
 import ProductsList from '../components/cards/ProductsList';
 
 export async function getStaticProps() {
   const responseAccueil = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/home`);
   const accueil = await responseAccueil.json();
 
-  const responseCreation = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Creations`);
-  const creation = await responseCreation.json();
+  const creation = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Creations`);
 
   const responseFaq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
   const faq = await responseFaq.json();
@@ -84,20 +83,14 @@ export default function Home({
         {/* --About--*/}
         <div className="px-8 pt-4 w-full flex">
           <div>
-            {accueil.paragraphPosts.map((item: React.Key | null | undefined, paragraphArticle:
-            { subtitle:
-              boolean
-              | React.Key
-              | React.ReactElement<any, string
-              | React.JSXElementConstructor<any>>
-              | React.ReactFragment | null
-              | undefined; paragraph: any; }) => (
-                <div key={item}>
-                  <h2>
-                    {paragraphArticle.subtitle}
-                  </h2>
-                  <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
-                </div>
+            {accueil.paragraphPosts.map((paragraphArticle:
+            { subtitle: string; paragraph: any; }) => (
+              <div key={paragraphArticle.subtitle}>
+                <h2>
+                  {paragraphArticle.subtitle}
+                </h2>
+                <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
+              </div>
             ))}
           </div>
         </div>
@@ -119,31 +112,21 @@ export default function Home({
         </Link>
         <div className="sm:flex">
 
-          {creation.map((item: any, creations: {
-           title: boolean
-           | React.Key
-           | React.ReactFragment
-           | React.ReactElement<any, string
-           | React.JSXElementConstructor<any>>
-           | null | undefined; contents: string
-           | number | boolean | React.ReactFragment
-           | React.ReactElement<any, string
-           | React.JSXElementConstructor<any>>
-           | React.ReactPortal | null | undefined; slug: any; }) => (
-             <div
-               className="duration-300 flex flex-col justify-between hover:opacity-80 w-full sm:w-1/3 m-4 p-4 bg-form"
-               key={item}
-             >
-               <h2>{creations.title}</h2>
-               <p className="no-underline">{creations.contents}</p>
-               <Link href={`/Creations/${creations.slug}`}>
-                 <span className="font-bold hover:underline transition-all duration-300">
-                   En savoir plus
-                   {' '}
-                   <i className="icon-angle-right text-base" />
-                 </span>
-               </Link>
-             </div>
+          {creation.map((creations: any) => (
+            <div
+              className="duration-300 flex flex-col justify-between hover:opacity-80 w-full sm:w-1/3 m-4 p-4 bg-form"
+              key={creations.id}
+            >
+              <h2>{creations.title}</h2>
+              <p className="no-underline">{creations.contents}</p>
+              <Link href={`/Creations/${creations.slug}`}>
+                <span className="font-bold hover:underline transition-all duration-300">
+                  En savoir plus
+                  {' '}
+                  <i className="icon-angle-right text-base" />
+                </span>
+              </Link>
+            </div>
           ))}
         </div>
       </section>

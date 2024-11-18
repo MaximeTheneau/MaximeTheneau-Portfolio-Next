@@ -3,9 +3,7 @@ import Link from 'next/link';
 
 type CardProps = {
   card: {
-    subcategory: {
-      slug: string;
-    };
+
     slug: string;
     altImg?: string;
     title: string;

@@ -1,11 +1,10 @@
 @use 'reset.scss';
 @use 'fonts.scss';
-@use './icon.scss';
-@import './variables.scss';
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
+@use 'icon.scss';
+@use 'variables' as *;
+@use 'tailwindcss/base' as *;
+@use 'tailwindcss/components'as *;
+@use 'tailwindcss/utilities' as *;
 
 :root{
   --white-color: #fff;
@@ -91,7 +90,7 @@ textarea{
     background: none;
   }
   &::placeholder{
-    color: $font-color;
+    // color: $font-color;
     opacity: 0.5;
   }
 }

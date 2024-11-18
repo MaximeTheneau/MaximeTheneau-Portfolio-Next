@@ -3,11 +3,12 @@ import ArticleJsonLd from '@/components/jsonLd/ArticleJsonLd';
 import Page404 from '@/pages/404';
 import Category from '@/components/category/Category';
 import HeadComponents from '@/components/head/HeadComponents';
-import Button from '@/components/button/Button';
 import BreadcrumbJsonLd from '@/components/jsonLd/BreadcrumbJsonLd';
 import TableOfContents from '@/components/tableOfContents/TableOfContents';
 import fetcher from '@/utils/fetcher';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Cards from '@/components/cards/Cards';
+import { CardType } from '@/types/card.type';
 
 type Post = {
   slug: string;
@@ -26,12 +27,11 @@ type Post = {
     subtitle: string;
     paragraph: string;
   }[];
-  github?: string;
-  website?: string;
 };
 
 interface SlugProps {
   post: Post | null;
+  relatedPosts: CardType[] ;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -48,11 +48,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<SlugProps> = async ({ params }) => {
   const post = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/${params?.slug}`);
+  const relatedPosts = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/relatedPosts/${params?.slug}`);
 
-  return { props: { post } };
+  return { props: { post, relatedPosts: relatedPosts.relatedPosts } };
 };
 
-export default function Slug({ post }: SlugProps) {
+export default function Slug({ post, relatedPosts }: SlugProps) {
   if (!post) return <Page404 />;
   return (
     <>
@@ -100,23 +101,11 @@ export default function Slug({ post }: SlugProps) {
             <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphPosts.paragraph }} />
           </div>
         ))}
-        <div>
-          {post.github && (
-            <Button
-              text="Dépôt GitHub"
-              link={post.github}
-              icon="icon-github"
-            />
-          )}
-          {post.website && (
-            <Button
-              text="Site web"
-              link={post.website}
-              icon="icon-paper-plane"
-            />
-          )}
-        </div>
       </article>
+      <aside>
+        <Cards cards={relatedPosts} />
+      </aside>
+
     </>
   );
 }

@@ -1,15 +1,5 @@
+import { CardType } from '@/types/card.type';
 import Card from './Card';
-
-type CardType = {
-  id: number;
-  subcategory: {
-    slug: string;
-  };
-  slug: string;
-  altImg?: string;
-  title: string;
-  url: string;
-};
 
 type CardsProps = {
   cards: CardType[];
