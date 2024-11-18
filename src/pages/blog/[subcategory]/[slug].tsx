@@ -64,7 +64,7 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
         url={post.url}
       />
       <ArticleJsonLd post={post} urlPost={post.url} />
-      <BreadcrumbJsonLd paragraphPosts={post.paragraphPosts} urlPost={post.url} />
+      <BreadcrumbJsonLd paragraphPosts={post.paragraphPosts} urlPost={`${process.env.NEXT_PUBLIC_URL}${post.url}`} />
       <article className="m-4">
         <figure>
           <Image
