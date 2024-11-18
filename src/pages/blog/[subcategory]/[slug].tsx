@@ -48,9 +48,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<SlugProps> = async ({ params }) => {
   const post = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/${params?.slug}`);
-  const relatedPosts = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/relatedPosts/${params?.slug}`);
+  const relatedPosts = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/related/${params?.slug}`);
 
-  return { props: { post, relatedPosts: relatedPosts.relatedPosts } };
+  return { props: { post, relatedPosts } };
 };
 
 export default function Slug({ post, relatedPosts }: SlugProps) {
