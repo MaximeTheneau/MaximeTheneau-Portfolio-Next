@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         <url>
+                  <loc>https://theneaumaxime.fr/blog/aws/optimiser-les-images-dans-plusieurs-buckets-s3-ave</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/optimiser-les-images-dans-plusieurs-buckets-s3-ave.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/aws</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/optimisation-des-images-avec-aws-guide-complet-pou.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/aws/comment-installer-un-cdn-d-images-avec-s3-et-cloud</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/comment-installer-un-cdn-d-images-avec-s3-et-cloud.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/next-js/ameliorer-la-vitesse-de-chargement-de-votre-site-w</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/ameliorer-la-vitesse-de-chargement-de-votre-site-w.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/next-js</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/next-js.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/site-web/reduisez-l-empreinte-carbone-de-votre-site-web-sol</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/reduisez-l-empreinte-carbone-de-votre-site-web-sol.webp</image:loc>
+                  </image:image>
+                </url><url>
                   <loc>https://theneaumaxime.fr/blog/site-web</loc>
                   <image:image>
                     <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/site-web.webp</image:loc>

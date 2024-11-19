@@ -1,4 +1,4 @@
-import React, { useRef, ReactNode } from 'react';
+import React, { useRef, ReactNode, Suspense } from 'react';
 import useScrollParallaxTop from './useMovableElements';
 
 type ScrollParallaxTopProps = {
@@ -9,18 +9,22 @@ export default function ScrollParallaxTop({
   children,
 }: ScrollParallaxTopProps) {
   const elementRef = useRef<HTMLDivElement>(null);
-  const { scrollPosition } = useScrollParallaxTop(elementRef);
+  const { opacity, transform } = useScrollParallaxTop(elementRef);
 
   return (
-    <div className="relative z-0">
-      {children}
+    <Suspense>
       <div
         ref={elementRef}
         style={{
-          top: `${scrollPosition + -100}px`,
+          transform,
+          opacity,
+          transition: 'opacity 0.8s ease-in-out, transform 0.5s ease-out',
         }}
-        className="absolute w-full h-40 bg-secondaryLight -z-10"
-      />
-    </div>
+        className=""
+      >
+        {children}
+      </div>
+    </Suspense>
+
   );
 }

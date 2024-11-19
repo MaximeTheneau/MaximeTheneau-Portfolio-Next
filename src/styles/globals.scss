@@ -111,6 +111,9 @@ select{
 article li{
  list-style: disc;
  margin-left: 1rem;
+ & ul li{
+    list-style: circle;
+  }
 }
 .text-black-opacity {
   font-weight: 100;
