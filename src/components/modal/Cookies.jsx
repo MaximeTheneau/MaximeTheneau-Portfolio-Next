@@ -28,10 +28,10 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
   const scriptCode = `
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('consent', "${consent}", ${JSON.stringify(consentSettings)});
     gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}', {
       page_path: window.location.pathname
     });
+    gtag('consent', "${consent}", ${JSON.stringify(consentSettings)});
     gtag('js', new Date());
   `;
   script.textContent = scriptCode;
@@ -49,24 +49,29 @@ export default function CookiesModal() {
     if (!window.localStorage.getItem('cookiesGoogle')) {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
-      }, 1000);
+      }, 5000);
+    }
+    if (!window.localStorage.getItem('cookiesAdsense')) {
+      setTimeout(() => {
+        updateCookies('cookiesModal', false);
+      }, 5000);
     }
   }, []);
 
   useEffect(() => {
-    // if (window.localStorage.getItem('cookiesAdsense')) {
-    //   updateCookies('cookiesAdsense', true);
-    //   const scriptAdsense = document.createElement('script');
-    //   scriptAdsense.async = true;
-    //   scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
-    //   scriptAdsense.id = 'google-adsense';
-    //   const existingScriptAd = document.getElementById('google-adsense');
+    if (window.localStorage.getItem('cookiesAdsense')) {
+      updateCookies('cookiesAdsense', true);
+      const scriptAdsense = document.createElement('script');
+      scriptAdsense.async = true;
+      scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
+      scriptAdsense.id = 'google-adsense';
+      const existingScriptAd = document.getElementById('google-adsense');
 
-    //   if (existingScriptAd) {
-    //     document.head.removeChild(existingScriptAd);
-    //   }
-    //   document.head.appendChild(scriptAdsense);
-    // }
+      if (existingScriptAd) {
+        document.head.removeChild(existingScriptAd);
+      }
+      document.head.appendChild(scriptAdsense);
+    }
 
     if (window.localStorage.getItem('cookiesGoogle')) {
       updateCookies('cookiesGoogle', window.localStorage.getItem('cookiesGoogle'));
@@ -106,7 +111,7 @@ export default function CookiesModal() {
   }
 
   return (
-    <div className="bottom-0 fixed bg-primary z-10 p-4 w-full shadow-custom ">
+    <div className="bottom-0 fixed bg-form z-10 p-4 w-full shadow-custom ">
       {cookies.cookiesChoice ? (
         <div>
           <table className="w-full ">
@@ -119,12 +124,20 @@ export default function CookiesModal() {
                   window.localStorage.setItem('cookiesGoogle', !cookies.cookiesGoogle);
                 }}
               />
+              <CookieChoice
+                label="Google AdSense"
+                checked={cookies.cookiesAdsense}
+                onClick={() => {
+                  handleCookieChange('cookiesAdsense');
+                  window.localStorage.setItem('cookiesAdsense', !cookies.cookiesAdsense);
+                }}
+              />
             </tbody>
           </table>
           <div>
             <Button
               type="button"
-              className="bg-form"
+              className="bg-green"
               onClick={() => {
                 handleCookieChange('cookiesModal');
                 updateCookies('cookiesModal', null);

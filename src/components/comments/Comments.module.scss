@@ -1,0 +1,47 @@
+@import '../../styles/variables.scss';
+
+.comments{
+    &__list{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        &__item{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        padding: 2rem 0;
+        &--user{
+            font-weight: bold;
+            }
+            
+            &--date{
+                font-size: 0.8rem;
+                color: $font-color-opacity;
+            }
+        }
+    }
+    & h3{
+        font-size: 2.2rem;
+        margin: 0.5rem 0 1.5rem 0;
+    }
+    & p{
+        font-size: 1rem;
+        padding-bottom: 0.5rem;
+    }
+    & form{
+        & input{
+            margin: 0 0 1rem 0;
+        }
+    }
+    & input, textarea, select {
+        border: 1px solid $font-color-light !important;
+        border-radius: 12px;
+        font-weight: bold;
+        color: $font-color !important;
+        border: none;
+        outline: none;
+    }
+}
+
+  
