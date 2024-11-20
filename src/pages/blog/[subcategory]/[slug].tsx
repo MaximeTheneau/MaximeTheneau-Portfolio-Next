@@ -10,7 +10,6 @@ import fetcher from '@/utils/fetcher';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Cards from '@/components/cards/Cards';
 import { CardType } from '@/types/card.type';
-import Script from 'next/script';
 
 type Post = {
   slug: string;
@@ -65,11 +64,7 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
         image={post.image}
         url={post.url}
       />
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511"
-        crossOrigin="anonymous"
-      />
+
       <ArticleJsonLd post={post} urlPost={post.url} />
       <BreadcrumbJsonLd paragraphPosts={post.paragraphPosts} urlPost={`${process.env.NEXT_PUBLIC_URL}${post.url}`} />
       <article className="m-4">

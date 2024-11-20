@@ -65,6 +65,7 @@ export default function CookiesModal() {
       scriptAdsense.async = true;
       scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
       scriptAdsense.id = 'google-adsense';
+      scriptAdsense.crossOrigin = 'anonymous';
       const existingScriptAd = document.getElementById('google-adsense');
 
       if (existingScriptAd) {
