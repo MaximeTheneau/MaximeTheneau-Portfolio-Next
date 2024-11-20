@@ -5,6 +5,7 @@ import Category from '@/components/category/Category';
 import HeadComponents from '@/components/head/HeadComponents';
 import BreadcrumbJsonLd from '@/components/jsonLd/BreadcrumbJsonLd';
 import TableOfContents from '@/components/tableOfContents/TableOfContents';
+import Comments from '@/components/comments/Comments';
 import fetcher from '@/utils/fetcher';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Cards from '@/components/cards/Cards';
@@ -107,7 +108,7 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
             <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphPosts.paragraph }} />
           </div>
         ))}
-        {/* <Comments posts={post} /> */}
+        <Comments posts={post} />
       </article>
       <aside>
         <Cards cards={relatedPosts} />
