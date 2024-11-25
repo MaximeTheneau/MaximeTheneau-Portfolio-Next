@@ -38,6 +38,17 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
   return { scriptInit, script };
 };
 
+const createGoogleAdsenseScript = () => {
+  if (document.getElementById('google-adsense')) return; // Ne pas ajouter plusieurs fois
+
+  const scriptAdsense = document.createElement('script');
+  scriptAdsense.async = true;
+  scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
+  scriptAdsense.id = 'google-adsense';
+  scriptAdsense.crossOrigin = 'anonymous';
+
+  document.head.appendChild(scriptAdsense);
+};
 export default function CookiesModal() {
   const { cookies, updateCookies } = useCookies();
 
@@ -46,15 +57,11 @@ export default function CookiesModal() {
   };
 
   useEffect(() => {
-    if (!window.localStorage.getItem('cookiesGoogle')) {
-      setTimeout(() => {
-        updateCookies('cookiesModal', false);
-      }, 5000);
+    if (!cookies.cookiesGoogle) {
+      createGoogleAnalyticsScript();
     }
-    if (!window.localStorage.getItem('cookiesAdsense')) {
-      setTimeout(() => {
-        updateCookies('cookiesModal', false);
-      }, 5000);
+    if (!cookies.cookiesAdsense) {
+      createGoogleAdsenseScript();
     }
   }, []);
 
