@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         <url>
+                  <loc>https://theneaumaxime.fr/openai</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/openai.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/openai/demystifier-l-api-d-openai-comment-l-integrer-a-vo</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/demystifier-l-api-d-openai-comment-l-integrer-a-vo.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/next-js/gestion-des-commentaires-email-bot-et-api-avec-sym</loc>
+                  <image:image>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/gestion-des-commentaires-email-bot-et-api-avec-sym.webp</image:loc>
+                  </image:image>
+                </url><url>
                   <loc>https://theneaumaxime.fr/blog/aws/optimiser-les-images-dans-plusieurs-buckets-s3-ave</loc>
                   <image:image>
                     <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/optimiser-les-images-dans-plusieurs-buckets-s3-ave.webp</image:loc>
                   </image:image>
                 </url><url>
-                  <loc>https://theneaumaxime.fr/aws</loc>
+                  <loc>https://theneaumaxime.fr/blog/aws</loc>
                   <image:image>
                     <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/optimisation-des-images-avec-aws-guide-complet-pou.webp</image:loc>
                   </image:image>
@@ -21,7 +36,7 @@
                     <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/ameliorer-la-vitesse-de-chargement-de-votre-site-w.webp</image:loc>
                   </image:image>
                 </url><url>
-                  <loc>https://theneaumaxime.fr/next-js</loc>
+                  <loc>https://theneaumaxime.fr/blog/next-js</loc>
                   <image:image>
                     <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/next-js.webp</image:loc>
                   </image:image>
@@ -33,7 +48,7 @@
                 </url><url>
                   <loc>https://theneaumaxime.fr/blog/site-web</loc>
                   <image:image>
-                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio/site-web.webp</image:loc>
+                    <image:loc>https://res.cloudinary.com/dsn2zwbis/image/upload/portfolio//blog/site-web.webp</image:loc>
                   </image:image>
                 </url><url>
                   <loc>https://theneaumaxime.fr/blog/hebergeur</loc>

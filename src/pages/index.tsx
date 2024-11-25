@@ -76,7 +76,7 @@ export default function Home({
               className="mt-2 w-1/6 sm:w-24"
             />
             <h1 className="sm:text-title px-2  dark:text-[#17181d] sm:w-595">
-              {accueil.heading}
+              {accueil.title}
             </h1>
           </div>
         </div>

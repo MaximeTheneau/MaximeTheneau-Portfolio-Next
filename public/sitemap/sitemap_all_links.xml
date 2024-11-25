@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
+          <loc>https://theneaumaxime.fr/openai</loc>
+          <lastmod>2024-11-23T15:28:26+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://theneaumaxime.fr/blog/openai/demystifier-l-api-d-openai-comment-l-integrer-a-vo</loc>
+          <lastmod>2024-11-23T15:30:55+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://theneaumaxime.fr/blog/next-js/gestion-des-commentaires-email-bot-et-api-avec-sym</loc>
+          <lastmod>2024-11-23T09:47:04+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
           <loc>https://theneaumaxime.fr/blog/aws/optimiser-les-images-dans-plusieurs-buckets-s3-ave</loc>
           <lastmod>2024-11-19T14:04:23+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
-          <loc>https://theneaumaxime.fr/aws</loc>
+          <loc>https://theneaumaxime.fr/blog/aws</loc>
           <lastmod>2024-11-19T10:53:55+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
@@ -17,7 +29,7 @@
           <lastmod>2024-11-18T18:52:29+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
-          <loc>https://theneaumaxime.fr/next-js</loc>
+          <loc>https://theneaumaxime.fr/blog/next-js</loc>
           <lastmod>2024-11-18T17:05:38+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
@@ -54,7 +66,7 @@
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/devis-en-ligne</loc>
-          <lastmod>2024-11-13T13:10:43+00:00</lastmod>
+          <lastmod>2024-11-25T15:54:04+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/Creations/RecIdeas-15-Recettes-Faciles-en-un-Clic</loc>

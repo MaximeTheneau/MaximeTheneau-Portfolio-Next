@@ -59,38 +59,38 @@ export default function CookiesModal() {
   }, []);
 
   useEffect(() => {
-    if (window.localStorage.getItem('cookiesAdsense')) {
-      updateCookies('cookiesAdsense', true);
-      const scriptAdsense = document.createElement('script');
-      scriptAdsense.async = true;
-      scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
-      scriptAdsense.id = 'google-adsense';
-      scriptAdsense.crossOrigin = 'anonymous';
-      const existingScriptAd = document.getElementById('google-adsense');
-
-      if (existingScriptAd) {
-        document.head.removeChild(existingScriptAd);
+    const addAdSenseScript = () => {
+      const existingScript = document.getElementById('google-adsense');
+      if (!existingScript) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
+        script.id = 'google-adsense';
+        script.crossOrigin = 'anonymous';
+        document.head.appendChild(script);
       }
-      document.head.appendChild(scriptAdsense);
-    }
+    };
 
-    if (window.localStorage.getItem('cookiesGoogle')) {
-      updateCookies('cookiesGoogle', window.localStorage.getItem('cookiesGoogle'));
-      const cookiesGoogleValue = window.localStorage.getItem('cookiesGoogle') !== 'false';
-      const { scriptInit, script } = createGoogleAnalyticsScript(cookiesGoogleValue);
+    const addAnalyticsScript = () => {
+      const { scriptInit, script } = createGoogleAnalyticsScript(cookies.cookiesGoogle);
+      const existingInit = document.getElementById('google-analytics-init');
       const existingScript = document.getElementById('google-analytics');
-      const existingScriptInit = document.getElementById('google-analytics-init');
-      if (existingScriptInit) {
-        document.head.removeChild(existingScriptInit);
-      }
-      document.head.appendChild(scriptInit);
 
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
+      if (existingInit) document.head.removeChild(existingInit);
+      if (existingScript) document.head.removeChild(existingScript);
+
+      document.head.appendChild(scriptInit);
       document.head.appendChild(script);
+    };
+
+    if (cookies.cookiesAdsense) {
+      addAdSenseScript();
     }
-  }, [cookies.cookiesModal]);
+
+    if (cookies.cookiesGoogle) {
+      addAnalyticsScript();
+    }
+  }, [cookies.cookiesAdsense, cookies.cookiesGoogle]);
 
   const handleAcceptCookies = () => {
     document.body.classList.remove('overflow-hidden');
