@@ -27,7 +27,7 @@ export default function ProductsList({ products }: ProductProps) {
   };
   return (
     <section
-      className="m-4 sm:flex sm:flex-wrap sm:justify-between text-xs"
+      className="m-4 sm:flex sm:flex-wrap sm:justify-around text-xs"
     >
       {products.map((product) => (
         <article
@@ -75,6 +75,9 @@ export default function ProductsList({ products }: ProductProps) {
                 {' '}
                 €
               </span>
+            </p>
+            <p className="text-center text-sm text-gray-600 mt-2">
+              <span className="font-semibold text-red-600">Promotion jusqu&apos;au 1er janvier 2025 !</span>
             </p>
           </div>
         </article>
