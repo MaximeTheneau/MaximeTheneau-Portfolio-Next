@@ -62,7 +62,7 @@ export default function CookiesModal() {
 
   useEffect(() => {
     if (window.localStorage.getItem('cookiesGoogle')) {
-      createGoogleAnalyticsScript();
+      createGoogleAnalyticsScript(true);
     } else {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
@@ -97,7 +97,7 @@ export default function CookiesModal() {
       if (existingInit) document.head.removeChild(existingInit);
       if (existingScript) document.head.removeChild(existingScript);
 
-      createGoogleAnalyticsScript(cookies.cookiesGoogle);
+      createGoogleAnalyticsScript(true);
     };
 
     if (cookies.cookiesAdsense) {
