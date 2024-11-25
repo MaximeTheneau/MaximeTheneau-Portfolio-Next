@@ -49,6 +49,7 @@ const createGoogleAdsenseScript = () => {
 
   document.head.appendChild(scriptAdsense);
 };
+
 export default function CookiesModal() {
   const { cookies, updateCookies } = useCookies();
 
@@ -57,11 +58,15 @@ export default function CookiesModal() {
   };
 
   useEffect(() => {
-    if (!cookies.cookiesGoogle) {
-      createGoogleAnalyticsScript();
+    if (!window.localStorage.getItem('cookiesGoogle')) {
+      setTimeout(() => {
+        createGoogleAnalyticsScript();
+      }, 5000);
     }
-    if (!cookies.cookiesAdsense) {
-      createGoogleAdsenseScript();
+    if (!window.localStorage.getItem('cookiesAdsense')) {
+      setTimeout(() => {
+        createGoogleAdsenseScript();
+      }, 5000);
     }
   }, []);
 
