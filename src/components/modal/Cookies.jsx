@@ -4,6 +4,8 @@ import CookieChoice from './CookieChoice';
 import { useCookies } from '../../context/CookiesContext';
 
 const createGoogleAnalyticsScript = (cookiesGoogle) => {
+  if (document.getElementById('google-analytics-init')) return;
+
   const scriptInit = document.createElement('script');
   scriptInit.async = true;
   scriptInit.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`;
@@ -35,12 +37,13 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
     gtag('js', new Date());
   `;
   script.textContent = scriptCode;
-  return { scriptInit, script };
+
+  document.head.appendChild(scriptInit);
+  document.head.appendChild(script);
 };
 
 const createGoogleAdsenseScript = () => {
-  if (document.getElementById('google-adsense')) return; // Ne pas ajouter plusieurs fois
-
+  if (document.getElementById('google-adsense')) return;
   const scriptAdsense = document.createElement('script');
   scriptAdsense.async = true;
   scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
@@ -58,14 +61,18 @@ export default function CookiesModal() {
   };
 
   useEffect(() => {
-    if (!window.localStorage.getItem('cookiesGoogle')) {
+    if (window.localStorage.getItem('cookiesGoogle')) {
+      createGoogleAnalyticsScript();
+    } else {
       setTimeout(() => {
-        createGoogleAnalyticsScript();
+        updateCookies('cookiesModal', false);
       }, 5000);
     }
-    if (!window.localStorage.getItem('cookiesAdsense')) {
+    if (window.localStorage.getItem('cookiesAdsense')) {
+      createGoogleAdsenseScript();
+    } else {
       setTimeout(() => {
-        createGoogleAdsenseScript();
+        updateCookies('cookiesModal', false);
       }, 5000);
     }
   }, []);
@@ -84,15 +91,13 @@ export default function CookiesModal() {
     };
 
     const addAnalyticsScript = () => {
-      const { scriptInit, script } = createGoogleAnalyticsScript(cookies.cookiesGoogle);
       const existingInit = document.getElementById('google-analytics-init');
       const existingScript = document.getElementById('google-analytics');
 
       if (existingInit) document.head.removeChild(existingInit);
       if (existingScript) document.head.removeChild(existingScript);
 
-      document.head.appendChild(scriptInit);
-      document.head.appendChild(script);
+      createGoogleAnalyticsScript(cookies.cookiesGoogle);
     };
 
     if (cookies.cookiesAdsense) {
