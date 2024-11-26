@@ -31,11 +31,19 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
   return (
     <li
       className=" transition-all duration-300 ease-in-out bg-white mb-4 p-4 rounded-lg cursor-pointer"
-      onClick={toggleFAQ}
-      aria-hidden="true"
-      aria-controls={`faq-${faq.id}`}
+
     >
-      <article>
+      <button
+        type="button"
+        onClick={toggleFAQ}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            toggleFAQ();
+          }
+        }}
+        aria-expanded={faq.open}
+        aria-controls={`faq-${faq.id}`}
+      >
         <h3 className="w-full flex items-center justify-between pt-4 pb-4 border-b-2 ">
           <span id={`faq-${faq.id}`} className="underline">{faq.title}</span>
           <button type="button" aria-label={faq.open ? 'Fermer la réponse' : 'Ouvrir la réponse'} className="pr-2">
@@ -43,7 +51,7 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
           </button>
         </h3>
         <div className={faq.open || !bot ? 'block' : 'hidden'} dangerouslySetInnerHTML={{ __html: faq.description }} />
-      </article>
+      </button>
     </li>
   );
 }

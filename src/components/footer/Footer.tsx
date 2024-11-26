@@ -49,11 +49,11 @@ export default function Footer() {
           </Link>
         </li>
         <li className="w-16 flex justify-between leading-loose ">
-          <Link href="https://fr.linkedin.com/in/maxime-theneau" className="no-underline" tria-label="Linkedin page" target="_blank" rel="noopener noreferrer" prefetch={false}>
+          <Link href="https://fr.linkedin.com/in/maxime-theneau" className="no-underline" aria-label="Linkedin page" target="_blank" rel="noopener noreferrer" prefetch={false}>
             <i className="icon-linkedin" />
           </Link>
           {' '}
-          <Link href="https://twitter.com/MTheneau" tria-label="Twitter page" className="no-underline" target="_blank" rel="noopener noreferrer" prefetch={false}>
+          <Link href="https://twitter.com/MTheneau" aria-label="Twitter page" className="no-underline" target="_blank" rel="noopener noreferrer" prefetch={false}>
             <i className="icon-twitter" />
           </Link>
         </li>
