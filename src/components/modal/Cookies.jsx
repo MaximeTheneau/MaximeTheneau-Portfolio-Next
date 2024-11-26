@@ -45,11 +45,14 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
 
 const createGoogleAdsenseScript = () => {
   const existingScript = document.getElementById('google-adsense');
+  const existingAdsenseScript = document.querySelector('script[src*="show_ads_impl_with_ama_fy2021.js"]');
 
   if (existingScript) {
     existingScript.remove();
   }
-
+  if (existingAdsenseScript) {
+    existingAdsenseScript.remove();
+  }
   const scriptAdsense = document.createElement('script');
   scriptAdsense.async = true;
   scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
