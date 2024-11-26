@@ -6,6 +6,7 @@ import Footer from './footer/Footer';
 
 const jura = Jura({
   variable: '--font-jura',
+  subsets: ['latin'],
 });
 
 type LayoutProps = {
