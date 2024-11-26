@@ -44,7 +44,12 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
 };
 
 const createGoogleAdsenseScript = () => {
-  if (document.getElementById('google-adsense')) return;
+  const existingScript = document.getElementById('google-adsense');
+
+  if (existingScript) {
+    existingScript.remove();
+  }
+
   const scriptAdsense = document.createElement('script');
   scriptAdsense.async = true;
   scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
@@ -70,21 +75,23 @@ export default function CookiesModal() {
         updateCookies('cookiesModal', false);
       }, 5000);
     }
-    if (window.localStorage.getItem('cookiesAdsense') || router.pathname.startsWith('/blog')) {
+
+    const shouldLoadAdsense = window.localStorage.getItem('cookiesAdsense') === 'true'
+      || router.pathname.startsWith('/blog');
+
+    if (shouldLoadAdsense) {
       createGoogleAdsenseScript();
-      if (window.adsbygoogle) {
-        try {
-          (window.adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (e) {
-          console.error('Erreur lors du chargement des publicités AdSense', e);
-        }
-      }
     } else {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
       }, 5000);
     }
-  }, []);
+
+    const existingScript = document.getElementById('google-adsense');
+    if (!router.pathname.startsWith('/blog') && existingScript) {
+      existingScript.remove();
+    }
+  }, [router.pathname, updateCookies]);
 
   useEffect(() => {
     const addAdSenseScript = () => {
