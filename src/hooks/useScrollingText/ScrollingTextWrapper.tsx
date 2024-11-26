@@ -1,5 +1,5 @@
 import {
-  JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect, useState,
+  Key, useEffect, useState,
 } from 'react';
 
 export default function ScrollingTextWrapper({ accueil }:any) {
@@ -12,57 +12,60 @@ export default function ScrollingTextWrapper({ accueil }:any) {
   }, []);
 
   return (
-    <div className="w-full inline-flex flex-nowrap bg-secondaryLight p-4 overflow-x-hidden">
-      <ul
-        id="animate-infinite-scroll"
-        className={`
-          bot && (
-            'flex text-title items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll'
-          )`}
-      >
-        {accueil.listPosts.map((listArticle:
-        { title:
-          string
-          | number
-          | boolean
-          | ReactElement<any, string
-          | JSXElementConstructor<any>>
-          | ReactFragment
-          | ReactPortal | null | undefined; id: Key | null | undefined; }) => listArticle.title && (
-          <li
-            key={listArticle.id}
-            className="list-none pr-4"
-          >
-            {listArticle.title}
-          </li>
-        ))}
-      </ul>
-      {bot && (
+    <div className="overflow-x-hidden">
+      <div className="inline-flex flex-nowrap  bg-primary p-4 ">
         <ul
           id="animate-infinite-scroll"
-          className="flex text-title items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
+          className={`
+          ${bot && (
+            ' flex items-top animate-scroll-infinite w-[100vw]  overflow-x-hidden'
+          )}`}
         >
-          {accueil.listPosts.map(
+          {accueil.map((listArticle:
+        { title:
+          string; id: Key; }) => listArticle.title && (
+          <li
+            key={listArticle.id}
+            className="list-none  "
+          >
+            <p>
+              <span className="font-bold block">
+                {listArticle.title}
+              </span>
+              {listArticle.contents.length > 130
+                ? `${listArticle.contents.substring(0, 130)}...`
+                : listArticle.contents}
+            </p>
+          </li>
+          ))}
+        </ul>
+        {bot && (
+        <ul
+          id="animate-infinite-scroll-duplicate"
+          className="items-top flex animate-scroll-infinite w-[100vw]"
+        >
+          {accueil.map(
             (listArticle:
               { title:
-                string |
-                 number |
-                  boolean |
-                  ReactFragment
-                  | ReactPortal
-                   | ReactElement<any, string |
-                    JSXElementConstructor<any>> |
-                     null | undefined; id: Key | null | undefined; }) => listArticle.title && (
-                     <li
-                       key={listArticle.id}
-                       className="list-none pr-4"
-                     >
-                       {listArticle.title}
-                     </li>
+                string; id: Key; }) => listArticle.title && (
+                <li
+                  key={listArticle.id}
+                  className="list-none   "
+                >
+                  <p>
+                    <span className="font-bold block">
+                      {listArticle.title}
+                    </span>
+                    {listArticle.contents.length > 130
+                      ? `${listArticle.contents.substring(0, 130)}...`
+                      : listArticle.contents}
+                  </p>
+                </li>
             ),
           )}
         </ul>
-      )}
+        )}
+      </div>
     </div>
   );
 }

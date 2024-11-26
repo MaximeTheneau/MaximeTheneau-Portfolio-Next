@@ -5,10 +5,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['var(--font-inter)'],
-        mono: ['var(--font-roboto-mono)'],
-      },
       fontSize: {
         lg: 'calc(1rem + ((1vw - 0.48rem) * 1.3889))',
         title: 'calc(1.5rem + ((2vw - 0.48rem) * 1.3889))',
@@ -29,17 +25,8 @@ module.exports = {
       width: {
         595: '595px',
       },
-      animation: {
-        'infinite-scroll': 'infinite-scroll 10s linear infinite',
-      },
       boxShadow: {
         custom: '0px -20px 20px 100vh rgba(151, 151, 151, 0.8)',
-      },
-      keyframes: {
-        'infinite-scroll': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-100%)' },
-        },
       },
     },
   },

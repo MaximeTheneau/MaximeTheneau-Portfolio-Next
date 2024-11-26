@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import FormMiddleware from '../../middleware/formMiddleware';
 import Confirmation from '../modal/Confirmation';
 import Input from './form/Input';
+import Button from '../ui/Button';
 
 interface FormState {
   name: string;
@@ -558,14 +559,13 @@ export default function DevisForm() {
           </label>
         </div>
         <div className="contact-form_button">
-          <button
+          <Button
             type="submit"
-            className="text-base text-white sm:w-ful bg-secondary p-2 rounded  p-4 m-4"
           >
             Envoyer
             {' '}
             <i className="icon-paper-plane" />
-          </button>
+          </Button>
         </div>
       </form>
       <Confirmation

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import formMiddleware from '../../middleware/formMiddleware';
 import Confirmation from '../modal/Confirmation';
 import ContactAbout from './ContactAbout';
+import Button from '../ui/Button';
 // import Select from './form/Select';
 // import Input from './form/Input';
 
@@ -193,13 +194,12 @@ export default function ContactForm() {
               required
             />
           </label>
-          <button
-            className="text-base text-white sm:w-ful bg-secondary p-2 rounded   hover:scale-90  hover:text-white p-4 m-4"
+          <Button
             type="submit"
           >
             Envoyer
             <i className="icon-paper-plane pl-1" />
-          </button>
+          </Button>
         </form>
       </div>
       <Confirmation

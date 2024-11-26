@@ -42,6 +42,7 @@ export default function Slug({ post }) {
           sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
+          priority
         />
 
         <h1>{post.title}</h1>

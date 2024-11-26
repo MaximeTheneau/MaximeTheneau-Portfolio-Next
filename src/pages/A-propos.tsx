@@ -52,6 +52,7 @@ export default function APropos({ page }: PagesProps) {
           sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
+          priority
         />
         <h1>{page.title}</h1>
         <h2>{page.subtitle}</h2>

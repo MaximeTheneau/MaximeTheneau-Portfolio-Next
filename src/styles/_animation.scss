@@ -1,0 +1,15 @@
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+a:hover .animate-scroll-infinite{
+    color:white
+  }
+.animate-scroll-infinite {
+  animation: scroll-infinite 15s linear infinite;
+}
+

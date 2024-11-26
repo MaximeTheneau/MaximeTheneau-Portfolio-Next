@@ -2,6 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import fetcher from '@/utils/fetcher';
+import ScrollingTextWrapper from '@/hooks/useScrollingText/ScrollingTextWrapper';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
@@ -88,48 +89,10 @@ export default function Home({
       </section>
       {/* --Product--*/}
       <ProductsList products={products} />
-      <section className="m-4 ">
-        {/* --Création--*/}
-        <Link
-          href="/Creations"
-          className="w-ful relative "
-        >
-          <div className="w-full flex items-center justify-between p-2 mt-4 ">
-            <h2>Mes projets :</h2>
-            <span>
-              Voir tous mes projets
-            </span>
-          </div>
-        </Link>
-        <div className="sm:flex">
-
-          {creation.map((creations: any) => (
-            <div
-              className="duration-300 flex flex-col justify-between hover:opacity-80 w-full sm:w-1/3 m-4 p-4 bg-form"
-              key={creations.id}
-            >
-              <h2>{creations.title}</h2>
-              <p className="no-underline">{creations.contents}</p>
-              <Link href={`/Creations/${creations.slug}`}>
-                <span className="font-bold hover:underline transition-all duration-300">
-                  En savoir plus
-                  {' '}
-                  <i className="icon-angle-right text-base" />
-                </span>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* --FAQ--*/}
-      <section className="m-4 ">
-        <Link
-          href="/Foire-aux-questions"
-          className="text-2xl font-bold p-2 my-4"
-        >
-          Foire aux Question
-        </Link>
+      <section className="m-4 bg-primary p-2 rounded ">
+        <h2>Foire aux Question</h2>
         <Faq faq={faq} />
         <Link
           href="/Foire-aux-questions"
@@ -138,7 +101,15 @@ export default function Home({
           Découvrez toutes les réponses à vos questions ici
         </Link>
       </section>
-
+      <section className="m-4 ">
+        {/* --Création--*/}
+        <Link
+          href="/Creations"
+          className="hover:text-white "
+        >
+          <ScrollingTextWrapper accueil={creation} />
+        </Link>
+      </section>
       <section className="m-4 ">
         <Link
           href="/devis-en-ligne"
