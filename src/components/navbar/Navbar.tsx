@@ -23,7 +23,7 @@ export default function Navbar() {
         )}
       </div>
       <div className={`${toggleNav ? 'block bg-secondary' : 'hidden bg-whiteOpacity'} fixed w-full h-full  text-center `}>
-        <ul className="list-none h-full  flex flex-col justify-between">
+        <ul className="list-none  flex flex-col justify-between">
           <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2">
             <Link href="/" onClick={() => closeNav()}> Accueil</Link>
           </li>

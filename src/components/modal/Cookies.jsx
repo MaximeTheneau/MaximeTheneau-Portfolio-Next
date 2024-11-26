@@ -88,8 +88,16 @@ export default function CookiesModal() {
     }
 
     const existingScript = document.getElementById('google-adsense');
-    if (!router.pathname.startsWith('/blog') && existingScript) {
-      existingScript.remove();
+    const existingAds = document.querySelectorAll('.adsbygoogle');
+
+    if (!router.pathname.startsWith('/blog')) {
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      existingAds.forEach((ad) => {
+        ad.remove();
+      });
     }
   }, [router.pathname, updateCookies]);
 
