@@ -149,3 +149,9 @@ code {
 //     --form-color: #444546;
 //   }
 // }
+
+*:focus {
+  outline: 3px solid #005fcc; /* Changez la couleur du contour (exemple : bleu clair) */
+  outline-offset: 2px; /* Ajoute un léger espacement autour de l'élément */
+  box-shadow: 0 0 0 2px rgba(0, 95, 204, 0.5); /* Ombre autour du focus pour plus de visibilité */
+}

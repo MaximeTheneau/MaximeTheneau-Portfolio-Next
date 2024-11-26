@@ -36,11 +36,6 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
       <button
         type="button"
         onClick={toggleFAQ}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            toggleFAQ();
-          }
-        }}
         aria-expanded={faq.open}
         aria-controls={`faq-${faq.id}`}
         className="w-full flex items-center justify-between pt-4 pb-4 border-b-2 "
