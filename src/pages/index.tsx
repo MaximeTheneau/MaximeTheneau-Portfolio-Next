@@ -65,16 +65,7 @@ export default function Home({
             quality={80}
             priority
           />
-          <div className="flex  p-2 flex-col items-center  absolute  top-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2 w-full text-center bg-whiteOpacity">
-            <Image
-              src="Theneau-Maxime.webp"
-              alt={accueil.altImg || accueil.title}
-              quality={80}
-              width="96"
-              height="96"
-              priority
-              className="mt-2 w-1/6 sm:w-24"
-            />
+          <div className="flex w-full max-w-[595px] flex-col items-center  absolute  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2  text-white bg-blackOpacity">
             <h1 className="sm:text-title px-2  dark:text-[#17181d] sm:w-595">
               {accueil.title}
             </h1>

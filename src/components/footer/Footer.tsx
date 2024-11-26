@@ -3,13 +3,8 @@ import NotCopie from '../notCopie/NotCopie';
 
 export default function Footer() {
   return (
-    <div className="flex text-white justify-around sm:flex-row flex-col p-4 leading-loose bg-secondary">
+    <div className="flex justify-around sm:flex-row flex-col p-4 leading-loose bg-secondary">
       <ul className="">
-        <li>
-          <h3>
-            Informations
-          </h3>
-        </li>
         <li>
           <Link href="/A-propos">
             Qui suis-je ?
@@ -38,9 +33,6 @@ export default function Footer() {
       </ul>
       <ul>
         <li>
-          <h3>Contact</h3>
-        </li>
-        <li>
           <NotCopie />
         </li>
         <li>
@@ -56,12 +48,12 @@ export default function Footer() {
             Formulaire de contact
           </Link>
         </li>
-        <li className="w-16 flex justify-between">
-          <Link href="https://fr.linkedin.com/in/maxime-theneau" tria-label="Linkedin page" target="_blank" rel="noopener noreferrer" prefetch={false}>
+        <li className="w-16 flex justify-between leading-loose ">
+          <Link href="https://fr.linkedin.com/in/maxime-theneau" className="no-underline" tria-label="Linkedin page" target="_blank" rel="noopener noreferrer" prefetch={false}>
             <i className="icon-linkedin" />
           </Link>
           {' '}
-          <Link href="https://twitter.com/MTheneau" tria-label="Twitter page" target="_blank" rel="noopener noreferrer" prefetch={false}>
+          <Link href="https://twitter.com/MTheneau" tria-label="Twitter page" className="no-underline" target="_blank" rel="noopener noreferrer" prefetch={false}>
             <i className="icon-twitter" />
           </Link>
         </li>

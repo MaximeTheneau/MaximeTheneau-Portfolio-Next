@@ -8,22 +8,24 @@
 
 :root{
   --white-color: #fff;
-  --primary-color: #a179ff;
-  --secondary-color: #615ca6;
+  --primary-color: #def0c2;
+  --secondary-color: #f8ffec;
   --secondary-light-color: #f6f9fe;
-  --black-color: #17181d;
+  --black-color: #212229;
   --black-opacity-color: #17181dc2;
   --form-color: #f3f4f6;
 }
 
-html,
-body {
+header,
+main,
+footer
+{
   padding: 0;
   margin: 0;
-  font-family: 'fontGeneral', sans-serif;
+  font-family: var(--font-jura), cursive;
   color: var(--black-color);
-  background: var(--white-color);
 }
+
 
 h1,
 h2,
@@ -31,7 +33,8 @@ h3,
 h4,
 h5,
 h6{
-  font-family: 'fontTitle', sans-serif;
+  font-family: var(--font-jura), sans-serif;
+  font-weight: 600;
   margin: 1rem 0 ;
 }
 

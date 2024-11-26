@@ -32,7 +32,7 @@ export default function ProductsList({ products }: ProductProps) {
       {products.map((product) => (
         <article
           key={product.name}
-          className="w-full p-4 sm:w-[30%] sm:mr-4 mb-4 bg-form rounded hover:opacity-80 "
+          className="w-full p-4 sm:w-[47%] sm:mr-4 mb-4 bg-form rounded hover:opacity-80 "
         >
           <div
             onClick={() => handleClick(product.url)} // Utilisation d'une fonction anonyme

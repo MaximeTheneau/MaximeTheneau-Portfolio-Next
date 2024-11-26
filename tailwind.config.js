@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        mono: ['var(--font-roboto-mono)'],
+      },
       fontSize: {
         lg: 'calc(1rem + ((1vw - 0.48rem) * 1.3889))',
         title: 'calc(1.5rem + ((2vw - 0.48rem) * 1.3889))',
