@@ -24,20 +24,20 @@ export default function Navbar() {
       </div>
       <div className={`${toggleNav ? 'block bg-secondary' : 'hidden bg-whiteOpacity'} fixed w-full h-full  text-center `}>
         <ul className="list-none  flex flex-col justify-between">
-          <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2">
+          <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2 text-nav">
             <Link href="/" onClick={() => closeNav()}> Accueil</Link>
           </li>
-          <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2">
+          <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2 text-nav">
             <Link href="/devis-en-ligne" onClick={() => closeNav()}>
               Devis en ligne
             </Link>
           </li>
-          <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2">
+          <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2 text-nav">
             <Link href="/Contact" onClick={() => closeNav()}>
               Contact
             </Link>
           </li>
-          <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2">
+          <li className="border-b-2 border-slate-400 border-solid pt-2 pb-2 text-nav">
             <Link href="/A-propos" onClick={() => closeNav()}>
               Qui-suis-je ?
             </Link>

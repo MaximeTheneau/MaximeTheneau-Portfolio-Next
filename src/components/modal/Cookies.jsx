@@ -99,7 +99,7 @@ export default function CookiesModal() {
         ad.remove();
       });
     }
-  }, [router.pathname, updateCookies]);
+  }, [router.pathname]);
 
   useEffect(() => {
     const addAdSenseScript = () => {
