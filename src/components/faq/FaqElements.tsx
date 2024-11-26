@@ -30,7 +30,7 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
   }, []);
   return (
     <li
-      className=" transition-all duration-300 ease-in-out bg-form mb-4 p-4 rounded-lg cursor-pointer"
+      className=" transition-all duration-300 ease-in-out bg-white mb-4 p-4 rounded-lg cursor-pointer"
       onClick={toggleFAQ}
       aria-hidden="true"
       aria-controls={`faq-${faq.id}`}

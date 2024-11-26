@@ -9,7 +9,7 @@
 :root{
   --white-color: #fff;
   --primary-color: #def0c2;
-  --secondary-color: #f8ffec;
+  --secondary-color: #f5f6f3;
   --secondary-light-color: #f6f9fe;
   --black-color: #212229;
   --black-opacity-color: #17181dc2;
@@ -140,12 +140,12 @@ code {
     font-size: 14px;
     white-space: pre-wrap; 
 }
-@media (prefers-color-scheme: dark) {
-  :root{
-    --secondary-light-color:#302e52;
-    --secondary-color: #d2cfff;
-    --black-color: #fff;
-    --white-color: #17181d;
-    --form-color: #444546;
-  }
-}
+// @media (prefers-color-scheme: dark) {
+//   :root{
+//     --secondary-light-color:#302e52;
+//     --secondary-color: #d2cfff;
+//     --black-color: #fff;
+//     --white-color: #17181d;
+//     --form-color: #444546;
+//   }
+// }

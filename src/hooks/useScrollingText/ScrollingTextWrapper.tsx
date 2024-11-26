@@ -22,21 +22,24 @@ export default function ScrollingTextWrapper({ accueil }:any) {
           )}`}
         >
           {accueil.map((listArticle:
-        { title:
-          string; id: Key; }) => listArticle.title && (
-          <li
-            key={listArticle.id}
-            className="list-none  "
-          >
-            <p>
-              <span className="font-bold block">
-                {listArticle.title}
-              </span>
-              {listArticle.contents.length > 130
-                ? `${listArticle.contents.substring(0, 130)}...`
-                : listArticle.contents}
-            </p>
-          </li>
+        {
+          contents: string;
+           title: string;
+           id: Key;
+         }) => listArticle.title && (
+           <li
+             key={listArticle.id}
+             className="list-none  "
+           >
+             <p>
+               <span className="font-bold block">
+                 {listArticle.title}
+               </span>
+               {listArticle.contents.length > 130
+                 ? `${listArticle.contents.substring(0, 130)}...`
+                 : listArticle.contents}
+             </p>
+           </li>
           ))}
         </ul>
         {bot && (
@@ -46,21 +49,24 @@ export default function ScrollingTextWrapper({ accueil }:any) {
         >
           {accueil.map(
             (listArticle:
-              { title:
-                string; id: Key; }) => listArticle.title && (
-                <li
-                  key={listArticle.id}
-                  className="list-none   "
-                >
-                  <p>
-                    <span className="font-bold block">
-                      {listArticle.title}
-                    </span>
-                    {listArticle.contents.length > 130
-                      ? `${listArticle.contents.substring(0, 130)}...`
-                      : listArticle.contents}
-                  </p>
-                </li>
+        {
+          contents: string;
+           title: string;
+           id: Key;
+         }) => listArticle.title && (
+         <li
+           key={listArticle.id}
+           className="list-none   "
+         >
+           <p>
+             <span className="font-bold block">
+               {listArticle.title}
+             </span>
+             {listArticle.contents.length > 130
+               ? `${listArticle.contents.substring(0, 130)}...`
+               : listArticle.contents}
+           </p>
+         </li>
             ),
           )}
         </ul>

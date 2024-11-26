@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import fetcher from '@/utils/fetcher';
 import ScrollingTextWrapper from '@/hooks/useScrollingText/ScrollingTextWrapper';
+import AtoutsList from '@/components/ui/AtoutsList';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
@@ -72,6 +73,54 @@ export default function Home({
             </h1>
           </div>
         </div>
+        <AtoutsList />
+
+      </section>
+      <section>
+        <div className="bg-primary pt-16 pb-4 text-center ">
+          <h2>
+            Agence Web à Marseille : Offre Spéciale jusqu’au 1er Janvier 2025
+          </h2>
+          <p>
+            Bénéficiez d’une réduction de 50 % sur toutes mes formules
+            de création de sites internet jusqu’au 1er janvier 2025.
+            C’est le moment idéal pour booster votre présence en ligne
+            avec un site performant, optimisé et spécialement conçu pour
+            répondre aux attentes des PME et entreprises.
+
+            Contactez-moi dès aujourd’hui pour transformer vos idées en succès digital !
+          </p>
+          {/* --Product--*/}
+          <ProductsList products={products} />
+        </div>
+
+      </section>
+      {/* --FAQ--*/}
+      <section className="m-4 bg-secondary p-4 rounded ">
+        <h2>Foire aux Question</h2>
+        <Faq faq={faq} />
+        <Link
+          href="/Foire-aux-questions"
+          className="mx-4"
+        >
+          Découvrez toutes les réponses à vos questions ici
+        </Link>
+      </section>
+      <section className="m-4 bg-primary ">
+        <div className="p-4 text-center">
+          <h2>Découvrez Nos Projets Réalisés</h2>
+          <p className="mb-4">Nous avons eu le plaisir de travailler sur une variété de projets, allant de la création de sites vitrine à des solutions e-commerce. Explorez ci-dessous quelques-uns des projets que nous avons réalisés pour nos clients.</p>
+        </div>
+        {/* --Création--*/}
+        <Link
+          href="/Creations"
+          className="hover:text-white "
+        >
+          <ScrollingTextWrapper accueil={creation} />
+          <span className="hover:text-black p-4">Découvrez tous nos projets</span>
+        </Link>
+      </section>
+      <section>
         {/* --About--*/}
         <div className="px-8 pt-4 w-full flex">
           <div>
@@ -86,29 +135,6 @@ export default function Home({
             ))}
           </div>
         </div>
-      </section>
-      {/* --Product--*/}
-      <ProductsList products={products} />
-
-      {/* --FAQ--*/}
-      <section className="m-4 bg-primary p-2 rounded ">
-        <h2>Foire aux Question</h2>
-        <Faq faq={faq} />
-        <Link
-          href="/Foire-aux-questions"
-          className="mx-4"
-        >
-          Découvrez toutes les réponses à vos questions ici
-        </Link>
-      </section>
-      <section className="m-4 ">
-        {/* --Création--*/}
-        <Link
-          href="/Creations"
-          className="hover:text-white "
-        >
-          <ScrollingTextWrapper accueil={creation} />
-        </Link>
       </section>
       <section className="m-4 ">
         <Link
