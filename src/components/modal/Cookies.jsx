@@ -60,6 +60,23 @@ export default function CookiesModal() {
     updateCookies(cookieName, !cookies[cookieName]);
   };
 
+  const loadAds = () => {
+    const adContainers = document.querySelectorAll('.adsbygoogle');
+    adContainers.forEach((ads) => {
+      ads.innerHTML = '';
+    });
+
+    if (window.adsbygoogle) {
+      try {
+        adContainers.forEach(() => {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        });
+      } catch (e) {
+        console.error('Erreur lors du rechargement des publicités AdSense', e);
+      }
+    }
+  };
+
   useEffect(() => {
     if (window.localStorage.getItem('cookiesGoogle')) {
       createGoogleAnalyticsScript(true);
@@ -70,7 +87,7 @@ export default function CookiesModal() {
     }
     if (window.localStorage.getItem('cookiesAdsense')) {
       createGoogleAdsenseScript();
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      loadAds();
     } else {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
