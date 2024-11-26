@@ -24,7 +24,15 @@ export default function AtoutsList() {
   ];
 
   return (
-    <section className="py-16 px-4 bg-secondary my-4">
+    <section className="p-4 bg-secondary my-4">
+      <div className="text-center  pb-4">
+        <h2> Bienvenue chez Maxime Freelance</h2>
+        <p>
+          Votre partenaire digital
+          à Marseille pour la création de sites internet modernes,
+          performants et écoresponsables.
+        </p>
+      </div>
       <div className="flex flex-wrap justify-center gap-8">
         {atouts.map((atout, index) => (
           <div key={index} className="bg-white shadow-lg p-6 rounded-lg  w-60">
