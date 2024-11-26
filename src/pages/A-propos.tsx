@@ -56,9 +56,7 @@ export default function APropos({ page }: PagesProps) {
         />
         <h1>{page.title}</h1>
         <h2>{page.subtitle}</h2>
-        <p>
-          {page.contents}
-        </p>
+        <div dangerouslySetInnerHTML={{ __html: page.contents }} />
         <article>
           {page.paragraphPosts.map((paragraphArticle) => (
             <div key={paragraphArticle.subtitle}>
