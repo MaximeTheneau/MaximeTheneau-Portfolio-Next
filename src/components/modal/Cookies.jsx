@@ -62,8 +62,8 @@ export default function CookiesModal() {
 
   const loadAds = () => {
     const adContainers = document.querySelectorAll('.adsbygoogle');
-    adContainers.forEach((ads) => {
-      ads.innerHTML = '';
+    adContainers.forEach((adsense) => {
+      adsense.remove();
     });
 
     if (window.adsbygoogle) {
