@@ -70,6 +70,7 @@ export default function CookiesModal() {
     }
     if (window.localStorage.getItem('cookiesAdsense')) {
       createGoogleAdsenseScript();
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
     } else {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
