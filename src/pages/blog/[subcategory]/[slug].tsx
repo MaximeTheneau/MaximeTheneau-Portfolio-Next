@@ -78,6 +78,7 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
             sizes="(max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
+            priority
           />
           <figcaption className="mt-4 text-sm text-gray-400">
             {post.altImg}

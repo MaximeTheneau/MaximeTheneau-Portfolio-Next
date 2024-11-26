@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Button from '../ui/Button';
 import CookieChoice from './CookieChoice';
 import { useCookies } from '../../context/CookiesContext';
@@ -55,26 +56,10 @@ const createGoogleAdsenseScript = () => {
 
 export default function CookiesModal() {
   const { cookies, updateCookies } = useCookies();
+  const router = useRouter();
 
   const handleCookieChange = (cookieName) => {
     updateCookies(cookieName, !cookies[cookieName]);
-  };
-
-  const loadAds = () => {
-    const adContainers = document.querySelectorAll('.adsbygoogle');
-    adContainers.forEach((adsense) => {
-      adsense.remove();
-    });
-
-    if (window.adsbygoogle) {
-      try {
-        adContainers.forEach(() => {
-          (window.adsbygoogle = window.adsbygoogle || []).push({});
-        });
-      } catch (e) {
-        console.error('Erreur lors du rechargement des publicités AdSense', e);
-      }
-    }
   };
 
   useEffect(() => {
@@ -85,9 +70,15 @@ export default function CookiesModal() {
         updateCookies('cookiesModal', false);
       }, 5000);
     }
-    if (window.localStorage.getItem('cookiesAdsense')) {
+    if (window.localStorage.getItem('cookiesAdsense') || router.pathname.startsWith('/blog')) {
       createGoogleAdsenseScript();
-      loadAds();
+      if (window.adsbygoogle) {
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+          console.error('Erreur lors du chargement des publicités AdSense', e);
+        }
+      }
     } else {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
