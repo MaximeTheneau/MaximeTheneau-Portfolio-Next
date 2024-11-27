@@ -71,18 +71,22 @@ export default function CookiesModal() {
         createGoogleAdsenseScript();
       }
     } else {
-      const adsElements = document.querySelectorAll('.adsbygoogle');
-      const existingScript = document.getElementById('google-adsense');
+      const adsElements = document.querySelectorAll('ins');
+      const existingScript1 = document.getElementById('google-adsense');
+      const existingScript2 = document.getElementById('google_esf');
       const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
 
       adsElements.forEach((adElement) => {
         adElement.remove();
       });
 
-      if (existingScript) {
-        existingScript.remove();
+      if (existingScript1) {
+        existingScript1.remove();
       }
 
+      if (existingScript2) {
+        existingScript2.remove();
+      }
       if (existingAdsenseScript) {
         existingAdsenseScript.remove();
       }
