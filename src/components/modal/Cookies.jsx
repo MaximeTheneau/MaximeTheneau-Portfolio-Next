@@ -69,6 +69,7 @@ const useAdsenseReload = () => {
     if (!router.pathname.startsWith('/blog')) {
       const adsElements = document.querySelectorAll('.adsbygoogle');
       const existingScript = document.getElementById('google-adsense');
+      const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
 
       adsElements.forEach((adElement) => {
         adElement.remove();
@@ -77,32 +78,39 @@ const useAdsenseReload = () => {
       if (existingScript) {
         existingScript.remove();
       }
+
+      if (existingAdsenseScript) {
+        existingAdsenseScript.remove();
+      }
     }
   }, [router.pathname]);
 };
 export default function CookiesModal() {
   const { cookies, updateCookies } = useCookies();
   useAdsenseReload();
+  const router = useRouter();
 
   const handleCookieChange = (cookieName) => {
     updateCookies(cookieName, !cookies[cookieName]);
   };
 
   useEffect(() => {
-    if (window.localStorage.getItem('cookiesGoogle')) {
-      createGoogleAnalyticsScript(true);
-    } else {
-      setTimeout(() => {
-        updateCookies('cookiesModal', false);
-      }, 5000);
-    }
+    if (router.pathname.startsWith('/blog')) {
+      if (window.localStorage.getItem('cookiesGoogle')) {
+        createGoogleAnalyticsScript(true);
+      } else {
+        setTimeout(() => {
+          updateCookies('cookiesModal', false);
+        }, 5000);
+      }
 
-    if (window.localStorage.getItem('cookiesAdsense')) {
-      createGoogleAdsenseScript();
-    } else {
-      setTimeout(() => {
-        updateCookies('cookiesModal', false);
-      }, 5000);
+      if (window.localStorage.getItem('cookiesAdsense')) {
+        createGoogleAdsenseScript();
+      } else {
+        setTimeout(() => {
+          updateCookies('cookiesModal', false);
+        }, 5000);
+      }
     }
   }, []);
 
