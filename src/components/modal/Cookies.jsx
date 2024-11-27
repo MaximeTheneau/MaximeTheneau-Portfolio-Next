@@ -44,8 +44,10 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
 };
 
 const createGoogleAdsenseScript = () => {
-  // const existingScript = document.getElementById('google-adsense');
-  // existingScript.remove();
+  const existingScript = document.getElementById('google-adsense');
+  if (existingScript) {
+    existingScript.remove();
+  }
   // document.querySelectorAll('.adsbygoogle').forEach((ad) => {
   //   ad.remove(); // Supprime les anciens blocs
   // });
