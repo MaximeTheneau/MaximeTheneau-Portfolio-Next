@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useRouter } from 'next/router';
 import Button from '../ui/Button';
 import CookieChoice from './CookieChoice';
@@ -96,7 +96,9 @@ export default function CookiesModal() {
     }
   }, [router.pathname, updateCookies]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    console.log(document?.getElementById('google-adsense'));
+
     if (window.localStorage.getItem('cookiesGoogle')) {
       createGoogleAnalyticsScript(true);
     } else {
@@ -108,6 +110,7 @@ export default function CookiesModal() {
     if (!window.localStorage.getItem('cookiesAdsense')) {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
+        createGoogleAdsenseScript();
       }, 5000);
     }
   }, []);
