@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Button from '../ui/Button';
 import CookieChoice from './CookieChoice';
@@ -96,7 +96,7 @@ export default function CookiesModal() {
   //   }, 1000);
   // }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (window.localStorage.getItem('cookiesGoogle')) {
       createGoogleAnalyticsScript(true);
     } else {
