@@ -46,14 +46,7 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
 const createGoogleAdsenseScript = () => {
   const existingScript = document.getElementById('google-adsense');
   if (existingScript) {
-    existingScript.remove();
-  }
-  document.querySelectorAll('.adsbygoogle').forEach((ad) => {
-    if (ad) { ad.remove(); }
-  });
-  const adsenseScript = document.querySelector('script[src*="https://pagead2.googlesyndication.com/pagead/"]');
-  if (adsenseScript) {
-    adsenseScript.remove();
+    return;
   }
 
   const scriptAdsense = document.createElement('script');
@@ -63,9 +56,6 @@ const createGoogleAdsenseScript = () => {
   scriptAdsense.crossOrigin = 'anonymous';
 
   document.head.appendChild(scriptAdsense);
-  // setTimeout(() => {
-  //   (window.adsbygoogle = window.adsbygoogle || []).push({});
-  // }, 1000);
 };
 
 // const useAdsenseReload = () => {
