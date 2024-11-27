@@ -112,7 +112,7 @@ export default function CookiesModal() {
       }, 5000);
     }
 
-    if (!window.localStorage.getItem('cookiesAdsense')) {
+    if (window.localStorage.getItem('cookiesAdsense')) {
       createGoogleAdsenseScript();
     } else {
       setTimeout(() => {
