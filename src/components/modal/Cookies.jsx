@@ -103,7 +103,7 @@ export default function CookiesModal() {
         createGoogleAdsenseScript();
       }
     }
-  }, [router.pathname]);
+  }, [router.pathname, updateCookies]);
 
   useEffect(() => {
     if (window.localStorage.getItem('cookiesGoogle')) {
