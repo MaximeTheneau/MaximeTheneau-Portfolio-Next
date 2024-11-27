@@ -44,10 +44,10 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
 };
 
 const createGoogleAdsenseScript = () => {
-  const existingScript = document.getElementById('google-adsense');
-  if (existingScript) {
-    return;
-  }
+  // const existingScript = document.getElementById('google-adsense');
+  // if (existingScript) {
+  //   return;
+  // }
 
   const scriptAdsense = document.createElement('script');
   scriptAdsense.async = true;
