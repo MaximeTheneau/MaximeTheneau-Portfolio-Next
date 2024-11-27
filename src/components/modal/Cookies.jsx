@@ -107,6 +107,24 @@ export default function CookiesModal() {
         }, 5000);
       }
     }
+  }, [router.pathname]);
+
+  useEffect(() => {
+    if (window.localStorage.getItem('cookiesGoogle')) {
+      createGoogleAnalyticsScript(true);
+    } else {
+      setTimeout(() => {
+        updateCookies('cookiesModal', false);
+      }, 5000);
+    }
+
+    if (window.localStorage.getItem('cookiesAdsense')) {
+      createGoogleAdsenseScript();
+    } else {
+      setTimeout(() => {
+        updateCookies('cookiesModal', false);
+      }, 5000);
+    }
   }, []);
 
   const handleAcceptCookies = () => {
