@@ -44,6 +44,9 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
 };
 
 const createGoogleAdsenseScript = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const idGoogle = document.getElementById('google-adsense');
 
   if (idGoogle) { return; }
