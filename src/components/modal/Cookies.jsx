@@ -108,6 +108,7 @@ export default function CookiesModal() {
     if (window.localStorage.getItem('cookiesAdsense')) {
       if (router.pathname.startsWith('/blog/')) {
         createGoogleAdsenseScript();
+        console.log('test');
       }
     } else {
       setTimeout(() => {
@@ -116,6 +117,13 @@ export default function CookiesModal() {
     }
   }, []);
 
+  useEffect(() => {
+    if (window.localStorage.getItem('cookiesAdsense')) {
+      if (router.pathname.startsWith('/blog/')) {
+        createGoogleAdsenseScript();
+      }
+    }
+  }, [router]);
   const handleAcceptCookies = () => {
     document.body.classList.remove('overflow-hidden');
     window.localStorage.setItem('cookiesModal', true);
