@@ -44,18 +44,21 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
 };
 
 const createGoogleAdsenseScript = () => {
+  const router = useRouter();
+
   const existingScript = document.getElementById('google-adsense');
   if (existingScript) {
     return;
   }
+  if (router.pathname.startsWith('/blog')) {
+    const scriptAdsense = document.createElement('script');
+    scriptAdsense.async = true;
+    scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
+    scriptAdsense.id = 'google-adsense';
+    scriptAdsense.crossOrigin = 'anonymous';
 
-  const scriptAdsense = document.createElement('script');
-  scriptAdsense.async = true;
-  scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
-  scriptAdsense.id = 'google-adsense';
-  scriptAdsense.crossOrigin = 'anonymous';
-
-  document.head.appendChild(scriptAdsense);
+    document.head.appendChild(scriptAdsense);
+  }
 };
 
 export default function CookiesModal() {
