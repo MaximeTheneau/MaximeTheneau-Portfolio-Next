@@ -108,7 +108,6 @@ export default function CookiesModal() {
     if (window.localStorage.getItem('cookiesAdsense')) {
       if (router.pathname.startsWith('/blog/')) {
         createGoogleAdsenseScript();
-        console.log('test');
       }
     } else {
       setTimeout(() => {
@@ -133,7 +132,9 @@ export default function CookiesModal() {
     updateCookies('cookiesGoogle', true);
     updateCookies('cookiesAdsense', true);
     createGoogleAnalyticsScript(true);
-    createGoogleAdsenseScript();
+    if (router.pathname.startsWith('/blog/')) {
+      createGoogleAdsenseScript();
+    }
   };
 
   const handleRefuseCookies = () => {
@@ -160,7 +161,6 @@ export default function CookiesModal() {
                 onClick={() => {
                   handleCookieChange('cookiesGoogle');
                   window.localStorage.setItem('cookiesGoogle', !cookies.cookiesGoogle);
-                  createGoogleAnalyticsScript(true);
                 }}
               />
               <CookieChoice
@@ -169,7 +169,9 @@ export default function CookiesModal() {
                 onClick={() => {
                   handleCookieChange('cookiesAdsense');
                   window.localStorage.setItem('cookiesAdsense', !cookies.cookiesAdsense);
-                  createGoogleAdsenseScript();
+                  if (router.pathname.startsWith('/blog/')) {
+                    createGoogleAdsenseScript();
+                  }
                 }}
               />
             </tbody>
