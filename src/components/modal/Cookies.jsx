@@ -48,6 +48,9 @@ const createGoogleAdsenseScript = () => {
   if (existingScript) {
     return;
   }
+  if (!window.localStorage.getItem('cookiesGoogle')) {
+    return;
+  }
 
   const scriptAdsense = document.createElement('script');
   scriptAdsense.async = true;

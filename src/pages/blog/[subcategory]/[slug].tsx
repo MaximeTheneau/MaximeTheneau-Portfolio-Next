@@ -55,6 +55,10 @@ export const getStaticProps: GetStaticProps<SlugProps> = async ({ params }) => {
 };
 
 export default function Slug({ post, relatedPosts }: SlugProps) {
+  // useEffect(() => {
+  //   createGoogleAdsenseScript();
+  // }, []);
+
   if (!post) return <Page404 />;
   return (
     <>
