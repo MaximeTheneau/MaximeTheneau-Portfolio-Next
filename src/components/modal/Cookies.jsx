@@ -44,12 +44,10 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
 };
 
 const createGoogleAdsenseScript = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const idGoogle = document.getElementById('google-adsense');
+  // console.log(document.getElementById('google-adsense'));
 
-  if (idGoogle) { return; }
+  if (idGoogle) return;
 
   const scriptAdsense = document.createElement('script');
   scriptAdsense.async = true;
@@ -68,12 +66,14 @@ export default function CookiesModal() {
     updateCookies(cookieName, !cookies[cookieName]);
   };
 
-  useEffect(() => {
-    if (router.pathname.startsWith('/blog')) {
-      if (window.localStorage.getItem('cookiesAdsense')) {
+  if (router.pathname.startsWith('/blog/')) {
+    if (cookies) {
+      setTimeout(() => {
         createGoogleAdsenseScript();
-      }
-    } else {
+      }, 1000);
+    }
+  } else {
+    setTimeout(() => {
       const adsElements = document.querySelectorAll('ins');
       const existingScript1 = document.getElementById('google-adsense');
       const existingScript2 = document.getElementById('google_esf');
@@ -93,12 +93,10 @@ export default function CookiesModal() {
       if (existingAdsenseScript) {
         existingAdsenseScript.remove();
       }
-    }
-  }, [router.pathname, updateCookies]);
+    }, 1000);
+  }
 
   useLayoutEffect(() => {
-    console.log(document?.getElementById('google-adsense'));
-
     if (window.localStorage.getItem('cookiesGoogle')) {
       createGoogleAnalyticsScript(true);
     } else {
