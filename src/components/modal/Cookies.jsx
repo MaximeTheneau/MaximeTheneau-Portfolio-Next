@@ -43,33 +43,19 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
   document.head.appendChild(script);
 };
 
-function createGoogleAdsenseScript(router) {
-  if (router.pathname.startsWith('/blog')) {
-    const scriptAdsense = document.createElement('script');
-    scriptAdsense.async = true;
-    scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
-    scriptAdsense.id = 'google-adsense';
-    scriptAdsense.crossOrigin = 'anonymous';
+const createGoogleAdsenseScript = () => {
+  const idGoogle = document.getElementById('google-adsense');
 
-    document.head.appendChild(scriptAdsense);
-  } else {
-    const adsElements = document.querySelectorAll('.adsbygoogle');
-    const existingScript = document.getElementById('google-adsense');
-    const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
+  if (idGoogle) { return; }
 
-    adsElements.forEach((adElement) => {
-      adElement.remove();
-    });
+  const scriptAdsense = document.createElement('script');
+  scriptAdsense.async = true;
+  scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
+  scriptAdsense.id = 'google-adsense';
+  scriptAdsense.crossOrigin = 'anonymous';
 
-    if (existingScript) {
-      existingScript.remove();
-    }
-
-    if (existingAdsenseScript) {
-      existingAdsenseScript.remove();
-    }
-  }
-}
+  document.head.appendChild(scriptAdsense);
+};
 
 export default function CookiesModal() {
   const { cookies, updateCookies } = useCookies();
@@ -78,6 +64,30 @@ export default function CookiesModal() {
   const handleCookieChange = (cookieName) => {
     updateCookies(cookieName, !cookies[cookieName]);
   };
+
+  useEffect(() => {
+    if (router.pathname.startsWith('/blog')) {
+      if (window.localStorage.getItem('cookiesAdsense')) {
+        createGoogleAdsenseScript();
+      }
+    } else {
+      const adsElements = document.querySelectorAll('.adsbygoogle');
+      const existingScript = document.getElementById('google-adsense');
+      const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
+
+      adsElements.forEach((adElement) => {
+        adElement.remove();
+      });
+
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      if (existingAdsenseScript) {
+        existingAdsenseScript.remove();
+      }
+    }
+  }, [router.pathname, updateCookies]);
 
   useEffect(() => {
     if (window.localStorage.getItem('cookiesGoogle')) {
@@ -92,8 +102,6 @@ export default function CookiesModal() {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
       }, 5000);
-    } else {
-      createGoogleAdsenseScript(router);
     }
   }, []);
 
