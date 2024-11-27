@@ -43,13 +43,7 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
   document.head.appendChild(script);
 };
 
-const createGoogleAdsenseScript = () => {
-  const router = useRouter();
-
-  const existingScript = document.getElementById('google-adsense');
-  if (existingScript) {
-    return;
-  }
+function createGoogleAdsenseScript(router) {
   if (router.pathname.startsWith('/blog')) {
     const scriptAdsense = document.createElement('script');
     scriptAdsense.async = true;
@@ -58,8 +52,24 @@ const createGoogleAdsenseScript = () => {
     scriptAdsense.crossOrigin = 'anonymous';
 
     document.head.appendChild(scriptAdsense);
+  } else {
+    const adsElements = document.querySelectorAll('.adsbygoogle');
+    const existingScript = document.getElementById('google-adsense');
+    const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
+
+    adsElements.forEach((adElement) => {
+      adElement.remove();
+    });
+
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    if (existingAdsenseScript) {
+      existingAdsenseScript.remove();
+    }
   }
-};
+}
 
 export default function CookiesModal() {
   const { cookies, updateCookies } = useCookies();
@@ -68,30 +78,6 @@ export default function CookiesModal() {
   const handleCookieChange = (cookieName) => {
     updateCookies(cookieName, !cookies[cookieName]);
   };
-
-  useEffect(() => {
-    if (router.pathname.startsWith('/blog')) {
-      if (window.localStorage.getItem('cookiesAdsense')) {
-        createGoogleAdsenseScript();
-      }
-    } else {
-      const adsElements = document.querySelectorAll('.adsbygoogle');
-      const existingScript = document.getElementById('google-adsense');
-      const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
-
-      adsElements.forEach((adElement) => {
-        adElement.remove();
-      });
-
-      if (existingScript) {
-        existingScript.remove();
-      }
-
-      if (existingAdsenseScript) {
-        existingAdsenseScript.remove();
-      }
-    }
-  }, [router.pathname]);
 
   useEffect(() => {
     if (window.localStorage.getItem('cookiesGoogle')) {
@@ -106,6 +92,8 @@ export default function CookiesModal() {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
       }, 5000);
+    } else {
+      createGoogleAdsenseScript(router);
     }
   }, []);
 
