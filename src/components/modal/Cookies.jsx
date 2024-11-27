@@ -48,9 +48,6 @@ const createGoogleAdsenseScript = () => {
   if (existingScript) {
     return;
   }
-  if (!window.localStorage.getItem('cookiesGoogle')) {
-    return;
-  }
 
   const scriptAdsense = document.createElement('script');
   scriptAdsense.async = true;
@@ -97,6 +94,22 @@ export default function CookiesModal() {
     if (router.pathname.startsWith('/blog')) {
       if (window.localStorage.getItem('cookiesAdsense')) {
         createGoogleAdsenseScript();
+      } else {
+        const adsElements = document.querySelectorAll('.adsbygoogle');
+        const existingScript = document.getElementById('google-adsense');
+        const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
+
+        adsElements.forEach((adElement) => {
+          adElement.remove();
+        });
+
+        if (existingScript) {
+          existingScript.remove();
+        }
+
+        if (existingAdsenseScript) {
+          existingAdsenseScript.remove();
+        }
       }
     }
   }, [router.pathname]);
