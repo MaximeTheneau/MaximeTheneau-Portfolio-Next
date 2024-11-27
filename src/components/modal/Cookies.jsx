@@ -44,9 +44,12 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
 };
 
 const createGoogleAdsenseScript = () => {
-  const existingScript = document.getElementById('google-adsense');
-
-  if (existingScript) { return; }
+  // const existingScript = document.getElementById('google-adsense');
+  // existingScript.remove();
+  // document.querySelectorAll('.adsbygoogle').forEach((ad) => {
+  //   ad.remove(); // Supprime les anciens blocs
+  // });
+  // document.querySelector('script[src*="https://pagead2.googlesyndication.com/pagead/"]').remove();
 
   const scriptAdsense = document.createElement('script');
   scriptAdsense.async = true;
@@ -55,34 +58,37 @@ const createGoogleAdsenseScript = () => {
   scriptAdsense.crossOrigin = 'anonymous';
 
   document.head.appendChild(scriptAdsense);
+  // setTimeout(() => {
+  //   (window.adsbygoogle = window.adsbygoogle || []).push({});
+  // }, 1000);
 };
 
-const useAdsenseReload = () => {
-  const router = useRouter();
+// const useAdsenseReload = () => {
+//   const router = useRouter();
 
-  useEffect(() => {
-    if (!router.pathname.startsWith('/blog')) {
-      const adsElements = document.querySelectorAll('.adsbygoogle');
-      const existingScript = document.getElementById('google-adsense');
-      const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
+//   useEffect(() => {
+//     if (!router.pathname.startsWith('/blog')) {
+//       const adsElements = document.querySelectorAll('.adsbygoogle');
+//       const existingScript = document.getElementById('google-adsense');
+//       const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
 
-      adsElements.forEach((adElement) => {
-        adElement.remove();
-      });
+//       adsElements.forEach((adElement) => {
+//         adElement.remove();
+//       });
 
-      if (existingScript) {
-        existingScript.remove();
-      }
+//       if (existingScript) {
+//         existingScript.remove();
+//       }
 
-      if (existingAdsenseScript) {
-        existingAdsenseScript.remove();
-      }
-    }
-  }, [router.pathname]);
-};
+//       if (existingAdsenseScript) {
+//         existingAdsenseScript.remove();
+//       }
+//     }
+//   }, [router.pathname]);
+// };
 export default function CookiesModal() {
   const { cookies, updateCookies } = useCookies();
-  useAdsenseReload();
+  // useAdsenseReload();
   const router = useRouter();
 
   const handleCookieChange = (cookieName) => {
@@ -91,20 +97,8 @@ export default function CookiesModal() {
 
   useEffect(() => {
     if (router.pathname.startsWith('/blog')) {
-      if (window.localStorage.getItem('cookiesGoogle')) {
-        createGoogleAnalyticsScript(true);
-      } else {
-        setTimeout(() => {
-          updateCookies('cookiesModal', false);
-        }, 5000);
-      }
-
       if (window.localStorage.getItem('cookiesAdsense')) {
         createGoogleAdsenseScript();
-      } else {
-        setTimeout(() => {
-          updateCookies('cookiesModal', false);
-        }, 5000);
       }
     }
   }, [router.pathname]);
@@ -118,7 +112,7 @@ export default function CookiesModal() {
       }, 5000);
     }
 
-    if (window.localStorage.getItem('cookiesAdsense')) {
+    if (!window.localStorage.getItem('cookiesAdsense')) {
       createGoogleAdsenseScript();
     } else {
       setTimeout(() => {
