@@ -66,35 +66,35 @@ export default function CookiesModal() {
     updateCookies(cookieName, !cookies[cookieName]);
   };
 
-  if (router.pathname.startsWith('/blog/')) {
-    if (cookies) {
-      setTimeout(() => {
-        createGoogleAdsenseScript();
-      }, 1000);
-    }
-  } else {
-    setTimeout(() => {
-      const adsElements = document.querySelectorAll('ins');
-      const existingScript1 = document.getElementById('google-adsense');
-      const existingScript2 = document.getElementById('google_esf');
-      const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
+  // if (router.pathname.startsWith('/blog/')) {
+  //   if (cookies) {
+  //     setTimeout(() => {
+  //       createGoogleAdsenseScript();
+  //     }, 1000);
+  //   }
+  // } else {
+  //   setTimeout(() => {
+  //     const adsElements = document.querySelectorAll('ins');
+  //     const existingScript1 = document.getElementById('google-adsense');
+  //     const existingScript2 = document.getElementById('google_esf');
+  //     const existingAdsenseScript = document.querySelector('script[src*="/adsense/"]');
 
-      adsElements.forEach((adElement) => {
-        adElement.remove();
-      });
+  //     adsElements.forEach((adElement) => {
+  //       adElement.remove();
+  //     });
 
-      if (existingScript1) {
-        existingScript1.remove();
-      }
+  //     if (existingScript1) {
+  //       existingScript1.remove();
+  //     }
 
-      if (existingScript2) {
-        existingScript2.remove();
-      }
-      if (existingAdsenseScript) {
-        existingAdsenseScript.remove();
-      }
-    }, 1000);
-  }
+  //     if (existingScript2) {
+  //       existingScript2.remove();
+  //     }
+  //     if (existingAdsenseScript) {
+  //       existingAdsenseScript.remove();
+  //     }
+  //   }, 1000);
+  // }
 
   useLayoutEffect(() => {
     if (window.localStorage.getItem('cookiesGoogle')) {
@@ -106,7 +106,9 @@ export default function CookiesModal() {
     }
 
     if (window.localStorage.getItem('cookiesAdsense')) {
-      createGoogleAdsenseScript();
+      if (router.pathname.startsWith('/blog/')) {
+        createGoogleAdsenseScript();
+      }
     } else {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
