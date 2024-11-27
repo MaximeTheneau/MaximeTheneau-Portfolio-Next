@@ -118,7 +118,7 @@ export default function CookiesModal() {
         adsenseScript.remove();
       }
     }
-  }, [router]);
+  }, [router.pathname]);
 
   useEffect(() => {
     if (window.localStorage.getItem('cookiesGoogle')) {
@@ -129,9 +129,7 @@ export default function CookiesModal() {
       }, 5000);
     }
 
-    if (window.localStorage.getItem('cookiesAdsense')) {
-      createGoogleAdsenseScript();
-    } else {
+    if (!window.localStorage.getItem('cookiesAdsense')) {
       setTimeout(() => {
         updateCookies('cookiesModal', false);
       }, 5000);
@@ -174,6 +172,7 @@ export default function CookiesModal() {
                 onClick={() => {
                   handleCookieChange('cookiesGoogle');
                   window.localStorage.setItem('cookiesGoogle', !cookies.cookiesGoogle);
+                  createGoogleAnalyticsScript(true);
                 }}
               />
               <CookieChoice
@@ -182,6 +181,7 @@ export default function CookiesModal() {
                 onClick={() => {
                   handleCookieChange('cookiesAdsense');
                   window.localStorage.setItem('cookiesAdsense', !cookies.cookiesAdsense);
+                  createGoogleAdsenseScript();
                 }}
               />
             </tbody>
