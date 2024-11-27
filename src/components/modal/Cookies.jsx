@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Button from '../ui/Button';
 import CookieChoice from './CookieChoice';
 import { useCookies } from '../../context/CookiesContext';
@@ -44,16 +44,15 @@ const createGoogleAnalyticsScript = (cookiesGoogle) => {
 };
 
 const createGoogleAdsenseScript = () => {
-  // const existingScript = document.getElementById('google-adsense');
-  // const existingAdsenseScript =
-  // document.querySelector('script[src*="show_ads_impl_with_ama_fy2021.js"]');
+  const existingScript = document.getElementById('google-adsense');
+  const existingAdsenseScript = document.querySelector('script[src*="show_ads_impl_with_ama_fy2021.js"]');
 
-  // if (existingScript) {
-  //   existingScript.remove();
-  // }
-  // if (existingAdsenseScript) {
-  //   existingAdsenseScript.remove();
-  // }
+  if (existingScript) {
+    existingScript.remove();
+  }
+  if (existingAdsenseScript) {
+    existingAdsenseScript.remove();
+  }
   const scriptAdsense = document.createElement('script');
   scriptAdsense.async = true;
   scriptAdsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
@@ -63,9 +62,27 @@ const createGoogleAdsenseScript = () => {
   document.head.appendChild(scriptAdsense);
 };
 
+const useAdsenseReload = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!router.pathname.startsWith('/blog')) {
+      const adsElements = document.querySelectorAll('.adsbygoogle');
+      const existingScript = document.getElementById('google-adsense');
+
+      adsElements.forEach((adElement) => {
+        adElement.remove();
+      });
+
+      if (existingScript) {
+        existingScript.remove();
+      }
+    }
+  }, [router.pathname]);
+};
 export default function CookiesModal() {
   const { cookies, updateCookies } = useCookies();
-  // const router = useRouter();
+  useAdsenseReload();
 
   const handleCookieChange = (cookieName) => {
     updateCookies(cookieName, !cookies[cookieName]);
@@ -87,52 +104,7 @@ export default function CookiesModal() {
         updateCookies('cookiesModal', false);
       }, 5000);
     }
-
-    // const existingScript = document.getElementById('google-adsense');
-    // const existingAds = document.querySelectorAll('.adsbygoogle');
-
-    // if (!router.pathname.startsWith('/blog')) {
-    //   if (existingScript) {
-    //     existingScript.remove();
-    //   }
-
-    //   existingAds.forEach((ad) => {
-    //     ad.remove();
-    //   });
-    // }
   }, []);
-
-  // useEffect(() => {
-  //   const addAdSenseScript = () => {
-  //     const existingScript = document.getElementById('google-adsense');
-  //     if (!existingScript) {
-  //       const script = document.createElement('script');
-  //       script.async = true;
-  //       script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9194552698690511';
-  //       script.id = 'google-adsense';
-  //       script.crossOrigin = 'anonymous';
-  //       document.head.appendChild(script);
-  //     }
-  //   };
-
-  //   const addAnalyticsScript = () => {
-  //     const existingInit = document.getElementById('google-analytics-init');
-  //     const existingScript = document.getElementById('google-analytics');
-
-  //     if (existingInit) document.head.removeChild(existingInit);
-  //     if (existingScript) document.head.removeChild(existingScript);
-
-  //     createGoogleAnalyticsScript(true);
-  //   };
-
-  //   if (cookies.cookiesAdsense) {
-  //     addAdSenseScript();
-  //   }
-
-  //   if (cookies.cookiesGoogle) {
-  //     addAnalyticsScript();
-  //   }
-  // }, [cookies.cookiesAdsense, cookies.cookiesGoogle]);
 
   const handleAcceptCookies = () => {
     document.body.classList.remove('overflow-hidden');
