@@ -48,10 +48,13 @@ const createGoogleAdsenseScript = () => {
   if (existingScript) {
     existingScript.remove();
   }
-  // document.querySelectorAll('.adsbygoogle').forEach((ad) => {
-  //   ad.remove(); // Supprime les anciens blocs
-  // });
-  // document.querySelector('script[src*="https://pagead2.googlesyndication.com/pagead/"]').remove();
+  document.querySelectorAll('.adsbygoogle').forEach((ad) => {
+    if (ad) { ad.remove(); }
+  });
+  const adsenseScript = document.querySelector('script[src*="https://pagead2.googlesyndication.com/pagead/"]');
+  if (adsenseScript) {
+    adsenseScript.remove();
+  }
 
   const scriptAdsense = document.createElement('script');
   scriptAdsense.async = true;
@@ -102,8 +105,20 @@ export default function CookiesModal() {
       if (window.localStorage.getItem('cookiesAdsense')) {
         createGoogleAdsenseScript();
       }
+    } else {
+      const existingScript = document.getElementById('google-adsense');
+      if (existingScript) {
+        existingScript.remove();
+      }
+      document.querySelectorAll('.adsbygoogle').forEach((ad) => {
+        if (ad) { ad.remove(); }
+      });
+      const adsenseScript = document.querySelector('script[src*="https://pagead2.googlesyndication.com/pagead/"]');
+      if (adsenseScript) {
+        adsenseScript.remove();
+      }
     }
-  }, [router.pathname, updateCookies]);
+  }, [router]);
 
   useEffect(() => {
     if (window.localStorage.getItem('cookiesGoogle')) {
