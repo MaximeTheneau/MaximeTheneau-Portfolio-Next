@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import FaqJsonLd from '../components/jsonLd/FaqJsonLd';
@@ -65,20 +64,7 @@ export default function Slug({ post }: SlugProps) {
               )}
               {paragraphArticle.paragraph && (
                 <p key={paragraphArticle.id}>
-                  {paragraphArticle.imgPostParagh && (
-                    <Image
-                      src={`${paragraphArticle.imgPostParagh}.webp`}
-                      alt={paragraphArticle.subtitle}
-                      quality={100}
-                      width="1080"
-                      height="720"
-                      sizes="(max-width: 768px) 100vw,
-                        (max-width: 1200px) 50vw,
-                        33vw"
-                    />
-                  )}
                   {paragraphArticle.paragraph}
-
                 </p>
               )}
             </>

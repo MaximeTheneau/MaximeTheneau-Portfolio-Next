@@ -3,7 +3,6 @@ const fs = require('fs');
 
 const urlApi = process.env.NEXT_PUBLIC_API_URL;
 const urlFront = process.env.NEXT_PUBLIC_URL;
-const urlCdn = `${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}`;
 
 const generateSitemapImages = async () => {
   const fetchJson = async (url) => {
@@ -18,7 +17,7 @@ const generateSitemapImages = async () => {
       .map((page) => `<url>
                   <loc>${urlFront}${page.url}</loc>
                   <image:image>
-                    <image:loc>${urlCdn}/${page.imgPost}.webp</image:loc>
+                    <image:loc>${page.imgPost}</image:loc>
                   </image:image>
                 </url>`).join('');
 
