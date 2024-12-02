@@ -4,4 +4,6 @@ export type CardType = {
   altImg?: string;
   title: string;
   url: string;
+  imgPost: string;
+
 };
