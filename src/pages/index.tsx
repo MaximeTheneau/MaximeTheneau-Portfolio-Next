@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from '@/utils/Image';
 import fetcher from '@/utils/fetcher';
 import ScrollingTextWrapper from '@/hooks/useScrollingText/ScrollingTextWrapper';
 import AtoutsList from '@/components/ui/AtoutsList';
@@ -59,12 +59,12 @@ export default function Home({
       <section>
         <div className="relative h-auto ">
           <Image
-            className=" object-cover object-center mx-auto"
+            className="object-cover object-center mx-auto"
             src="A-propos.webp"
             alt={accueil.altImg || accueil.title}
-            width="595"
-            height="595"
-            quality={80}
+            width={accueil.imgWidth}
+            height={accueil.imgHeight}
+            srcset={accueil.srcset}
             priority
           />
           <div className="flex w-full max-w-[595px] flex-col items-center  absolute  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2  text-white bg-blackOpacity">

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import ArticleJsonLd from '@/components/jsonLd/ArticleJsonLd';
 import Page404 from '@/pages/404';
 import Category from '@/components/category/Category';
@@ -10,28 +9,11 @@ import fetcher from '@/utils/fetcher';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Cards from '@/components/cards/Cards';
 import { CardType } from '@/types/card.type';
-
-type Post = {
-  slug: string;
-  heading: string;
-  metaDescription: string;
-  image: string;
-  url: string;
-  altImg?: string;
-  title: string;
-  formattedDate: string;
-  category: string;
-  subcategory: { slug: string; name: string; };
-  contents: string;
-  paragraphPosts: {
-    slug: string;
-    subtitle: string;
-    paragraph: string;
-  }[];
-};
+import { PostType } from '@/types/post.type';
+import Image from '@/utils/Image';
 
 interface SlugProps {
-  post: Post | null;
+  post: PostType | null;
   relatedPosts: CardType[] ;
 }
 
@@ -74,14 +56,11 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
       <article className="m-4">
         <figure>
           <Image
-            src={`${post.slug}.webp`}
+            src={`${post.imgPost}`}
             alt={post.altImg || post.title}
-            quality={100}
-            width="1080"
-            height="720"
-            sizes="(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
-            33vw"
+            width={post.imgWidth}
+            height={post.imgHeight}
+            srcset={post.srcset}
             priority
           />
           <figcaption className="mt-4 text-sm text-gray-400">
@@ -113,7 +92,6 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
       <aside>
         <Cards cards={relatedPosts} />
       </aside>
-
     </>
   );
 }

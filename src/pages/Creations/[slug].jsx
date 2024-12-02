@@ -1,7 +1,6 @@
-import Image from 'next/image';
+import Image from '@/utils/Image';
 import ArticleJsonLd from '../../components/jsonLd/ArticleJsonLd';
 import Page404 from '../404';
-import ImageLoaderFull from '../../utils/ImageLoaderFull';
 import HeadComponents from '../../components/head/HeadComponents';
 import Button from '../../components/button/Button';
 
@@ -35,13 +34,10 @@ export default function Slug({ post }) {
         <Image
           src={`${post.slug}.webp`}
           alt={post.altImg || post.title}
-          loader={ImageLoaderFull}
           quality={100}
-          width="1080"
-          height="720"
-          sizes="(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
-            33vw"
+          width={post.imgWidth}
+          height={post.imgHeight}
+          srcset={post.srcset}
           priority
         />
 

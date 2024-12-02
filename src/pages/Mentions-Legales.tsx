@@ -1,7 +1,5 @@
 import HeadComponents from '../components/head/HeadComponents';
 
-
-
 type Page = {
   title: string;
   contents: string;
