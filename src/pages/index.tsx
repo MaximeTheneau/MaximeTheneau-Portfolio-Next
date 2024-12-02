@@ -57,18 +57,18 @@ export default function Home({
       />
       {products.map((product:any) => <ProductJsonLd key={product.name} product={product} />)}
       <section>
-        <div className="relative h-auto ">
+        <div className="relative  ">
           <Image
             className="object-cover object-center mx-auto"
-            src="A-propos.webp"
+            src={accueil.imgPost}
             alt={accueil.altImg || accueil.title}
             width={accueil.imgWidth}
             height={accueil.imgHeight}
             srcset={accueil.srcset}
             priority
           />
-          <div className="flex w-full max-w-[595px] flex-col items-center  absolute  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2  text-white bg-blackOpacity">
-            <h1 className="sm:text-title px-2  dark:text-[#17181d] sm:w-595">
+          <div style={{ maxWidth: `${accueil.imgWidth}px` }} className="absolute flex  w-full flex-col items-center  absolute  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2  text-white bg-blackOpacity">
+            <h1 className="sm:text-title px-2  dark:text-[#17181d] ">
               {accueil.title}
             </h1>
           </div>

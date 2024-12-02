@@ -31,14 +31,7 @@ export default function ScrollingTextWrapper({ accueil }:any) {
              key={listArticle.id}
              className="list-none  "
            >
-             <p>
-               <span className="font-bold block">
-                 {listArticle.title}
-               </span>
-               {listArticle.contents.length > 130
-                 ? `${listArticle.contents.substring(0, 130)}...`
-                 : listArticle.contents}
-             </p>
+             {listArticle.title}
            </li>
           ))}
         </ul>
@@ -58,14 +51,7 @@ export default function ScrollingTextWrapper({ accueil }:any) {
            key={listArticle.id}
            className="list-none   "
          >
-           <p>
-             <span className="font-bold block">
-               {listArticle.title}
-             </span>
-             {listArticle.contents.length > 130
-               ? `${listArticle.contents.substring(0, 130)}...`
-               : listArticle.contents}
-           </p>
+           {listArticle.title}
          </li>
             ),
           )}

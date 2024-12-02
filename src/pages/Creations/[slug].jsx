@@ -32,9 +32,8 @@ export default function Slug({ post }) {
       <ArticleJsonLd post={post} />
       <article className="m-4">
         <Image
-          src={`${post.slug}.webp`}
+          src={post.imgPost}
           alt={post.altImg || post.title}
-          quality={100}
           width={post.imgWidth}
           height={post.imgHeight}
           srcset={post.srcset}

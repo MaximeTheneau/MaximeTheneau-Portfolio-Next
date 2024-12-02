@@ -56,7 +56,7 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
       <article className="m-4">
         <figure>
           <Image
-            src={`${post.imgPost}`}
+            src={post.imgPost}
             alt={post.altImg || post.title}
             width={post.imgWidth}
             height={post.imgHeight}
