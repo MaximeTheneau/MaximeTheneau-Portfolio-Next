@@ -7,7 +7,7 @@ export default function ProductJsonLd({ product }) {
     '@type': 'Product',
     description: product.description,
     name: product.name,
-    image: `${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/theneau-maxime.jpg`,
+    image: `${process.env.NEXT_PUBLIC_URL_PICTURE}/Accueil.webp?format=jpeg`,
     termsOfService: 'https://theneaumaxime.fr/Mentions-Legales',
     availableChannel: {
       '@type': 'ServiceChannel',

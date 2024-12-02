@@ -16,12 +16,12 @@ export default function ArticleJsonLd({ post, urlPost }) {
     articleBody: post.contents,
     image: {
       '@type': 'ImageObject',
-      url: `${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/${post.imgPost}.jpg`,
+      url: `${post.imgPost}?format=jpeg`,
       caption: post.title,
     },
     associatedMedia: {
       '@type': 'ImageObject',
-      contentUrl: `${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/${post.imgPost}.jpg`,
+      contentUrl: `${post.imgPost}?format=jpeg`,
       description: post.title,
     },
     author: {

@@ -53,7 +53,7 @@ export default function Home({
       <LogoJsonLd
         name="Theneau Maxime"
         url={process.env.NEXT_PUBLIC_URL}
-        logoUrl={`${process.env.NEXT_PUBLIC_CLOUD_URL}/${process.env.NEXT_PUBLIC_CLOUD_FILE_KEY}/theneau-maxime.png`}
+        logoUrl={`${process.env.NEXT_PUBLIC_URL_PICTURE}/Accueil.webp?format=jpeg`}
       />
       {products.map((product:any) => <ProductJsonLd key={product.name} product={product} />)}
       <section>

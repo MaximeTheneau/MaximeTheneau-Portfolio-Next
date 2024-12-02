@@ -19,7 +19,7 @@ export default function DevisEnLigne({ page }) {
         title={page.heading}
         description={page.metaDescription}
         url={page.url}
-        image={page.slug}
+        image={page.imgPost}
       />
       <section className="mx-4">
         <h1>Devis en ligne - Création de site internet </h1>
