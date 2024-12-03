@@ -41,7 +41,7 @@ export default function Slug({ post }) {
         />
 
         <h1>{post.title}</h1>
-        <p>{post.contents}</p>
+        <div dangerouslySetInnerHTML={{ __html: post.contents }} />
         {post.paragraphPosts.map((paragraphPosts) => (
           <div key={paragraphPosts.subtitle}>
             <h2>{paragraphPosts.subtitle}</h2>
