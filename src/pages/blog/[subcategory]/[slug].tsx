@@ -63,7 +63,7 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
             srcset={post.srcset}
             priority
           />
-          <figcaption className="mt-4 text-sm text-gray-400">
+          <figcaption>
             {post.altImg}
           </figcaption>
         </figure>

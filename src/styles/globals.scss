@@ -140,6 +140,15 @@ code {
     font-size: 14px;
     white-space: pre-wrap; 
 }
+
+figcaption{
+  color: var(--tw-text-opacity, 1);
+  width: 100%;
+  background-color:var(--form-color);
+  padding: 1rem 0 1rem .25rem ;
+  font-style: italic;
+  font-size: 0.9rem;
+}
 // @media (prefers-color-scheme: dark) {
 //   :root{
 //     --secondary-light-color:#302e52;
