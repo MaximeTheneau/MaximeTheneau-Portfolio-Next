@@ -23,5 +23,5 @@ jobs:
           git stash
           git pull
           pnpm run clean:all
-          pnpm i 
+          pnpm i
           pnpm run build
