@@ -1,10 +1,10 @@
-@use 'reset.scss';
-@use 'icon.scss';
-@use '_animation.scss';
-@use 'variables' as *;
+@use './reset';
+@use './icon.scss';
+@use './animation';
+@use './variables' as *;
 @use 'tailwindcss/base' as *;
-@use 'tailwindcss/components'as *;
-@use 'tailwindcss/utilities' as *;
+@use 'tailwindcss/components' as *;
+@use 'tailwindcss/utilities' as * ;
 
 :root{
   --white-color: #fff;

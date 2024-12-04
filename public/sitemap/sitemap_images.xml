@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         <url>
+                  <loc>https://theneaumaxime.fr/symfony</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/symfony-4.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/next-js/top-5-des-projets-open-source-avec-next-js-pour-s-</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/top-5-des-projets-open-source-avec-next-js-pour-s--9.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/symfony/top-5-des-projets-open-source-symfony</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/top-5-des-projets-open-source-symfony-2.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/agence-web</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/agence-web-2.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/site-web/creation-de-sites-ecoresponsables</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/creation-de-sites-ecoresponsables-7.webp</image:loc>
+                  </image:image>
+                </url><url>
                   <loc>https://theneaumaxime.fr/blog/site-web/de-quoi-depend-le-bilan-carbone-de-votre-site-web</loc>
                   <image:image>
                     <image:loc>https://picture.theneaumaxime.fr/de-quoi-depend-le-bilan-carbone-de-votre-site-web.webp</image:loc>

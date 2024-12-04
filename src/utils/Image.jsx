@@ -22,6 +22,5 @@ export default function Image({
       sizes="100vw"
       {...props}
     />
-
   );
 }

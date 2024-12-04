@@ -1,18 +1,27 @@
+import withBundleAnalyzer from '@next/bundle-analyzer';
+import { NextConfig } from 'next';
+
 /**
  * @type {import('next').NextConfig}
  */
-const nextConfig = {
+const nextConfig: NextConfig = {
   output: 'export',
-  images: {
-    formats: ['image/avif', 'image/webp'],
-    loader: 'custom',
-    loaderFile: './src/utils/ImageLoaderFull.jsx',
-    deviceSizes: [640, 750, 828, 1080],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
-  },
   eslint: {
-    dirs: ['pages', 'utils'],
+    ignoreDuringBuilds: true,
   },
 };
-export default nextConfig;
+const withAnalyzer = process.env.ANALYSE === 'true' ? withBundleAnalyzer({
+  enabled: true,
+}) : (config: NextConfig) => config;
+
+export default withAnalyzer(nextConfig);
+
+// const nextConfig: NextConfig = {
+//   // Ajoutez vos autres configurations Next.js ici si nécessaire
+// };
+
+// const withAnalyzer = withBundleAnalyzer({
+//   enabled: process.env.ANALYZE === 'true',
+// });
+
+// export default withAnalyzer(nextConfig);

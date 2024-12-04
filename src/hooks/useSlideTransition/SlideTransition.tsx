@@ -1,5 +1,5 @@
 import React, { useRef, ReactNode } from 'react';
-// eslint-disable-next-line import/extensions
+
 import useSlideTransition from './UseSlideTansition';
 
 type SlideTransitionProps = {

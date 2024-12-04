@@ -34,8 +34,8 @@ export default function AtoutsList() {
         </p>
       </div>
       <div className="flex flex-wrap justify-center gap-8">
-        {atouts.map((atout, index) => (
-          <div key={index} className="bg-white shadow-lg p-6 rounded-lg  w-60">
+        {atouts.map((atout) => (
+          <div key={atout.icon} className="bg-white shadow-lg p-6 rounded-lg  w-60">
             <div className="mx-auto">
               {atout.icon}
             </div>

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import ImageLoaderFull from './ImageLoaderFull';
 
 interface VideoLoaderProps {
   src: string;

@@ -13,10 +13,9 @@ describe('HeadComponents', () => {
     render(
       <HeadComponents
         title={title}
-        descriptionMeta={descriptionMeta}
+        description={descriptionMeta}
         url={url}
         image={image}
-        addProduct={addProduct}
       />,
     );
 
