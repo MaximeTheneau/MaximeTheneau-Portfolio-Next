@@ -46,6 +46,7 @@ export function CookiesProvider({ children }: CookiesProviderProps) {
     </CookiesContext.Provider>
   );
 }
+export default CookiesProvider;
 
 export const useCookies = (): CookiesContextType => {
   const context = useContext(CookiesContext);

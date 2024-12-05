@@ -3,16 +3,17 @@ import dynamic from 'next/dynamic';
 import Layout from '../components/layout';
 import '../styles/globals.scss';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const CookiesModal = dynamic(() => import('@/components/modal/Cookies'), { ssr: false });
+const CookiesProvider = dynamic(async () => import('@/context/CookiesContext'), { ssr: false });
+const CookiesModal = dynamic(async () => import('@/components/modal/Cookies'), { ssr: false });
 
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <CookiesProvider>
       <CookiesModal />
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </>
+    </CookiesProvider>
 
   );
 }
