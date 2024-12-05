@@ -8,12 +8,14 @@ const CookiesModal = dynamic(async () => import('@/components/modal/Cookies'), {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <CookiesProvider>
-      <CookiesModal />
+    <>
+      <CookiesProvider>
+        <CookiesModal />
+      </CookiesProvider>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </CookiesProvider>
+    </>
 
   );
 }
