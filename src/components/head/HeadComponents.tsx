@@ -35,6 +35,13 @@ export default function HeadComponents({
         href={`${process.env.NEXT_PUBLIC_URL}${url}`}
         key="canonical"
       />
+      <link
+        rel="preload"
+        as="image"
+        href={image}
+        sizes="100w"
+        type="image/webp"
+      />
     </Head>
   );
 }
