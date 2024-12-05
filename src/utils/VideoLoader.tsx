@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 interface VideoLoaderProps {
   src: string;
-  className?: string;
+  className: string;
 }
 
 function VideoLoader({ src, className }: VideoLoaderProps) {
@@ -39,7 +39,5 @@ function VideoLoader({ src, className }: VideoLoaderProps) {
 
   );
 }
-
-VideoLoader.defaultProps = defaultProps;
 
 export default VideoLoader;
