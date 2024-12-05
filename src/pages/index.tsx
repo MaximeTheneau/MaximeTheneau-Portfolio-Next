@@ -41,7 +41,7 @@ export default function Home({
         title={accueil.heading}
         description={accueil.metaDescription}
         url=""
-        image="Theneau-Maxime"
+        image={accueil.imgPost}
       />
       <Person />
       <LogoJsonLd
