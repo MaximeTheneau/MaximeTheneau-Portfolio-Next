@@ -63,11 +63,11 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
             srcset={post.srcset}
             priority
           />
-          <figcaption style={{ width: `${post.imgWidth}px` }}>
+          <figcaption>
             {post.altImg}
           </figcaption>
         </figure>
-        <p className="bg-form pb-2 text-sm" style={{ width: `${post.imgWidth}px` }}>
+        <p className="bg-form pb-2 text-sm">
           {post.formattedDate}
         </p>
         <Category
