@@ -22,6 +22,4 @@ jobs:
           cd /var/www/html/MaximeTheneau-Portfolio-Next
           git stash
           git pull
-          pnpm run clean:all
-          pnpm i
           pnpm run build
