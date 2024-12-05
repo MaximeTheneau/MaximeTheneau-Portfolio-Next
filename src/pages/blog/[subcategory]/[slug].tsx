@@ -48,6 +48,7 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
         title={post.heading}
         description={post.metaDescription}
         image={post.imgPost}
+        srcset={post.srcset}
         url={post.url}
       />
 

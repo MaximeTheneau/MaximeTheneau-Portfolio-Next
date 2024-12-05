@@ -27,6 +27,7 @@ export default function Slug({ post }) {
         title={post.heading}
         description={post.metaDescription}
         image={post.imgPost}
+        srcset={post.srcset}
         url={post.url}
       />
       <ArticleJsonLd post={post} />

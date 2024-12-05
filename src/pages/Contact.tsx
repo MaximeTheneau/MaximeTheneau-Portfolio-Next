@@ -25,6 +25,7 @@ export default function Contact({ page }: ContactPageProps) {
         title={page.heading}
         description={page.metaDescription}
         url={page.url}
+        srcset={page.srcset}
         image={page.imgPost}
       />
 

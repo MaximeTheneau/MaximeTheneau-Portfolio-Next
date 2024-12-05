@@ -11,7 +11,7 @@ export type PostType = {
   imgPost: string;
   altImg?: string;
   imgHeight?: string;
-  srcset?: string;
+  srcset: string;
   imgWidth?: string;
   paragraphPosts: {
     id: number;

@@ -42,6 +42,7 @@ export default function Home({
         description={accueil.metaDescription}
         url=""
         image={accueil.imgPost}
+        srcset={accueil.srcset}
       />
       <Person />
       <LogoJsonLd

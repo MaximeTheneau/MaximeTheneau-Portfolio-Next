@@ -1,16 +1,23 @@
 import Head from 'next/head';
 
+declare module 'react' {
+  interface LinkHTMLAttributes<T> extends React.HTMLAttributes<T> {
+    fetchpriority?: string;
+  }
+}
 export default function HeadComponents({
   title,
   description,
   url,
   image,
+  srcset,
 } : {
-    title: string,
-    description: string,
-    url: string,
-    image: string,
-    }) {
+  title: string,
+  description: string,
+  url: string,
+  image: string,
+  srcset: string,
+}) {
   return (
     <Head>
       <title>{title}</title>
@@ -41,6 +48,13 @@ export default function HeadComponents({
         href={image}
         sizes="100w"
         type="image/webp"
+      />
+      <link
+        rel="preload"
+        as="image"
+        imageSrcSet={srcset}
+        imageSizes="100w"
+        fetchpriority="hight"
       />
     </Head>
   );

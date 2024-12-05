@@ -26,6 +26,7 @@ export default function Page({ post }: PostProps) {
         description={post.metaDescription}
         url={post.url}
         image={post.imgPost}
+        srcset={post.srcset}
       />
       <section className="p-4">
         <figure>

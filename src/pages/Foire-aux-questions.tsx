@@ -25,6 +25,7 @@ export default function Slug({ post }: SlugProps) {
         title={post.heading}
         description={post.metaDescription}
         url={post.url}
+        srcset={post.srcset}
         image={post.imgPost}
       />
       <FaqJsonLd listPosts={post.listPosts} />
