@@ -21,6 +21,15 @@ export default function HeadComponents({
       <meta property="og:url" content={`${process.env.NEXT_PUBLIC_URL}${url}`} />
       <meta property="og:site_name" content={process.env.NEXT_PUBLIC_URL} />
       <meta property="og:image" content={`${image}?format=jpeg`} />
+      <meta property="og:locale" content="fr_FR" />
+
+      {/* Twitter Open Graph Tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={`${image}?format=jpeg`} />
+      <meta name="twitter:url" content={`${process.env.NEXT_PUBLIC_URL}${url}`} />
+      <meta name="twitter:site" content="@MTheneau" />
       <link
         rel="canonical"
         href={`${process.env.NEXT_PUBLIC_URL}${url}`}
