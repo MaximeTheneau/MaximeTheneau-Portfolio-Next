@@ -1,5 +1,6 @@
 import Image from '@/utils/Image';
 import { PostType } from '@/types/post.type';
+import GoogleMaps from '@/components/maps/GoogleMaps';
 import HeadComponents from '../components/head/HeadComponents';
 
 interface PostProps {
@@ -39,6 +40,7 @@ export default function APropos({ post }: PostProps) {
         />
         <h1>{post.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: post.contents }} />
+        <GoogleMaps />
         <article>
           {post.paragraphPosts.map((paragraphArticle) => (
             <div key={paragraphArticle.subtitle}>
