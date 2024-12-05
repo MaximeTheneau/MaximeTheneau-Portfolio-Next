@@ -14,8 +14,15 @@ export type PostType = {
   srcset?: string;
   imgWidth?: string;
   paragraphPosts: {
+    id: number;
     slug: string;
     subtitle: string;
     paragraph: string;
   }[];
+  listPosts: {
+  id: number;
+  open: boolean;
+  title: string;
+  description: string;
+}[];
 };

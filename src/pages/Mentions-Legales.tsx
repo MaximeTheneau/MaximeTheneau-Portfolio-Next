@@ -1,22 +1,8 @@
+import { PostType } from '@/types/post.type';
 import HeadComponents from '../components/head/HeadComponents';
 
-type Page = {
-  title: string;
-  contents: string;
-  slug: string;
-  url: string;
-  heading: string;
-  metaDescription: string;
-  altImg?: string;
-  subtitle: string;
-  paragraphPosts: {
-    subtitle: string;
-    paragraph: string;
-  }[];
-};
-
 type MentionsLegalProps = {
-  page: Page;
+  page: PostType;
 };
 
 export async function getStaticProps() {
@@ -38,11 +24,10 @@ export default function MentionsLegal({ page }: MentionsLegalProps) {
         title={page.heading}
         description={page.metaDescription}
         url={page.url}
-        image={page.slug}
+        image={page.imgPost}
       />
       <section className="p-4">
         <h1>{page.title}</h1>
-        <h2>{page.subtitle}</h2>
         <p>
           {page.contents}
         </p>

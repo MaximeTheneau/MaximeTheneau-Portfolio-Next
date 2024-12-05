@@ -47,7 +47,7 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
       <HeadComponents
         title={post.heading}
         description={post.metaDescription}
-        image={post.slug}
+        image={post.imgPost}
         url={post.url}
       />
 

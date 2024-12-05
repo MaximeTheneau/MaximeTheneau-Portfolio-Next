@@ -1,15 +1,9 @@
+import { PostType } from '@/types/post.type';
 import ContactForm from '../components/contact/Contact';
 import HeadComponents from '../components/head/HeadComponents';
 
 type ContactPageProps = {
-  page: {
-    title: string,
-    contents: string,
-    heading: string,
-    metaDescription: string,
-    slug: string,
-    url: string,
-  },
+  page: PostType
 };
 
 export async function getStaticProps(): Promise<{ props: ContactPageProps }> {
@@ -31,7 +25,7 @@ export default function Contact({ page }: ContactPageProps) {
         title={page.heading}
         description={page.metaDescription}
         url={page.url}
-        image={page.slug}
+        image={page.imgPost}
       />
 
       <section className="p-4">

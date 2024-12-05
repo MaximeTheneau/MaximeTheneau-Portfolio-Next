@@ -22,7 +22,7 @@ export default function Home({ articles, page }) {
       <HeadComponents
         title={page.heading}
         description={page.metaDescription}
-        image={page.image}
+        image={page.imgPost}
         url={page.url}
       />
       <section className="m-4">

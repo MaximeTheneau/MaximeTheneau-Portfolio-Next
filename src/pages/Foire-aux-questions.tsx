@@ -1,34 +1,10 @@
+import { PostType } from '@/types/post.type';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import FaqJsonLd from '../components/jsonLd/FaqJsonLd';
 
-type ParagraphArticle = {
-  id: number;
-  subtitle: string;
-  paragraph: string;
-  imgPostParagh: string;
-};
-
-type ListPost = {
-  id: number;
-  open: boolean;
-  title: string;
-  description: string;
-};
-
-type Post = {
-  title: string;
-  heading: string;
-  metaDescription: string;
-  contents: string;
-  url: string;
-  slug: string;
-  paragraphPosts: ParagraphArticle[];
-  listPosts: ListPost[];
-};
-
 type SlugProps = {
-  post: Post;
+  post: PostType;
 };
 
 export async function getStaticProps() {
@@ -49,7 +25,7 @@ export default function Slug({ post }: SlugProps) {
         title={post.heading}
         description={post.metaDescription}
         url={post.url}
-        image={post.slug}
+        image={post.imgPost}
       />
       <FaqJsonLd listPosts={post.listPosts} />
       <section className="p-4">

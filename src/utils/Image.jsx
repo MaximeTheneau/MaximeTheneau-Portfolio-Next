@@ -19,7 +19,6 @@ export default function Image({
       loading={priority ? 'eager' : 'lazy'}
       fetchpriority={priority ? 'high' : 'low'}
       decoding="async"
-      sizes="100vw"
       {...props}
     />
   );
