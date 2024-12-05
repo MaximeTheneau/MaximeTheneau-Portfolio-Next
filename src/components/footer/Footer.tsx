@@ -6,27 +6,27 @@ export default function Footer() {
     <div className="flex justify-around sm:flex-row flex-col p-4 leading-loose bg-secondary">
       <ul className="">
         <li>
-          <Link href="/A-propos">
+          <Link href="/A-propos" prefetch={false}>
             Qui suis-je ?
           </Link>
         </li>
         <li>
-          <Link href="/Foire-aux-questions">
+          <Link href="/Foire-aux-questions" prefetch={false}>
             Foire aux questions
           </Link>
         </li>
         <li>
-          <Link href="/Mentions-Legales">
+          <Link href="/Mentions-Legales" prefetch={false}>
             Mentions légales
           </Link>
         </li>
         <li>
-          <Link href="/Creations">
+          <Link href="/Creations" prefetch={false}>
             Mes projets
           </Link>
         </li>
         <li>
-          <Link href="/blog">
+          <Link href="/blog" prefetch={false}>
             Blog
           </Link>
         </li>
@@ -44,7 +44,7 @@ export default function Footer() {
           </Link>
         </li>
         <li>
-          <Link href="/Contact">
+          <Link href="/Contact" prefetch={false}>
             Formulaire de contact
           </Link>
         </li>

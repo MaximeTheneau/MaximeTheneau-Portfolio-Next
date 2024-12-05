@@ -63,16 +63,12 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
             srcset={post.srcset}
             priority
           />
-          <figcaption>
+          <figcaption style={{ width: `${post.imgWidth}px` }}>
             {post.altImg}
           </figcaption>
         </figure>
-        <p className="mt-4 text-sm text-gray-400">
-          <span className="italic">
-            {post.formattedDate}
-          </span>
-          <span> • </span>
-          <span className="text-gray-500">Écrit par Maxime Freelance</span>
+        <p className="bg-form pb-2 text-sm" style={{ width: `${post.imgWidth}px` }}>
+          {post.formattedDate}
         </p>
         <Category
           category={post.subcategory}

@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  sassOptions: {
+    silenceDeprecations: ['legacy-js-api'],
+  },
 };
 const withAnalyzer = process.env.ANALYSE === 'true' ? withBundleAnalyzer({
   enabled: true,

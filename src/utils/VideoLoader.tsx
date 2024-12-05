@@ -5,10 +5,6 @@ interface VideoLoaderProps {
   className?: string;
 }
 
-const defaultProps: Partial<VideoLoaderProps> = {
-  className: undefined,
-};
-
 function VideoLoader({ src, className }: VideoLoaderProps) {
   return (
     <video

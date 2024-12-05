@@ -44,7 +44,7 @@ export default function Navbar() {
               className="border-b-2 border-stone-100 border-solid pt-2 pb-2 text-nav  transform transition-opacity duration-500 ease-in-out"
               style={{ animationDelay: `${0.2 * index}s` }}
             >
-              <Link href={item.href} onClick={closeNav}>
+              <Link href={item.href} onClick={closeNav} prefetch={false}>
                 {item.label}
               </Link>
             </li>
