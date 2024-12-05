@@ -13,20 +13,17 @@ import ProductsList from '../components/cards/ProductsList';
 
 export async function getStaticProps() {
   const accueil = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/home`);
-  const creation = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Creations`);
-  const faq = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
+  // const creation = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Creations`);
+  // const faq = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
 
   // const responseMaps = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${process.env.GOOGLE_API_PLACEID}&language=fr&key=${process.env.GOOGLE_API_KEY}`);
-
-  const filteredFaq = faq.listPosts.slice(0, 3);
 
   return {
     props: {
       accueil: accueil.home,
       products: accueil.products,
-      creation,
-      // responseMaps,
-      faq: filteredFaq,
+      creation: accueil.creation,
+      faq: accueil.faq,
     },
   };
 }
