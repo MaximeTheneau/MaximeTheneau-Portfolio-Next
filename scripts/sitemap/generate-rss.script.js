@@ -63,7 +63,7 @@ const genererFluxAtom = async () => {
         { updated: new Date().toISOString() },
         {
           author: [
-            { name: 'John Doe' },
+            { name: 'Maxime Freelance' },
           ],
         },
         { link: { _attr: { href: FEED_URL, rel: 'self', type: 'application/atom+xml' } } },
