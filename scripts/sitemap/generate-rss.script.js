@@ -9,10 +9,9 @@ const SITE_URL = process.env.NEXT_PUBLIC_URL;
 const FEED_URL = `${SITE_URL}/atom.xml`;
 const API_URL = `${process.env.NEXT_PUBLIC_API_URL}posts/sitemap`;
 
-// Fonction pour nettoyer le contenu et éviter le XSS
 const nettoyerContenu = (contenu) => sanitizeHtml(contenu, {
-  allowedTags: [], // Désactiver toutes les balises HTML
-  allowedAttributes: {}, // Désactiver tous les attributs
+  allowedTags: [],
+  allowedAttributes: {},
 });
 
 const recupererArticlesDepuisApi = async () => {
@@ -72,8 +71,9 @@ const genererFluxAtom = async () => {
         ...elementsAtom,
       ],
     });
+    const xmlWithDeclaration = `<?xml version="1.0" encoding="utf-8"?>\n${fluxAtom}`;
 
-    fs.writeFileSync('./public/atom.xml', fluxAtom, 'utf8');
+    fs.writeFileSync('./public/atom.xml', xmlWithDeclaration, 'utf8');
     console.log('Le flux Atom a été généré avec succès !');
   } catch (error) {
     console.error('Erreur lors de la génération du flux Atom :', error);
