@@ -11,6 +11,7 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="preconnect" href="https://picture.theneaumaxime.fr" />
         <link rel="dns-prefetch" href="https://picture.theneaumaxime.fr" />
+        <link type="application/atom+xml" rel="alternate" href="https://theneaumaxime.fr/atom.xml" title="Maxime Freelance - Atom Feed" />
       </Head>
       <body>
         <Main />

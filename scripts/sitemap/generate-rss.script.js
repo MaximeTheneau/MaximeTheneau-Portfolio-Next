@@ -59,7 +59,7 @@ const genererFluxAtom = async () => {
     const fluxAtom = xml({
       feed: [
         { _attr: { xmlns: ATOM_NAMESPACE } },
-        { id: SITE_URL },
+        { id: `${SITE_URL}/` },
         { title: 'Maxime Freelance' },
         { updated: new Date().toISOString() },
         {
