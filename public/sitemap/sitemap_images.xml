@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         <url>
-                  <loc>https://theneaumaxime.fr/symfony</loc>
+                  <loc>https://theneaumaxime.fr/blog/symfony</loc>
                   <image:image>
                     <image:loc>https://picture.theneaumaxime.fr/symfony-4.webp</image:loc>
                   </image:image>
@@ -78,7 +78,7 @@
                 </url><url>
                   <loc>https://theneaumaxime.fr/blog/aws/comment-installer-un-cdn-d-images-avec-s3-et-cloud</loc>
                   <image:image>
-                    <image:loc>https://picture.theneaumaxime.fr/comment-installer-un-cdn-d-images-avec-s3-et-cloud.webp</image:loc>
+                    <image:loc>https://picture.theneaumaxime.fr/comment-installer-un-cdn-d-images-avec-s3-et-cloud-3.webp</image:loc>
                   </image:image>
                 </url><url>
                   <loc>https://theneaumaxime.fr/blog/next-js/ameliorer-la-vitesse-de-chargement-de-votre-site-w</loc>
