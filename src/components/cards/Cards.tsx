@@ -9,7 +9,7 @@ export default function Cards({ cards }: CardsProps) {
   return (
     <ul className="flex flex-wrap justify-between items-start">
       {cards.map((card) => (
-        <li className="w-[330px] w-full p-4" key={card.title}>
+        <li className="w-full md:w-[330px]  p-4" key={card.title}>
           <Card
             card={card}
           />
