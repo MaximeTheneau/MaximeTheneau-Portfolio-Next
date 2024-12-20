@@ -29,9 +29,8 @@ export default function MentionsLegal({ page }: MentionsLegalProps) {
       />
       <section className="p-4">
         <h1>{page.title}</h1>
-        <p>
-          {page.contents}
-        </p>
+        <div dangerouslySetInnerHTML={{ __html: page.contents }} />
+
         {page.paragraphPosts.map((paragraphArticle) => (
           <>
             <h2 key={paragraphArticle.subtitle}>
