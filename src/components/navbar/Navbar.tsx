@@ -9,7 +9,7 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { href: '/', label: 'Accueil' },
+    { href: '/', label: 'Maxime Freelance' },
     { href: '/devis-en-ligne', label: 'Devis en ligne' },
     { href: '/Contact', label: 'Contact' },
     { href: '/A-propos', label: 'Qui-suis-je ?' },

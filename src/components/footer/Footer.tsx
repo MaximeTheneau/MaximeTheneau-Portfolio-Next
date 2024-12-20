@@ -6,6 +6,11 @@ export default function Footer() {
     <div className="flex justify-around sm:flex-row flex-col p-4 leading-loose bg-secondary">
       <ul className="">
         <li>
+          <Link href="/" prefetch={false}>
+            Maxime Freelance
+          </Link>
+        </li>
+        <li>
           <Link href="/A-propos" prefetch={false}>
             Qui suis-je ?
           </Link>
