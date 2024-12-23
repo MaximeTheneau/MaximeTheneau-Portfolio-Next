@@ -60,6 +60,7 @@ export default function Home({
             width={accueil.imgWidth}
             height={accueil.imgHeight}
             srcset={accueil.srcset}
+            sizes="100vw"
             priority
           />
           <div style={{ maxWidth: `${accueil.imgWidth}px` }} className="absolute flex  w-full flex-col items-center  absolute  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2  text-white bg-blackOpacity">

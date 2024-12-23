@@ -46,15 +46,14 @@ export default function HeadComponents({
         rel="preload"
         as="image"
         href={image}
-        sizes="100w"
         type="image/webp"
       />
       <link
         rel="preload"
         as="image"
         imageSrcSet={srcset}
-        imageSizes="100w"
-        fetchpriority="hight"
+        imageSizes="100vw"
+        fetchpriority="high"
       />
     </Head>
   );
