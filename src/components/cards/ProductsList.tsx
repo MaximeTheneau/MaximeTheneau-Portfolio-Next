@@ -32,7 +32,7 @@ export default function ProductsList({ products }: ProductProps) {
       {products.map((product) => (
         <article
           key={product.name}
-          className="w-full p-4 sm:w-[47%] sm:mr-4 mb-4 bg-form rounded hover:opacity-80 "
+          className="w-full p-4 mb-4 bg-form rounded hover:opacity-80 "
         >
           <div
             onClick={() => handleClick(product.url)} // Utilisation d'une fonction anonyme
@@ -63,21 +63,20 @@ export default function ProductsList({ products }: ProductProps) {
                 </li>
               ))}
             </ul>
-            <p className="font-bold text-sm mx-auto text-xl">
-              <span className="line-through text-red ">
+            <p className="font-bold text-sm mx-auto text-gray-600 mt-2">
+              A partir de
+              {' '}
+              <span className="line-through text-red text-xl">
                 {product.price}
                 {' '}
                 €
               </span>
               {' '}
-              <span className="">
+              <span className="text-xl">
                 {product.discountedPrice}
                 {' '}
                 €
               </span>
-            </p>
-            <p className="text-center text-sm text-gray-600 mt-2">
-              <span className="font-semibold text-red-600">Promotion jusqu&apos;au 1er janvier 2025 !</span>
             </p>
           </div>
         </article>
