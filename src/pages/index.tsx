@@ -4,6 +4,7 @@ import Image from '@/utils/Image';
 import fetcher from '@/utils/fetcher';
 import AtoutsList from '@/components/ui/AtoutsList';
 import dynamic from 'next/dynamic';
+import Cards from '@/components/cards/Cards';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
@@ -63,34 +64,32 @@ export default function Home({
             sizes="100vw"
             priority
           />
-          <div style={{ maxWidth: `${accueil.imgWidth}px` }} className="absolute flex  w-full flex-col items-center  absolute  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2  text-white bg-blackOpacity">
+          <div
+            style={{ maxWidth: `${accueil.imgWidth}px` }}
+            className="absolute flex pb-4 px-2 w-full flex-col   absolute  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2  text-white bg-blackOpacity"
+          >
             <h1 className="sm:text-title px-2  dark:text-[#17181d] ">
               {accueil.title}
             </h1>
+            <p className="text-xl mb-8">
+              Développeur web freelance basé à Marseille
+              (13008). Je crée des sites internet modernes, performants et écoresponsables
+              pour donner vie à vos projets digitaux.
+            </p>
+            <Link
+              href="/devis-en-ligne"
+              className=" text-black left inline-block md:w-1/2 bg-white px-8 py-4 rounded-lg font-bold hover:bg-green-600 transition"
+            >
+              Demander un devis gratuit
+            </Link>
           </div>
         </div>
-        <Link href="/agence-web">
-          <AtoutsList />
-        </Link>
-      </section>
-      <section>
-        <div className="bg-primary pt-16 pb-4 text-center ">
-          {/* <h2>
-            Agence Web à Marseille : Offre Spéciale jusqu’au 1er Janvier 2025
-          </h2>
-          <p>
-            Bénéficiez d’une réduction de 50 % sur toutes mes formules
-            de création de sites internet jusqu’au 1er janvier 2025.
-            C’est le moment idéal pour booster votre présence en ligne
-            avec un site performant, optimisé et spécialement conçu pour
-            répondre aux attentes des PME et entreprises.
 
-            Contactez-moi dès aujourd’hui pour transformer vos idées en succès digital !
-          </p> */}
-          {/* --Product--*/}
-          <ProductsList products={products} />
-        </div>
       </section>
+      {/* <section>
+        <AtoutsList />
+
+      </section> */}
       {/* --About--*/}
       <section>
         <div className="px-8 pt-4 w-full flex">
@@ -106,19 +105,23 @@ export default function Home({
             ))}
           </div>
         </div>
+        <div className="bg-primary pt-8 pb-4 text-center ">
+          {/* --Product--*/}
+          <ProductsList products={products} />
+        </div>
       </section>
       {/* --Création--*/}
-      <section className="m-4 bg-primary ">
+      <section className="">
         <div className="p-4 text-center">
-          <h2>Découvrez Nos Projets Réalisés</h2>
-          <p className="mb-4">Nous avons eu le plaisir de travailler sur une variété de projets, allant de la création de sites vitrine à des solutions e-commerce. Explorez ci-dessous quelques-uns des projets que nous avons réalisés pour nos clients.</p>
+          <h2>Réalisations</h2>
         </div>
+        <Cards cards={creation} />
+        {/* <ScrollingTextWrapper accueil={creation} /> */}
         <Link
           href="/Creations"
-          className="hover:text-white "
+          className=" text-black text-center mx-auto block   p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white "
         >
-          <ScrollingTextWrapper accueil={creation} />
-          <span className="hover:text-black p-4">Découvrez tous nos projets</span>
+          Découvrez tous mes projets
         </Link>
       </section>
       {/* --FAQ--*/}
@@ -127,17 +130,14 @@ export default function Home({
         <Faq faq={faq} />
         <Link
           href="/Foire-aux-questions"
-          className="mx-4"
+          className=" text-black left inline-block bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
         >
           Découvrez toutes les réponses à vos questions ici
         </Link>
       </section>
       <section className="m-4 ">
-        <Link
-          href="/devis-en-ligne"
-        >
-          <h2>Demande de devis pour la créations de devis en ligne </h2>
-        </Link>
+
+        <h2>Demande de devis pour la créations de devis en ligne </h2>
         <p>
           Si vous souhaitez obtenir un devis personnalisé pour la création de votre site web,
           n&apos;hésitez pas à nous contacter.
@@ -145,6 +145,12 @@ export default function Home({
           Remplissez le formulaire ci-dessous pour que nous puissions discuter
           de vos besoins et vous fournir une estimation précise.
         </p>
+        <Link
+          href="/devis-en-ligne"
+          className=" text-black left inline-block md:w-1/2 bg-secondary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
+        >
+          Demander un devis maintenant
+        </Link>
       </section>
     </>
   );

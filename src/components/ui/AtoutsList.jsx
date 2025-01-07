@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function AtoutsList() {
   const atouts = [
     {
@@ -24,26 +26,20 @@ export default function AtoutsList() {
   ];
 
   return (
-    <section className="p-4 bg-secondary my-4">
-      <div className="text-center  pb-4">
-        <h2> Bienvenue chez Maxime Freelance</h2>
-        <p>
-          Votre partenaire digital
-          à Marseille pour la création de sites internet modernes,
-          performants et écoresponsables.
-        </p>
-      </div>
+    <div className="p-4 ">
       <div className="flex flex-wrap justify-center gap-8">
         {atouts.map((atout) => (
           <div key={atout.icon} className="bg-white shadow-lg p-6 rounded-lg  w-60">
-            <div className="mx-auto">
+            <span className="mx-auto">
               {atout.icon}
-            </div>
-            <h3 className="text-xl font-semibold text-gray-800">{atout.title}</h3>
+            </span>
+            <Link href="/agence-web">
+              <h3 className="text-xl font-semibold text-gray-800">{atout.title}</h3>
+            </Link>
             <p className="text-gray-600">{atout.description}</p>
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

@@ -1,5 +1,7 @@
 import { Url } from 'next/dist/shared/lib/router/router';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import AtoutsList from '../ui/AtoutsList';
 
  type ProductOption = {
     label: string;
@@ -29,6 +31,7 @@ export default function ProductsList({ products }: ProductProps) {
     <section
       className="m-4 sm:flex sm:flex-wrap sm:justify-around text-xs"
     >
+
       {products.map((product) => (
         <article
           key={product.name}

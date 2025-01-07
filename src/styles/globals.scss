@@ -52,7 +52,7 @@ img{
 a{
   text-decoration: underline;
   &:hover{
-    color: var(--primary-color) !important;
+    color: var(--primary-color);
   }
 }
 button a,
