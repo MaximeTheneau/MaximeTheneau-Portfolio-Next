@@ -13,24 +13,24 @@ type FaqElementsProps = {
 };
 
 function FaqElements({ faq, setFaqs }: FaqElementsProps) {
-  const [bot, setBot] = useState(true);
+  const [bot, setBot] = useState(false);
   const toggleFAQ = (): void => {
     setFaqs((prevFaqs: Faq[]) => prevFaqs.map((item) => {
       if (item.id === faq.id) {
         return { ...item, open: !item.open };
       }
-      return { ...item, open: false };
+      return item;
     }));
   };
 
-  useEffect(() => {
-    if (navigator.userAgent.includes('Googlebot')) {
-      setBot(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (navigator.userAgent.includes('Googlebot')) {
+  //     setBot(true);
+  //   }
+  // }, []);
   return (
     <li
-      className=" transition-all duration-300 ease-in-out bg-white mb-4 p-4 rounded-lg cursor-pointer"
+      className=" transition-all text-left duration-300 ease-in-out bg-white mb-4 p-4 rounded-lg cursor-pointer"
 
     >
       <button
@@ -38,14 +38,14 @@ function FaqElements({ faq, setFaqs }: FaqElementsProps) {
         onClick={toggleFAQ}
         aria-expanded={faq.open}
         aria-controls={`faq-${faq.id}`}
-        className="w-full flex items-center justify-between pt-4 pb-4 border-b-2 "
+        className="w-full flex items-center justify-between pt-4 pb-4  px-4 border-b-2  bg-gray-100"
       >
-        <span id={`faq-${faq.id}`} className="underline block">{faq.title}</span>
+        <span id={`faq-${faq.id}`} className="underline block text-left  ">{faq.title}</span>
         <span aria-label={faq.open ? 'Fermer la réponse' : 'Ouvrir la réponse'} className="pr-2">
           {faq.open ? <i className="icon-x" /> : <i className="icon-scroll" />}
         </span>
       </button>
-      <div className={faq.open || !bot ? 'block' : 'hidden'} dangerouslySetInnerHTML={{ __html: faq.description }} />
+      <div className={!faq.open ? 'block' : 'hidden'} dangerouslySetInnerHTML={{ __html: faq.description }} />
     </li>
   );
 }
