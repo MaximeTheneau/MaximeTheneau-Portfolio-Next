@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import Head from 'next/head';
 
 export default function ProductJsonLd({ product }) {
@@ -8,10 +7,10 @@ export default function ProductJsonLd({ product }) {
     description: product.description,
     name: product.name,
     image: `${process.env.NEXT_PUBLIC_URL_PICTURE}/Accueil.webp?format=jpeg`,
-    termsOfService: 'https://theneaumaxime.fr/Mentions-Legales',
+    termsOfService: 'https://maximefreelance.fr/Mentions-Legales',
     availableChannel: {
       '@type': 'ServiceChannel',
-      serviceUrl: 'https://theneaumaxime.fr/contact',
+      serviceUrl: 'https://maximefreelance.fr/contact',
       availableLanguage: ['Fr'],
     },
     offers: {

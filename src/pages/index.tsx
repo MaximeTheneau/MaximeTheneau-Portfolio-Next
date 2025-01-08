@@ -35,7 +35,7 @@ export default function Home({
   creation,
   faq,
 }:any) {
-  const ScrollingTextWrapper = dynamic(() => import('@/hooks/useScrollingText/ScrollingTextWrapper'), { ssr: false });
+  // const ScrollingTextWrapper = dynamic(() => import('@/hooks/useScrollingText/ScrollingTextWrapper'), { ssr: false });
   return (
     <>
       <HeadComponents
@@ -84,14 +84,23 @@ export default function Home({
             </Link>
           </div>
         </div>
+        {/* --Atouts--*/}
+        <div className="bg-primary">
+          <AtoutsList />
+        </div>
+        {/* --Création--*/}
+        <div className="p-4 text-center bg-secondary">
+          <h2>Réalisations</h2>
+          <Cards cards={creation} />
 
-      </section>
-      {/* <section>
-        <AtoutsList />
-
-      </section> */}
-      {/* --About--*/}
-      <section>
+          <Link
+            href="/Creations"
+            className=" text-black text-center mx-auto block   p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white "
+          >
+            Découvrez tous mes projets
+          </Link>
+        </div>
+        {/* --About--*/}
         <div className="px-8 pt-4 w-full flex">
           <div>
             {accueil.paragraphPosts.map((paragraphArticle:
@@ -105,52 +114,41 @@ export default function Home({
             ))}
           </div>
         </div>
-        <div className="bg-primary pt-8 pb-4 text-center ">
-          {/* --Product--*/}
+        {/* --Product--*/}
+        {/* <div className="bg-primary pt-8 pb-4 text-center ">
           <ProductsList products={products} />
-        </div>
-      </section>
-      {/* --Création--*/}
-      <section className="">
-        <div className="p-4 text-center">
-          <h2>Réalisations</h2>
-        </div>
-        <Cards cards={creation} />
-        {/* <ScrollingTextWrapper accueil={creation} /> */}
-        <Link
-          href="/Creations"
-          className=" text-black text-center mx-auto block   p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white "
-        >
-          Découvrez tous mes projets
-        </Link>
-      </section>
-      {/* --FAQ--*/}
-      <section className="m-4 bg-secondary p-4 rounded ">
-        <h2>Foire aux Question</h2>
-        <Faq faq={faq} />
-        <Link
-          href="/Foire-aux-questions"
-          className=" text-black left inline-block bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
-        >
-          Découvrez toutes les réponses à vos questions ici
-        </Link>
-      </section>
-      <section className="m-4 ">
+        </div> */}
 
-        <h2>Demande de devis pour la créations de devis en ligne </h2>
-        <p>
-          Si vous souhaitez obtenir un devis personnalisé pour la création de votre site web,
-          n&apos;hésitez pas à nous contacter.
-          Nous serons ravis de vous aider à réaliser votre projet en ligne.
-          Remplissez le formulaire ci-dessous pour que nous puissions discuter
-          de vos besoins et vous fournir une estimation précise.
-        </p>
-        <Link
-          href="/devis-en-ligne"
-          className=" text-black left inline-block md:w-1/2 bg-secondary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
-        >
-          Demander un devis maintenant
-        </Link>
+        {/* <ScrollingTextWrapper accueil={creation} /> */}
+
+        {/* --FAQ--*/}
+        <div className="m-4 bg-secondary p-4 rounded ">
+          <h2>Foire aux Question</h2>
+          <Faq faq={faq} />
+          <Link
+            href="/Foire-aux-questions"
+            className=" text-black left inline-block bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
+          >
+            Découvrez toutes les réponses à vos questions ici
+          </Link>
+        </div>
+        <div className="m-4 ">
+
+          <h2>Demande de devis pour la créations de devis en ligne </h2>
+          <p>
+            Si vous souhaitez obtenir un devis personnalisé pour la création de votre site web,
+            n&apos;hésitez pas à nous contacter.
+            Nous serons ravis de vous aider à réaliser votre projet en ligne.
+            Remplissez le formulaire ci-dessous pour que nous puissions discuter
+            de vos besoins et vous fournir une estimation précise.
+          </p>
+          <Link
+            href="/devis-en-ligne"
+            className=" text-black left inline-block md:w-1/2 bg-secondary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
+          >
+            Demander un devis maintenant
+          </Link>
+        </div>
       </section>
     </>
   );

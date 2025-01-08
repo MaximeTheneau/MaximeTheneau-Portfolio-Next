@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'theneaumaxime.fr',
+      name: 'maximefreelance.fr',
       script: 'pnpm',
       args: 'run',
       instances: 1,

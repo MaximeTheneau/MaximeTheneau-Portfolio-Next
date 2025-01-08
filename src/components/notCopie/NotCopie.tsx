@@ -4,7 +4,7 @@ export default function NotCopie() {
       className="select-none"
     >
       <strong>Email : </strong>
-      maxime @ theneaumaxime.fr
+      maxime @ maximefreelance.fr
     </p>
   );
 }

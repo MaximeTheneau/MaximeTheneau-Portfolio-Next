@@ -26,17 +26,20 @@ export default function AtoutsList() {
   ];
 
   return (
-    <div className="p-4 ">
-      <div className="flex flex-wrap justify-center gap-8">
+    <div className=" ">
+      <div className="flex flex-wrap justify-center">
         {atouts.map((atout) => (
-          <div key={atout.icon} className="bg-white shadow-lg p-6 rounded-lg  w-60">
-            <span className="mx-auto">
-              {atout.icon}
-            </span>
+          <div key={atout.icon} className="bg-white shadow-lg rounded-lg w-full sm:w-[32%] p-6 my-4 mx-2">
             <Link href="/agence-web">
-              <h3 className="text-xl font-semibold text-gray-800">{atout.title}</h3>
+              <p className="text-xl font-semibold text-gray-800">
+                <span className="inline-block mr-2">
+                  {atout.icon}
+                </span>
+                {' '}
+                {atout.title}
+              </p>
+              <p className="text-gray-600">{atout.description}</p>
             </Link>
-            <p className="text-gray-600">{atout.description}</p>
           </div>
         ))}
       </div>

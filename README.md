@@ -1,12 +1,12 @@
-# Maxime Theneau - Portfolio Next.js
+# Maxime Freelance - Portfolio Next.js
 
-Portfolio Maxime Theneau réalisé avec Next.js et Symfony. Des temps de chargement rapides et une meilleure référencement pour les moteurs de recherche.
+Portfolio Maxime Freelance réalisé avec Next.js et Symfony. Des temps de chargement rapides et une meilleure référencement pour les moteurs de recherche.
 
 Next.js - Symfony
 
 ---
 
-[theneaumaxime.fr](https://theneaumaxime.fr)
+[maximefreelance.fr](https://maximefreelance.fr)
 
 [Repository Front-End](https://github.com/MaximeTheneau/MaximeTheneau-Portfolio-Next)
 
