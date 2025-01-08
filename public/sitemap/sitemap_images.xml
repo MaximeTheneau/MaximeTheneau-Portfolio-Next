@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         <url>
+                  <loc>https://theneaumaxime.fr/blog/site-web/pourquoi-eviter-les-tirets-dans-les-noms-de-domain</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/pourquoi-eviter-les-tirets-dans-les-noms-de-domain-8.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/hebergeur/l-importance-de-la-sauvegarde-et-du-stockage-sur-l</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/l-importance-de-la-sauvegarde-et-du-stockage-sur-l-7.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/site-web/creer-un-site-de-vtc-avec-des-outils-no-code</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/creer-un-site-de-vtc-avec-des-outils-no-code-10.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/site-web/creer-un-e-commerce-gratuit-meilleures-solutions</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/creer-un-e-commerce-gratuit-meilleures-solutions-4.webp</image:loc>
+                  </image:image>
+                </url><url>
                   <loc>https://theneaumaxime.fr/blog/symfony</loc>
                   <image:image>
                     <image:loc>https://picture.theneaumaxime.fr/symfony-4.webp</image:loc>
@@ -168,7 +188,7 @@
                 </url><url>
                   <loc>https://theneaumaxime.fr/Creations/Portfolio</loc>
                   <image:image>
-                    <image:loc>https://picture.theneaumaxime.fr/Portfolio.webp</image:loc>
+                    <image:loc>https://picture.theneaumaxime.fr/Portfolio-4.webp</image:loc>
                   </image:image>
                 </url><url>
                   <loc>https://theneaumaxime.fr/Foire-aux-questions</loc>
@@ -196,7 +216,7 @@
                     <image:loc>https://picture.theneaumaxime.fr/Contact.webp</image:loc>
                   </image:image>
                 </url><url>
-                  <loc>https://theneaumaxime.fr</loc>
+                  <loc>https://theneaumaxime.fr/Accueil</loc>
                   <image:image>
                     <image:loc>https://picture.theneaumaxime.fr/Accueil.webp</image:loc>
                   </image:image>

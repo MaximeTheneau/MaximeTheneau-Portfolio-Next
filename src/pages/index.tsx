@@ -3,18 +3,19 @@ import Link from 'next/link';
 import Image from '@/utils/Image';
 import fetcher from '@/utils/fetcher';
 import AtoutsList from '@/components/ui/AtoutsList';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import Cards from '@/components/cards/Cards';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import ProductJsonLd from '../components/jsonLd/ProductJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
-import ProductsList from '../components/cards/ProductsList';
+// import ProductsList from '../components/cards/ProductsList';
 
 export async function getStaticProps() {
   const accueil = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/home`);
-  // const creation = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Creations`);
+  // const creation =
+  // await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts&limit=3&category=Creations`);
   // const faq = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
 
   // const responseMaps = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${process.env.GOOGLE_API_PLACEID}&language=fr&key=${process.env.GOOGLE_API_KEY}`);
@@ -35,7 +36,8 @@ export default function Home({
   creation,
   faq,
 }:any) {
-  // const ScrollingTextWrapper = dynamic(() => import('@/hooks/useScrollingText/ScrollingTextWrapper'), { ssr: false });
+  // const ScrollingTextWrapper =
+  // dynamic(() => import('@/hooks/useScrollingText/ScrollingTextWrapper'), { ssr: false });
   return (
     <>
       <HeadComponents

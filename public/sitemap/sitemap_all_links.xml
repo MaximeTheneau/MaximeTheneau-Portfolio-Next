@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
+          <loc>https://theneaumaxime.fr/blog/site-web/pourquoi-eviter-les-tirets-dans-les-noms-de-domain</loc>
+          <lastmod>2025-01-07T13:47:23+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://theneaumaxime.fr/blog/hebergeur/l-importance-de-la-sauvegarde-et-du-stockage-sur-l</loc>
+          <lastmod>2024-12-10T16:13:03+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://theneaumaxime.fr/blog/site-web/creer-un-site-de-vtc-avec-des-outils-no-code</loc>
+          <lastmod>2024-12-10T16:11:47+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://theneaumaxime.fr/blog/site-web/creer-un-e-commerce-gratuit-meilleures-solutions</loc>
+          <lastmod>2024-12-10T16:10:35+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
           <loc>https://theneaumaxime.fr/blog/symfony</loc>
           <lastmod>2024-12-03T16:53:43+00:00</lastmod>
           <changefreq>daily</changefreq>
@@ -106,7 +122,7 @@
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/devis-en-ligne</loc>
-          <lastmod>2024-12-03T09:20:21+00:00</lastmod>
+          <lastmod>2024-12-24T11:56:52+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/Creations/RecIdeas-15-Recettes-Faciles-en-un-Clic</loc>
@@ -114,7 +130,7 @@
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/Creations/Boutique-Une-Taupe-Chez-Vous</loc>
-          <lastmod>2024-10-26T11:14:00+00:00</lastmod>
+          <lastmod>2025-01-07T15:00:02+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/Creations</loc>
@@ -122,7 +138,7 @@
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/Mentions-Legales</loc>
-          <lastmod>2024-12-02T16:04:59+00:00</lastmod>
+          <lastmod>2024-12-20T10:34:27+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/A-propos</loc>
@@ -134,7 +150,7 @@
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/Creations/Portfolio</loc>
-          <lastmod>2024-10-26T11:06:54+00:00</lastmod>
+          <lastmod>2025-01-07T15:00:47+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
           <loc>https://theneaumaxime.fr/Foire-aux-questions</loc>
@@ -157,8 +173,8 @@
           <lastmod>2024-10-26T10:56:05+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
-          <loc>https://theneaumaxime.fr</loc>
-          <lastmod>2024-11-26T17:18:33+00:00</lastmod>
+          <loc>https://theneaumaxime.fr/Accueil</loc>
+          <lastmod>2024-12-24T16:30:10+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url>
       </urlset>
