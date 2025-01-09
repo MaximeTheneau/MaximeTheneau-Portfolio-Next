@@ -28,6 +28,9 @@ a:hover .animate-scroll-infinite{
     animation-duration:15951ms;
     display: flex;
     width: fit-content;
+    &:hover{
+      animation-play-state: paused;
+    }
     & > li {
       margin-right: 2rem;
       width: 20%;
