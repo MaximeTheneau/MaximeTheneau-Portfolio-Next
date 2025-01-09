@@ -17,9 +17,9 @@ function Article({
   icon, name, description, id,
 }: ListArticle) {
   return (
-    <li key={id} className="list-none">
+    <li key={id} className="list-none flex flex-col items-center justify-center ">
       <div className="animate-infinite-scroll-icon" dangerouslySetInnerHTML={{ __html: icon }} />
-      <p>{name}</p>
+      <p className="font-bold">{name}</p>
       {description && <span className="sr-only">{description}</span>}
     </li>
   );
@@ -27,34 +27,24 @@ function Article({
 
 export default function ScrollingTextWrapper({ accueil }: ScrollingTextWrapperProps) {
   const [isBot, setIsBot] = useState(false);
-  const [isSmartphone, setIsSmartphone] = useState(false);
 
   useEffect(() => {
     const detectBot = (userAgent: string) => /bot|crawler|spider|googlebot|bingbot|yahoo|duckduckbot/i.test(userAgent);
     setIsBot(detectBot(navigator.userAgent.toLowerCase()));
-    const handleResize = () => {
-      setIsSmartphone(window.innerWidth <= 768);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
   }, []);
   return (
-    <div className="overflow-x-hidden">
-      <div className={`bg-primary py-8 my-4  ${!isBot ? 'animate-infinite-scroll' : 'animate-infinite-scroll--none'}`}>
+    <div className="overflow-x-hidden bg-primary py-8 my-4">
+      <h2 className="text-center">Compétences</h2>
+      <div className={!isBot ? 'animate-infinite-scroll' : 'animate-infinite-scroll--none'}>
         <ul>
           {accueil.map((article) => (
             <Article key={article.id} {...article} />
           ))}
-          {!isBot && !isSmartphone && accueil.map((article) => (
+          {!isBot && accueil.map((article) => (
             <Article key={`repeat-${article.id}`} {...article} />
           ))}
         </ul>
-
+        {!isBot && <div className="animate-infinite-scroll--fade" />}
       </div>
     </div>
   );

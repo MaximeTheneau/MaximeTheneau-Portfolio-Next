@@ -98,6 +98,9 @@ export default function Home({
             Découvrez tous mes projets
           </Link>
         </div>
+        {/* --Skills--*/}
+        <ScrollingTextWrapper accueil={skills} />
+
         {/* --About--*/}
         <div className="px-8 pt-4 w-full flex">
           <div>
@@ -116,8 +119,6 @@ export default function Home({
         {/* <div className="bg-primary pt-8 pb-4 text-center ">
           <ProductsList products={products} />
         </div> */}
-
-        <ScrollingTextWrapper accueil={skills} />
 
         {/* --FAQ--*/}
         <div className="m-4 bg-secondary p-4 rounded ">
