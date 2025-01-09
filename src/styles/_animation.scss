@@ -1,4 +1,4 @@
-@keyframes scroll-infinite {
+@keyframes slide-one-by-one {
   0% {
     transform: translateX(0%);
   }
@@ -9,7 +9,38 @@
 a:hover .animate-scroll-infinite{
     color:white
   }
-.animate-scroll-infinite {
-  animation: scroll-infinite 15s linear infinite;
+.animate-infinite-scroll {
+  display: flex;
+  position: relative;
+  overflow: hidden ;
+  max-width: 100%;
+  & > ul{
+    animation: slide-one-by-one 10s linear infinite;
+    display: flex;
+    & > li {
+      margin-right: 2rem;
+      width: 20%;
+    }
+  }
+  &--none{
+    & > ul{
+      display: flex;
+    } 
+  }
 }
 
+@media screen and (max-width: 720px){
+  .animate-infinite-scroll {
+    & > ul{
+      & > li {
+        font-size: 0.8rem;
+        margin-right: 0.8rem;
+        & svg{
+          margin: 0 auto;
+          width: 3rem;
+          height: 2rem;
+        }
+      }
+    }
+  }
+}

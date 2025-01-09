@@ -1,62 +1,60 @@
-import {
+import React, {
   Key, useEffect, useState,
 } from 'react';
 
-export default function ScrollingTextWrapper({ accueil }:any) {
-  const [bot, setBot] = useState(true);
+interface ListArticle {
+  icon: string;
+  name: string;
+  description: string;
+  id: Key;
+}
+
+interface ScrollingTextWrapperProps {
+  accueil: ListArticle[];
+}
+
+function Article({
+  icon, name, description, id,
+}: ListArticle) {
+  return (
+    <li key={id} className="list-none">
+      <div className="animate-infinite-scroll-icon" dangerouslySetInnerHTML={{ __html: icon }} />
+      <p>{name}</p>
+      {description && <span className="sr-only">{description}</span>}
+    </li>
+  );
+}
+
+export default function ScrollingTextWrapper({ accueil }: ScrollingTextWrapperProps) {
+  const [isBot, setIsBot] = useState(false);
+  const [isSmartphone, setIsSmartphone] = useState(false);
 
   useEffect(() => {
-    if (navigator.userAgent.includes('Googlebot')) {
-      setBot(false);
-    }
-  }, []);
+    const detectBot = (userAgent: string) => /bot|crawler|spider|googlebot|bingbot|yahoo|duckduckbot/i.test(userAgent);
+    setIsBot(detectBot(navigator.userAgent.toLowerCase()));
+    const handleResize = () => {
+      setIsSmartphone(window.innerWidth <= 768);
+    };
 
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
     <div className="overflow-x-hidden">
-      <div className="inline-flex flex-nowrap  bg-primary p-4 ">
-        <ul
-          id="animate-infinite-scroll"
-          className={`
-          ${bot && (
-            ' flex items-top animate-scroll-infinite w-[100vw]  overflow-x-hidden'
-          )}`}
-        >
-          {accueil.map((listArticle:
-        {
-          contents: string;
-           title: string;
-           id: Key;
-         }) => listArticle.title && (
-           <li
-             key={listArticle.id}
-             className="list-none  "
-           >
-             {listArticle.title}
-           </li>
+      <div className={`bg-primary py-8 my-4  ${!isBot ? 'animate-infinite-scroll' : 'animate-infinite-scroll--none'}`}>
+        <ul>
+          {accueil.map((article) => (
+            <Article key={article.id} {...article} />
+          ))}
+          {!isBot && !isSmartphone && accueil.map((article) => (
+            <Article key={`repeat-${article.id}`} {...article} />
           ))}
         </ul>
-        {bot && (
-        <ul
-          id="animate-infinite-scroll-duplicate"
-          className="items-top flex animate-scroll-infinite w-[100vw]"
-        >
-          {accueil.map(
-            (listArticle:
-        {
-          contents: string;
-           title: string;
-           id: Key;
-         }) => listArticle.title && (
-         <li
-           key={listArticle.id}
-           className="list-none   "
-         >
-           {listArticle.title}
-         </li>
-            ),
-          )}
-        </ul>
-        )}
+
       </div>
     </div>
   );

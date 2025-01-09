@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev ",
     "build": "npm run sitemap && next build",
     "start-cache": "next start -p 3002",
     "start": "node --env-file=.env server.js",
