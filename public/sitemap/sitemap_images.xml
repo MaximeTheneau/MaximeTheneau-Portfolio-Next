@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         <url>
+                  <loc>https://theneaumaxime.fr/blog/seo</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/seo-0.webp</image:loc>
+                  </image:image>
+                </url><url>
                   <loc>https://theneaumaxime.fr/blog/site-web/pourquoi-eviter-les-tirets-dans-les-noms-de-domain</loc>
                   <image:image>
                     <image:loc>https://picture.theneaumaxime.fr/pourquoi-eviter-les-tirets-dans-les-noms-de-domain-8.webp</image:loc>
