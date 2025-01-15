@@ -3,10 +3,10 @@ import Link from 'next/link';
 import Image from '@/utils/Image';
 import fetcher from '@/utils/fetcher';
 // import AtoutsList from '@/components/ui/AtoutsList';
-// import CalendarBooking from '@/components/ui/CalendarBooking';
 
 import ScrollingTextWrapper from '@/hooks/useScrollingText/ScrollingTextWrapper';
 import Cards from '@/components/cards/Cards';
+import dynamic from 'next/dynamic';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
@@ -36,6 +36,9 @@ export default function Home({
   faq,
   skills,
 }:any) {
+  const CalendarBooking = dynamic(() => import('@/components/ui/CalendarBooking'), {
+    ssr: false,
+  });
   return (
     <>
       <HeadComponents
@@ -73,6 +76,7 @@ export default function Home({
             </h1>
             <div dangerouslySetInnerHTML={{ __html: accueil.contents }} />
             <div className="flex flex-col justify-center w-full md:w-1/2 mx-auto my-4">
+
               <Link
                 href="/devis-en-ligne"
                 className=" text-black text-center bg-white px-8 py-4 rounded-lg font-bold hover:bg-green-600 transition"
@@ -99,7 +103,6 @@ export default function Home({
           >
             Découvrez tous mes projets
           </Link>
-          {/* <CalendarBooking /> */}
         </div>
         {/* --Skills--*/}
         <div className="my-4 bg-primary py-8 px-4  text-center">
@@ -161,12 +164,18 @@ export default function Home({
             Remplissez le formulaire ci-dessous pour que nous puissions discuter
             de vos besoins et vous fournir une estimation précise.
           </p>
-          <Link
-            href="/devis-en-ligne"
-            className=" text-black left inline-block md:w-1/2 bg-secondary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
-          >
-            Demander un devis maintenant
-          </Link>
+          <p>
+            <Link
+              href="/devis-en-ligne"
+              className=" "
+            >
+              Demander un devis gratuit
+            </Link>
+            {' '}
+            ou prenez rendez-vous directement sur mon calendrier en ligne :
+            <CalendarBooking />
+          </p>
+
         </div>
       </section>
     </>

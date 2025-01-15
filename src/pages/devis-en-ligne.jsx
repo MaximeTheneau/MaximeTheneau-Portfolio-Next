@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import DevisForm from '../components/contact/DevisForm';
 import fetcher from '../utils/fetcher';
 import HeadComponents from '../components/head/HeadComponents';
@@ -13,6 +14,10 @@ export async function getStaticProps() {
 }
 
 export default function DevisEnLigne({ page }) {
+  const CalendarBooking = dynamic(() => import('@/components/ui/CalendarBooking'), {
+    ssr: false,
+  });
+
   return (
     <>
       <HeadComponents
@@ -27,6 +32,8 @@ export default function DevisEnLigne({ page }) {
         <div dangerouslySetInnerHTML={{ __html: page.contents }} />
         <div>
           <DevisForm />
+          <CalendarBooking />
+
           <article>
 
             {page.paragraphPosts.map((paragraphArticle) => (
