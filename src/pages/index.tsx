@@ -2,7 +2,9 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from '@/utils/Image';
 import fetcher from '@/utils/fetcher';
-import AtoutsList from '@/components/ui/AtoutsList';
+// import AtoutsList from '@/components/ui/AtoutsList';
+// import CalendarBooking from '@/components/ui/CalendarBooking';
+
 import ScrollingTextWrapper from '@/hooks/useScrollingText/ScrollingTextWrapper';
 import Cards from '@/components/cards/Cards';
 import Faq from '../components/faq/Faq';
@@ -69,37 +71,55 @@ export default function Home({
             <h1 className="sm:text-title px-2  dark:text-[#17181d] ">
               {accueil.title}
             </h1>
-            <p className="text-xl mb-8">
-              Développeur web freelance basé à Marseille
-              (13008). Je crée des sites internet modernes, performants et écoresponsables
-              pour donner vie à vos projets digitaux.
-            </p>
-            <Link
-              href="/devis-en-ligne"
-              className=" text-black left inline-block md:w-1/2 bg-white px-8 py-4 rounded-lg font-bold hover:bg-green-600 transition"
-            >
-              Demander un devis gratuit
-            </Link>
+            <div dangerouslySetInnerHTML={{ __html: accueil.contents }} />
+            <div className="flex flex-col justify-center w-full md:w-1/2 mx-auto my-4">
+              <Link
+                href="/devis-en-ligne"
+                className=" text-black text-center bg-white px-8 py-4 rounded-lg font-bold hover:bg-green-600 transition"
+              >
+                Demander un devis gratuit
+              </Link>
+              <p className="text-center text-xs text-white">
+                ✓ Devis gratuit ✓ Réponse sous 24h ✓ Sans engagement
+              </p>
+            </div>
           </div>
         </div>
         {/* --Atouts--*/}
-        <div className="bg-primary">
+        {/* <div className="bg-primary">
           <AtoutsList />
-        </div>
+        </div> */}
         {/* --Création--*/}
         <div className="p-4 text-center bg-secondary">
           <h2>Réalisations</h2>
           <Cards cards={creation} />
-
           <Link
             href="/Creations"
             className=" text-black text-center mx-auto block   p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white "
           >
             Découvrez tous mes projets
           </Link>
+          {/* <CalendarBooking /> */}
         </div>
         {/* --Skills--*/}
-        <ScrollingTextWrapper accueil={skills} />
+        <div className="my-4 bg-primary py-8 px-4  text-center">
+          <h2 className="">
+            Maxime Freelance - Développeur web freelance à Marseille
+          </h2>
+          <p>
+            Spécialisé en Front-End (React.js, Next.js) et Back-End (Symfony, PHP),
+            j’accompagne les entreprises dans la création de sites modernes et
+            performants. Basé à Marseille, je propose des solutions sur-mesure,
+            optimisées pour le SEO et la performance.
+          </p>
+          <ScrollingTextWrapper accueil={skills} />
+          <Link
+            href="/A-propos"
+            className=" text-black left inline-block md:w-1/2 bg-secondary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
+          >
+            Tout savoir sur mon parcours et mes compétences
+          </Link>
+        </div>
 
         {/* --About--*/}
         <div className="px-8 pt-4 w-full flex">

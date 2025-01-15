@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         <url>
-                  <loc>https://theneaumaxime.fr/blog/seo</loc>
+                  <loc>https://theneaumaxime.fr/blog/seo/backlinks-gratuits-les-meilleurs-annuaires-seo-de-</loc>
+                  <image:image>
+                    <image:loc>https://picture.theneaumaxime.fr/backlinks-gratuits-les-meilleurs-annuaires-seo-de--2.webp</image:loc>
+                  </image:image>
+                </url><url>
+                  <loc>https://theneaumaxime.fr/blog/seo/seo</loc>
                   <image:image>
                     <image:loc>https://picture.theneaumaxime.fr/seo-0.webp</image:loc>
                   </image:image>
@@ -183,7 +188,7 @@
                 </url><url>
                   <loc>https://theneaumaxime.fr/A-propos</loc>
                   <image:image>
-                    <image:loc>https://picture.theneaumaxime.fr/A-propos.webp</image:loc>
+                    <image:loc>https://picture.theneaumaxime.fr/A-propos-1.webp</image:loc>
                   </image:image>
                 </url><url>
                   <loc>https://theneaumaxime.fr/Creations/CupPlante</loc>

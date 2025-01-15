@@ -33,8 +33,7 @@ export default function ScrollingTextWrapper({ accueil }: ScrollingTextWrapperPr
     setIsBot(detectBot(navigator.userAgent.toLowerCase()));
   }, []);
   return (
-    <div className="overflow-x-hidden bg-primary py-8 my-4">
-      <h2 className="text-center">Compétences</h2>
+    <div className="overflow-x-hidden ">
       <div className={!isBot ? 'animate-infinite-scroll' : 'animate-infinite-scroll--none'}>
         <ul>
           {accueil.map((article) => (
