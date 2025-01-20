@@ -1,6 +1,7 @@
 import ArticleJsonLd from '@/components/jsonLd/ArticleJsonLd';
 import Page404 from '@/pages/404';
 import Category from '@/components/category/Category';
+import ImageObjectJsonLd from '@/components/jsonLd/ImageObjectJsonLd';
 import HeadComponents from '@/components/head/HeadComponents';
 import BreadcrumbJsonLd from '@/components/jsonLd/BreadcrumbJsonLd';
 import TableOfContents from '@/components/tableOfContents/TableOfContents';
@@ -51,7 +52,7 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
         srcset={post.srcset}
         url={post.url}
       />
-
+      <ImageObjectJsonLd post={post} />
       <ArticleJsonLd post={post} urlPost={post.url} />
       <BreadcrumbJsonLd paragraphPosts={post.paragraphPosts} urlPost={`${process.env.NEXT_PUBLIC_URL}${post.url}`} />
       <article className="m-4">

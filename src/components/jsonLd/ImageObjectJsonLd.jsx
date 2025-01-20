@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-export default function ImageObject({ post }) {
+export default function ImageObjectJsonLd({ post }) {
   const jsonLdData = {
     '@context': 'https://schema.org',
     '@type': 'ImageObject',
@@ -10,7 +10,7 @@ export default function ImageObject({ post }) {
       name: 'Maxime THENEAU',
     },
     contentUrl: `${post.imgPost}?format=jpeg`,
-    description: post.altImgPost,
+    description: post.altImg,
     name: post.title,
     height: post.imgPost.height,
     width: post.imgPost.width,
