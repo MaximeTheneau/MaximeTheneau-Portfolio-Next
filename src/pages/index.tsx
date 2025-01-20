@@ -10,7 +10,6 @@ import dynamic from 'next/dynamic';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
-import ProductJsonLd from '../components/jsonLd/ProductJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
 // import ProductsList from '../components/cards/ProductsList';
 
@@ -31,7 +30,6 @@ export async function getStaticProps() {
 
 export default function Home({
   accueil,
-  products,
   creation,
   faq,
   skills,
@@ -54,7 +52,6 @@ export default function Home({
         url={process.env.NEXT_PUBLIC_URL}
         logoUrl={`${process.env.NEXT_PUBLIC_URL_PICTURE}/Accueil.webp?format=jpeg`}
       />
-      {products.map((product:any) => <ProductJsonLd key={product.name} product={product} />)}
       <section>
         <div className="relative  ">
           <Image
