@@ -1,21 +1,21 @@
 import Head from 'next/head';
 
-export default function LocalBusinessJsonLd({ descriptionMeta, reviewsData }) {
-  const {
-    result,
-    reviews = result.reviews,
-  } = reviewsData;
+export default function LocalBusinessJsonLd({ descriptionMeta }) {
+  // const {
+  //   result,
+  //   reviews = result.reviews,
+  // } = reviewsData;
 
   const jsonLdData = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: result.name,
+    name: 'Maxime Freelance',
     description: descriptionMeta,
     image: 'https://picture.theneaumaxime.fr/Portfolio-4.webp',
     logo: 'https://picture.theneaumaxime.fr/Portfolio-4.webp',
     sameAs: [
-      'https://www.facebook.com/unetaupechezvous/',
-      'https://twitter.com/UneTaupe_',
+      'https://www.linkedin.com/company/maxime-freelance',
+      'https://x.com/MTheneau',
       'https://www.linkedin.com/company/une-taupe-chez-vous',
     ],
     address: {
@@ -31,11 +31,11 @@ export default function LocalBusinessJsonLd({ descriptionMeta, reviewsData }) {
       '@type': 'PostalAddress',
       name: 'Marseille',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: result.rating,
-      reviewCount: result.user_ratings_total,
-    },
+    // aggregateRating: {
+    //   '@type': 'AggregateRating',
+    //   ratingValue: result.rating,
+    //   reviewCount: result.user_ratings_total,
+    // },
     // review: [
     //   reviews.map((review) => (
     //     {
