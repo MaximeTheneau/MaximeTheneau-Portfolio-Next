@@ -12,6 +12,8 @@ export default function PersonJsonLd() {
       '@type': 'PostalAddress',
       addressLocality: 'Marseille',
       postalCode: '13008',
+      addressRegion: "Provence-Alpes-Côte d'Azur",
+      streetAddress: 'Avenue des Goumiers',
       addressCountry: 'France',
     },
     email: 'maxime@maximefreelance.fr',

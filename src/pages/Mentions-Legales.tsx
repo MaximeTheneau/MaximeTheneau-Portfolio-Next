@@ -1,4 +1,6 @@
 import { PostType } from '@/types/post.type';
+import BreadcrumbJsonLd from '@/components/jsonLd/BreadcrumbJsonLd';
+import PersonJsonLd from '@/components/jsonLd/PersonJsonLd';
 import HeadComponents from '../components/head/HeadComponents';
 
 type MentionsLegalProps = {
@@ -27,6 +29,8 @@ export default function MentionsLegal({ page }: MentionsLegalProps) {
         srcset={page.srcset}
         image={page.imgPost}
       />
+      <PersonJsonLd />
+      <BreadcrumbJsonLd paragraphPosts={page.paragraphPosts} urlPost={page.url} />
       <section className="p-4">
         <h1>{page.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: page.contents }} />
