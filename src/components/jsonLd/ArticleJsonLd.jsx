@@ -1,3 +1,4 @@
+import { url } from 'inspector';
 import Head from 'next/head';
 
 export default function ArticleJsonLd({ post, urlPost }) {
@@ -18,6 +19,7 @@ export default function ArticleJsonLd({ post, urlPost }) {
     author: {
       '@type': 'Person',
       name: 'Maxime THENEAU',
+      url: 'https://maximefreelance.fr/A-propos',
     },
     publisher: {
       '@type': 'Organization',
