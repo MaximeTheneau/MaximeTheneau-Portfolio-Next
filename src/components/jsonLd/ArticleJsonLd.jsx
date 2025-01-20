@@ -14,24 +14,18 @@ export default function ArticleJsonLd({ post, urlPost }) {
     isAccessibleForFree: 'True',
     keywords: `${post.title}, ${post.category.name}${post.subcategory ? `, ${post.subcategory.name}` : ''}`,
     articleBody: post.contents,
-    image: {
-      '@type': 'ImageObject',
-      url: `${post.imgPost}?format=jpeg`,
-      caption: post.title,
-    },
-    associatedMedia: {
-      '@type': 'ImageObject',
-      contentUrl: `${post.imgPost}?format=jpeg`,
-      description: post.title,
-    },
+    image: `${post.imgPost}?format=jpeg`,
     author: {
       '@type': 'Person',
       name: 'Maxime THENEAU',
-      url: `${process.env.NEXT_PUBLIC_URL}/A-propos`,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'THENEAU Maxime',
+      name: 'Maxime Freelance',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://picture.theneaumaxime.fr/Portfolio-4.webp?format=jpeg',
+      },
     },
   };
 

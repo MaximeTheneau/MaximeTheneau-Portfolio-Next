@@ -11,8 +11,8 @@ export default function LocalBusinessJsonLd({ descriptionMeta }) {
     '@type': 'LocalBusiness',
     name: 'Maxime Freelance',
     description: descriptionMeta,
-    image: 'https://picture.theneaumaxime.fr/Portfolio-4.webp',
-    logo: 'https://picture.theneaumaxime.fr/Portfolio-4.webp',
+    image: 'https://picture.theneaumaxime.fr/Portfolio-4.webp?format=jpeg',
+    logo: 'https://picture.theneaumaxime.fr/Portfolio-4.webp?format=jpeg',
     sameAs: [
       'https://www.linkedin.com/company/maxime-freelance',
       'https://x.com/MTheneau',
