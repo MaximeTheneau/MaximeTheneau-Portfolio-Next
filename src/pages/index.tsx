@@ -8,6 +8,7 @@ import ScrollingTextWrapper from '@/hooks/useScrollingText/ScrollingTextWrapper'
 import Cards from '@/components/cards/Cards';
 import dynamic from 'next/dynamic';
 import BreadcrumbJsonLd from '@/components/jsonLd/BreadcrumbJsonLd';
+import FaqJsonLd from '@/components/jsonLd/FaqJsonLd';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
@@ -55,7 +56,7 @@ export default function Home({
         logoUrl={`${process.env.NEXT_PUBLIC_URL_PICTURE}/Accueil.webp?format=jpeg`}
       />
       <LocalBusinessJsonLd descriptionMeta={accueil.metaDescription} />
-      <Faq faq={faq} />
+      <FaqJsonLd listPosts={faq} />
       <BreadcrumbJsonLd paragraphPosts={accueil.paragraphPosts} urlPost={`${process.env.NEXT_PUBLIC_URL}`} />
       <section>
         <div className="relative  ">
