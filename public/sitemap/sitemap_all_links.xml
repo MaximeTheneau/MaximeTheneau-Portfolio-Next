@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         <url>
+          <loc>https://maximefreelance.fr/blog/wordpress</loc>
+          <lastmod>2025-01-23T16:12:29+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
+          <loc>https://maximefreelance.fr/blog/wordpress/refonte-de-site-webflow-vers-wordpress-performance</loc>
+          <lastmod>2025-01-23T16:05:40+00:00</lastmod>
+          <changefreq>daily</changefreq>
+        </url><url>
           <loc>https://maximefreelance.fr/blog/seo/backlinks-gratuits-les-meilleurs-annuaires-seo-de-</loc>
           <lastmod>2025-01-16T15:50:09+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>
-          <loc>https://maximefreelance.fr/blog/seo/seo</loc>
+          <loc>https://maximefreelance.fr/blog/seo</loc>
           <lastmod>2025-01-14T11:45:33+00:00</lastmod>
           <changefreq>daily</changefreq>
         </url><url>

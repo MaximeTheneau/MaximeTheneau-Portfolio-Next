@@ -53,7 +53,6 @@ export default function Home({
       <LogoJsonLd
         name="Theneau Maxime"
         url={process.env.NEXT_PUBLIC_URL}
-        logoUrl={`${process.env.NEXT_PUBLIC_URL_PICTURE}/Accueil.webp?format=jpeg`}
       />
       <LocalBusinessJsonLd descriptionMeta={accueil.metaDescription} />
       <FaqJsonLd listPosts={faq} />
