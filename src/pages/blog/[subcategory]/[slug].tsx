@@ -12,6 +12,7 @@ import Cards from '@/components/cards/Cards';
 import { CardType } from '@/types/card.type';
 import { PostType } from '@/types/post.type';
 import Image from '@/utils/Image';
+import Link from 'next/link';
 
 interface SlugProps {
   post: PostType | null;
@@ -71,6 +72,12 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
         </figure>
         <p className="bg-form pb-2 text-sm">
           {post.formattedDate}
+          {' '}
+          - Par
+          {' '}
+          <Link href="/A-propos">
+            Maxime Freelance
+          </Link>
         </p>
         <Category
           category={post.subcategory}

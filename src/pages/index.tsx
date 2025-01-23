@@ -72,41 +72,16 @@ export default function Home({
           />
           <div
             style={{ maxWidth: `${accueil.imgWidth}px` }}
-            className="absolute flex pb-4 px-2 w-full flex-col   absolute  bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2  text-white bg-blackOpacity"
+            className=" flex pb-4 px-2 w-full flex-col absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2  text-white bg-blackOpacity"
           >
             <h1 className="sm:text-title px-2  dark:text-[#17181d] ">
               {accueil.title}
             </h1>
             <div dangerouslySetInnerHTML={{ __html: accueil.contents }} />
-            <div className="flex flex-col justify-center w-full md:w-1/2 mx-auto my-4">
-
-              <Link
-                href="/devis-en-ligne"
-                className=" text-black text-center bg-white px-8 py-4 rounded-lg font-bold hover:bg-green-600 transition"
-              >
-                Demander un devis gratuit
-              </Link>
-              <p className="text-center text-xs text-white">
-                ✓ Devis gratuit ✓ Réponse sous 24h ✓ Sans engagement
-              </p>
-            </div>
+            <CalendarBooking />
           </div>
         </div>
-        {/* --Atouts--*/}
-        {/* <div className="bg-primary">
-          <AtoutsList />
-        </div> */}
-        {/* --Création--*/}
-        <div className="p-4 text-center bg-secondary">
-          <h2>Réalisations</h2>
-          <Cards cards={creation} />
-          <Link
-            href="/Creations"
-            className=" text-black text-center mx-auto block   p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white "
-          >
-            Découvrez tous mes projets
-          </Link>
-        </div>
+
         {/* --Skills--*/}
         <div className="my-4 bg-primary py-8 px-4  text-center">
           <h2 className="">
@@ -124,6 +99,22 @@ export default function Home({
             className=" text-black left inline-block md:w-1/2 bg-secondary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
           >
             Tout savoir sur mon parcours et mes compétences
+          </Link>
+        </div>
+
+        {/* --Atouts--*/}
+        {/* <div className="bg-primary">
+          <AtoutsList />
+        </div> */}
+        {/* --Création--*/}
+        <div className="p-4 text-center bg-secondary">
+          <h2>Réalisations</h2>
+          <Cards cards={creation} />
+          <Link
+            href="/Creations"
+            className=" text-black text-center mx-auto block   p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white "
+          >
+            Découvrez tous mes projets
           </Link>
         </div>
 
@@ -164,20 +155,17 @@ export default function Home({
             Si vous souhaitez obtenir un devis personnalisé pour la création de votre site web,
             n&apos;hésitez pas à nous contacter.
             Nous serons ravis de vous aider à réaliser votre projet en ligne.
-            Remplissez le formulaire ci-dessous pour que nous puissions discuter
-            de vos besoins et vous fournir une estimation précise.
           </p>
-          <p>
-            <Link
-              href="/devis-en-ligne"
-              className=" "
-            >
-              Demander un devis gratuit
-            </Link>
-            {' '}
-            ou prenez rendez-vous directement sur mon calendrier en ligne :
-            <CalendarBooking />
-          </p>
+
+          <Link
+            href="/devis-en-ligne"
+            className=" text-black text-center  inline-block bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
+          >
+            Demander un devis gratuit
+            <span className="text-center block text-xs ">
+              ✓ Devis gratuit ✓ Réponse sous 24h ✓ Sans engagement
+            </span>
+          </Link>
 
         </div>
       </section>

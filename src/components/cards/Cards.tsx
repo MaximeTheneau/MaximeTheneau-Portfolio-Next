@@ -7,9 +7,14 @@ type CardsProps = {
 
 export default function Cards({ cards }: CardsProps) {
   return (
-    <ul className="flex flex-wrap justify-between items-start">
-      {cards.map((card) => (
-        <li className="w-full md:w-[330px]  p-4" key={card.title}>
+    <ul className="relative flex flex-wrap justify-center items-center gap-y-12">
+      {cards.map((card, index) => (
+        <li
+          key={card.title}
+          className={`w-[330px]  ${
+            index % 2 === 0 ? '' : 'translate-y-6'
+          } md:transform transition-all`}
+        >
           <Card
             card={card}
           />

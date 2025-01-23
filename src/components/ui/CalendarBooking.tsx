@@ -15,15 +15,15 @@ function CalendarBooking() {
       <button
         onClick={handleOpen}
         type="button"
-        className=" text-black text-center mx-auto block  w-full p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white "
+        className=" text-black text-center underline mx-auto block  w-full p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold "
       >
-        Prendre un rendez-vous
+        📞 Prendre un rendez-vous téléphonique
       </button>
 
       {/* Modal */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50"
+          className=" top-0 inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50"
           onClick={handleClose}
         >
           <div

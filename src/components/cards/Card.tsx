@@ -13,7 +13,10 @@ type CardProps = {
 
 export default function Card({ card }: CardProps) {
   return (
-    <Link href={card.url} className="p-2 flex flex-col items-center justify-between  me-4 block shadow-lg rounded-lg  z-10 transition-opacity duration-300 hover:opacity-80">
+    <Link
+      href={card.url}
+      className="p-4 m-4 sflex flex-col items-center justify-between block shadow-lg rounded-lg  bg-white relative transition-transform duration-300 hover:scale-105"
+    >
       <Image
         src={`${card.imgPost}?width=330&height=330`}
         alt={card.altImg || card.title}

@@ -7,8 +7,8 @@ export default function ImageObjectJsonLd({ post }) {
     '@id': `${post.imgPost}?format=jpeg`,
     contentUrl: `${post.imgPost}?format=jpeg`,
     caption: post.altImg,
-    height: post.imgPost.height,
-    width: post.imgPost.width,
+    height: post.imgHeight,
+    width: post.imgWidth,
     inLanguage: 'fr-FR',
     datePublished: post.createdAt,
   };
