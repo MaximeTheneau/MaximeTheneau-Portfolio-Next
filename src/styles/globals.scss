@@ -146,13 +146,41 @@ code {
 
 figure{
   background-color:var(--form-color);
-  // width: 100%;
+  width: 100%;
   margin: 0 auto;
   display: inline-block;
   text-align: center;
-  & table{
-    width: 100%;
-    text-align: left;
+}
+.table {
+  overflow-x: auto;
+  display: block;
+    & table {
+      display: table;
+      word-break: normal;
+      text-indent: initial;
+      unicode-bidi: isolate;
+
+      border-collapse: collapse;
+    & th, td {
+      padding: 10px 15px; 
+      border: 1px solid #ddd; 
+    }
+
+    // th {
+    //   font-weight: bold; 
+    // }
+
+    // tr:nth-child(even) {
+    //   background-color: #f9f9f9; 
+    // }
+
+
+    // caption {
+    //   font-size: 1.25rem;
+    //   font-weight: bold;
+    //   margin-bottom: 10px; 
+    // }
+
   }
 }
 figcaption{
