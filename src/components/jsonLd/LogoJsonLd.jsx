@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-export default function LogoJsonLd({ name, url, logoUrl }) {
+export default function LogoJsonLd({ name, url }) {
   const jsonLdData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -8,7 +8,7 @@ export default function LogoJsonLd({ name, url, logoUrl }) {
     url,
     logo: {
       '@type': 'ImageObject',
-      url: logoUrl,
+      url: 'https://picture.theneaumaxime.fr/Portfolio-4.webp?format=jpeg',
     },
   };
 

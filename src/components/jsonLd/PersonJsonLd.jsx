@@ -5,7 +5,7 @@ export default function PersonJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'Theneau Maxime - Maxime Freelance',
-    image: `${process.env.NEXT_PUBLIC_URL_PICTURE}/A-propos-1.webp?format=jpeg`,
+    image: 'https://picure.theneaumaxime.fr/A-propos-1.webp?format=jpeg',
     jobTitle: 'Développeur Web',
     url: `${process.env.NEXT_PUBLIC_URL}/A-propos`,
     address: {
