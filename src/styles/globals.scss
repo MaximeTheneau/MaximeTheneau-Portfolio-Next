@@ -34,6 +34,10 @@ h6{
   margin: 1rem 0 ;
 }
 
+h1{
+  font-size: 2rem;
+}
+
 h2{
  font-size: 1.25rem;
 }
@@ -140,11 +144,17 @@ code {
     white-space: pre-wrap; 
 }
 
-figcaption{
-  color: var(--tw-text-opacity, 1);
-  width: 100%;
+figure{
   background-color:var(--form-color);
-  padding: 1rem 0 1rem .25rem ;
+  // width: 100%;
+  margin: 0 auto;
+  display: inline-block;
+text-align: center;
+}
+figcaption{
+  display: inline-block;
+  color: var(--tw-text-opacity, 1);
+  padding: 1rem .25rem 1rem  ;
   font-style: italic;
   font-size: 0.9rem;
 }

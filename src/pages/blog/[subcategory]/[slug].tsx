@@ -70,7 +70,7 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
             {post.altImg}
           </figcaption>
         </figure>
-        <p className="bg-form pb-2 text-sm">
+        <p className=" py-2 text-sm">
           {post.formattedDate}
           {' '}
           - Par

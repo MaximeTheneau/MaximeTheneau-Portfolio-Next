@@ -11,8 +11,8 @@ type CategoryProps = {
 export default function Category({ category, title }: CategoryProps) {
   return (
     <nav>
-      <ul className=" mt-4">
-        <li className={`inline-block list-none${category ? ' font-bold' : 'text-blackOpacity'}`}>
+      <ul className=" mt-4 bg-secondaryLight p-2 rounded-md">
+        <li className={`inline-block underline list-none${category ? ' font-bold' : 'text-blackOpacity'}`}>
           <Link href="/blog">
             Blog
           </Link>
@@ -20,7 +20,7 @@ export default function Category({ category, title }: CategoryProps) {
         {category
             && (
               <>
-                <li className="inline-block list-none font-bold ml-2">
+                <li className="inline-block underline list-none font-bold ml-2">
                   <Link href={`/blog/${category.slug}`}>
                     {category.name}
                   </Link>
