@@ -141,10 +141,11 @@ code {
 
 figure{
   background-color:var(--form-color);
-  width: 100%;
-  margin: 0 auto;
-  display: inline-block;
+  display: block;
   text-align: center;
+  & img{
+    margin: 0 auto;
+  }
 }
 .table {
   overflow-x: auto;
@@ -154,7 +155,7 @@ figure{
       word-break: normal;
       text-indent: initial;
       unicode-bidi: isolate;
-
+      width: 100%;
       border-collapse: collapse;
     & th, td {
       padding: 10px 15px; 

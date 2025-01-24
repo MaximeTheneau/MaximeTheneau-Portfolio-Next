@@ -27,7 +27,7 @@ function CalendarBooking() {
           onClick={handleClose}
         >
           <div
-            className="bg-white rounded-lg shadow-lg w-[90%] h-[90%] max-w-4xl"
+            className="bg-white rounded-lg shadow-lg w-full  "
             onClick={(e) => e.stopPropagation()} // Empêche la fermeture si on clique à l'intérieur
           >
             {/* Header du modal */}
@@ -42,7 +42,7 @@ function CalendarBooking() {
             </div>
 
             {/* Contenu du modal */}
-            <div className="p-4">
+            <div className="p-4 overflow-auto w-full h-full">
               <iframe
                 src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0R4gGtJeJFPMTmXWkiBJpFyW5diK3pXnaqPcfDR-pebm3FLBoHhchJCPFhm-3gLAdab2WSZao4?gv=true"
                 width="100%"
