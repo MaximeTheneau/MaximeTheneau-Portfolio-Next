@@ -37,9 +37,6 @@ export default function Home({
   faq,
   skills,
 }:any) {
-  const CalendarBooking = dynamic(() => import('@/components/ui/CalendarBooking'), {
-    ssr: false,
-  });
   return (
     <>
       <HeadComponents
@@ -58,9 +55,9 @@ export default function Home({
       <FaqJsonLd listPosts={faq} />
       <BreadcrumbJsonLd paragraphPosts={accueil.paragraphPosts} urlPost={`${process.env.NEXT_PUBLIC_URL}`} />
       <section>
-        <div className="relative  ">
+        <div className="relative flex items-center justify-center text-center">
           <Image
-            className="object-cover object-center mx-auto"
+            className={`object-cover object-center md:w-[${accueil.imgWidth}]  h-96`}
             src={accueil.imgPost}
             alt={accueil.altImg || accueil.title}
             width={accueil.imgWidth}
@@ -71,18 +68,31 @@ export default function Home({
           />
           <div
             style={{ maxWidth: `${accueil.imgWidth}px` }}
-            className=" flex pb-4 px-2 w-full flex-col absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-2/2  text-white bg-blackOpacity"
+            className="  pb-4 px-2 w-full  absolute bottom-0 text-white bg-blackOpacity "
           >
-            <h1 className="sm:text-title px-2  dark:text-[#17181d] ">
+            <h1 className="sm:text-title  sm:leading-[2] px-2  dark:text-[#17181d] ">
               {accueil.title}
             </h1>
-            <div dangerouslySetInnerHTML={{ __html: accueil.contents }} />
-            <CalendarBooking />
           </div>
         </div>
+        <article
+          className="p-4 text-center  "
+        >
+          <div className="p-4 text-center mx-auto max-w-[1080px]" dangerouslySetInnerHTML={{ __html: accueil.contents }} />
+          <div className="text-center mt-6">
+            <Link href="/Contact" aria-label="Contactez-moi pour discuter de votre projet">
+              <button
+                type="button"
+                className="text-black bg-primary px-8 py-4 rounded-lg font-bold  "
+              >
+                📞 Contactez-moi ! Prenez rendez-vous
+              </button>
+            </Link>
+          </div>
+        </article>
 
         {/* --Skills--*/}
-        <div className="my-4 bg-primary py-8 px-4  text-center">
+        <div className="my-4 bg-primary py-8 px-4 text-center">
           <h2 className="">
             Maxime Freelance - Développeur web freelance à Marseille
           </h2>
@@ -95,9 +105,11 @@ export default function Home({
           <ScrollingTextWrapper accueil={skills} />
           <Link
             href="/A-propos"
-            className=" text-black left inline-block md:w-1/2 bg-secondary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
+
           >
-            Tout savoir sur mon parcours et mes compétences
+            <button type="button" className=" text-black left inline-block md:w-1/2 bg-secondary  my-4 px-8 py-4 rounded-lg font-bold">
+              Tout savoir sur mon parcours et mes compétences
+            </button>
           </Link>
         </div>
 
@@ -111,7 +123,7 @@ export default function Home({
           <Cards cards={creation} />
           <Link
             href="/Creations"
-            className=" text-black text-center mx-auto block   p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white "
+            className=" text-black text-center mx-auto block   p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold "
           >
             Découvrez tous mes projets
           </Link>
@@ -142,7 +154,7 @@ export default function Home({
           <Faq faq={faq} />
           <Link
             href="/Foire-aux-questions"
-            className=" text-black left inline-block bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
+            className=" text-black left mx-auto block bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
           >
             Découvrez toutes les réponses à vos questions ici
           </Link>
@@ -158,12 +170,13 @@ export default function Home({
 
           <Link
             href="/devis-en-ligne"
-            className=" text-black text-center  inline-block bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
           >
-            Demander un devis gratuit
-            <span className="text-center block text-xs ">
-              ✓ Devis gratuit ✓ Réponse sous 24h ✓ Sans engagement
-            </span>
+            <button type="button" className=" text-black text-center mx-auto block bg-primary my-4 px-8 py-4 rounded-lg font-bold ">
+              Demander un devis gratuit
+              <span className="text-center block text-xs ">
+                ✓ Devis gratuit ✓ Réponse sous 24h
+              </span>
+            </button>
           </Link>
 
         </div>

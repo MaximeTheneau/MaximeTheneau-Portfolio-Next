@@ -53,12 +53,7 @@ img{
   height: auto;
 }
 
-a{
-  text-decoration: underline;
-  &:hover{
-    color: var(--primary-color);
-  }
-}
+
 button a,
 nav a
 {
@@ -199,6 +194,25 @@ figcaption{
 //     --form-color: #444546;
 //   }
 // }
+
+a{
+  text-decoration: underline;
+}
+
+a .bg-primary,
+a .bg-secondary,
+.bg-primary a,
+.bg-secondary a,
+button.bg-primary
+{
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: var(--secondary-light-color); 
+    transform: scale(1.05); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
 
 *:focus {
   outline: 3px solid #005fcc; /* Changez la couleur du contour (exemple : bleu clair) */

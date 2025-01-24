@@ -1,6 +1,7 @@
 import { PostType } from '@/types/post.type';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import ContactAbout from '@/components/contact/ContactAbout';
 import ContactForm from '../components/contact/Contact';
 import HeadComponents from '../components/head/HeadComponents';
 
@@ -33,16 +34,22 @@ export default function Contact({ page }: ContactPageProps) {
         srcset={page.srcset}
         image={page.imgPost}
       />
-
-      <section className="p-4">
+      <section className="p-4 text-center">
         <h1>{page.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: page.contents }} />
+        <div id="calendar">
+          <CalendarBooking />
+        </div>
         <p>
-          {page.contents}
+          ou remplissez le formulaire ci-dessous pour discuter de vos besoins ou autre demande :
         </p>
-        <ContactForm />
       </section>
+      <ContactForm />
       <hr />
-      <section className="p-4">
+      <section className="p-4 text-center">
+        <div className="py-4">
+          <ContactAbout />
+        </div>
         <p>
           Vous souhaitez obtenir un devis personnalisé pour la création de votre site internet ?
           N&apos;hésitez pas à nous contacter !
@@ -59,8 +66,15 @@ export default function Contact({ page }: ContactPageProps) {
           </Link>
           {' '}
           ou prenez rendez-vous directement via notre
-          calendrier en ligne pour planifier une consultation personnalisée :
-          <CalendarBooking />
+          {' '}
+          <Link
+            href="/Contact#calendar"
+            className=" "
+          >
+            calendrier en ligne
+          </Link>
+          {' '}
+          pour planifier une consultation personnalisée/
         </p>
       </section>
     </>

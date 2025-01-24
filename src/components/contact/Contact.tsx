@@ -2,7 +2,6 @@ import React, { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import formMiddleware from '../../middleware/formMiddleware';
 import Confirmation from '../modal/Confirmation';
-import ContactAbout from './ContactAbout';
 import Button from '../ui/Button';
 // import Select from './form/Select';
 // import Input from './form/Input';
@@ -144,9 +143,7 @@ export default function ContactForm() {
     <>
 
       <div className="w-full bg-secondaryLight sm:flex sm:justify-around pt-4 pb-4">
-        <div className="sm:w-1/2 sm:flex sm:flex-col sm:justify-center sm:justify-center sm:text-center">
-          <ContactAbout />
-        </div>
+
         <form className="w-full sm:w-1/2 sm:flex sm:flex-col sm:justify-center pr-4" onSubmit={handleSubmit}>
           {/* <Select
             value={state.form.subject}
@@ -156,7 +153,7 @@ export default function ContactForm() {
             required
           /> */}
           <label htmlFor="name">
-            Nom Ou Société:
+            Nom ou société:
             <input
               id="name"
               type="text"
