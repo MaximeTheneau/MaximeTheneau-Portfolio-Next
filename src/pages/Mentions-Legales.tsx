@@ -1,6 +1,7 @@
 import { PostType } from '@/types/post.type';
 import BreadcrumbJsonLd from '@/components/jsonLd/BreadcrumbJsonLd';
 import PersonJsonLd from '@/components/jsonLd/PersonJsonLd';
+import fetcher from '@/utils/fetcher';
 import HeadComponents from '../components/head/HeadComponents';
 
 type MentionsLegalProps = {
@@ -8,12 +9,11 @@ type MentionsLegalProps = {
 };
 
 export async function getStaticProps() {
-  const responsePage = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Mentions-Legales`);
-  const page = await responsePage.json();
+  const responsePage = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/Mentions-Legales`);
 
   return {
     props: {
-      page,
+      page: responsePage.post,
     },
   };
 }

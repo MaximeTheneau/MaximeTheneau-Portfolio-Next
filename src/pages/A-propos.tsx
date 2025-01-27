@@ -13,7 +13,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      post,
+      post: post.post,
     },
   };
 }

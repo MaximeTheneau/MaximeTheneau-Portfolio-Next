@@ -8,7 +8,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      page,
+      page: page.post,
     },
   };
 }

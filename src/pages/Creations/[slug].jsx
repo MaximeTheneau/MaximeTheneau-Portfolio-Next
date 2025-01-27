@@ -16,7 +16,7 @@ export async function getStaticProps({ params }) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/${params.slug}`);
   const post = await res.json();
 
-  return { props: { post } };
+  return { props: { post: post.post } };
 }
 
 export default function Slug({ post }) {

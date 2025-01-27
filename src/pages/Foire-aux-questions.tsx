@@ -1,4 +1,5 @@
 import { PostType } from '@/types/post.type';
+import fetcher from '@/utils/fetcher';
 import Faq from '../components/faq/Faq';
 import HeadComponents from '../components/head/HeadComponents';
 import FaqJsonLd from '../components/jsonLd/FaqJsonLd';
@@ -8,12 +9,11 @@ type SlugProps = {
 };
 
 export async function getStaticProps() {
-  const responseContact = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
-  const post = await responseContact.json();
+  const post = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/Foire-aux-questions`);
 
   return {
     props: {
-      post,
+      post: post.post,
     },
   };
 }

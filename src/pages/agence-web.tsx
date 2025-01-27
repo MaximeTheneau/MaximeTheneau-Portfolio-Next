@@ -1,5 +1,6 @@
 import Image from '@/utils/Image';
 import { PostType } from '@/types/post.type';
+import fetcher from '@/utils/fetcher';
 import HeadComponents from '../components/head/HeadComponents';
 
 interface PostProps {
@@ -7,12 +8,11 @@ interface PostProps {
 }
 
 export async function getStaticProps() {
-  const responsePage = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/agence-web`);
-  const post = await responsePage.json();
+  const responsePage = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/agence-web`);
 
   return {
     props: {
-      post,
+      post: responsePage.post,
     },
   };
 }

@@ -2,6 +2,7 @@ import { PostType } from '@/types/post.type';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import ContactAbout from '@/components/contact/ContactAbout';
+import fetcher from '@/utils/fetcher';
 import ContactForm from '../components/contact/Contact';
 import HeadComponents from '../components/head/HeadComponents';
 
@@ -10,12 +11,11 @@ type ContactPageProps = {
 };
 
 export async function getStaticProps(): Promise<{ props: ContactPageProps }> {
-  const responseContact = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts/Contact`);
-  const page = await responseContact.json();
+  const responseContact = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/Contact`);
 
   return {
     props: {
-      page,
+      page: responseContact.post,
     },
   };
 }

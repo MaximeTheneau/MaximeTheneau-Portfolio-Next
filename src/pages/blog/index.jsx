@@ -11,7 +11,7 @@ export async function getStaticProps() {
   return {
     props: {
       articles,
-      page,
+      page: page.post,
       subcategoryList,
     },
   };
