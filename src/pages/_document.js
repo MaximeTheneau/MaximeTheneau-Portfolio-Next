@@ -11,7 +11,7 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="preconnect" href="https://picture.maximefreelance.fr" />
         <link rel="dns-prefetch" href="https://picture.maximefreelance.fr" />
-        <link type="application/atom+xml" rel="alternate" href="https://maximefreelance.fr/atom.xml" title="Maxime Freelance - Atom Feed" />
+        <link type="application/atom+xml" rel="alternate" href="https://maximefreelance.fr/rss.xml" title="Maxime Freelance - Atom Feed" />
         <meta name="robots" content="max-image-preview:large" />
       </Head>
       <body>
