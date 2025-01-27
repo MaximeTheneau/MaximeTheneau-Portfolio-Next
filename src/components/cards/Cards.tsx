@@ -7,20 +7,15 @@ type CardsProps = {
 
 export default function Cards({ cards }: CardsProps) {
   return (
-    <ul className="relative flex flex-wrap justify-center items-center gap-y-12">
-      {cards.map((card, index) => (
+    <ul className="flex flex-wrap justify-center ">
+      {cards.map((card) => (
         <li
           key={card.title}
-          className={`w-[330px]  ${
-            index % 2 === 0 ? '' : 'translate-y-6'
-          } md:transform transition-all`}
+          className="w-[150px] md:w-[330px]  m-2 transform transition-all  "
         >
-          <Card
-            card={card}
-          />
+          <Card card={card} />
         </li>
       ))}
     </ul>
-
   );
 }

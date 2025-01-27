@@ -13,10 +13,12 @@ import { CardType } from '@/types/card.type';
 import { PostType } from '@/types/post.type';
 import Image from '@/utils/Image';
 import Link from 'next/link';
+import RecentArticles from '@/components/ui/RecentArticles';
 
 interface SlugProps {
   post: PostType | null;
   relatedPosts: CardType[] ;
+  latestPosts: any;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -33,12 +35,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<SlugProps> = async ({ params }) => {
   const post = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/${params?.slug}`);
-  const relatedPosts = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/related/${params?.slug}`);
 
-  return { props: { post, relatedPosts } };
+  return {
+    props: {
+      post: post.post,
+      latestPosts: post.latestPosts,
+      relatedPosts: post.relatedPosts,
+    },
+  };
 };
 
-export default function Slug({ post, relatedPosts }: SlugProps) {
+export default function Slug({ post, latestPosts, relatedPosts }: SlugProps) {
   // useEffect(() => {
   //   createGoogleAdsenseScript();
   // }, []);
@@ -56,45 +63,64 @@ export default function Slug({ post, relatedPosts }: SlugProps) {
       <ImageObjectJsonLd post={post} />
       <ArticleJsonLd post={post} urlPost={post.url} />
       <BreadcrumbJsonLd paragraphPosts={post.paragraphPosts} urlPost={`${process.env.NEXT_PUBLIC_URL}${post.url}`} />
-      <article className="m-4">
-        <figure>
-          <Image
-            src={post.imgPost}
-            alt={post.altImg || post.title}
-            width={post.imgWidth}
-            height={post.imgHeight}
-            srcset={post.srcset}
-            priority
+      <div className="flex flex-wrap justify-center">
+
+        <article className="w-full md:w-3/4 px-4">
+          <figure>
+            <Image
+              src={post.imgPost}
+              alt={post.altImg || post.title}
+              width={post.imgWidth}
+              height={post.imgHeight}
+              srcset={post.srcset}
+              priority
+            />
+            <figcaption>
+              {post.altImg}
+            </figcaption>
+          </figure>
+          <p className=" py-2 text-sm">
+            {post.formattedDate}
+            {' '}
+            - Par
+            {' '}
+            <Link href="/A-propos">
+              Maxime Freelance
+            </Link>
+          </p>
+          <Category
+            category={post.subcategory}
+            title={post.title}
           />
-          <figcaption>
-            {post.altImg}
-          </figcaption>
-        </figure>
-        <p className=" py-2 text-sm">
-          {post.formattedDate}
-          {' '}
-          - Par
-          {' '}
-          <Link href="/A-propos">
-            Maxime Freelance
+          <h1>{post.title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: post.contents }} />
+          <TableOfContents post={post} />
+          {post.paragraphPosts.map((paragraphPosts) => (
+            <div key={paragraphPosts.subtitle}>
+              <h2 id={paragraphPosts.slug}>{paragraphPosts.subtitle}</h2>
+              <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphPosts.paragraph }} />
+            </div>
+          ))}
+          <Comments posts={post} />
+        </article>
+        <aside className="w-full md:w-1/4 bg-secondary p-4">
+          <h2 className="text-xl font-bold mb-4">Articles récents :</h2>
+          <RecentArticles articles={latestPosts} />
+          <h2 className="text-xl font-bold mb-4">Liens utiles :</h2>
+          <Link href="/blog" className="block">
+            Blog
           </Link>
-        </p>
-        <Category
-          category={post.subcategory}
-          title={post.title}
-        />
-        <h1>{post.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: post.contents }} />
-        <TableOfContents post={post} />
-        {post.paragraphPosts.map((paragraphPosts) => (
-          <div key={paragraphPosts.subtitle}>
-            <h2 id={paragraphPosts.slug}>{paragraphPosts.subtitle}</h2>
-            <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphPosts.paragraph }} />
-          </div>
-        ))}
-        <Comments posts={post} />
-      </article>
+          <Link href="/A-propos" className="block">
+            A propos
+          </Link>
+          <Link href="/contact" className="block">
+            Contact
+          </Link>
+        </aside>
+      </div>
+
       <aside>
+        <h2>Articles similaires :</h2>
         <Cards cards={relatedPosts} />
       </aside>
     </>
