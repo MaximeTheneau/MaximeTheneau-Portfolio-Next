@@ -8,7 +8,7 @@ export default function LogoJsonLd({ name, url }) {
     url,
     logo: {
       '@type': 'ImageObject',
-      url: 'https://picture.theneaumaxime.fr/Portfolio-4.webp?format=jpeg',
+      url: 'https://picture.maximefreelance.fr/Portfolio-4.webp?format=jpeg',
     },
   };
 

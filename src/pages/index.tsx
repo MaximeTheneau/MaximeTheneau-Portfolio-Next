@@ -6,7 +6,6 @@ import fetcher from '@/utils/fetcher';
 
 import ScrollingTextWrapper from '@/hooks/useScrollingText/ScrollingTextWrapper';
 import Cards from '@/components/cards/Cards';
-import dynamic from 'next/dynamic';
 import BreadcrumbJsonLd from '@/components/jsonLd/BreadcrumbJsonLd';
 import FaqJsonLd from '@/components/jsonLd/FaqJsonLd';
 import Faq from '../components/faq/Faq';
@@ -167,7 +166,6 @@ export default function Home({
             n&apos;hésitez pas à nous contacter.
             Nous serons ravis de vous aider à réaliser votre projet en ligne.
           </p>
-
           <Link
             href="/devis-en-ligne"
           >

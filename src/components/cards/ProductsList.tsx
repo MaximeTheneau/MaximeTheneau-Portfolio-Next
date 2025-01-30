@@ -1,7 +1,5 @@
 import { Url } from 'next/dist/shared/lib/router/router';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import AtoutsList from '../ui/AtoutsList';
 
  type ProductOption = {
     label: string;

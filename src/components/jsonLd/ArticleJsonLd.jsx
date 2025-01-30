@@ -43,7 +43,7 @@ export default function ArticleJsonLd({ post, urlPost }) {
       name: 'Maxime Freelance',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://picture.theneaumaxime.fr/Portfolio-4.webp?format=jpeg',
+        url: 'https://picture.maximefreelance.fr/Portfolio-4.webp?format=jpeg',
       },
     },
     commentCount: post.comments.length,

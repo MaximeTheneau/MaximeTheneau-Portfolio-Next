@@ -1,4 +1,6 @@
 /* eslint-disable react/button-has-type */
+/* eslint-disable react/require-default-props */
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   type?: 'submit' | 'reset' | 'button';

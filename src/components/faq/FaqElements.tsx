@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 type Faq = {
   id: number;
@@ -13,7 +13,6 @@ type FaqElementsProps = {
 };
 
 function FaqElements({ faq, setFaqs }: FaqElementsProps) {
-  const [bot, setBot] = useState(false);
   const toggleFAQ = (): void => {
     setFaqs((prevFaqs: Faq[]) => prevFaqs.map((item) => {
       if (item.id === faq.id) {
