@@ -113,7 +113,7 @@ export default function Slug({ post, latestPosts, relatedPosts }: SlugProps) {
           <Link href="/A-propos" className="block">
             A propos
           </Link>
-          <Link href="/contact" className="block">
+          <Link href="/Contact" className="block">
             Contact
           </Link>
         </aside>

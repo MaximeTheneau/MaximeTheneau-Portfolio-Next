@@ -26,13 +26,14 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       articles,
-      page,
+      page: page.post,
       subcategoryList,
     },
   };
 }
 
 export default function Home({ articles, page, subcategoryList }) {
+  console.log(page);
   return (
     <>
       <HeadComponents
