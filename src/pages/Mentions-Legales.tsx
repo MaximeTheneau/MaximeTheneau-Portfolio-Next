@@ -30,7 +30,7 @@ export default function MentionsLegal({ page }: MentionsLegalProps) {
         image={page.imgPost}
       />
       <PersonJsonLd />
-      <BreadcrumbJsonLd paragraphPosts={page.paragraphPosts} urlPost={page.url} />
+      <BreadcrumbJsonLd paragraphPosts={page.paragraphPosts} urlPost={`${process.env.NEXT_PUBLIC_URL}${page.url}`} />
       <section className="p-4">
         <h1>{page.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: page.contents }} />

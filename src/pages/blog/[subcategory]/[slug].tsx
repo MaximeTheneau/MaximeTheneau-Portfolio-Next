@@ -107,13 +107,13 @@ export default function Slug({ post, latestPosts, relatedPosts }: SlugProps) {
           <h2 className="text-xl font-bold mb-4">Articles récents :</h2>
           <RecentArticles articles={latestPosts} />
           <h2 className="text-xl font-bold mb-4">Liens utiles :</h2>
-          <Link href="/blog" className="block">
+          <Link href="/blog" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">
             Blog
           </Link>
-          <Link href="/A-propos" className="block">
+          <Link href="/A-propos" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">
             A propos
           </Link>
-          <Link href="/Contact" className="block">
+          <Link href="/Contact" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">
             Contact
           </Link>
         </aside>

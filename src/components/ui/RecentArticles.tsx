@@ -21,7 +21,7 @@ export default function RecentArticles({ articles }: RecentArticlesProps) {
         {articles.map((article) => (
           <li
             key={article.id}
-            className=""
+            className="py-2 border-solid border-b border-gray-200 last:border-b-0"
           >
             <div className="">
               <Link href={article.url}>
@@ -30,8 +30,7 @@ export default function RecentArticles({ articles }: RecentArticlesProps) {
                   {' '}
                   -
                   {' '}
-                  <span className="text-sm font-normal">
-
+                  <span className="text-sm font-normal opacity-70">
                     {article.formattedDate}
                   </span>
                 </p>

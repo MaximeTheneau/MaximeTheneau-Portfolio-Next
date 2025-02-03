@@ -10,7 +10,7 @@ export default function CategoryPage({ category, subcategoryPost, subcategoryLis
           </Link>
         </li>
         {subcategoryList?.map((categories) => (
-          <li key={categories.id} className="inline-block">
+          <li key={categories.slug} className="inline-block">
             {categories.slug === subcategoryPost ? (
               <span
                 className="text-blackOpacity ml-2 "

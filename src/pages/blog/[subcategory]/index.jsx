@@ -33,7 +33,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Home({ articles, page, subcategoryList }) {
-  console.log(page);
   return (
     <>
       <HeadComponents
