@@ -78,7 +78,7 @@ export default function Home({
           className="p-4 text-center  "
         >
           <div className="p-4 text-center mx-auto max-w-[1080px]" dangerouslySetInnerHTML={{ __html: accueil.contents }} />
-          <div className="text-center mt-6">
+          {/* <div className="text-center mt-6">
             <Link href="/Contact" aria-label="Contactez-moi pour discuter de votre projet">
               <button
                 type="button"
@@ -87,7 +87,7 @@ export default function Home({
                 📞 Contactez-moi ! Prenez rendez-vous
               </button>
             </Link>
-          </div>
+          </div> */}
         </article>
 
         {/* --Skills--*/}
