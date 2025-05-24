@@ -72,18 +72,28 @@ footer{
     margin: 0;
   }
 }
-
+button[type="submit"]{
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  &:hover i{
+    transform: rotate(180deg);
+    transition: transform 0.2s ease-in-out;   
+  }
+}
+button[type="submit"] span {
+  transform: rotate(180deg) !important;
+  transition: transform 0.2s ease-in-out !important;
+}
 //* Form
 input,
 textarea{
-  border: none;
   font-size: $font-size;
   font-family: $font-primary;
   width: 100%;
   color: var(--black-color);
   padding: 0.5rem;
-  background: #e5e5e6;
   border-radius: 0.25rem;
+  border: .001rem solid $font-color;
   &:focus{
     outline: none;
     background: var(--white-color);
@@ -93,7 +103,7 @@ textarea{
   }
   &::placeholder{
     // color: $font-color;
-    opacity: 0.5;
+    opacity: 0.8;
   }
 }
 

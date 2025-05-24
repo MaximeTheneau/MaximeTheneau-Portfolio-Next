@@ -224,12 +224,12 @@ export default function DevisForm() {
     });
   };
   return (
-    <div className="w-full  bg-gray-100 p-4 rounded my-4  dark:bg-secondaryLight dark:text">
+    <div className="w-full ">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-wrap"
+        className="flex flex-wrap sm:flex-row flex-col sm:w-3/4 w-full sm:mx-auto mx-2 p-4"
       >
-        <div className="sm:w-1/2 pr-4">
+        <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="name">
             <p>
               Nom
@@ -263,7 +263,7 @@ export default function DevisForm() {
               )}
           </label>
         </div>
-        <div className="sm:w-1/2 ">
+        <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="email">
             <p>
               Email
@@ -291,7 +291,7 @@ export default function DevisForm() {
                 </span>
                 )}
         </div>
-        <div className="sm:w-1/2 pr-4">
+        <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="society">
             <p>
               Société
@@ -306,7 +306,7 @@ export default function DevisForm() {
             />
           </label>
         </div>
-        <div className="sm:w-1/2">
+        <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="siret">
             <p>
               Siret
@@ -321,7 +321,7 @@ export default function DevisForm() {
             />
           </label>
         </div>
-        <div className="w-full ">
+        <div className="w-full pr-4">
           <label htmlFor="address">
             <p>
               Adresse
@@ -558,14 +558,16 @@ export default function DevisForm() {
             </span>
           </label>
         </div>
-        <div className="contact-form_button">
-          <Button
+        <div className="text-center mx-auto bg-primary px-8 py-2 rounded">
+          <button
             type="submit"
           >
             Envoyer
             {' '}
-            <i className="icon-paper-plane" />
-          </Button>
+            <span className="icon">
+              <i className="icon-paper-plane" />
+            </span>
+          </button>
         </div>
       </form>
       <Confirmation
