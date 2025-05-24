@@ -231,7 +231,7 @@ export default function DevisForm() {
       >
         <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="name">
-            <p>
+            <p className="label">
               Nom
               {' '}
               <span className="text-red">*</span>
@@ -240,7 +240,6 @@ export default function DevisForm() {
               type="text"
               id="name"
               title="Nom"
-              placeholder="Nom Prénom"
               value={state.form.name}
               onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'name')}
               onBlur={(e: ChangeEvent<HTMLInputElement>) => {
@@ -265,7 +264,7 @@ export default function DevisForm() {
         </div>
         <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="email">
-            <p>
+            <p className="label">
               Email
               {' '}
               <span className="text-red">*</span>
@@ -275,7 +274,6 @@ export default function DevisForm() {
               type="email"
               title="Email"
               value={state.form.email}
-              placeholder="exemple@mail.com"
               onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'email')}
               onBlur={(e: ChangeEvent<HTMLInputElement>) => (
                 regex.test(e.target.value)
@@ -293,14 +291,13 @@ export default function DevisForm() {
         </div>
         <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="society">
-            <p>
+            <p className="label">
               Société
             </p>
             <input
               type="text"
               id="society"
               title="Société"
-              placeholder="Nom de la société"
               value={state.form.nameSociety}
               onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'nameSociety')}
             />
@@ -308,14 +305,13 @@ export default function DevisForm() {
         </div>
         <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="siret">
-            <p>
+            <p className="label">
               Siret
             </p>
             <input
               type="text"
               id="siret"
               title="Siret"
-              placeholder="Siret"
               value={state.form.siret}
               onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'siret')}
             />
@@ -323,14 +319,13 @@ export default function DevisForm() {
         </div>
         <div className="w-full pr-4">
           <label htmlFor="address">
-            <p>
+            <p className="label">
               Adresse
             </p>
             <input
               type="text"
               id="address"
               name="address"
-              placeholder="Adresse"
               value={state.form.adress}
               onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'adress')}
             />
@@ -368,26 +363,24 @@ export default function DevisForm() {
                 )}
         </div> */}
 
-        <div className="w-full">
-          <label htmlFor="phone" className="sm:w-1/2 sm:mr-4 block">
-            <p>
+        <div className="w-100 sm:w-1/2 pr-4 ">
+          <label htmlFor="phone">
+            <p className="label">
               Téléphone
             </p>
             <input
               id="phone"
               type="text"
               name="phone"
-              placeholder="Téléphone"
               value={state.form.phone}
               onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'phone')}
-              className=""
             />
           </label>
         </div>
         {state.form.phone && (
-        <div className="">
+        <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="date">
-            <p>
+            <p className="label">
               Etre rappelé le
             </p>
             <input
@@ -401,7 +394,7 @@ export default function DevisForm() {
           </label>
         </div>
         )}
-        <div className="w-full">
+        <div className="w-full mt-4">
           <fieldset>
             <legend>
               Quels sont vos besoins ?
@@ -466,7 +459,6 @@ export default function DevisForm() {
                 <input
                   type="text"
                   title="Autre"
-                  placeholder="Précisez si possible"
                   value={state.form.interventionOther}
                   onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'interventionOther')}
                 />
@@ -507,24 +499,25 @@ export default function DevisForm() {
         )}
 
         <div className="w-full">
-          <p>
-            Ajouter un message
-          </p>
-          <textarea
-            rows={state.textArea}
-            title="Message"
-            value={state.form.message}
-            onChange={handleChangeMessage}
-            onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => (
-              e.target.value.length > 5 && e.target.value.length < 500
-                ? setState({ ...state, confirmationMessage: true })
-                : setState({ ...state, confirmationMessage: false }))}
-            name="message"
-            wrap="off"
-            placeholder="Message"
-          />
+          <label htmlFor="message">
+            <p className="label">
+              Ajouter un message
+            </p>
+            <textarea
+              rows={state.textArea}
+              title="Message"
+              value={state.form.message}
+              onChange={handleChangeMessage}
+              onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => (
+                e.target.value.length > 5 && e.target.value.length < 500
+                  ? setState({ ...state, confirmationMessage: true })
+                  : setState({ ...state, confirmationMessage: false }))}
+              name="message"
+              wrap="off"
+            />
+          </label>
         </div>
-        <div className="w-full ">
+        <div className="bg-secondary p-4 my-4 rounded w-full">
           <label htmlFor="image">
             Ajouter une image
             <input

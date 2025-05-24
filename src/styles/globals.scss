@@ -85,6 +85,19 @@ button[type="submit"] span {
   transition: transform 0.2s ease-in-out !important;
 }
 //* Form
+.label{
+  font-size: $font-size;
+  font-family: $font-primary;
+  color: var(--black-color);
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  background-color: var(--white-color) ;
+  transform: translateY(1rem) translateX(.5rem);
+  padding: 0 0.5rem;
+  border-radius: 0.25rem;
+
+}
+
 input,
 textarea{
   font-size: $font-size;

@@ -142,9 +142,12 @@ export default function ContactForm() {
   return (
     <>
 
-      <div className="w-full bg-secondaryLight sm:flex sm:justify-around pt-4 pb-4">
-
-        <form className="w-full sm:w-1/2 sm:flex sm:flex-col sm:justify-center pr-4" onSubmit={handleSubmit}>
+      <div className="w-full">
+        <form
+          onSubmit={handleSubmit}
+          className="sm:flex sm:flex-wrap sm:w-3/4 w-full sm:mx-auto mx-2 p-4"
+        >
+          {' '}
           {/* <Select
             value={state.form.subject}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setState(
@@ -152,51 +155,65 @@ export default function ContactForm() {
             )}
             required
           /> */}
-          <label htmlFor="name">
-            Nom ou société:
-            <input
-              id="name"
-              type="text"
-              title="Nom"
-              placeholder="Nom Prénom / Société"
-              value={state.form.name}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'name')}
-              required
-            />
-          </label>
-          <label htmlFor="email">
-            Email:
-            <input
-              id="email"
-              type="email"
-              title="Email"
-              value={state.form.email}
-              placeholder="exemple@email.fr"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'email')}
-              required
-            />
-          </label>
+          <div className="w-100 sm:w-1/2 pr-4">
+            <label htmlFor="name">
+              <p className="label">
+                Votre nom ou nom de société:
+              </p>
+              <input
+                id="name"
+                type="text"
+                title="Nom"
+                value={state.form.name}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'name')}
+                required
+              />
+            </label>
+          </div>
+          <div className="w-100 sm:w-1/2 pr-4">
+            <label htmlFor="email">
+              <p className="label">
+                Votre adresse email:
+              </p>
+              <input
+                id="email"
+                type="email"
+                title="Email"
+                value={state.form.email}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => changeField(e.target.value, 'email')}
+                required
+              />
+            </label>
 
-          <label htmlFor="message">
-            Message:
-            <textarea
-              id="message"
-              rows={state.textArea}
-              title="Message"
-              value={state.form.message}
-              onChange={handleChangeMessage}
-              name="message"
-              wrap="off"
-              placeholder="Votre message"
-              required
-            />
-          </label>
-          <Button
-            type="submit"
-          >
-            Envoyer
-            <i className="icon-paper-plane pl-1" />
-          </Button>
+          </div>
+          <div className="w-full pr-4">
+            <label htmlFor="message">
+              <p className="label">
+                Message:
+              </p>
+              <textarea
+                id="message"
+                rows={state.textArea}
+                title="Message"
+                value={state.form.message}
+                onChange={handleChangeMessage}
+                name="message"
+                wrap="off"
+                required
+              />
+            </label>
+          </div>
+          <div className=" text-center mx-auto bg-primary px-8 py-2 rounded">
+            <button
+              type="submit"
+            >
+              Envoyer
+              {' '}
+              <span className="icon">
+                <i className="icon-paper-plane" />
+              </span>
+            </button>
+          </div>
         </form>
       </div>
       <Confirmation
