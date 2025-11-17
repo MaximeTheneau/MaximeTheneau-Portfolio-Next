@@ -145,7 +145,7 @@ export default function ContactForm() {
       <div className="w-full">
         <form
           onSubmit={handleSubmit}
-          className="sm:flex sm:flex-wrap sm:w-3/4 w-full sm:mx-auto mx-2 p-4"
+          className="sm:flex sm:flex-wrap sm:w-3/4 w-full sm:mx-auto mx-2 p-4 text-left"
         >
           {' '}
           {/* <Select

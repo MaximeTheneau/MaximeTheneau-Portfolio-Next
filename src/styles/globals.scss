@@ -22,6 +22,7 @@ body
   margin: 0;
   font-family: 'Jura', sans-serif;
   color: var(--black-color);
+  text-align: center;
 }
 
 h1,
@@ -95,6 +96,7 @@ button[type="submit"] span {
   transform: translateY(1rem) translateX(.5rem);
   padding: 0 0.5rem;
   border-radius: 0.25rem;
+  text-align: left;
 
 }
 
@@ -231,15 +233,19 @@ button.bg-primary
 {
   transition: all 0.3s ease;
   &:hover {
-    background-color: var(--secondary-light-color); 
     transform: scale(1.05); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--primary-color);
   }
 }
 
 
 *:focus {
-  outline: 3px solid #005fcc; /* Changez la couleur du contour (exemple : bleu clair) */
+  outline: 3px solid var(--secondary-light-color);/* Changez la couleur du contour (exemple : bleu clair) */
   outline-offset: 2px; /* Ajoute un léger espacement autour de l'élément */
-  box-shadow: 0 0 0 2px rgba(0, 95, 204, 0.5); /* Ombre autour du focus pour plus de visibilité */
+  box-shadow: 0 0 0 .2rem var(--primary-color); /* Ombre autour du focus pour plus de visibilité */
+}
+
+.list{
+  width: 50%;
+  margin: 0 auto;
 }

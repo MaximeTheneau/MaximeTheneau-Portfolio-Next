@@ -227,7 +227,7 @@ export default function DevisForm() {
     <div className="w-full ">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-wrap sm:flex-row flex-col sm:w-3/4 w-full sm:mx-auto mx-2 p-4"
+        className="flex flex-wrap sm:flex-row flex-col sm:w-3/4 w-full sm:mx-auto mx-2 p-4 text-left"
       >
         <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="name">

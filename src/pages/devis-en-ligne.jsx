@@ -41,7 +41,7 @@ export default function DevisEnLigne({ page }) {
                 <h2>
                   {paragraphArticle.subtitle}
                 </h2>
-                <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
+                <div className="w-responsive list" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
               </div>
             ))}
           </article>

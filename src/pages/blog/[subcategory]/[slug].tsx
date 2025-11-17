@@ -98,7 +98,7 @@ export default function Slug({ post, latestPosts, relatedPosts }: SlugProps) {
           {post.paragraphPosts.map((paragraphPosts) => (
             <div key={paragraphPosts.subtitle}>
               <h2 id={paragraphPosts.slug}>{paragraphPosts.subtitle}</h2>
-              <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphPosts.paragraph }} />
+              <div className="w-responsive list" dangerouslySetInnerHTML={{ __html: paragraphPosts.paragraph }} />
             </div>
           ))}
           <Comments posts={post} />

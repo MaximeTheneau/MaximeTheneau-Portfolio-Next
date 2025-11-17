@@ -129,15 +129,15 @@ export default function Home({
         </div>
 
         {/* --About--*/}
-        <div className="px-8 pt-4 w-full flex">
+        <div className="px-8 pt-4 w-full flex justify-center">
           <div>
             {accueil.paragraphPosts.map((paragraphArticle:
             { subtitle: string; paragraph: any; }) => (
-              <div key={paragraphArticle.subtitle}>
+              <div key={paragraphArticle.subtitle} id={paragraphArticle.subtitle}>
                 <h2>
                   {paragraphArticle.subtitle}
                 </h2>
-                <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
+                <div className="w-responsive list" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
               </div>
             ))}
           </div>

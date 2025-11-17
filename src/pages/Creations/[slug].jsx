@@ -46,7 +46,7 @@ export default function Slug({ post }) {
         {post.paragraphPosts.map((paragraphPosts) => (
           <div key={paragraphPosts.subtitle}>
             <h2>{paragraphPosts.subtitle}</h2>
-            <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphPosts.paragraph }} />
+            <div className="w-responsive list" dangerouslySetInnerHTML={{ __html: paragraphPosts.paragraph }} />
           </div>
         ))}
         <div>
