@@ -11,12 +11,16 @@ export default function HeadComponents({
   url,
   image,
   srcset,
+  imgWidth,
+  imgHeight,
 } : {
   title: string,
   description: string,
   url: string,
   image: string,
   srcset: string,
+  imgWidth?: number | string,
+  imgHeight?: number | string,
 }) {
   return (
     <Head>
@@ -28,6 +32,9 @@ export default function HeadComponents({
       <meta property="og:url" content={`${process.env.NEXT_PUBLIC_URL}${url}`} />
       <meta property="og:site_name" content={process.env.NEXT_PUBLIC_URL} />
       <meta property="og:image" content={`${image}?format=jpeg`} />
+      {imgWidth && <meta property="og:image:width" content={String(imgWidth)} />}
+      {imgHeight && <meta property="og:image:height" content={String(imgHeight)} />}
+      <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:locale" content="fr_FR" />
 
       {/* Twitter Open Graph Tags */}

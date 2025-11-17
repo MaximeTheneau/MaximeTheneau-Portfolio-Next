@@ -29,6 +29,8 @@ export default function Slug({ post }) {
         image={post.imgPost}
         srcset={post.srcset}
         url={post.url}
+        imgWidth={post.imgWidth}
+        imgHeight={post.imgHeight}
       />
       <ArticleJsonLd post={post} />
       <article className="m-4">

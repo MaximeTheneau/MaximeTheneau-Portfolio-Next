@@ -33,6 +33,8 @@ export default function Contact({ page }: ContactPageProps) {
         url={page.url}
         srcset={page.srcset}
         image={page.imgPost}
+        imgWidth={page.imgWidth}
+        imgHeight={page.imgHeight}
       />
       <section className="p-4 text-center">
         <h1>{page.title}</h1>

@@ -25,6 +25,8 @@ export default function Home({ articles, page }) {
         image={page.imgPost}
         srcset={page.srcset}
         url={page.url}
+        imgWidth={page.imgWidth}
+        imgHeight={page.imgHeight}
       />
       <section className="m-4">
         <h1>{page.title}</h1>

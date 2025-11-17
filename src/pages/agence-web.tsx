@@ -27,6 +27,8 @@ export default function Page({ post }: PostProps) {
         url={post.url}
         image={post.imgPost}
         srcset={post.srcset}
+        imgWidth={post.imgWidth}
+        imgHeight={post.imgHeight}
       />
       <section className="p-4">
         <figure>

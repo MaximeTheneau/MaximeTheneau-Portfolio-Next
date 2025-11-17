@@ -20,8 +20,8 @@ export default function ArticleJsonLd({ post, urlPost }) {
       '@type': 'ImageObject',
       '@id': `${post.imgPost}?format=jpeg`,
       url: `${post.imgPost}?format=jpeg`,
-      height: post.imgPost.height,
-      width: post.imgPost.width,
+      height: post.imgHeight,
+      width: post.imgWidth,
     },
     author: {
       '@type': 'Person',

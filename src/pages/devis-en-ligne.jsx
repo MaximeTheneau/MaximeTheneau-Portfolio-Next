@@ -26,6 +26,8 @@ export default function DevisEnLigne({ page }) {
         url={page.url}
         srcset={page.srcset}
         image={page.imgPost}
+        imgWidth={page.imgWidth}
+        imgHeight={page.imgHeight}
       />
       <section className="mx-4">
         <h1>Devis en ligne - Création de site internet </h1>

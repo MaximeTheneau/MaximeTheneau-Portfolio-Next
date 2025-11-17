@@ -28,6 +28,8 @@ export default function MentionsLegal({ page }: MentionsLegalProps) {
         url={page.url}
         srcset={page.srcset}
         image={page.imgPost}
+        imgWidth={page.imgWidth}
+        imgHeight={page.imgHeight}
       />
       <PersonJsonLd />
       <BreadcrumbJsonLd paragraphPosts={page.paragraphPosts} urlPost={`${process.env.NEXT_PUBLIC_URL}${page.url}`} />

@@ -27,6 +27,8 @@ export default function Slug({ post }: SlugProps) {
         url={post.url}
         srcset={post.srcset}
         image={post.imgPost}
+        imgWidth={post.imgWidth}
+        imgHeight={post.imgHeight}
       />
       <FaqJsonLd listPosts={post.listPosts} />
       <section className="p-4">

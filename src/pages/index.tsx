@@ -44,6 +44,8 @@ export default function Home({
         url=""
         image={accueil.imgPost}
         srcset={accueil.srcset}
+        imgWidth={accueil.imgWidth}
+        imgHeight={accueil.imgHeight}
       />
       <Person />
       <LogoJsonLd
