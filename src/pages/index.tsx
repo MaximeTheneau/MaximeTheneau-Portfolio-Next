@@ -43,7 +43,6 @@ export default function Home({
         description={accueil.metaDescription}
         url=""
         image={accueil.imgPost}
-        srcset={accueil.srcset}
         imgWidth={accueil.imgWidth}
         imgHeight={accueil.imgHeight}
       />
@@ -63,7 +62,6 @@ export default function Home({
             alt={accueil.altImg || accueil.title}
             width={accueil.imgWidth}
             height={accueil.imgHeight}
-            srcset={accueil.srcset}
             sizes="100vw"
             priority
           />

@@ -25,7 +25,6 @@ export default function Card({ card }: CardProps) {
           width={330}
           height={330}
           priority={false}
-          srcset={undefined}
         />
         <div className="absolute z-10 bottom-0 left-0 w-full h-1/3 bg-gray-900 bg-opacity-50 text-white  p-2">
           <h3>

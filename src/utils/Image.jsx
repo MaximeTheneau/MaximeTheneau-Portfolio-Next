@@ -2,7 +2,6 @@ import NextImage from 'next/image';
 
 export default function Image({
   src,
-  srcset,
   width,
   alt,
   height,

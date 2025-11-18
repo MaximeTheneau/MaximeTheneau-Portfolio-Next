@@ -23,7 +23,6 @@ export default function Home({ articles, page }) {
         title={page.heading}
         description={page.metaDescription}
         image={page.imgPost}
-        srcset={page.srcset}
         url={page.url}
         imgWidth={page.imgWidth}
         imgHeight={page.imgHeight}

@@ -5,12 +5,26 @@ declare module 'react' {
     fetchpriority?: string;
   }
 }
+// Générer le srcset avec le même format que imageLoader
+function generatePreloadSrcset(imageSrc: string): string {
+  const deviceSizes = [640, 750, 828, 1080, 1200, 1920];
+  const quality = 75;
+
+  return deviceSizes
+    .map((width) => {
+      const url = new URL(imageSrc, 'https://picture.maximefreelance.fr');
+      url.searchParams.set('width', width.toString());
+      url.searchParams.set('quality', quality.toString());
+      return `${url.toString()} ${width}w`;
+    })
+    .join(', ');
+}
+
 export default function HeadComponents({
   title,
   description,
   url,
   image,
-  srcset,
   imgWidth,
   imgHeight,
 } : {
@@ -18,10 +32,12 @@ export default function HeadComponents({
   description: string,
   url: string,
   image: string,
-  srcset: string,
   imgWidth?: number | string,
   imgHeight?: number | string,
 }) {
+  // Générer le srcset qui correspond au format du imageLoader
+  const preloadSrcset = generatePreloadSrcset(image);
+
   return (
     <Head>
       <title>{title}</title>
@@ -52,13 +68,7 @@ export default function HeadComponents({
       <link
         rel="preload"
         as="image"
-        href={image}
-        type="image/webp"
-      />
-      <link
-        rel="preload"
-        as="image"
-        imageSrcSet={srcset}
+        imageSrcSet={preloadSrcset}
         imageSizes="100vw"
         fetchpriority="high"
       />

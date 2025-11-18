@@ -26,7 +26,6 @@ export default function Page({ post }: PostProps) {
         description={post.metaDescription}
         url={post.url}
         image={post.imgPost}
-        srcset={post.srcset}
         imgWidth={post.imgWidth}
         imgHeight={post.imgHeight}
       />
@@ -37,7 +36,6 @@ export default function Page({ post }: PostProps) {
             alt={post.altImg || post.title}
             width={post.imgWidth}
             height={post.imgHeight}
-            srcset={post.srcset}
             priority
           />
           {post.title !== post.altImg && (

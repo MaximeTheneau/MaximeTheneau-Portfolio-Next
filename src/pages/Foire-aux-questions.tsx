@@ -25,7 +25,6 @@ export default function Slug({ post }: SlugProps) {
         title={post.heading}
         description={post.metaDescription}
         url={post.url}
-        srcset={post.srcset}
         image={post.imgPost}
         imgWidth={post.imgWidth}
         imgHeight={post.imgHeight}

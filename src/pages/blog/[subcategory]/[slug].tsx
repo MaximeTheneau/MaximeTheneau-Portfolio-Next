@@ -57,7 +57,6 @@ export default function Slug({ post, latestPosts, relatedPosts }: SlugProps) {
         title={post.heading}
         description={post.metaDescription}
         image={post.imgPost}
-        srcset={post.srcset}
         url={post.url}
         imgWidth={post.imgWidth}
         imgHeight={post.imgHeight}
@@ -74,7 +73,6 @@ export default function Slug({ post, latestPosts, relatedPosts }: SlugProps) {
               alt={post.altImg || post.title}
               width={post.imgWidth}
               height={post.imgHeight}
-              srcset={post.srcset}
               priority
             />
             <figcaption>

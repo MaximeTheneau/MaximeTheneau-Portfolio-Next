@@ -1,12 +1,11 @@
 import {
-  useEffect, useState, RefObject,
+  useEffect, useState, RefObject, useRef,
 } from 'react';
 
 const useScrollParallaxTop = (elementRef: RefObject<HTMLDivElement>) => {
   const [hasPlayed, setHasPlayed] = useState(false);
-  const [opacity, setOpacity] = useState(1);
-  const [transform, setTransform] = useState('none');
   const [isBot, setIsBot] = useState(false);
+  const rafId = useRef<number | null>(null);
 
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
@@ -14,36 +13,49 @@ const useScrollParallaxTop = (elementRef: RefObject<HTMLDivElement>) => {
 
     if (botPatterns.test(userAgent)) {
       setIsBot(true);
+      return;
     }
 
-    const handleScroll = () => {
-      if (elementRef.current && !hasPlayed) {
-        const { top, bottom, height } = elementRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
+    if (!elementRef.current) return;
 
-        if (bottom > 0 && top < windowHeight) {
-          const isVisible = top >= 0 && top <= window.innerHeight - height / 2;
-          if (isVisible) {
-            setOpacity(1);
-            setHasPlayed(true);
-            setTransform('translateX(0)');
-          } else {
-            setOpacity(0);
+    // Utiliser IntersectionObserver pour détecter l'entrée dans le viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasPlayed) {
+            // Utiliser requestAnimationFrame pour le calcul de visibilité
+            rafId.current = requestAnimationFrame(() => {
+              if (!elementRef.current) return;
+
+              const { top, height } = elementRef.current.getBoundingClientRect();
+              const isVisible = top >= 0 && top <= window.innerHeight - height / 2;
+
+              if (isVisible) {
+                setHasPlayed(true);
+              }
+            });
           }
-        }
+        });
+      },
+      {
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+        rootMargin: '0px',
       }
-    };
+    );
 
-    window.addEventListener('scroll', handleScroll);
+    observer.observe(elementRef.current);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
     };
   }, [elementRef, hasPlayed]);
 
   return {
-    opacity: isBot || hasPlayed ? 1 : opacity,
-    transform: isBot || hasPlayed ? 'none' : transform,
+    opacity: isBot || hasPlayed ? 1 : 0,
+    transform: isBot || hasPlayed ? 'none' : 'translateX(-20px)',
   };
 };
 

@@ -24,7 +24,6 @@ export default function Home({ articles, page, subcategoryList }) {
         title={page.heading}
         description={page.metaDescription}
         image={page.image}
-        srcset={page.srcset}
         url={page.url}
         imgWidth={page.imgWidth}
         imgHeight={page.imgHeight}
