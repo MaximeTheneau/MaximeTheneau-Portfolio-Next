@@ -1,5 +1,5 @@
 import {
-  useEffect, useState, RefObject,
+  useEffect, useState, RefObject, useRef,
 } from 'react';
 
 const useScrollParallaxTop = (elementRef: RefObject<HTMLDivElement>) => {
@@ -7,6 +7,7 @@ const useScrollParallaxTop = (elementRef: RefObject<HTMLDivElement>) => {
   const [opacity, setOpacity] = useState(1);
   const [transform, setTransform] = useState('none');
   const [isBot, setIsBot] = useState(false);
+  const rafId = useRef<number | null>(null);
 
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
@@ -17,27 +18,38 @@ const useScrollParallaxTop = (elementRef: RefObject<HTMLDivElement>) => {
     }
 
     const handleScroll = () => {
-      if (elementRef.current && !hasPlayed) {
-        const { top, bottom, height } = elementRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
+      if (hasPlayed) return;
 
-        if (bottom > 0 && top < windowHeight) {
-          const isVisible = top >= 0 && top <= window.innerHeight - height / 2;
-          if (isVisible) {
-            setOpacity(1);
-            setHasPlayed(true);
-            setTransform('translateX(0)');
-          } else {
-            setOpacity(0);
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
+
+      rafId.current = requestAnimationFrame(() => {
+        if (elementRef.current && !hasPlayed) {
+          const { top, bottom, height } = elementRef.current.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+
+          if (bottom > 0 && top < windowHeight) {
+            const isVisible = top >= 0 && top <= window.innerHeight - height / 2;
+            if (isVisible) {
+              setOpacity(1);
+              setHasPlayed(true);
+              setTransform('translateX(0)');
+            } else {
+              setOpacity(0);
+            }
           }
         }
-      }
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
     };
   }, [elementRef, hasPlayed]);
 
