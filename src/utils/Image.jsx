@@ -17,6 +17,7 @@ export default function Image({
       height={height}
       width={width}
       priority={priority}
+      fetchPriority={priority ? 'high' : 'auto'}
       quality={quality}
       sizes={sizes}
       {...props}
