@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import NextImage from 'next/image';
 
 export default function Image({
   src,
@@ -6,19 +6,20 @@ export default function Image({
   width,
   alt,
   height,
-  priority,
+  priority = false,
+  sizes = '100vw',
+  quality = 75,
   ...props
 }) {
   return (
-    <img
+    <NextImage
       alt={alt}
       src={src}
       height={height}
       width={width}
-      srcSet={srcset || ''}
-      loading={priority ? 'eager' : 'lazy'}
-      fetchpriority={priority ? 'high' : 'low'}
-      decoding="async"
+      priority={priority}
+      quality={quality}
+      sizes={sizes}
       {...props}
     />
   );
