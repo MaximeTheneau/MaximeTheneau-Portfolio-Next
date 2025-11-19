@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'iconTheneauM';
+  src: url('../asset/font/icon/iconTheneauM.woff2') format('woff2'),
+    url('../asset/font/icon/iconTheneauM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'iconTheneauM' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-search:before {
+  content: "\e92e";
+}
+.icon-navbar:before {
+  content: "\e900";
+}
+
+.icon-x {
+  display: inline-block;
+  transform: rotate(180deg);
+  transition: transform 0.2s ease-in-out;
+  &:before {
+    content: "\e902";
+  }
+}
+
+.icon-confirmation1:before {
+  content: "\e904";
+}
+.icon-error:before {
+  content: "\e905";
+}
+.icon-scroll {
+  &:before {
+    content: "\e903"; 
+  }
+}
+.icon-paper-plane:before {
+  content: "\e901";
+}
+.icon-phone:before {
+  content: "\e907";
+}
+.icon-twitter:before {
+  content: "\e946";
+}
+.icon-github:before {
+  content: "\e947";
+}
+.icon-angle-right:before {
+  content: "\e930";
+}
+.icon-linkedin:before {
+  content: "\e94b";
+}
+.icon-location:before {
+  content: "\e94c";
+}

@@ -1,0 +1,8 @@
+
+.slideTransition {
+    transform-origin: 50% 50%;
+    &__hidden {
+        opacity: 0;
+        transform: translate(var(--translate));
+    }
+}

@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "fontTitle";
+  src: url('../asset/font/title/title.woff2') format('woff2'),
+    url('../asset/font/title/title.ttf') format('truetype');
+  font-display: swap;
+  font-style: normal;
+  line-height: 5;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'fontGeneral';
+  src: url('../asset/font/principal/principal.woff2') format('woff2'),
+      url('../asset/font/principal/principal.ttf') format('truetype');
+  font-display: swap;
+  font-style: normal;
+  line-height: 5;
+}
