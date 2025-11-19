@@ -7,11 +7,13 @@ export async function getStaticPaths() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts&category=blog`);
   const posts = await res.json();
 
-  const paths = posts.map((post) => ({
-    params: {
-      subcategory: post.subcategory.slug,
-    },
-  }));
+  const paths = posts
+    .filter((post) => post.subcategory !== null)
+    .map((post) => ({
+      params: {
+        subcategory: post.subcategory.slug,
+      },
+    }));
 
   return { paths, fallback: false };
 }

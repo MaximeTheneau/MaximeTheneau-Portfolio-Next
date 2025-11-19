@@ -24,12 +24,23 @@ interface SlugProps {
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts&category=blog`);
 
-  const paths = posts.map((post: { subcategory: { slug: any; }; slug: any; }) => ({
-    params: {
-      subcategory: post.subcategory.slug,
-      slug: post.slug,
-    },
-  }));
+  // Log posts sans subcategory pour identifier les problèmes en BDD
+  const postsWithoutSubcategory = posts.filter((post: any) => post.subcategory === null);
+  if (postsWithoutSubcategory.length > 0) {
+    console.log('⚠️ Posts sans subcategory (à corriger en BDD):');
+    postsWithoutSubcategory.forEach((post: any) => {
+      console.log(`  - ID: ${post.id}, Slug: ${post.slug}, Title: ${post.title}`);
+    });
+  }
+
+  const paths = posts
+    .filter((post: any) => post.subcategory !== null)
+    .map((post: { subcategory: { slug: any; }; slug: any; }) => ({
+      params: {
+        subcategory: post.subcategory.slug,
+        slug: post.slug,
+      },
+    }));
   return { paths, fallback: false };
 };
 
