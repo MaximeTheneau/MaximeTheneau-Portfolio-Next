@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import Image from '@/utils/Image';
 import fetcher from '@/utils/fetcher';
 // import AtoutsList from '@/components/ui/AtoutsList';
@@ -36,6 +37,10 @@ export default function Home({
   faq,
   skills,
 }:any) {
+  const CalendarBooking = dynamic(() => import('@/components/ui/CalendarBooking'), {
+    ssr: false,
+  });
+
   return (
     <>
       <HeadComponents
@@ -91,6 +96,7 @@ export default function Home({
             </Link>
           </div> */}
         </article>
+        <CalendarBooking />
 
         {/* --Skills--*/}
         <div className="my-4 bg-primary py-8 px-4 text-center">

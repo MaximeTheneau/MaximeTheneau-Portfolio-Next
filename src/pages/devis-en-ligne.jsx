@@ -34,7 +34,7 @@ export default function DevisEnLigne({ page }) {
         <div dangerouslySetInnerHTML={{ __html: page.contents }} />
         <div>
           <DevisForm />
-          {/* <CalendarBooking /> */}
+          <CalendarBooking />
 
           <article>
 

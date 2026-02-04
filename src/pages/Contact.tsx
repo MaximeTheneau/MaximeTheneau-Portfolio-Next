@@ -39,9 +39,9 @@ export default function Contact({ page }: ContactPageProps) {
       <section className="p-4 text-center">
         <h1>{page.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: page.contents }} />
-        {/* <div id="calendar">
+        <div id="calendar">
           <CalendarBooking />
-        </div> */}
+        </div>
         <p>
           ou remplissez le formulaire ci-dessous pour discuter de vos besoins ou autre demande :
         </p>
@@ -66,7 +66,7 @@ export default function Contact({ page }: ContactPageProps) {
           >
             Demandez un devis gratuit pour votre site web.
           </Link>
-          {/* {' '}
+          {' '}
           ou prenez rendez-vous directement via notre
           {' '}
           <Link
@@ -76,7 +76,7 @@ export default function Contact({ page }: ContactPageProps) {
             calendrier en ligne
           </Link>
           {' '}
-          pour planifier une consultation personnalisée/ */}
+          pour planifier une consultation personnalisée.
         </p>
       </section>
     </>
