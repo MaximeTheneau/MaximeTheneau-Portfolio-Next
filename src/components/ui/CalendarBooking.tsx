@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/button-has-type */
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 const BookingForm = dynamic(() => import('../booking/BookingForm'), {
@@ -29,77 +29,75 @@ function CalendarBooking() {
     };
   }, [isOpen]);
 
-  const handleOpen = useCallback(() => {
-    setIsOpen(true);
-    window.history.pushState(null, '', '#calendar');
-  }, []);
-
-  const handleClose = useCallback(() => {
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => {
     setIsOpen(false);
-    window.history.pushState(null, '', window.location.pathname + window.location.search);
-  }, []);
-
-  useEffect(() => {
-    const checkHash = () => {
-      if (window.location.hash === '#calendar') {
-        setIsOpen(true);
-      } else {
-        setIsOpen(false);
-      }
-    };
-
-    checkHash();
-    window.addEventListener('hashchange', checkHash);
-    window.addEventListener('popstate', checkHash);
-    return () => {
-      window.removeEventListener('hashchange', checkHash);
-      window.removeEventListener('popstate', checkHash);
-    };
-  }, []);
+    setTimeout(() => setIsMounted(false), 300);
+  };
 
   return (
-    <>
-      {/* Bouton fixed en bas à droite */}
+    <div>
+      {/* Bouton CTA Premium */}
       <button
         onClick={handleOpen}
         type="button"
-        className="fixed bottom-6 right-6 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-black text-white shadow-lg shadow-black/20 hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation"
+        className="group relative text-black text-center mx-auto block w-[calc(100%-2rem)] sm:w-full md:w-1/2 bg-gradient-to-r from-primary to-secondary my-4 px-4 sm:px-8 py-4 rounded-2xl font-bold touch-manipulation transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/25 active:scale-[0.98] overflow-hidden"
       >
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
+        <span className="relative z-10 flex items-center justify-center gap-3">
+          <svg
+            className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+          Prendre un rendez-vous téléphonique
+        </span>
+        {/* Effet de brillance au hover */}
+        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       </button>
 
       {/* Modal Glassmorphism */}
       {isMounted && (
         <div
           className={`fixed inset-0 z-50 flex items-end sm:items-center justify-center transition-all duration-300 ${
-            isOpen ? 'bg-black/30 sm:backdrop-blur-sm' : 'bg-transparent'
+            isOpen ? 'bg-black/40 backdrop-blur-md' : 'bg-transparent'
           }`}
           onClick={handleClose}
         >
           <div
-            className={`liquid-glass w-full sm:w-auto sm:min-w-[600px] sm:max-w-2xl max-h-[95vh] sm:max-h-[90vh] sm:rounded-3xl rounded-t-3xl transition-all duration-300 ${
+            className={`bg-white/95 backdrop-blur-xl w-full sm:w-auto sm:min-w-[600px] sm:max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-hidden sm:rounded-3xl rounded-t-3xl shadow-2xl shadow-black/20 transition-all duration-300 ${
               isOpen
                 ? 'translate-y-0 opacity-100 sm:scale-100'
                 : 'translate-y-full sm:translate-y-0 opacity-0 sm:scale-90'
             }`}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div className="relative px-6 py-4 border-b border-white/30">
+            {/* Header avec gradient subtil */}
+            <div className="relative px-6 py-4 border-b border-gray-100">
+              {/* Gradient de fond */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent" />
 
               <div className="relative flex justify-between items-center">
                 <div>
                   <h2 className="text-lg sm:text-xl font-bold text-gray-900">
                     Prendre rendez-vous
                   </h2>
+                  <p className="text-sm text-gray-500 mt-0.5">
+                    Choisissez votre créneau idéal
+                  </p>
                 </div>
 
                 {/* Bouton fermeture avec rotation au hover */}
                 <button
                   onClick={handleClose}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/30 hover:bg-white/50 text-gray-600 hover:text-gray-800 transition-all duration-300 hover:rotate-90 touch-manipulation"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-all duration-300 hover:rotate-90 touch-manipulation"
                   aria-label="Fermer"
                 >
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -118,7 +116,7 @@ function CalendarBooking() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
