@@ -250,10 +250,16 @@ button.bg-primary
   margin: 0 auto;
 
   @media (min-width: 768px) {
-    width: 75%;
+    & > ul {
+      margin: 0 auto;
+      width: 75%;
+    }
   }
 
   @media (min-width: 1024px) {
-    width: 50%;
+      & > ul {
+        width: 50%;
+        margin: 0 auto;
+      }
   }
 }

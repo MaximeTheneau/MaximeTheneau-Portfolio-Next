@@ -17,7 +17,7 @@ export default function Image({
       width={width}
       srcSet={srcset || ''}
       loading={priority ? 'eager' : 'lazy'}
-      fetchpriority={priority ? 'high' : 'low'}
+      fetchPriority={priority ? 'high' : 'low'}
       decoding="async"
       {...props}
     />
