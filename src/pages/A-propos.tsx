@@ -44,7 +44,7 @@ export default function APropos({ post }: PostProps) {
         <div dangerouslySetInnerHTML={{ __html: post.contents }} />
         <GoogleMaps />
         <article>
-          {post.paragraphPosts.map((paragraphArticle) => (
+          {post.paragraphPosts?.map((paragraphArticle) => (
             <div key={paragraphArticle.subtitle}>
               <h2>
                 {paragraphArticle.subtitle}
