@@ -12,7 +12,7 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`min-w-[48px] min-h-[48px] my-4 rounded py-2 px-4 font-bold text-black bg-primary ${className}`}
+      className={`btn  ${className}`}
       {...props}
     >
       {children}

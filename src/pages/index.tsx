@@ -145,7 +145,7 @@ export default function Home({
             href="/A-propos"
 
           >
-            <button type="button" className=" text-black left inline-block md:w-1/2 bg-secondary  my-4 px-8 py-4 rounded-lg font-bold">
+            <button type="button" className="btn">
               Tout savoir sur mon parcours et mes compétences
             </button>
           </Link>
@@ -165,7 +165,7 @@ export default function Home({
           </ScrollReveal>
           <Link
             href="/Creations"
-            className=" text-black text-center mx-auto block   p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold "
+            className="btn md:w-1/2"
           >
             Découvrez tous mes projets
           </Link>
@@ -202,7 +202,7 @@ export default function Home({
           </ScrollReveal>
           <Link
             href="/Foire-aux-questions"
-            className=" text-black left mx-auto block bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
+            className="btn"
           >
             Découvrez toutes les réponses à vos questions ici
           </Link>
@@ -219,7 +219,7 @@ export default function Home({
           <Link
             href="/devis-en-ligne"
           >
-            <button type="button" className=" text-black text-center mx-auto block bg-primary my-4 px-8 py-4 rounded-lg font-bold ">
+            <button type="button" className="btn">
               Demander un devis gratuit
               <span className="text-center block text-xs ">
                 ✓ Devis gratuit ✓ Réponse sous 24h

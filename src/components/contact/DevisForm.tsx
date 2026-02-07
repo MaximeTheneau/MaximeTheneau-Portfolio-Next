@@ -551,7 +551,7 @@ export default function DevisForm() {
             </span>
           </label>
         </div>
-        <div className="text-center mx-auto bg-primary px-8 py-2 rounded">
+        <div>
           <button
             type="submit"
           >
