@@ -61,40 +61,76 @@ export default function Home({
       <FaqJsonLd listPosts={faq} />
       <BreadcrumbJsonLd paragraphPosts={accueil.paragraphPosts} urlPost={`${process.env.NEXT_PUBLIC_URL}`} />
       <section>
-        <div className="relative flex items-center justify-center text-center">
-          <Image
-            className={`object-cover object-center md:w-[${accueil.imgWidth}]  h-96`}
-            src={accueil.imgPost}
-            alt={accueil.altImg || accueil.title}
-            width={accueil.imgWidth}
-            height={accueil.imgHeight}
-            srcset={accueil.srcset}
-            sizes="100vw"
-            priority
-          />
-          <div
-            style={{ maxWidth: `${accueil.imgWidth}px` }}
-            className="  pb-4 px-2 w-full  absolute bottom-0 text-white bg-blackOpacity "
-          >
-            <h1 className="sm:text-title  sm:leading-[2] px-2  dark:text-[#17181d] ">
-              {accueil.title}
-            </h1>
+        {/* Hero Section 2026 Design */}
+        <div className="relative overflow-hidden">
+          {/* Container avec padding pour effet Bento */}
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+            <div className="group relative rounded-3xl overflow-hidden shadow-2xl shadow-black/20">
+              {/* Image avec effet zoom au hover */}
+              <div className="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden">
+                <Image
+                  className="object-cover object-center w-full h-full transition-transform duration-700 group-hover:scale-105"
+                  src={accueil.imgPost}
+                  alt={accueil.altImg || accueil.title}
+                  width={accueil.imgWidth}
+                  height={accueil.imgHeight}
+                  srcset={accueil.srcset}
+                  sizes="100vw"
+                  priority
+                />
+
+              </div>
+
+              {/* Contenu avec glassmorphism */}
+              <div className="absolute inset-x-0 bottom-0 ">
+                <div className="relative">
+                  {/* Badge décoratif */}
+                  <div className="inline-flex items-center gap-2 px-3 mb-4  bg-white/10 backdrop-blur-md">
+                    {/* Titre principal */}
+                    <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
+                      {accueil.title}
+                    </h1>
+                  </div>
+
+
+                  {/* Ligne décorative animée */}
+                  <div className="flex items-center gap-3">
+                    <div className="h-1 w-12 sm:w-20 bg-gradient-to-r from-primary to-secondary rounded-full" />
+                    <div className="h-1 w-6 sm:w-10 bg-white/30 rounded-full" />
+                    <div className="h-1 w-3 sm:w-5 bg-white/20 rounded-full" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Éléments décoratifs flottants */}
+              <div className="absolute top-4 right-4 sm:top-8 sm:right-8 flex flex-col gap-2">
+                <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-primary/80 backdrop-blur-sm animate-bounce" style={{ animationDelay: '0s' }} />
+                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-secondary/80 backdrop-blur-sm animate-bounce" style={{ animationDelay: '0.2s' }} />
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white/60 backdrop-blur-sm animate-bounce" style={{ animationDelay: '0.4s' }} />
+              </div>
+            </div>
           </div>
+
+          {/* Effet de lumière ambiante */}
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/20 rounded-full blur-3xl pointer-events-none" />
         </div>
         <article
           className="p-4 text-center  "
         >
           <div className="p-4 text-center mx-auto max-w-[1080px]" dangerouslySetInnerHTML={{ __html: accueil.contents }} />
-          {/* <div className="text-center mt-6">
-            <Link href="/Contact" aria-label="Contactez-moi pour discuter de votre projet">
-              <button
-                type="button"
-                className="text-black bg-primary px-8 py-4 rounded-lg font-bold  "
-              >
-                📞 Contactez-moi ! Prenez rendez-vous
+          <div className="flex flex-wrap justify-center gap-4 mt-6">
+            <a href="#calendar">
+              <button type="button" className="btn btn-primary">
+                Prendre rendez-vous
               </button>
-            </Link>
-          </div> */}
+            </a>
+            <a href="#calendar">
+              <button type="button" className="btn btn-secondary">
+                Devis gratuit
+              </button>
+            </a>
+          </div>
         </article>
         <CalendarBooking />
 
