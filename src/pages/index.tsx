@@ -85,7 +85,7 @@ export default function Home({
               <div className="absolute inset-x-0 bottom-0 ">
                 <div className="relative">
                   {/* Badge décoratif */}
-                  <div className="inline-flex items-center gap-2 px-3 mb-4  bg-white/10 backdrop-blur-md border border-white/20">
+                  <div className="inline-flex items-center gap-2 px-3 mb-4  bg-white/10 backdrop-blur-md">
                     {/* Titre principal */}
                     <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
                       {accueil.title}
@@ -108,9 +108,6 @@ export default function Home({
                 <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-secondary/80 backdrop-blur-sm animate-bounce" style={{ animationDelay: '0.2s' }} />
                 <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white/60 backdrop-blur-sm animate-bounce" style={{ animationDelay: '0.4s' }} />
               </div>
-
-              {/* Bordure lumineuse subtile */}
-              <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 pointer-events-none" />
             </div>
           </div>
 
@@ -118,13 +115,23 @@ export default function Home({
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/20 rounded-full blur-3xl pointer-events-none" />
         </div>
-        <ScrollReveal variant="fade-up">
-          <article
-            className="p-4 text-center  "
-          >
-            <div className="p-4 text-center mx-auto max-w-[1080px]" dangerouslySetInnerHTML={{ __html: accueil.contents }} />
-          </article>
-        </ScrollReveal>
+        <article
+          className="p-4 text-center  "
+        >
+          <div className="p-4 text-center mx-auto max-w-[1080px]" dangerouslySetInnerHTML={{ __html: accueil.contents }} />
+          <div className="flex flex-wrap justify-center gap-4 mt-6">
+            <a href="#calendar">
+              <button type="button" className="btn btn-primary">
+                Prendre rendez-vous
+              </button>
+            </a>
+            <a href="#calendar">
+              <button type="button" className="btn btn-secondary">
+                Devis gratuit
+              </button>
+            </a>
+          </div>
+        </article>
         <CalendarBooking />
 
         {/* --Skills--*/}
