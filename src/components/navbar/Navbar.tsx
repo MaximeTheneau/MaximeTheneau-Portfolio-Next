@@ -16,7 +16,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`${toggleNav ? 'bg-secondary' : 'bg-whiteOpacity'} w-full z-10 fixed h-auto font-bold text-left`}>
+    <nav className={`${toggleNav ? 'bg-secondary' : 'bg-whiteOpacity'} w-full z-30 fixed h-auto font-bold text-left`}>
       <div
         aria-hidden="true"
         className="p-2 cursor-pointer"

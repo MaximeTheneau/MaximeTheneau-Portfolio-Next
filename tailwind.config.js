@@ -25,6 +25,12 @@ module.exports = {
       width: {
         595: '595px',
       },
+      zIndex: {
+        30: '30',
+        40: '40',
+        50: '50',
+        60: '60',
+      },
       boxShadow: {
         custom: '0px -20px 20px 100vh rgba(151, 151, 151, 0.8)',
       },
