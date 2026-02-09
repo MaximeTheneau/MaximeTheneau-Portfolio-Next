@@ -125,7 +125,7 @@ export default function Home({
                 Prendre rendez-vous
               </button>
             </a>
-            <a href="#calendar">
+            <a href="/devis-en-ligne">
               <button type="button" className="btn btn-secondary">
                 Devis gratuit
               </button>

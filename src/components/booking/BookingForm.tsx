@@ -1,7 +1,8 @@
 import { ChangeEvent, useEffect, useState, useMemo } from 'react';
 import FormMiddleware from '../../middleware/formMiddleware';
-import Confirmation from '../modal/Confirmation';
+
 import CalendarPicker from './CalendarPicker';
+import SummaryBar from './SummaryBar';
 import TimeSlotSelector from './TimeSlotSelector';
 
 interface TimeSlot {
@@ -19,11 +20,6 @@ interface FormState {
   message: string;
 }
 
-interface ModalState {
-  title: string;
-  message: string;
-  toggleModal: boolean;
-}
 
 interface BookingFormState {
   form: FormState;
@@ -32,7 +28,6 @@ interface BookingFormState {
   confirmationName: boolean | null;
   confirmationEmail: boolean | null;
   confirmationPhone: boolean | null;
-  modal: ModalState;
   isSubmitted: boolean;
   isBlocked: boolean;
   blockedMessage: string;
@@ -106,167 +101,21 @@ function StepperHeader({ currentStep, completedSteps }: { currentStep: number; c
 
   return (
     <div className="mb-6">
-      <div className="flex items-center justify-between">
-        {steps.map((step, index) => {
-          const isCompleted = completedSteps.includes(step.number);
+      <div className="flex items-center justify-center gap-6 sm:gap-10">
+        {steps.map((step) => {
           const isActive = currentStep === step.number;
-          const isPast = step.number < currentStep;
 
           return (
-            <div key={step.number} className="flex items-center flex-1">
-              <div className="flex flex-col items-center">
-                <div
-                  className={`
-                    relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full
-                    transition-all duration-300 font-bold text-sm
-                    ${
-                      isCompleted
-                        ? 'bg-gradient-to-br from-primary to-secondary scale-100'
-                        : isActive
-                          ? 'bg-gradient-to-br from-black to-gray-800 text-white scale-110 shadow-lg shadow-black/20'
-                          : 'bg-gray-100 text-gray-400'
-                    }
-                  `}
-                >
-                  {isCompleted ? (
-                    <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  ) : (
-                    <span className={isActive ? 'text-white' : 'text-gray-400'}>
-                      {step.number}
-                    </span>
-                  )}
-                </div>
-                <span
-                  className={`
-                    mt-2 text-xs sm:text-sm font-medium transition-colors duration-300
-                    ${isActive || isCompleted ? 'text-gray-900' : 'text-gray-400'}
-                  `}
-                >
-                  {step.label}
-                </span>
-              </div>
-              {index < steps.length - 1 && (
-                <div className="flex-1 mx-2 sm:mx-4">
-                  <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                      className={`h-full bg-gradient-to-r from-primary to-secondary transition-all duration-500 ${
-                        isPast || isCompleted ? 'w-full' : 'w-0'
-                      }`}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
+            <span
+              key={step.number}
+              className={`text-sm sm:text-base font-semibold transition-colors duration-300 ${
+                isActive ? 'text-primary' : 'text-gray-400'
+              }`}
+            >
+              {step.label}
+            </span>
           );
         })}
-      </div>
-    </div>
-  );
-}
-
-function SummaryBar({
-  selectedDate,
-  selectedTime,
-  currentStep,
-  onContinue,
-  onBack,
-  canContinue,
-  isSubmitting,
-}: {
-  selectedDate: string | null;
-  selectedTime: string | null;
-  currentStep: number;
-  onContinue: () => void;
-  onBack: () => void;
-  canContinue: boolean;
-  isSubmitting?: boolean;
-}) {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('fr-FR', {
-      weekday: 'short',
-      day: 'numeric',
-      month: 'short',
-    });
-  };
-
-  const formatTime = (dateTimeStr: string) => {
-    const date = new Date(dateTimeStr);
-    return date.toLocaleTimeString('fr-FR', {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  };
-
-  const getButtonText = () => {
-    if (isSubmitting) return 'Confirmation...';
-    if (currentStep === 3) return 'Confirmer';
-    return 'Continuer';
-  };
-
-  return (
-    <div className="sticky bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 px-4 py-3 -mx-4 sm:-mx-6 mt-6 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2 flex-wrap flex-1 min-w-0">
-          {currentStep > 1 && (
-            <button
-              type="button"
-              onClick={onBack}
-              className="flex items-center justify-center w-9 h-9 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 transition-all duration-200 touch-manipulation shrink-0"
-              aria-label="Retour"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-          )}
-          {selectedDate && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 rounded-full text-sm font-medium text-gray-700 border border-gray-100">
-              <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span className="capitalize">{formatDate(selectedDate)}</span>
-            </span>
-          )}
-          {selectedTime && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 rounded-full text-sm font-medium text-gray-700 border border-gray-100">
-              <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              {formatTime(selectedTime)}
-            </span>
-          )}
-        </div>
-
-        <button
-          type={currentStep === 3 ? 'submit' : 'button'}
-          onClick={currentStep !== 3 ? onContinue : undefined}
-          disabled={!canContinue || isSubmitting}
-          className={`
-            flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm
-            transition-all duration-300 touch-manipulation whitespace-nowrap shrink-0
-            ${
-              canContinue && !isSubmitting
-                ? 'bg-gradient-to-r from-black to-gray-800 text-white hover:shadow-lg hover:shadow-black/20 hover:scale-[1.02] active:scale-[0.98]'
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-            }
-          `}
-        >
-          {isSubmitting ? (
-            <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-            </svg>
-          ) : null}
-          {getButtonText()}
-          {!isSubmitting && currentStep !== 3 && (
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          )}
-        </button>
       </div>
     </div>
   );
@@ -291,11 +140,6 @@ export default function BookingForm() {
     confirmationName: null,
     confirmationEmail: null,
     confirmationPhone: null,
-    modal: {
-      title: '',
-      message: '',
-      toggleModal: false,
-    },
     isSubmitted: false,
     isBlocked: false,
     blockedMessage: '',
@@ -350,11 +194,6 @@ export default function BookingForm() {
           ...prev,
           availableSlots: [],
           loading: false,
-          modal: {
-            title: 'Erreur',
-            message: data.erreur || 'Erreur lors du chargement des créneaux',
-            toggleModal: true,
-          },
         }));
       }
     } catch {
@@ -362,11 +201,6 @@ export default function BookingForm() {
         ...prev,
         availableSlots: [],
         loading: false,
-        modal: {
-          title: 'Erreur',
-          message: 'Erreur de connexion. Veuillez réessayer.',
-          toggleModal: true,
-        },
       }));
     }
   };
@@ -440,11 +274,6 @@ export default function BookingForm() {
       ...prev,
       isBlocked: isRateLimitError ? true : prev.isBlocked,
       blockedMessage: isRateLimitError ? errorMessage : prev.blockedMessage,
-      modal: {
-        title: isRateLimitError ? 'Limite atteinte' : 'Erreur',
-        message: errorMessage || 'Une erreur est survenue. Veuillez réessayer.',
-        toggleModal: true,
-      },
     }));
   };
 
@@ -457,36 +286,15 @@ export default function BookingForm() {
         ...prev,
         isBlocked: true,
         blockedMessage: msg,
-        modal: {
-          title: 'Limite atteinte',
-          message: msg,
-          toggleModal: true,
-        },
       }));
       return;
     }
 
     if (!validateName() || !validateEmail() || !validatePhone()) {
-      setState((prev) => ({
-        ...prev,
-        modal: {
-          title: 'Erreur',
-          message: 'Veuillez renseigner correctement tous les champs obligatoires',
-          toggleModal: true,
-        },
-      }));
       return;
     }
 
     if (!state.form.selectedDate || !state.form.selectedTime) {
-      setState((prev) => ({
-        ...prev,
-        modal: {
-          title: 'Erreur',
-          message: 'Veuillez sélectionner une date et un créneau horaire',
-          toggleModal: true,
-        },
-      }));
       return;
     }
 
@@ -503,13 +311,6 @@ export default function BookingForm() {
     };
 
     FormMiddleware(formData, 'booking/create', handleResponse200, handleResponseError);
-  };
-
-  const closeModal = () => {
-    setState((prev) => ({
-      ...prev,
-      modal: { ...prev.modal, toggleModal: false },
-    }));
   };
 
   const handleContinue = () => {
@@ -816,12 +617,6 @@ export default function BookingForm() {
           isSubmitting={isSubmitting}
         />
       </form>
-
-      <Confirmation
-        title={state.modal.title}
-        message={state.modal.message}
-        toggleModal={state.modal.toggleModal}
-      />
     </div>
   );
 }

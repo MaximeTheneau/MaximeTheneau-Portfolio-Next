@@ -23,6 +23,8 @@ function CalendarBooking() {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      const timer = setTimeout(() => setIsMounted(false), 300);
+      return () => clearTimeout(timer);
     }
     return () => {
       document.body.style.overflow = '';
@@ -73,7 +75,7 @@ function CalendarBooking() {
       {/* Modal Glassmorphism */}
       {isMounted && (
         <div
-          className={`fixed inset-0  flex items-end sm:items-center justify-center transition-all duration-300 ${
+          className={`fixed z-20 inset-0  flex items-end sm:items-center justify-center transition-all duration-300 ${
             isOpen ? 'bg-black/30 sm:backdrop-blur-sm' : 'bg-transparent'
           }`}
           onClick={handleClose}
