@@ -30,6 +30,15 @@ export default function ScrollingTextWrapper({ accueil }: ScrollingTextWrapperPr
   const [repeatCount, setRepeatCount] = useState(2);
   const ulRef = useRef<HTMLUListElement>(null);
 
+  // Vérifier que accueil est un tableau valide avec des objets
+  const validAccueil = Array.isArray(accueil) && accueil.length > 0 && accueil[0]?.id !== undefined
+    ? accueil
+    : [];
+
+  if (validAccueil.length === 0) {
+    return null;
+  }
+
   useEffect(() => {
     const detectBot = (userAgent: string) => /bot|crawler|spider|googlebot|bingbot|yahoo|duckduckbot/i.test(userAgent);
     setIsBot(detectBot(navigator.userAgent.toLowerCase()));
@@ -41,14 +50,15 @@ export default function ScrollingTextWrapper({ accueil }: ScrollingTextWrapperPr
     const calculateRepeats = () => {
       if (!ulRef.current) return;
 
-      // Largeur d'un set d'items (approximatif: nombre d'items * largeur moyenne)
-      const itemWidth = 120; // Largeur approximative d'un item en px
-      const setWidth = accueil.length * itemWidth;
       const viewportWidth = window.innerWidth;
+      // Largeur d'item réduite sur mobile
+      const itemWidth = viewportWidth < 640 ? 80 : 120;
+      const setWidth = validAccueil.length * itemWidth;
 
-      // Calculer combien de répétitions pour remplir 2x l'écran (pour un scroll fluide)
-      const neededRepeats = Math.ceil((viewportWidth * 2) / setWidth);
-      setRepeatCount(Math.max(2, neededRepeats));
+      // Moins de répétitions sur mobile pour la performance
+      const multiplier = viewportWidth < 640 ? 1.5 : 2;
+      const neededRepeats = Math.ceil((viewportWidth * multiplier) / setWidth);
+      setRepeatCount(Math.max(2, Math.min(neededRepeats, viewportWidth < 640 ? 3 : 5)));
     };
 
     calculateRepeats();
@@ -57,17 +67,17 @@ export default function ScrollingTextWrapper({ accueil }: ScrollingTextWrapperPr
     return () => {
       window.removeEventListener('resize', calculateRepeats);
     };
-  }, [isBot, accueil.length]);
+  }, [isBot, validAccueil.length]);
 
   return (
     <div className="overflow-x-hidden ">
       <div className={!isBot ? 'animate-infinite-scroll' : 'animate-infinite-scroll--none'}>
         <ul ref={ulRef}>
-          {accueil.map((article) => (
+          {validAccueil.map((article) => (
             <Article key={article.id} {...article} />
           ))}
           {!isBot && Array.from({ length: repeatCount }, (_, i) => `set-${i}`).map((setKey) => (
-            accueil.map((article) => (
+            validAccueil.map((article) => (
               <Article key={`${setKey}-${article.id}`} {...article} />
             ))
           ))}

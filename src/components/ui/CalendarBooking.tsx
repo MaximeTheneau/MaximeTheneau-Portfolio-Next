@@ -23,6 +23,8 @@ function CalendarBooking() {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      const timer = setTimeout(() => setIsMounted(false), 300);
+      return () => clearTimeout(timer);
     }
     return () => {
       document.body.style.overflow = '';
@@ -63,7 +65,7 @@ function CalendarBooking() {
       <button
         onClick={handleOpen}
         type="button"
-        className="fixed bottom-6 right-6 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-black text-white shadow-lg shadow-black/20 hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation"
+        className="fixed bottom-6 right-6 z-40 flex items-center justify-center w-10 h-10 rounded-full bg-black text-white shadow-lg shadow-black/20 hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation"
       >
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -73,7 +75,7 @@ function CalendarBooking() {
       {/* Modal Glassmorphism */}
       {isMounted && (
         <div
-          className={`fixed inset-0 z-50 flex items-end sm:items-center justify-center transition-all duration-300 ${
+          className={`fixed z-20 inset-0  flex items-end sm:items-center justify-center transition-all duration-300 ${
             isOpen ? 'bg-black/30 sm:backdrop-blur-sm' : 'bg-transparent'
           }`}
           onClick={handleClose}

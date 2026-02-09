@@ -10,7 +10,7 @@ export default function Button({ text, icon, link }: ButtonProps) {
   return (
     <button
       type="button"
-      className="text-base  sm:w-ful bg-secondary p-2 rounded   hover:scale-90  hover:text-white p-4 m-4"
+      className="btn btn-secondary"
       role="link"
     >
       {link && (
