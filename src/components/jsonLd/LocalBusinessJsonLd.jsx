@@ -8,8 +8,10 @@ export default function LocalBusinessJsonLd({ descriptionMeta }) {
 
   const jsonLdData = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': 'ProfessionalService',
+    '@id': `${process.env.NEXT_PUBLIC_URL}#business`,
     name: 'Maxime Freelance',
+    alternateName: 'Theneau Maxime - Développeur Web Freelance',
     description: descriptionMeta,
     image: 'https://picture.maximefreelance.fr/Portfolio-4.webp?format=jpeg',
     logo: 'https://picture.maximefreelance.fr/Portfolio-4.webp?format=jpeg',
@@ -23,35 +25,71 @@ export default function LocalBusinessJsonLd({ descriptionMeta }) {
       streetAddress: 'Avenue des Goumiers',
       addressLocality: 'Marseille',
       postalCode: '13008',
+      addressRegion: "Provence-Alpes-Côte d'Azur",
       addressCountry: 'FR',
     },
-    telephone: '+33622068036',
-    url: process.env.NEXT_PUBLIC_URL,
-    areaServed: {
-      '@type': 'PostalAddress',
-      name: 'Marseille',
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 43.2562,
+      longitude: 5.3990,
     },
-    // aggregateRating: {
-    //   '@type': 'AggregateRating',
-    //   ratingValue: result.rating,
-    //   reviewCount: result.user_ratings_total,
-    // },
-    // review: [
-    //   reviews.map((review) => (
-    //     {
-    //       '@type': 'Review',
-    //       author: {
-    //         '@type': 'Person',
-    //         name: review.author_name,
-    //       },
-    //       datePublished: new Date(review.time * 1000).toISOString(),
-    //       reviewBody: review.text,
-    //       reviewRating: {
-    //         '@type': 'rating',
-    //         ratingValue: review.rating,
-    //       },
-    //     })),
-    // ],
+    telephone: '+33622068036',
+    email: 'maxime@maximefreelance.fr',
+    url: process.env.NEXT_PUBLIC_URL,
+    founder: {
+      '@type': 'Person',
+      name: 'Maxime Theneau',
+    },
+    areaServed: [
+      {
+        '@type': 'City',
+        name: 'Marseille',
+        sameAs: 'https://fr.wikipedia.org/wiki/Marseille',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Bouches-du-Rhône',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: "Provence-Alpes-Côte d'Azur",
+      },
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Services de développement web',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Création de site web',
+            description: 'Conception et développement de sites web sur-mesure, vitrines et e-commerce',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: "Développement d'applications web",
+            description: 'Applications web performantes avec React.js, Next.js et Symfony',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Référencement naturel (SEO)',
+            description: 'Optimisation SEO technique et éditoriale pour améliorer la visibilité',
+          },
+        },
+      ],
+    },
+    knowsAbout: [
+      'React.js', 'Next.js', 'Symfony', 'PHP',
+      'SEO', 'Développement Web', 'Applications Web',
+      'E-commerce', 'Performance Web',
+    ],
     priceRange: '€€',
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
@@ -65,8 +103,6 @@ export default function LocalBusinessJsonLd({ descriptionMeta }) {
       opens: '09:00',
       closes: '18:00',
     },
-    serviceType: 'Conception et développement de sites Web',
-
   };
 
   return (

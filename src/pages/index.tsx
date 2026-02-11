@@ -14,7 +14,12 @@ import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import LocalBusinessJsonLd from '../components/jsonLd/LocalBusinessJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
+import WebSiteJsonLd from '../components/jsonLd/WebSiteJsonLd';
 // import ProductsList from '../components/cards/ProductsList';
+
+const CalendarBooking = dynamic(() => import('@/components/ui/CalendarBooking'), {
+  ssr: false,
+});
 
 export async function getStaticProps() {
   const accueil = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/home`);
@@ -37,10 +42,6 @@ export default function Home({
   faq,
   skills,
 }:any) {
-  const CalendarBooking = dynamic(() => import('@/components/ui/CalendarBooking'), {
-    ssr: false,
-  });
-
   return (
     <>
       <HeadComponents
@@ -53,6 +54,7 @@ export default function Home({
         imgHeight={accueil.imgHeight}
       />
       <Person />
+      <WebSiteJsonLd />
       <LogoJsonLd
         name="Theneau Maxime"
         url={process.env.NEXT_PUBLIC_URL}
@@ -137,13 +139,14 @@ export default function Home({
         <div className="my-4 bg-primary py-8 px-4 text-center">
           <ScrollReveal variant="fade-up">
             <h2 className="">
-              Maxime Freelance - Développeur web freelance à Marseille
+              Développeur Web Freelance à Marseille - Expertise React.js, Next.js & Symfony
             </h2>
             <p>
-              Spécialisé en Front-End (React.js, Next.js) et Back-End (Symfony, PHP),
-              j'accompagne les entreprises dans la création de sites modernes et
-              performants. Basé à Marseille, je propose des solutions sur-mesure,
-              optimisées pour le SEO et la performance.
+              Développeur web freelance basé à Marseille, je conçois des sites internet,
+              applications web et e-commerce sur-mesure. Expert en Front-End (React.js,
+              Next.js) et Back-End (Symfony, PHP), j'accompagne les entreprises, startups
+              et indépendants dans leur transformation digitale. Chaque projet est optimisé
+              pour le référencement naturel (SEO), la performance et l'accessibilité.
             </p>
           </ScrollReveal>
           <ScrollingTextWrapper accueil={skills} />
@@ -162,7 +165,7 @@ export default function Home({
         {/* --Création--*/}
         <div className="p-4 text-center bg-secondary">
           <ScrollReveal variant="fade-up">
-            <h2>Réalisations</h2>
+            <h2>Mes Réalisations - Sites Web & Applications</h2>
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={150}>
             <Cards cards={creation} />
@@ -199,7 +202,7 @@ export default function Home({
         {/* --FAQ--*/}
         <div className="m-4 bg-secondary p-4 rounded ">
           <ScrollReveal variant="fade-up">
-            <h2>Foire aux Question</h2>
+            <h2>Foire aux Questions</h2>
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={100}>
             <Faq faq={faq} />
@@ -213,7 +216,7 @@ export default function Home({
         </div>
         <div className="m-4 ">
           <ScrollReveal variant="fade-up">
-            <h2>Demande de devis pour la créations de devis en ligne </h2>
+            <h2>Demandez votre Devis Gratuit pour la Création de votre Site Web </h2>
             <p>
               Si vous souhaitez obtenir un devis personnalisé pour la création de votre site web,
               n&apos;hésitez pas à nous contacter.
