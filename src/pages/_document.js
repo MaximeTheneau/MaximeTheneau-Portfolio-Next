@@ -10,7 +10,7 @@ export default function Document() {
           httpEquiv="Content-Security-Policy"
           content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr data:; font-src 'self'; connect-src 'self' https://back.theneaumaxime.fr; base-uri 'self'; form-action 'self' https://back.theneaumaxime.fr;"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <meta name="theme-color" content="#def0c2" />
         <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_WEBMASTER} />
         <meta name="ahrefs-site-verification" content="80e1e4c68c5760798a0c167d6db84e79e9b343301fd1eb054f1da5fc8529e778" />

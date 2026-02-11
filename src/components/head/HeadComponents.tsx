@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 declare module 'react' {
   interface LinkHTMLAttributes<T> extends React.HTMLAttributes<T> {
-    fetchpriority?: string;
+    fetchPriority?: string;
   }
 }
 export default function HeadComponents({
@@ -62,7 +62,7 @@ export default function HeadComponents({
         as="image"
         imageSrcSet={srcset}
         imageSizes="100vw"
-        fetchpriority="high"
+        fetchPriority="high"
       />
     </Head>
   );
