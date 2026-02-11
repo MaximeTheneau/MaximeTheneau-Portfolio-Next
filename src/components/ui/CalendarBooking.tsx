@@ -65,6 +65,7 @@ function CalendarBooking() {
       <button
         onClick={handleOpen}
         type="button"
+        aria-label="Prendre rendez-vous"
         className="fixed bottom-6 right-6 z-40 flex items-center justify-center w-10 h-10 rounded-full bg-black text-white shadow-lg shadow-black/20 hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation"
       >
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

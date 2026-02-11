@@ -203,7 +203,7 @@ export default function ContactForm() {
               />
             </label>
           </div>
-          <div>
+          <div className='m-auto'>
             <button
               type="submit"
             >

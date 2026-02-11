@@ -41,38 +41,18 @@ export default function SummaryBar({
   };
 
   return (
-    <div className="sticky bottom-0 left-0 right-0 z-10 bg-white/95 backdrop-blur-md border-t border-gray-100 px-4 py-3 -mx-4 sm:-mx-6 mt-6 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2 flex-wrap flex-1 min-w-0">
+    <div className=" ">
+      <div className="flex justify-center ">
           {currentStep > 1 && (
             <button
               type="button"
               onClick={onBack}
-              className="flex items-center justify-center w-9 h-9 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 transition-all duration-200 touch-manipulation shrink-0"
+              className="btn"
               aria-label="Retour"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
+              Retour
             </button>
           )}
-          {selectedDate && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 rounded-full text-sm font-medium text-gray-700 border border-gray-100">
-              <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span className="capitalize">{formatDate(selectedDate)}</span>
-            </span>
-          )}
-          {selectedTime && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 rounded-full text-sm font-medium text-gray-700 border border-gray-100">
-              <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              {formatTime(selectedTime)}
-            </span>
-          )}
-        </div>
 
         <button
           type={currentStep === 3 ? 'submit' : 'button'}

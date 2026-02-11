@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState, useMemo } from 'react';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import FormMiddleware from '../../middleware/formMiddleware';
 
 import CalendarPicker from './CalendarPicker';
@@ -59,39 +59,6 @@ const incrementBookingCount = (): void => {
   }));
 };
 
-function Confetti() {
-  const confettiPieces = useMemo(() => {
-    const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8'];
-    return Array.from({ length: 50 }, (_, i) => ({
-      id: i,
-      left: Math.random() * 100,
-      delay: Math.random() * 2,
-      duration: 2 + Math.random() * 2,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      size: 8 + Math.random() * 8,
-    }));
-  }, []);
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-50">
-      {confettiPieces.map((piece) => (
-        <div
-          key={piece.id}
-          className="absolute animate-confetti"
-          style={{
-            left: `${piece.left}%`,
-            animationDelay: `${piece.delay}s`,
-            animationDuration: `${piece.duration}s`,
-            width: piece.size,
-            height: piece.size,
-            backgroundColor: piece.color,
-            borderRadius: Math.random() > 0.5 ? '50%' : '2px',
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 function StepperHeader({ currentStep, completedSteps }: { currentStep: number; completedSteps: number[] }) {
   const steps = [
     { number: 1, label: 'Date' },
@@ -109,7 +76,7 @@ function StepperHeader({ currentStep, completedSteps }: { currentStep: number; c
             <span
               key={step.number}
               className={`text-sm sm:text-base font-semibold transition-colors duration-300 ${
-                isActive ? 'text-primary' : 'text-gray-400'
+                isActive ? 'text-black' : 'text-gray-400'
               }`}
             >
               {step.label}
@@ -124,7 +91,6 @@ function StepperHeader({ currentStep, completedSteps }: { currentStep: number; c
 export default function BookingForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
 
   const [state, setState] = useState<BookingFormState>({
     form: {
@@ -248,7 +214,6 @@ export default function BookingForm() {
 
   const handleResponse200 = () => {
     incrementBookingCount();
-    setShowConfetti(true);
     setIsSubmitting(false);
     setState((prev) => ({
       ...prev,
@@ -263,7 +228,6 @@ export default function BookingForm() {
       },
       availableSlots: [],
     }));
-    setTimeout(() => setShowConfetti(false), 4000);
   };
 
   const handleResponseError = (errorMessage: string) => {
@@ -363,9 +327,7 @@ export default function BookingForm() {
 
   if (state.isSubmitted) {
     return (
-      <>
-        {showConfetti && <Confetti />}
-        <div className="text-center py-4">
+      <div className="text-center py-4">
           <div className="relative w-28 h-28 mx-auto mb-6">
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 animate-pulse" />
             <div className="absolute inset-4 bg-gradient-to-br from-primary via-secondary to-primary rounded-2xl shadow-lg flex items-center justify-center">
@@ -409,7 +371,6 @@ export default function BookingForm() {
             Vérifiez votre boîte mail (et spam)
           </p>
         </div>
-      </>
     );
   }
 

@@ -4,8 +4,8 @@ export default function ArticleJsonLd({ post, urlPost }) {
   const jsonLdData = {
     '@context': 'https://schema.org/',
     '@type': 'BlogPosting',
-    '@id': `${process.env.NEXT_PUBLIC_URL}/blog`,
-    mainEntityOfPage: `${process.env.NEXT_PUBLIC_URL}/blog`,
+    '@id': `${process.env.NEXT_PUBLIC_URL}${urlPost}`,
+    mainEntityOfPage: `${process.env.NEXT_PUBLIC_URL}${urlPost}`,
     name: post.title,
     headline: post.title,
     description: post.metaDescription,
@@ -47,17 +47,15 @@ export default function ArticleJsonLd({ post, urlPost }) {
       },
     },
     commentCount: post.comments.length,
-    comment: [
-      post.comments.map((comment) => ({
-        '@type': 'Comment',
-        author: {
-          '@type': 'Person',
-          name: comment.User,
-        },
-        description: comment.comment,
-        dateCreated: comment.createdAt,
-      })),
-    ],
+    comment: post.comments.map((comment) => ({
+      '@type': 'Comment',
+      author: {
+        '@type': 'Person',
+        name: comment.User,
+      },
+      description: comment.comment,
+      dateCreated: comment.createdAt,
+    })),
   };
 
   return (

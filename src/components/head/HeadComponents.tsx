@@ -13,6 +13,7 @@ export default function HeadComponents({
   srcset,
   imgWidth,
   imgHeight,
+  ogType = 'website',
 } : {
   title: string,
   description: string,
@@ -21,16 +22,17 @@ export default function HeadComponents({
   srcset: string,
   imgWidth?: number | string,
   imgHeight?: number | string,
+  ogType?: string,
 }) {
   return (
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={`${process.env.NEXT_PUBLIC_URL}${url}`} />
-      <meta property="og:site_name" content={process.env.NEXT_PUBLIC_URL} />
+      <meta property="og:site_name" content="Maxime Freelance" />
       <meta property="og:image" content={`${image}?format=jpeg`} />
       {imgWidth && <meta property="og:image:width" content={String(imgWidth)} />}
       {imgHeight && <meta property="og:image:height" content={String(imgHeight)} />}

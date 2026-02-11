@@ -17,19 +17,21 @@ export default function Navbar() {
 
   return (
     <nav className={`${toggleNav ? 'bg-secondary' : 'bg-whiteOpacity'} w-full z-30 fixed h-auto font-bold text-left`}>
-      <div
-        aria-hidden="true"
+      <button
+        type="button"
+        aria-label="Menu de navigation"
+        aria-expanded={toggleNav}
         className="p-2 cursor-pointer"
         onClick={() => {
           setToggleNav(!toggleNav);
         }}
       >
         {toggleNav ? (
-          <i className="icon-x" />
+          <i className="icon-x" aria-hidden="true" />
         ) : (
-          <i className="icon-navbar" />
+          <i className="icon-navbar" aria-hidden="true" />
         )}
-      </div>
+      </button>
       <div
         className={`${
           toggleNav
