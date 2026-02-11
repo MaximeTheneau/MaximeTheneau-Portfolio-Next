@@ -120,15 +120,14 @@ export default function Home({
         >
           <div className="p-4 text-center mx-auto max-w-[1080px]" dangerouslySetInnerHTML={{ __html: accueil.contents }} />
           <div className="flex flex-wrap justify-center gap-4 mt-6">
-            <a href="#calendar">
-              <button type="button" className="btn btn-primary">
-                Prendre rendez-vous
-              </button>
+            <a href="#calendar" className="btn btn-primary flex">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Prendre rendez-vous
             </a>
-            <a href="/devis-en-ligne">
-              <button type="button" className="btn btn-secondary">
-                Devis gratuit
-              </button>
+            <a href="/devis-en-ligne" className="btn btn-secondary">
+              Devis gratuit
             </a>
           </div>
         </article>
@@ -150,11 +149,9 @@ export default function Home({
           <ScrollingTextWrapper accueil={skills} />
           <Link
             href="/A-propos"
-
+            className="btn"
           >
-            <button type="button" className="btn">
-              Tout savoir sur mon parcours et mes compétences
-            </button>
+            Tout savoir sur mon parcours et mes compétences
           </Link>
         </div>
 
@@ -225,13 +222,9 @@ export default function Home({
           </ScrollReveal>
           <Link
             href="/devis-en-ligne"
+            className="btn"
           >
-            <button type="button" className="btn">
-              Demander un devis gratuit
-              <span className="text-center block text-xs ">
-                ✓ Devis gratuit ✓ Réponse sous 24h
-              </span>
-            </button>
+            Demander un devis gratuit
           </Link>
         </div>
       </section>

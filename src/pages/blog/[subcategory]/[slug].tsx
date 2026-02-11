@@ -72,6 +72,7 @@ export default function Slug({ post, latestPosts, relatedPosts }: SlugProps) {
         url={post.url}
         imgWidth={post.imgWidth}
         imgHeight={post.imgHeight}
+        ogType="article"
       />
       <ImageObjectJsonLd post={post} />
       <ArticleJsonLd post={post} urlPost={post.url} />

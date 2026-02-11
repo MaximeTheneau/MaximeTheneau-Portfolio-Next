@@ -9,12 +9,20 @@ export default function BreadcrumbJsonLd({ paragraphPosts, urlPost }) {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
-            itemListElement: paragraphPosts.map((paragraphArticle, index) => ({
-              '@type': 'ListItem',
-              position: index + 1,
-              name: paragraphArticle.subtitle,
-              item: `${urlPost}#${paragraphArticle.slug}`,
-            })),
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Accueil',
+                item: process.env.NEXT_PUBLIC_URL,
+              },
+              ...paragraphPosts.map((paragraphArticle, index) => ({
+                '@type': 'ListItem',
+                position: index + 2,
+                name: paragraphArticle.subtitle,
+                item: `${urlPost}#${paragraphArticle.slug}`,
+              })),
+            ],
           }),
         }}
       />
