@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  sassOptions: {
-    silenceDeprecations: ['legacy-js-api'],
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
+  swcMinify: true,
+
 };
 
 module.exports = nextConfig;
