@@ -33,7 +33,7 @@ export default function Page({ post }: PostProps) {
       <section className="p-4">
         <figure>
           <Image
-            src={post.imgPost}
+            src={`${post.imgPost}?format=webp&quality=70`}
             alt={post.altImg || post.title}
             width={post.imgWidth}
             height={post.imgHeight}

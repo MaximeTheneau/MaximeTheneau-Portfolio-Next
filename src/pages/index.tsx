@@ -72,7 +72,7 @@ export default function Home({
               <div className="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden">
                 <Image
                   className="object-cover object-center w-full h-full transition-transform duration-700 group-hover:scale-105"
-                  src={accueil.imgPost}
+                  src={accueil.imgPost?.startsWith('http') ? accueil.imgPost : accueil.srcset?.split(',').pop()?.trim().split(' ')[0] || ''}
                   alt={accueil.altImg || accueil.title}
                   width={accueil.imgWidth}
                   height={accueil.imgHeight}

@@ -82,7 +82,7 @@ export default function Slug({ post, latestPosts, relatedPosts }: SlugProps) {
         <article className="w-full md:w-3/4 px-4">
           <figure>
             <Image
-              src={post.imgPost}
+              src={`${post.imgPost}?format=webp&quality=70`}
               alt={post.altImg || post.title}
               width={post.imgWidth}
               height={post.imgHeight}

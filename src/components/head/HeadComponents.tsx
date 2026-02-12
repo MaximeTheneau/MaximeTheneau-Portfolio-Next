@@ -24,6 +24,10 @@ export default function HeadComponents({
   imgHeight?: number | string,
   ogType?: string,
 }) {
+  // Si imgPost est un slug (ex: "Accueil"), extraire l'URL depuis srcset
+  const imageUrl = image?.startsWith('http')
+    ? image
+    : srcset?.split(',').pop()?.trim().split(' ')[0] || '';
   return (
     <Head>
       <title>{title}</title>
@@ -33,7 +37,7 @@ export default function HeadComponents({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={`${process.env.NEXT_PUBLIC_URL}${url}`} />
       <meta property="og:site_name" content="Maxime Freelance" />
-      <meta property="og:image" content={`${image}?format=jpeg`} />
+      {imageUrl && <meta property="og:image" content={`${imageUrl}?format=jpeg`} />}
       {imgWidth && <meta property="og:image:width" content={String(imgWidth)} />}
       {imgHeight && <meta property="og:image:height" content={String(imgHeight)} />}
       <meta property="og:image:type" content="image/jpeg" />
@@ -43,7 +47,7 @@ export default function HeadComponents({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${image}?format=jpeg`} />
+      {imageUrl && <meta name="twitter:image" content={`${imageUrl}?format=jpeg`} />}
       <meta name="twitter:url" content={`${process.env.NEXT_PUBLIC_URL}${url}`} />
       <meta name="twitter:site" content="@MTheneau" />
       <link
@@ -51,19 +55,23 @@ export default function HeadComponents({
         href={`${process.env.NEXT_PUBLIC_URL}${url}`}
         key="canonical"
       />
-      <link
-        rel="preload"
-        as="image"
-        href={image}
-        type="image/webp"
-      />
-      <link
-        rel="preload"
-        as="image"
-        imageSrcSet={srcset}
-        imageSizes="100vw"
-        fetchPriority="high"
-      />
+      {imageUrl && (
+        <link
+          rel="preload"
+          as="image"
+          href={imageUrl}
+          type="image/webp"
+        />
+      )}
+      {srcset && imageUrl && (
+        <link
+          rel="preload"
+          as="image"
+          imageSrcSet={srcset}
+          imageSizes="100vw"
+          fetchPriority="high"
+        />
+      )}
     </Head>
   );
 }
