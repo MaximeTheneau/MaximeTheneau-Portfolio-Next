@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "npm run sitemap && next build",
+    "build": "npm run sitemap && next build --webpack",
     "start-cache": "next start -p 3002",
     "start": "node --env-file=.env server.js",
     "pm2": "pm2 start ecosystem.config.js",
