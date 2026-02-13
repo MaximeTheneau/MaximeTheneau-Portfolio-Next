@@ -11,8 +11,10 @@
 # next.js
 /.next/
 /out/
-/public
 /pnpm-lock.yaml
+!/public/robots.txt
+!/public/llms.txt
+
 
 # production
 /build
