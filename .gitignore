@@ -11,6 +11,8 @@
 # next.js
 /.next/
 /out/
+/public
+/pnpm-lock.yaml
 
 # production
 /build
@@ -36,4 +38,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
+# generated files
