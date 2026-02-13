@@ -18,7 +18,7 @@ export default function Image({
       srcSet={srcset || ''}
       loading={priority ? 'eager' : 'lazy'}
       fetchpriority={priority ? 'high' : 'low'}
-      decoding="async"
+      decoding={priority ? 'sync' : 'async'}
       {...props}
     />
   );

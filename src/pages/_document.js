@@ -8,7 +8,7 @@ export default function Document() {
       <Head>
         <meta
           httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr data:; font-src 'self'; frame-src https://www.google.com; connect-src 'self' https://back.theneaumaxime.fr https://www.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self' https://back.theneaumaxime.fr;"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr data:; font-src 'self'; frame-src https://www.google.com; connect-src 'self' https://back.theneaumaxime.fr https://www.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self' https://back.theneaumaxime.fr; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests; trusted-types default nextjs; require-trusted-types-for 'script';"
         />
 
         <meta name="theme-color" content="#def0c2" />
@@ -28,6 +28,19 @@ export default function Document() {
         <meta name="robots" content="max-image-preview:large" />
       </Head>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+if (window.trustedTypes && trustedTypes.createPolicy) {
+  trustedTypes.createPolicy('default', {
+    createHTML: function(s) { return s; },
+    createScript: function(s) { return s; },
+    createScriptURL: function(s) { return s; }
+  });
+}
+`,
+          }}
+        />
         <Main />
         <NextScript />
       </body>

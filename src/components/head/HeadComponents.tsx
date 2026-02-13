@@ -55,20 +55,20 @@ export default function HeadComponents({
         href={`${process.env.NEXT_PUBLIC_URL}${url}`}
         key="canonical"
       />
-      {imageUrl && (
-        <link
-          rel="preload"
-          as="image"
-          href={imageUrl}
-          type="image/webp"
-        />
-      )}
-      {srcset && imageUrl && (
+      {srcset ? (
         <link
           rel="preload"
           as="image"
           imageSrcSet={srcset}
           imageSizes="100vw"
+          fetchPriority="high"
+        />
+      ) : imageUrl && (
+        <link
+          rel="preload"
+          as="image"
+          href={imageUrl}
+          type="image/webp"
           fetchPriority="high"
         />
       )}

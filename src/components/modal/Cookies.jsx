@@ -150,7 +150,7 @@ export default function CookiesModal() {
   return (
     <>
       <Script
-        async
+        strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
       />
       <div className="bottom-0 fixed bg-form z-[90] p-4 w-full shadow-custom ">
