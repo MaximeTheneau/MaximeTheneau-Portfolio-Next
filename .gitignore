@@ -12,8 +12,7 @@
 /.next/
 /out/
 /pnpm-lock.yaml
-!/public/robots.txt
-!/public/llms.txt
+
 
 
 # production

@@ -1,7 +1,7 @@
 require('dotenv').config({ path: '.env.local' });
 const fs = require('fs');
 
-const INDEXNOW_KEY = 'ba5795e7ec18cb46b86c22674548ad1c';
+const INDEXNOW_KEY = process.env.NEXT_PUBLIC_INDEXNOW_KEY
 const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
 const HOST = new URL(process.env.NEXT_PUBLIC_URL).host;
 const URL_FRONT = process.env.NEXT_PUBLIC_URL;
