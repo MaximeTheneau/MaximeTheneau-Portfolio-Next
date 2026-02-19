@@ -228,8 +228,6 @@ export default function BookingForm() {
       },
       availableSlots: [],
     }));
-    // Masquer les confettis après 4 secondes
-    setTimeout(() => setShowConfetti(false), 4000);
   };
 
   const handleResponseError = (errorMessage: string) => {

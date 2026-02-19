@@ -1,15 +1,21 @@
 services:
-  portfolio:
+  web:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: portfolio-nextjs
+      dockerfile: ./.docker/dev/Dockerfile
+    restart: unless-stopped
+    # Montage du secret dans le conteneur au runtime
+    secrets:
+      - source: my_secret
+        target: /app/.env.local # Le fichier apparaîtra ici dans le conteneur
+    volumes:
+      - ".:/app"
+      - "/app/node_modules"
     ports:
       - "3000:3000"
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
+    command: ["npm", "run", "dev"]
+
+# Définition globale du secret (doit être au même niveau que 'services')
+secrets:
+  my_secret:
+    file: ./.env.local
