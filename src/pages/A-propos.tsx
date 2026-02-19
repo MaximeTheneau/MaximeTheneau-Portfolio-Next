@@ -33,7 +33,7 @@ export default function APropos({ post }: PostProps) {
       />
       <section className="p-4">
         <Image
-          src={post.imgPost}
+          src={`${post.imgPost}?format=webp&quality=70`}
           alt={post.altImg || post.title}
           width={post.imgWidth}
           height={post.imgHeight}

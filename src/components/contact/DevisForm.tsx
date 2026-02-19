@@ -519,7 +519,7 @@ export default function DevisForm() {
         </div>
         <div className="bg-secondary p-4 my-4 rounded w-full">
           <label htmlFor="image">
-            Ajouter une image
+              Ajouter une image
             <input
               type="file"
               id="image"
@@ -551,7 +551,7 @@ export default function DevisForm() {
             </span>
           </label>
         </div>
-        <div className="text-center mx-auto bg-primary px-8 py-2 rounded">
+        <div className='m-auto'>
           <button
             type="submit"
           >

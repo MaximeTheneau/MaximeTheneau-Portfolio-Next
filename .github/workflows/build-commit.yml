@@ -1,25 +1,34 @@
 name: Build Next.js Application
 
 on:
-  repository_dispatch:
-    types: [trigger-nextjs-build]
   push:
     branches:
-      - main  
+      - main
 
 jobs:
   build:
-    name: Build
+    name: Build & Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
+    - name: Deploy via SSH
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
+        script_stop: true
         script: |
           cd /var/www/html/MaximeTheneau-Portfolio-Next
+
+          echo "=== Git Pull ==="
           git stash
-          git pull
+          git pull origin main
+          git stash pop || true
+
+          echo "=== Install dependencies ==="
+          pnpm install --frozen-lockfile
+
+          echo "=== Build ==="
           pnpm run build
+
+          echo "=== Done ==="

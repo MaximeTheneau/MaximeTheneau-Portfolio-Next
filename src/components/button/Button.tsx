@@ -7,29 +7,26 @@ interface ButtonProps {
 }
 
 export default function Button({ text, icon, link }: ButtonProps) {
+  if (link) {
+    return (
+      <Link href={link} className="btn btn-secondary flex w-full justify-between">
+        {text}
+        {icon && (
+          <i className={`${icon} pl-1`} aria-hidden="true" />
+        )}
+      </Link>
+    );
+  }
+
   return (
     <button
       type="button"
-      className="text-base  sm:w-ful bg-secondary p-2 rounded   hover:scale-90  hover:text-white p-4 m-4"
-      role="link"
+      className="btn btn-secondary"
     >
-      {link && (
-        <Link href={link} className="flex w-full justify-between">
-          {text}
-          {icon && (
-          <i className={`${icon} pl-1`} />
-          )}
-        </Link>
+      {text}
+      {icon && (
+        <i className={`${icon} pl-1`} aria-hidden="true" />
       )}
-      {!link && (
-        <>
-          {text}
-          {icon && (
-          <i className={`${icon} pl-1`} />
-          )}
-        </>
-      )}
-
     </button>
   );
 }

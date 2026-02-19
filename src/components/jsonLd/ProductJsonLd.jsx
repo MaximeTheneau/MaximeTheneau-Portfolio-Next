@@ -18,7 +18,7 @@ export default function ProductJsonLd({ product }) {
       availability: 'https://schema.org/InStock',
       price: product.discountedPrice,
       priceCurrency: 'EUR',
-      priceValidUntil: '2024-12-31',
+      priceValidUntil: '2026-12-31',
       priceSpecification: [
         {
           '@type': 'UnitPriceSpecification',

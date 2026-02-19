@@ -8,12 +8,12 @@
 
 :root{
   --white-color: #fff;
-  --primary-color: #def0c2;
-  --secondary-color: #f5f6f3;
-  --secondary-light-color: #f6f9fe;
-  --black-color: #212229;
-  --black-opacity-color: #17181dc2;
-  --form-color: #f3f4f6;
+  --primary-color: #f0d9a0;
+  --secondary-color: #fdfdfd;
+  --secondary-light-color: #f7f7f5;
+  --black-color: #0a0a0a;
+  --black-opacity-color: #0a0a0ac2;
+  --form-color: #faf8f4;
 }
 
 body
@@ -60,10 +60,7 @@ nav a
 {
   text-decoration: none;
 }
-button:disabled {
-    background-color: #f3f4f6;
-    color: #17181dc2;
-}
+
 button
 footer{
   a {
@@ -225,17 +222,61 @@ a{
   text-decoration: underline;
 }
 
-a .bg-primary,
-a .bg-secondary,
-.bg-primary a,
-.bg-secondary a,
-button.bg-primary
-{
-  transition: all 0.3s ease;
-  &:hover {
-    transform: scale(1.05); 
-    color: var(--primary-color);
+button .btn,
+button[type="submit"],
+.btn {
+  width: auto;
+  text-align: center;
+  margin: 1rem auto;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  border-radius: 980px;
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  color: var(--black-color);
+  background: transparent;
+  border: 1.5px solid var(--black-color);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+  & svg{
+    padding-right: 0.5rem;
   }
+  & span {
+    z-index: -10;
+  }
+  &:hover {
+    background: var(--black-opacity-color);
+    border-color: var(--black-opacity-color);
+    color: var(--white-color);
+  }
+  // Icon animation
+  &:hover i, 
+  &:hover svg
+  {
+    transform: rotate(30deg);
+    transition: transform 0.2s ease-in-out;   
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--form-color);
+    color: var(--black-opacity-color);
+  }
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--black-color);
 }
 
 
@@ -243,6 +284,54 @@ button.bg-primary
   outline: 3px solid var(--secondary-light-color);/* Changez la couleur du contour (exemple : bleu clair) */
   outline-offset: 2px; /* Ajoute un léger espacement autour de l'élément */
   box-shadow: 0 0 0 .2rem var(--primary-color); /* Ombre autour du focus pour plus de visibilité */
+}
+
+// Liquid Glass Effect — Soft warm
+.liquid-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(240, 217, 160, 0.25) 0%,
+    rgba(253, 253, 253, 0.4) 40%,
+    rgba(240, 217, 160, 0.15) 60%,
+    rgba(253, 253, 253, 0.3) 100%
+  );
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  border: 1px solid rgba(240, 217, 160, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(240, 217, 160, 0.08);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 30% 20%,
+      rgba(240, 217, 160, 0.15) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
 }
 
 .list {

@@ -1,12 +1,9 @@
-# *
+# Tous les robots
 User-agent: *
 Allow: /
-
 Disallow: /api/
 Disallow: /verify_email
 Disallow: /_next/
-
-# Bloquer les chemins de code source et exemples
 Disallow: /blog/lib/
 Disallow: /blog/components/
 Disallow: /blog/utils/
@@ -14,6 +11,28 @@ Disallow: /blog/[
 Disallow: /blog/*/lib/
 Disallow: /blog/*/components/
 Disallow: /blog/*/utils/
+
+# Bots IA - Autorisés explicitement
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
 
 # Sitemaps
 Sitemap: https://maximefreelance.fr/sitemap_index.xml

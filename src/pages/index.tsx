@@ -14,7 +14,12 @@ import HeadComponents from '../components/head/HeadComponents';
 import LogoJsonLd from '../components/jsonLd/LogoJsonLd';
 import LocalBusinessJsonLd from '../components/jsonLd/LocalBusinessJsonLd';
 import Person from '../components/jsonLd/PersonJsonLd';
+import WebSiteJsonLd from '../components/jsonLd/WebSiteJsonLd';
 // import ProductsList from '../components/cards/ProductsList';
+
+const CalendarBooking = dynamic(() => import('@/components/ui/CalendarBooking'), {
+  ssr: false,
+});
 
 export async function getStaticProps() {
   const accueil = await fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/home`);
@@ -37,10 +42,6 @@ export default function Home({
   faq,
   skills,
 }:any) {
-  const CalendarBooking = dynamic(() => import('@/components/ui/CalendarBooking'), {
-    ssr: false,
-  });
-
   return (
     <>
       <HeadComponents
@@ -53,6 +54,7 @@ export default function Home({
         imgHeight={accueil.imgHeight}
       />
       <Person />
+      <WebSiteJsonLd />
       <LogoJsonLd
         name="Theneau Maxime"
         url={process.env.NEXT_PUBLIC_URL}
@@ -70,7 +72,7 @@ export default function Home({
               <div className="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden">
                 <Image
                   className="object-cover object-center w-full h-full transition-transform duration-700 group-hover:scale-105"
-                  src={accueil.imgPost}
+                  src={accueil.imgPost?.startsWith('http') ? accueil.imgPost : accueil.srcset?.split(',').pop()?.trim().split(' ')[0] || ''}
                   alt={accueil.altImg || accueil.title}
                   width={accueil.imgWidth}
                   height={accueil.imgHeight}
@@ -85,7 +87,7 @@ export default function Home({
               <div className="absolute inset-x-0 bottom-0 ">
                 <div className="relative">
                   {/* Badge décoratif */}
-                  <div className="inline-flex items-center gap-2 px-3 mb-4  bg-white/10 backdrop-blur-md border border-white/20">
+                  <div className="inline-flex items-center gap-2 px-3 mb-4  bg-white/10 backdrop-blur-md">
                     {/* Titre principal */}
                     <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
                       {accueil.title}
@@ -108,9 +110,6 @@ export default function Home({
                 <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-secondary/80 backdrop-blur-sm animate-bounce" style={{ animationDelay: '0.2s' }} />
                 <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white/60 backdrop-blur-sm animate-bounce" style={{ animationDelay: '0.4s' }} />
               </div>
-
-              {/* Bordure lumineuse subtile */}
-              <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 pointer-events-none" />
             </div>
           </div>
 
@@ -118,36 +117,44 @@ export default function Home({
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/20 rounded-full blur-3xl pointer-events-none" />
         </div>
-        <ScrollReveal variant="fade-up">
-          <article
-            className="p-4 text-center  "
-          >
-            <div className="p-4 text-center mx-auto max-w-[1080px]" dangerouslySetInnerHTML={{ __html: accueil.contents }} />
-          </article>
-        </ScrollReveal>
+        <article
+          className="p-4 text-center  "
+        >
+          <div className="p-4 text-center mx-auto max-w-[1080px]" dangerouslySetInnerHTML={{ __html: accueil.contents }} />
+          <div className="flex flex-wrap justify-center gap-4 mt-6">
+            <a href="#calendar" className="btn btn-primary flex">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Prendre rendez-vous
+            </a>
+            <a href="/devis-en-ligne" className="btn btn-secondary">
+              Devis gratuit
+            </a>
+          </div>
+        </article>
         <CalendarBooking />
 
         {/* --Skills--*/}
         <div className="my-4 bg-primary py-8 px-4 text-center">
           <ScrollReveal variant="fade-up">
             <h2 className="">
-              Maxime Freelance - Développeur web freelance à Marseille
+              Développeur Web Freelance à Marseille - Expertise React.js, Next.js & Symfony
             </h2>
             <p>
-              Spécialisé en Front-End (React.js, Next.js) et Back-End (Symfony, PHP),
-              j'accompagne les entreprises dans la création de sites modernes et
-              performants. Basé à Marseille, je propose des solutions sur-mesure,
-              optimisées pour le SEO et la performance.
+              Développeur web freelance basé à Marseille, je conçois des sites internet,
+              applications web et e-commerce sur-mesure. Expert en Front-End (React.js,
+              Next.js) et Back-End (Symfony, PHP), j'accompagne les entreprises, startups
+              et indépendants dans leur transformation digitale. Chaque projet est optimisé
+              pour le référencement naturel (SEO), la performance et l'accessibilité.
             </p>
           </ScrollReveal>
           <ScrollingTextWrapper accueil={skills} />
           <Link
             href="/A-propos"
-
+            className="btn"
           >
-            <button type="button" className=" text-black left inline-block md:w-1/2 bg-secondary  my-4 px-8 py-4 rounded-lg font-bold">
-              Tout savoir sur mon parcours et mes compétences
-            </button>
+            Tout savoir sur mon parcours et mes compétences
           </Link>
         </div>
 
@@ -158,14 +165,14 @@ export default function Home({
         {/* --Création--*/}
         <div className="p-4 text-center bg-secondary">
           <ScrollReveal variant="fade-up">
-            <h2>Réalisations</h2>
+            <h2>Mes Réalisations - Sites Web & Applications</h2>
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={150}>
             <Cards cards={creation} />
           </ScrollReveal>
           <Link
             href="/Creations"
-            className=" text-black text-center mx-auto block   p-4 md:w-1/2 bg-primary my-4 px-8 py-4 rounded-lg font-bold "
+            className="btn md:w-1/2"
           >
             Découvrez tous mes projets
           </Link>
@@ -195,21 +202,21 @@ export default function Home({
         {/* --FAQ--*/}
         <div className="m-4 bg-secondary p-4 rounded ">
           <ScrollReveal variant="fade-up">
-            <h2>Foire aux Question</h2>
+            <h2>Foire aux Questions</h2>
           </ScrollReveal>
           <ScrollReveal variant="fade-up" delay={100}>
             <Faq faq={faq} />
           </ScrollReveal>
           <Link
             href="/Foire-aux-questions"
-            className=" text-black left mx-auto block bg-primary my-4 px-8 py-4 rounded-lg font-bold hover:text-white"
+            className="btn"
           >
             Découvrez toutes les réponses à vos questions ici
           </Link>
         </div>
         <div className="m-4 ">
           <ScrollReveal variant="fade-up">
-            <h2>Demande de devis pour la créations de devis en ligne </h2>
+            <h2>Demandez votre Devis Gratuit pour la Création de votre Site Web </h2>
             <p>
               Si vous souhaitez obtenir un devis personnalisé pour la création de votre site web,
               n&apos;hésitez pas à nous contacter.
@@ -218,13 +225,9 @@ export default function Home({
           </ScrollReveal>
           <Link
             href="/devis-en-ligne"
+            className="btn"
           >
-            <button type="button" className=" text-black text-center mx-auto block bg-primary my-4 px-8 py-4 rounded-lg font-bold ">
-              Demander un devis gratuit
-              <span className="text-center block text-xs ">
-                ✓ Devis gratuit ✓ Réponse sous 24h
-              </span>
-            </button>
+            Demander un devis gratuit
           </Link>
         </div>
       </section>

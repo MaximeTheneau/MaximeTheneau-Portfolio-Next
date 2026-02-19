@@ -191,7 +191,7 @@ export default function Comments({ posts }) {
       )}
 
       <h3>Postez un commentaire !</h3>
-      <form className="flex flex-col md:w-1/3" onSubmit={(e) => handleSubmit(e)}>
+      <form className="flex flex-col md:w-1/3 mx-auto" onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="user">
           Prénom ou pseudo (obligatoire)
           <input

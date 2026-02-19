@@ -3,21 +3,23 @@ name: Build Next.js Application by Back-End
 on:
   repository_dispatch:
     types: [trigger-back-build]
-  push:
-    branches:
-      - main  
 
 jobs:
   build:
-    name: Build
+    name: Rebuild (Backend trigger)
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
+    - name: Rebuild via SSH
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
+        script_stop: true
         script: |
           cd /var/www/html/MaximeTheneau-Portfolio-Next
+
+          echo "=== Build ==="
           pnpm run build
+
+          echo "=== Done ==="

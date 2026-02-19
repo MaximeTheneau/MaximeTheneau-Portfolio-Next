@@ -11,6 +11,9 @@
 # next.js
 /.next/
 /out/
+/pnpm-lock.yaml
+
+
 
 # production
 /build
@@ -26,7 +29,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
-.env*
+.env.*
 !.env.dist
 
 # vercel
@@ -36,4 +39,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
+# generated files

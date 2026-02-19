@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 declare module 'react' {
   interface LinkHTMLAttributes<T> extends React.HTMLAttributes<T> {
-    fetchpriority?: string;
+    fetchPriority?: string;
   }
 }
 export default function HeadComponents({
@@ -13,6 +13,7 @@ export default function HeadComponents({
   srcset,
   imgWidth,
   imgHeight,
+  ogType = 'website',
 } : {
   title: string,
   description: string,
@@ -21,17 +22,22 @@ export default function HeadComponents({
   srcset: string,
   imgWidth?: number | string,
   imgHeight?: number | string,
+  ogType?: string,
 }) {
+  // Si imgPost est un slug (ex: "Accueil"), extraire l'URL depuis srcset
+  const imageUrl = image?.startsWith('http')
+    ? image
+    : srcset?.split(',').pop()?.trim().split(' ')[0] || '';
   return (
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={`${process.env.NEXT_PUBLIC_URL}${url}`} />
-      <meta property="og:site_name" content={process.env.NEXT_PUBLIC_URL} />
-      <meta property="og:image" content={`${image}?format=jpeg`} />
+      <meta property="og:site_name" content="Maxime Freelance" />
+      {imageUrl && <meta property="og:image" content={`${imageUrl}?format=jpeg`} />}
       {imgWidth && <meta property="og:image:width" content={String(imgWidth)} />}
       {imgHeight && <meta property="og:image:height" content={String(imgHeight)} />}
       <meta property="og:image:type" content="image/jpeg" />
@@ -41,7 +47,7 @@ export default function HeadComponents({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${image}?format=jpeg`} />
+      {imageUrl && <meta name="twitter:image" content={`${imageUrl}?format=jpeg`} />}
       <meta name="twitter:url" content={`${process.env.NEXT_PUBLIC_URL}${url}`} />
       <meta name="twitter:site" content="@MTheneau" />
       <link
@@ -49,19 +55,23 @@ export default function HeadComponents({
         href={`${process.env.NEXT_PUBLIC_URL}${url}`}
         key="canonical"
       />
-      <link
-        rel="preload"
-        as="image"
-        href={image}
-        type="image/webp"
-      />
-      <link
-        rel="preload"
-        as="image"
-        imageSrcSet={srcset}
-        imageSizes="100vw"
-        fetchpriority="high"
-      />
+      {srcset ? (
+        <link
+          rel="preload"
+          as="image"
+          imageSrcSet={srcset}
+          imageSizes="100vw"
+          fetchPriority="high"
+        />
+      ) : imageUrl && (
+        <link
+          rel="preload"
+          as="image"
+          href={imageUrl}
+          type="image/webp"
+          fetchPriority="high"
+        />
+      )}
     </Head>
   );
 }

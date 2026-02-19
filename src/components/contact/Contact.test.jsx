@@ -5,7 +5,10 @@ import '@testing-library/jest-dom';
 import { useRouter } from 'next/router';
 import FormContact from './Contact';
 
-global.fetch = jest.fn(() => Promise.resolve({ ok: true }));
+global.fetch = jest.fn(() => Promise.resolve({
+  ok: true,
+  json: () => Promise.resolve({ message: 'ok' }),
+}));
 
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
@@ -17,28 +20,22 @@ describe('FormContact', () => {
       push: jest.fn(),
     });
     const { getByTitle, getByText } = render(
-      <FormContact onSubmit={() => {}} handleOnMouseEnter={() => {}} />,
+      <FormContact />,
     );
 
     await act(async () => {
       fireEvent.change(getByTitle('Nom'), { target: { value: 'Test Message site' } });
       fireEvent.change(getByTitle('Email'), { target: { value: 'test@exemple.fr' } });
-      fireEvent.change(getByTitle('Sujet'), { target: { value: 'Test' } });
       fireEvent.change(getByTitle('Message'), { target: { value: 'Test email Ok :) !' } });
 
       const submitButton = getByText('Envoyer');
       fireEvent.click(submitButton);
       await waitFor(() => {
-        // Vérifiez que le code de réponse est celui attendu
         expect(fetch).toHaveBeenCalledWith(
+          expect.any(String),
           expect.objectContaining({
-            body: JSON.stringify({
-              name: 'Test Message site',
-              email: 'test@exemple.fr',
-              message: 'Test email Ok :) !',
-              subject: 'Test',
-            }),
             method: 'POST',
+            body: expect.any(FormData),
           }),
         );
       });

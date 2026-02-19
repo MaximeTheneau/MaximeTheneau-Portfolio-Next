@@ -12,7 +12,7 @@ export default function Custom404() {
         <p className="text-xl text-gray-700">Oups, la page que vous recherchez est inaccessible.</p>
         <button
           type="button"
-          className="px-6 py-3 mt-4 text-white bg-blue-500 rounded-lg hover:bg-blue-400"
+          className="btn"
         >
           <Link href="/" className="text-white">
             Page d&apos;accueil
