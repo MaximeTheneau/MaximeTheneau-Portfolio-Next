@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const urlApi = process.env.NEXT_PUBLIC_API_URL;
 const urlFront = process.env.NEXT_PUBLIC_URL;
+const urlAnnuaireApi = process.env.ANNUAIRE_API_URL;
 
 const generateSitemap = async () => {
   const fetchJson = async (url) => {
@@ -14,7 +15,7 @@ const generateSitemap = async () => {
     const sitemapXml = pages
       .map((page) => `<url>
           <loc>${urlFront}${page.url}</loc>
-          <lastmod>${page.updatedAt ? page.updatedAt : page.createdAt}</lastmod>
+          <lastmod>${page.updatedAt || page.createdAt}</lastmod>
           <changefreq>daily</changefreq>
         </url>`)
       .join('');
@@ -27,16 +28,38 @@ const generateSitemap = async () => {
     fs.writeFileSync('./public/sitemap/sitemap_all_links.xml', sitemapIndexXml);
   };
 
+  const fetchAnnuairePages = async () => {
+    const pages = [];
+    try {
+      const index = await fetchJson(`${urlAnnuaireApi}annuaire`);
+      for (const dept of index.departments) {
+        const today = new Date().toISOString();
+        pages.push({ url: `/freelance/${dept.slug}`, updatedAt: dept.updatedAt || dept.createdAt || today });
+        const deptData = await fetchJson(`${urlAnnuaireApi}annuaire/${dept.slug}`);
+        for (const city of deptData.cities) {
+          pages.push({ url: `/freelance/${dept.slug}/${city.slug}`, updatedAt: city.updatedAt || city.createdAt || today });
+          const cityData = await fetchJson(`${urlAnnuaireApi}annuaire/${dept.slug}/${city.slug}`);
+          for (const company of cityData.companies) {
+            pages.push({ url: `/freelance/${dept.slug}/${city.slug}/${company.slug}`, updatedAt: company.updatedAt || company.createdAt || today });
+          }
+        }
+      }
+    } catch (err) {
+      console.warn(`Annuaire API unavailable, skipping annuaire pages: ${err.message}`);
+    }
+    return pages;
+  };
+
   // Fetch data from API
   const responsePages = await fetchJson(`${urlApi}posts/sitemap`);
+  const annuairePages = await fetchAnnuairePages();
 
-  generateXml(responsePages, urlFront);
+  generateXml([...responsePages, ...annuairePages]);
 
-  // Generate sitemap index (if needed)
-  // ...
-  const totalNumPages = responsePages.length;
+  const totalNumPages = responsePages.length + annuairePages.length;
   console.log(`Total number of pages in the sitemap: ${totalNumPages}`);
-
+  console.log(`  - Blog/posts: ${responsePages.length}`);
+  console.log(`  - Annuaire: ${annuairePages.length}`);
   console.log('Sitemap generated successfully!');
 };
 

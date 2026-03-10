@@ -17,6 +17,7 @@ export type CompanyFormType = {
   siret: string
   phone: string
   category_ids: string[]
+  intervention_dept_ids: string[]
   place_id: string
   formatted_address: string
   city_name: string
@@ -37,9 +38,11 @@ export type CompanyType = {
   description: string | null
   siret: string
   img?: string | null
+  srcset?: string | null
   altImg?: string | null
   imgWidth?: number | null
   imgHeight?: number | null
+  interventionDept?: DepartmentType[]
   category: CategoryType | null
   address: {
     formatted: string

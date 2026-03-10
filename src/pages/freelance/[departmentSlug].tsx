@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import fetcher from '@/utils/fetcher';
 import { DepartmentType, CityType, CompanyType } from '@/types/annuaire.type';
 import HeadComponents from '@/components/head/HeadComponents';
-import InscriptionCta from '@/components/inscriptionCta/InscriptionCta';
+import AnnuaireAside from '@/components/aside/AnnuaireAside';
 import type { MapMarker } from '@/components/maps/AnnuaireMap';
 
 const AnnuaireMap = dynamic(() => import('@/components/maps/AnnuaireMap'), { ssr: false });
@@ -17,22 +17,26 @@ interface DepartmentPageProps {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire`);
+  try {
+    const data = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire`);
 
-  const paths = data.departments.map((dept: DepartmentType) => ({
-    params: { departmentSlug: dept.slug },
-  }));
+    const paths = data.departments.map((dept: DepartmentType) => ({
+      params: { departmentSlug: dept.slug },
+    }));
 
-  return { paths, fallback: false };
+    return { paths, fallback: 'blocking' };
+  } catch {
+    return { paths: [], fallback: 'blocking' };
+  }
 };
 
 export const getStaticProps: GetStaticProps<DepartmentPageProps> = async ({ params }) => {
-  const data = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/${params?.departmentSlug}`);
+  try {
+    const data = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/${params?.departmentSlug}`);
 
-  const mapMarkers: MapMarker[] = [];
+    const mapMarkers: MapMarker[] = [];
 
-  await Promise.all(
-    (data.cities as CityType[]).map(async (city) => {
+    for (const city of data.cities as CityType[]) {
       const cityData = await fetcher(
         `${process.env.ANNUAIRE_API_URL}annuaire/${params?.departmentSlug}/${city.slug}`
       );
@@ -46,17 +50,19 @@ export const getStaticProps: GetStaticProps<DepartmentPageProps> = async ({ para
           });
         }
       });
-    })
-  );
+    }
 
-  return {
-    props: {
-      department: data.department,
-      cities: data.cities,
-      counts: data.counts,
-      mapMarkers,
-    },
-  };
+    return {
+      props: {
+        department: data.department,
+        cities: data.cities,
+        counts: data.counts,
+        mapMarkers,
+      },
+    };
+  } catch {
+    return { notFound: true };
+  }
 };
 
 export default function DepartmentPage({ department, cities, counts, mapMarkers }: DepartmentPageProps) {
@@ -113,14 +119,7 @@ export default function DepartmentPage({ department, cities, counts, mapMarkers 
               </ul>
             )}
           </article>
-          <aside className="w-full md:w-1/4 bg-secondary p-4">
-            <h2 className="text-xl font-bold mb-4">Liens utiles :</h2>
-            <InscriptionCta isLink />
-            <Link href="/freelance" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Annuaire Freelance</Link>
-            <Link href="/blog" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Blog</Link>
-            <Link href="/A-propos" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Qui suis-je ?</Link>
-            <Link href="/Contact" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Contact</Link>
-          </aside>
+          <AnnuaireAside />
         </div>
       </div>
     </>

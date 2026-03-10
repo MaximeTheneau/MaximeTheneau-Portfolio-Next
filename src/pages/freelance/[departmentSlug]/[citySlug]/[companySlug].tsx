@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import fetcher from '@/utils/fetcher';
 import { DepartmentType, CityType, CompanyType } from '@/types/annuaire.type';
 import HeadComponents from '@/components/head/HeadComponents';
-import InscriptionCta from '@/components/inscriptionCta/InscriptionCta';
+import AnnuaireAside from '@/components/aside/AnnuaireAside';
 import Image from '@/utils/Image';
 
 const AnnuaireMap = dynamic(() => import('@/components/maps/AnnuaireMap'), { ssr: false });
@@ -14,38 +14,39 @@ interface CompanyPageProps {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const index = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire`);
+  try {
+    const index = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire`);
 
-  const cityData = await Promise.all(
-    index.departments.map(async (dept: DepartmentType) => {
+    const paths: { params: { departmentSlug: string; citySlug: string; companySlug: string } }[] = [];
+
+    for (const dept of index.departments as DepartmentType[]) {
       const deptData = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/${dept.slug}`);
-      return deptData.cities.map((city: CityType) => ({
-        deptSlug: dept.slug,
-        citySlug: city.slug,
-      }));
-    })
-  );
+      for (const city of deptData.cities as CityType[]) {
+        const cityData = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/${dept.slug}/${city.slug}`);
+        for (const company of cityData.companies as CompanyType[]) {
+          paths.push({ params: { departmentSlug: dept.slug, citySlug: city.slug, companySlug: company.slug } });
+        }
+      }
+    }
 
-  const companiesPaths = await Promise.all(
-    cityData.flat().map(async ({ deptSlug, citySlug }: { deptSlug: string; citySlug: string }) => {
-      const cityData = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/${deptSlug}/${citySlug}`);
-      return cityData.companies.map((company: CompanyType) => ({
-        params: { departmentSlug: deptSlug, citySlug, companySlug: company.slug },
-      }));
-    })
-  );
-
-  return { paths: companiesPaths.flat(), fallback: false };
+    return { paths, fallback: 'blocking' };
+  } catch {
+    return { paths: [], fallback: 'blocking' };
+  }
 };
 
 export const getStaticProps: GetStaticProps<CompanyPageProps> = async ({ params }) => {
-  const company = await fetcher(
-    `${process.env.ANNUAIRE_API_URL}annuaire/${params?.departmentSlug}/${params?.citySlug}/${params?.companySlug}`
-  );
+  try {
+    const company = await fetcher(
+      `${process.env.ANNUAIRE_API_URL}annuaire/${params?.departmentSlug}/${params?.citySlug}/${params?.companySlug}`
+    );
 
-  return {
-    props: { company },
-  };
+    return {
+      props: { company },
+    };
+  } catch {
+    return { notFound: true };
+  }
 };
 
 export default function CompanyPage({ company }: CompanyPageProps) {
@@ -97,10 +98,10 @@ export default function CompanyPage({ company }: CompanyPageProps) {
                 <div className="mb-5 flex justify-center">
                   <Image
                     src={company.img}
+                    srcset={company.srcset}
                     alt={company.altImg ?? `Logo de ${company.name}`}
-                    width={company.imgWidth ?? 200}
-                    height={company.imgHeight ?? 200}
-                    className="object-contain max-h-48 w-auto rounded"
+                    width={company.imgWidth ?? 100 }
+                    height={company.imgHeight ?? 100}
                     priority
                   />
                 </div>
@@ -156,6 +157,26 @@ export default function CompanyPage({ company }: CompanyPageProps) {
               </dl>
             </div>
 
+            {/* Zones d'intervention */}
+            {company.interventionDept && company.interventionDept.length > 0 && (
+              <div className="border border-gray-200 rounded-lg p-6 mb-6">
+                <h2 className="text-lg font-semibold mb-3">Zones d&apos;intervention</h2>
+                <ul className="flex flex-wrap gap-2">
+                  {company.interventionDept.map((dept) => (
+                    <li key={dept.slug}>
+                      <Link
+                        href={`/freelance/${dept.slug}`}
+                        className="inline-flex items-center gap-1 border border-gray-200 rounded px-3 py-1 text-sm hover:bg-gray-50"
+                      >
+                        <span className="font-mono text-gray-400">{dept.code}</span>
+                        {dept.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {/* Map */}
             {mapMarkers.length > 0 && (
               <div className="rounded overflow-hidden">
@@ -163,14 +184,7 @@ export default function CompanyPage({ company }: CompanyPageProps) {
               </div>
             )}
           </article>
-          <aside className="w-full md:w-1/4 bg-secondary p-4">
-            <h2 className="text-xl font-bold mb-4">Liens utiles :</h2>
-            <InscriptionCta isLink />
-            <Link href="/freelance" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Annuaire Freelance</Link>
-            <Link href="/blog" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Blog</Link>
-            <Link href="/A-propos" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Qui suis-je ?</Link>
-            <Link href="/Contact" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Contact</Link>
-          </aside>
+          <AnnuaireAside />
         </div>
       </div>
     </>

@@ -17,8 +17,8 @@ export default function Footer() {
           </li>
 
           <li>
-            <Link href="/blog" prefetch={false}>
-              Blog
+            <Link href="/plan-de-site" prefetch={false}>
+              Plan de site
             </Link>
           </li>
         </ul>

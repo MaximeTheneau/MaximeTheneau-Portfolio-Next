@@ -8,9 +8,22 @@ export default function Document() {
       <Head>
         <meta
           httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr data:; font-src 'self'; frame-src https://www.google.com; connect-src 'self' https://back.theneaumaxime.fr https://www.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self' https://back.theneaumaxime.fr; object-src 'none'; upgrade-insecure-requests; trusted-types default nextjs nextjs#bundler dompurify goog#html; require-trusted-types-for 'script';"
+          content={[
+            "default-src 'self'",
+            `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com ${process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS} https://maps.googleapis.com https://maps.gstatic.com`,
+            "style-src 'self' 'unsafe-inline'",
+            `img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr https://maps.gstatic.com https://maps.googleapis.com ${process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS} data:`,
+            "font-src 'self'",
+            `frame-src https://www.google.com ${process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS}`,
+            `connect-src 'self' http://localhost:8000 https://www.google-analytics.com ${process.env.NEXT_PUBLIC_CSP_GA_REGION} https://www.googletagmanager.com https://maps.googleapis.com ${process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS} ${process.env.NEXT_PUBLIC_CSP_AD_QUALITY}`,
+            "base-uri 'self'",
+            "form-action 'self' http://localhost:8000",
+            "object-src 'none'",
+            "upgrade-insecure-requests",
+            "trusted-types default nextjs nextjs#bundler dompurify goog#html allow-duplicates google-maps-api#html lit-html",
+            "require-trusted-types-for 'script'",
+          ].join('; ')}
         />
-
         <meta name="theme-color" content="#def0c2" />
         <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_WEBMASTER} />
         <meta name="ahrefs-site-verification" content="80e1e4c68c5760798a0c167d6db84e79e9b343301fd1eb054f1da5fc8529e778" />

@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import fetcher from '@/utils/fetcher';
 import { CategoryType, CompanyType } from '@/types/annuaire.type';
 import HeadComponents from '@/components/head/HeadComponents';
-import InscriptionCta from '@/components/inscriptionCta/InscriptionCta';
+import AnnuaireAside from '@/components/aside/AnnuaireAside';
 
 const AnnuaireMap = dynamic(() => import('@/components/maps/AnnuaireMap'), { ssr: false });
 
@@ -14,24 +14,32 @@ interface CategoryPageProps {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire`);
+  try {
+    const data = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire`);
 
-  const paths = data.categories.map((cat: CategoryType) => ({
-    params: { categorySlug: cat.slug },
-  }));
+    const paths = data.categories.map((cat: CategoryType) => ({
+      params: { categorySlug: cat.slug },
+    }));
 
-  return { paths, fallback: false };
+    return { paths, fallback: 'blocking' };
+  } catch {
+    return { paths: [], fallback: 'blocking' };
+  }
 };
 
 export const getStaticProps: GetStaticProps<CategoryPageProps> = async ({ params }) => {
-  const data = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/categorie/${params?.categorySlug}`);
+  try {
+    const data = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/categorie/${params?.categorySlug}`);
 
-  return {
-    props: {
-      category: data.category,
-      companies: data.companies,
-    },
-  };
+    return {
+      props: {
+        category: data.category,
+        companies: data.companies,
+      },
+    };
+  } catch {
+    return { notFound: true };
+  }
 };
 
 export default function CategoryPage({ category, companies }: CategoryPageProps) {
@@ -106,14 +114,7 @@ export default function CategoryPage({ category, companies }: CategoryPageProps)
               </ul>
             )}
           </article>
-          <aside className="w-full md:w-1/4 bg-secondary p-4">
-            <h2 className="text-xl font-bold mb-4">Liens utiles :</h2>
-            <InscriptionCta isLink />
-            <Link href="/freelance" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Annuaire Freelance</Link>
-            <Link href="/blog" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Blog</Link>
-            <Link href="/A-propos" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Qui suis-je ?</Link>
-            <Link href="/Contact" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Contact</Link>
-          </aside>
+          <AnnuaireAside />
         </div>
       </div>
     </>

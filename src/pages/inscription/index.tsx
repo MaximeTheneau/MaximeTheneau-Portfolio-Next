@@ -4,12 +4,13 @@ import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next';
 import Script from 'next/script';
 import HeadComponents from '@/components/head/HeadComponents';
-import { CategoryType, CompanyFormType } from '@/types/annuaire.type';
+import { CategoryType, DepartmentType, CompanyFormType } from '@/types/annuaire.type';
 
 declare const google: any;
 
 interface InscriptionProps {
   categories: CategoryType[];
+  departments: DepartmentType[];
 }
 
 interface FormErrors {
@@ -24,6 +25,7 @@ const INITIAL_FORM: CompanyFormType = {
   siret: '',
   phone: '',
   category_ids: [],
+  intervention_dept_ids: [],
   place_id: '',
   formatted_address: '',
   city_name: '',
@@ -39,7 +41,7 @@ const INITIAL_FORM: CompanyFormType = {
 const STEPS = [
   { label: 'Contact', fields: ['first_name', 'last_name', 'email', 'phone'] },
   { label: 'Entreprise', fields: ['company_name', 'siret', 'category_ids'] },
-  { label: 'Adresse', fields: ['place_id', 'formatted_address', 'city_name'] },
+  { label: 'Adresse', fields: ['place_id', 'formatted_address', 'city_name', 'postal_code'] },
 ] as const;
 
 export const getStaticProps: GetStaticProps<InscriptionProps> = async () => {
@@ -47,13 +49,13 @@ export const getStaticProps: GetStaticProps<InscriptionProps> = async () => {
     const res = await fetch(`${process.env.ANNUAIRE_API_URL}annuaire`);
     if (!res.ok) throw new Error();
     const data = await res.json();
-    return { props: { categories: data.categories ?? [] } };
+    return { props: { categories: data.categories ?? [], departments: data.departments ?? [] } };
   } catch {
-    return { props: { categories: [] } };
+    return { props: { categories: [], departments: [] } };
   }
 };
 
-export default function Inscription({ categories }: InscriptionProps) {
+export default function Inscription({ categories, departments }: InscriptionProps) {
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<CompanyFormType>(INITIAL_FORM);
@@ -122,6 +124,14 @@ export default function Inscription({ categories }: InscriptionProps) {
       return { ...prev, category_ids: updated };
     });
     if (errors['category_ids']?.length) setErrors((prev) => ({ ...prev, category_ids: [] }));
+  };
+
+  const handleDeptToggle = (slug: string) => {
+    setForm((prev) => {
+      const ids = prev.intervention_dept_ids;
+      const updated = ids.includes(slug) ? ids.filter((i) => i !== slug) : [...ids, slug];
+      return { ...prev, intervention_dept_ids: updated };
+    });
   };
 
   const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
@@ -200,8 +210,7 @@ export default function Inscription({ categories }: InscriptionProps) {
       const res = await fetch(`http://localhost:8000/api/company/register`, {
         method: 'POST',
         body: fd,
-            credentials: 'include',
-
+        credentials: 'include',
       });
 
       if (res.status === 201) {
@@ -540,10 +549,11 @@ export default function Inscription({ categories }: InscriptionProps) {
 
                 <div>
                   <label className="block text-sm font-medium mb-1" htmlFor="postal_code">
-                    Code postal
+                    Code postal <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="postal_code"
+                    required
                     inputMode="numeric"
                     maxLength={5}
                     className={inputClass('postal_code')}
@@ -551,32 +561,43 @@ export default function Inscription({ categories }: InscriptionProps) {
                   />
                   <ErrorList name="postal_code" />
                 </div>
+              </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-1" htmlFor="department_name">
-                    Département
-                  </label>
-                  <input
-                    id="department_name"
-                    className={inputClass('department_name')}
-                    {...inputProps('department_name')}
-                  />
-                  <ErrorList name="department_name" />
+              {/* Zones d'intervention */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Zones d&apos;intervention{' '}
+                  <span className="text-gray-400 font-normal">(optionnel)</span>
+                </label>
+                <div className="border border-gray-300 rounded p-3 max-h-48 overflow-y-auto">
+                  {departments.length === 0 ? (
+                    <p className="text-sm text-gray-400">Aucun département disponible.</p>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-2">
+                      {departments.map((dept) => (
+                        <label
+                          key={dept.slug}
+                          className="flex items-center gap-2 cursor-pointer text-sm"
+                        >
+                          <input
+                            type="checkbox"
+                            value={dept.slug}
+                            checked={form.intervention_dept_ids.includes(dept.slug)}
+                            onChange={() => handleDeptToggle(dept.slug)}
+                            className="accent-primary w-4 h-4 shrink-0"
+                          />
+                          <span className="font-mono text-gray-400 text-xs">{dept.code}</span>
+                          {dept.name}
+                        </label>
+                      ))}
+                    </div>
+                  )}
                 </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-1" htmlFor="department_code">
-                    Code département
-                  </label>
-                  <input
-                    id="department_code"
-                    maxLength={3}
-                    placeholder="Ex : 13"
-                    className={inputClass('department_code')}
-                    {...inputProps('department_code')}
-                  />
-                  <ErrorList name="department_code" />
-                </div>
+                {form.intervention_dept_ids.length > 0 && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    {form.intervention_dept_ids.length} département{form.intervention_dept_ids.length > 1 ? 's' : ''} sélectionné{form.intervention_dept_ids.length > 1 ? 's' : ''}
+                  </p>
+                )}
               </div>
             </div>
           )}

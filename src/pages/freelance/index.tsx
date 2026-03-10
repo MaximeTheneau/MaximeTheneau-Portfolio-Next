@@ -7,6 +7,7 @@ import fetcher from '@/utils/fetcher';
 import { DepartmentType, CategoryType, CompanyType, CityType } from '@/types/annuaire.type';
 import HeadComponents from '@/components/head/HeadComponents';
 import InscriptionCta from '@/components/inscriptionCta/InscriptionCta';
+import AnnuaireAside from '@/components/aside/AnnuaireAside';
 import type { MapMarker } from '@/components/maps/AnnuaireMap';
 
 const AnnuaireMap = dynamic(() => import('@/components/maps/AnnuaireMap'), { ssr: false });
@@ -22,28 +23,28 @@ export const getStaticProps: GetStaticProps<AnnuaireIndexProps> = async () => {
 
   const mapMarkers: MapMarker[] = [];
 
-  await Promise.all(
-    (data.departments as DepartmentType[]).map(async (dept) => {
-      const deptData = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/${dept.slug}`);
-      await Promise.all(
-        (deptData.cities as CityType[]).map(async (city) => {
-          const cityData = await fetcher(
-            `${process.env.ANNUAIRE_API_URL}annuaire/${dept.slug}/${city.slug}`
-          );
-          (cityData.companies as CompanyType[]).forEach((company) => {
-            if (company.address.lat && company.address.lng) {
-              mapMarkers.push({
-                lat: company.address.lat,
-                lng: company.address.lng,
-                name: company.name,
-                url: `/freelance/${dept.slug}/${city.slug}/${company.slug}`,
-              });
-            }
-          });
-        })
-      );
-    })
-  );
+  // await Promise.all(
+  //   (data.departments as DepartmentType[]).map(async (dept) => {
+  //     const deptData = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/${dept.slug}`);
+  //     await Promise.all(
+  //       (deptData.cities as CityType[]).map(async (city) => {
+  //         const cityData = await fetcher(
+  //           `${process.env.ANNUAIRE_API_URL}annuaire/${dept.slug}/${city.slug}`
+  //         );
+  //         (cityData.companies as CompanyType[]).forEach((company) => {
+  //           if (company.address.lat && company.address.lng) {
+  //             mapMarkers.push({
+  //               lat: company.address.lat,
+  //               lng: company.address.lng,
+  //               name: company.name,
+  //               url: `/freelance/${dept.slug}/${city.slug}/${company.slug}`,
+  //             });
+  //           }
+  //         });
+  //       })
+  //     );
+  //   })
+  // );
 
   return {
     props: {
@@ -103,7 +104,7 @@ export default function AnnuaireIndex({ departments, categories, mapMarkers }: A
 
       <div className="max-w-5xl mx-auto px-4 py-8">
         <div className="flex flex-wrap justify-center">
-          <article className="w-full md:w-3/4 px-4">
+          <article className="w-full md:w-3/4 px-4 bg-white">
             <h1 className="text-3xl font-bold mb-2">Annuaire Freelance — Trouvez un pro près de chez vous</h1>
             <p className="text-gray-600 mb-4">Référencez votre activité et soyez trouvé par vos futurs clients.</p>
             <InscriptionCta />
@@ -115,6 +116,7 @@ export default function AnnuaireIndex({ departments, categories, mapMarkers }: A
 
             {/* Search */}
             <div className="mb-8">
+              <h2>Recherche :</h2>
               <input
                 type="search"
                 value={query}
@@ -161,59 +163,60 @@ export default function AnnuaireIndex({ departments, categories, mapMarkers }: A
                 </div>
               )}
             </div>
-
+            
+            <hr />
+            
+            {/* Categories */}
+            <section>
+              <h2 >Par catégorie</h2>
+              <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                {categories.map((cat) => (
+                  <li key={cat.slug} className="list-none">
+                    <Link
+                      href={`/freelance/categorie/${cat.slug}`}
+                      className="block border  rpx-3 py-2 text-left"
+                    >
+                      <button
+                        className="flex-1 px-3 py-2 text-left"
+                      >
+                        
+                        {cat.name}
+                      </button>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+            
+            <hr />
+            
             {/* Departments */}
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold mb-4">Par département</h2>
-              <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              <h2>Par département</h2>
+              <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 list-none">
                 {departments.map((dept) => (
-                  <li key={dept.slug}>
+                  <li key={dept.slug} className='list-none'>
                     <div className="flex items-center border border-gray-200 rounded text-sm hover:bg-gray-50">
-                      <button
-                        onClick={() => zoomTo(`/freelance/${dept.slug}/`)}
+                      <Link
+                        href={`/freelance/${dept.slug}`}
+                        className="px-2 py-2 hover:text-primary"
+                        title="Voir la page département"
+                      >
+                        <button
                         className="flex-1 px-3 py-2 text-left"
                       >
                         <span className="font-mono text-gray-400 mr-2">{dept.code}</span>
                         {dept.name}
                       </button>
-                      <Link
-                        href={`/freelance/${dept.slug}`}
-                        className="px-2 py-2 text-gray-400 hover:text-primary"
-                        title="Voir la page département"
-                      >
-                        →
+
                       </Link>
                     </div>
                   </li>
                 ))}
               </ul>
             </section>
-
-            {/* Categories */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Par catégorie</h2>
-              <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                {categories.map((cat) => (
-                  <li key={cat.slug}>
-                    <Link
-                      href={`/freelance/categorie/${cat.slug}`}
-                      className="block border border-gray-200 rounded px-3 py-2 hover:bg-gray-50 text-sm"
-                    >
-                      {cat.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
           </article>
-          <aside className="w-full md:w-1/4 bg-secondary p-4">
-            <h2 className="text-xl font-bold mb-4">Liens utiles :</h2>
-            <InscriptionCta isLink />
-            <Link href="/freelance" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Annuaire Freelance</Link>
-            <Link href="/blog" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Blog</Link>
-            <Link href="/A-propos" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Qui suis-je ?</Link>
-            <Link href="/Contact" className="py-2 block border-solid border-b border-gray-200 last:border-b-0">Contact</Link>
-          </aside>
+          <AnnuaireAside />
         </div>
       </div>
     </>
