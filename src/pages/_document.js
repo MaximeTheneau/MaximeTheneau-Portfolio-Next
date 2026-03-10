@@ -2,6 +2,11 @@ import {
   Html, Head, Main, NextScript,
 } from 'next/document';
 
+const CSP_GOOGLE_ADS = process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS || 'https://pagead2.googlesyndication.com';
+const CSP_GA_REGION = process.env.NEXT_PUBLIC_CSP_GA_REGION || 'https://region1.google-analytics.com';
+const CSP_AD_QUALITY = process.env.NEXT_PUBLIC_CSP_AD_QUALITY || 'https://ep1.adtrafficquality.google';
+const CSP_API_LOCAL = process.env.NEXT_PUBLIC_CSP_API_LOCAL || 'http://localhost:8000';
+
 export default function Document() {
   return (
     <Html lang="fr">
@@ -10,14 +15,14 @@ export default function Document() {
           httpEquiv="Content-Security-Policy"
           content={[
             "default-src 'self'",
-            `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com ${process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS} https://maps.googleapis.com https://maps.gstatic.com`,
+            `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com ${CSP_GOOGLE_ADS} https://maps.googleapis.com https://maps.gstatic.com`,
             "style-src 'self' 'unsafe-inline'",
-            `img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr https://maps.gstatic.com https://maps.googleapis.com ${process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS} data:`,
+            `img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr https://maps.gstatic.com https://maps.googleapis.com ${CSP_GOOGLE_ADS} data:`,
             "font-src 'self'",
-            `frame-src https://www.google.com ${process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS}`,
-            `connect-src 'self' http://localhost:8000 https://www.google-analytics.com ${process.env.NEXT_PUBLIC_CSP_GA_REGION} https://www.googletagmanager.com https://maps.googleapis.com ${process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS} ${process.env.NEXT_PUBLIC_CSP_AD_QUALITY}`,
+            `frame-src https://www.google.com ${CSP_GOOGLE_ADS}`,
+            `connect-src 'self' ${CSP_API_LOCAL} https://www.google-analytics.com ${CSP_GA_REGION} https://www.googletagmanager.com https://maps.googleapis.com ${CSP_GOOGLE_ADS} ${CSP_AD_QUALITY}`,
             "base-uri 'self'",
-            "form-action 'self' http://localhost:8000",
+            `form-action 'self' ${CSP_API_LOCAL}`,
             "object-src 'none'",
             "upgrade-insecure-requests",
             "trusted-types default nextjs nextjs#bundler dompurify goog#html allow-duplicates google-maps-api#html lit-html",
