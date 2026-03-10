@@ -6,6 +6,8 @@ const CSP_GOOGLE_ADS = process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS || 'https://pagead
 const CSP_GA_REGION = process.env.NEXT_PUBLIC_CSP_GA_REGION || 'https://region1.google-analytics.com';
 const CSP_AD_QUALITY = process.env.NEXT_PUBLIC_CSP_AD_QUALITY || 'https://ep1.adtrafficquality.google';
 const CSP_API_LOCAL = process.env.NEXT_PUBLIC_CSP_API_LOCAL || 'http://localhost:8000';
+const CSP_GOOGLE_FONTS_STYLE = process.env.NEXT_PUBLIC_CSP_GOOGLE_FONTS_STYLE || 'https://fonts.googleapis.com';
+const CSP_GOOGLE_FONTS_SRC = process.env.NEXT_PUBLIC_CSP_GOOGLE_FONTS_SRC || 'https://fonts.gstatic.com';
 
 export default function Document() {
   return (
@@ -16,9 +18,9 @@ export default function Document() {
           content={[
             "default-src 'self'",
             `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com ${CSP_GOOGLE_ADS} https://maps.googleapis.com https://maps.gstatic.com`,
-            "style-src 'self' 'unsafe-inline'",
+            `style-src 'self' 'unsafe-inline' ${CSP_GOOGLE_FONTS_STYLE}`,
             `img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr https://maps.gstatic.com https://maps.googleapis.com ${CSP_GOOGLE_ADS} data:`,
-            "font-src 'self'",
+            `font-src 'self' ${CSP_GOOGLE_FONTS_SRC}`,
             `frame-src https://www.google.com ${CSP_GOOGLE_ADS}`,
             `connect-src 'self' ${CSP_API_LOCAL} https://www.google-analytics.com ${CSP_GA_REGION} https://www.googletagmanager.com https://maps.googleapis.com ${CSP_GOOGLE_ADS} ${CSP_AD_QUALITY}`,
             "base-uri 'self'",
