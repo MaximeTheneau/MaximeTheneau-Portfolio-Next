@@ -207,7 +207,7 @@ export default function Inscription({ categories, departments }: InscriptionProp
     if (logo) fd.append('logo', logo);
 
     try {
-      const res = await fetch(`${process.env.ANNUAIRE_API_URL}company/register`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_ANNUAIRE_API_URL}company/register`, {
         method: 'POST',
         body: fd,
         credentials: 'include',
