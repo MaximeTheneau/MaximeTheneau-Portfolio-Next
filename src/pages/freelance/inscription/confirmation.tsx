@@ -7,7 +7,7 @@ export default function InscriptionConfirmation() {
       <HeadComponents
         title="Inscription envoyée — Annuaire Freelance"
         description="Votre demande d'inscription a bien été reçue. Vérifiez votre email pour confirmer votre compte."
-        url="/inscription/confirmation"
+        url="/freelance/inscription/confirmation"
         image=""
         srcset=""
       />

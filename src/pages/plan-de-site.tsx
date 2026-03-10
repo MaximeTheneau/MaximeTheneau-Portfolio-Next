@@ -104,7 +104,7 @@ export default function PlanDeSite({ page, blogSubcategories }: PlanDeSiteProps)
           </h2>
           <ul className="pl-4">
             <li>
-              <Link href="/inscription" prefetch={false}>
+              <Link href="/freelance/inscription" prefetch={false}>
                 Inscrire sont entreprise (Freelance) gratuitement
               </Link>
             </li>

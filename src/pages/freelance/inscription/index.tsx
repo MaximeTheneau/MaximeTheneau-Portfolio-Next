@@ -214,7 +214,7 @@ export default function Inscription({ categories, departments }: InscriptionProp
       });
 
       if (res.status === 201) {
-        router.push('/inscription/confirmation');
+        router.push('/freelance/inscription/confirmation');
         return;
       }
 
@@ -245,7 +245,7 @@ export default function Inscription({ categories, departments }: InscriptionProp
       <HeadComponents
         title="Inscrire votre entreprise — Annuaire Freelance"
         description="Référencez gratuitement votre activité freelance dans notre annuaire."
-        url="/inscription"
+        url="/freelance/inscription"
         image=""
         srcset=""
       />
