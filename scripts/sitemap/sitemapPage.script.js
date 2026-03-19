@@ -54,7 +54,11 @@ const generateSitemap = async () => {
   const responsePages = await fetchJson(`${urlApi}posts/sitemap`);
   const annuairePages = await fetchAnnuairePages();
 
-  generateXml([...responsePages, ...annuairePages]);
+  const staticPages = [
+    { url: '/freelance/inscription', updatedAt: new Date().toISOString() },
+  ];
+
+  generateXml([...responsePages, ...annuairePages, ...staticPages]);
 
   const totalNumPages = responsePages.length + annuairePages.length;
   console.log(`Total number of pages in the sitemap: ${totalNumPages}`);

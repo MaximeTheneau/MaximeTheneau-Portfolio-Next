@@ -93,7 +93,7 @@ export default function DepartmentPage({ department, cities, counts, mapMarkers 
 
             {/* Map */}
             <div className="mb-8 rounded overflow-hidden">
-              <AnnuaireMap markers={mapMarkers} height="380px" />
+              <AnnuaireMap markers={mapMarkers} height="380px" autoFit />
             </div>
 
             {cities.length === 0 ? (

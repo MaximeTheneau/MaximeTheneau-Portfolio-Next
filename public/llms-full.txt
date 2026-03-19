@@ -1,0 +1,180 @@
+# Maxime Theneau - Développeur Web Freelance à Marseille
+
+> Contenu complet du site maximefreelance.fr. Ce fichier est destiné aux Large Language Models (LLM) pour comprendre et référencer le contenu du site.
+
+## À propos
+
+Maxime Theneau est un développeur web freelance basé à Marseille avec 15 ans d'expérience. Spécialisé en React.js, Next.js, Symfony et WordPress. Il accompagne les entreprises dans la création de sites web performants, le SEO et la transformation digitale.
+
+## Services
+
+- Création de sites web (Next.js, WordPress, Symfony)
+- Développement d'applications web sur mesure
+- Solutions e-commerce
+- Référencement naturel (SEO)
+- Éco-conception web
+- Conseil en transformation digitale
+
+## Pages principales
+
+- Accueil : https://maximefreelance.fr/
+- À propos : https://maximefreelance.fr//A-propos
+- Créations / Portfolio : https://maximefreelance.fr//Creations
+- Blog : https://maximefreelance.fr//blog
+- Devis en ligne : https://maximefreelance.fr//devis-en-ligne
+- Contact : https://maximefreelance.fr//Contact
+- Agence Web Marseille : https://maximefreelance.fr//agence-web
+- FAQ : https://maximefreelance.fr//Foire-aux-questions
+
+## Articles du blog
+
+### Freelance
+
+- **Mon setup de développeur web freelance nomade à Marseilles**
+  Développeur web freelance à Marseille, découvrez mon setup : MacBook Pro M4, tour Ubuntu 24.04, écran ASUS, Logitech MX, etc...
+  URL : https://maximefreelance.fr//blog/freelance/mon-setup-de-developpeur-web-freelance-a-marseille
+
+- **Les Meilleurs Freelances Web à Marseille pour Votre Site & SEO**
+  Trouvez les meilleurs freelances à Marseille pour la création de votre site web et l'optimisation SEO. Boostez votre visibilité.
+  URL : https://maximefreelance.fr//blog/freelance/les-meilleurs-freelances-web-a-marseille-pour-votr
+
+
+### API
+
+- **API : Définition, Fonctionnement et Exemples Concrets en 2026**
+  Les API sont le moteur de la transformation digitale en 2025. Découvrez pourquoi elles sont cruciales pour l'innovation, etc...
+  URL : https://maximefreelance.fr//blog/api/api-definition-fonctionnement-et-exemples-concrets
+
+
+### WordPress
+
+- **Refonte de Site Webflow vers WordPress : Performance et Flexibilité**
+  Migrer votre site Webflow vers WordPress : réduction des coûts et personnalisation illimitée
+  URL : https://maximefreelance.fr//blog/wordpress/refonte-de-site-webflow-vers-wordpress-performance
+
+
+### SEO
+
+- **Backlinks gratuits : Les meilleurs annuaires SEO de 2026**
+  Améliorez votre SEO dès 2026 avec les meilleurs annuaires gratuits pour obtenir des backlinks de qualité et dominer Google.
+  URL : https://maximefreelance.fr//blog/seo/backlinks-gratuits-les-meilleurs-annuaires-seo-de-
+
+
+### Sites Web
+
+- **Pourquoi faut-il éviter les tirets dans les noms de domaine ?**
+  Les tirets dans les noms de domaine nuisent à la crédibilité, au SEO et à l'expérience utilisateur. Découvrez pourquoi les éviter.
+  URL : https://maximefreelance.fr//blog/site-web/pourquoi-eviter-les-tirets-dans-les-noms-de-domain
+
+- **Créez un site de VTC facilement avec des outils no code**
+  Apprenez à créer un site de VTC sans coder grâce aux outils no code, simples et accessibles.
+  URL : https://maximefreelance.fr//blog/site-web/creer-un-site-de-vtc-avec-des-outils-no-code
+
+- **Créer un E-commerce Gratuit : Meilleures Solutions**
+  Découvrez les meilleures solutions pour créer un e-commerce gratuit et lancer votre boutique en ligne facilement.
+  URL : https://maximefreelance.fr//blog/site-web/creer-un-e-commerce-gratuit-meilleures-solutions
+
+- **Création de sites web écoresponsables à Marseille**
+  Optez pour un site web écoresponsable avec Maxime Freelance à Marseille, site rapide, performant et respectueux de l’environnent.
+  URL : https://maximefreelance.fr//blog/site-web/creation-de-sites-ecoresponsables
+
+- **De quoi dépend le bilan carbone de votre site web ?**
+  Découvrez les facteurs qui influencent le bilan carbone de votre site web et comment réduire son impact écologique.
+  URL : https://maximefreelance.fr//blog/site-web/de-quoi-depend-le-bilan-carbone-de-votre-site-web
+
+- **5 Outils pour Calculer l’Empreinte Carbone de Votre Site Web**
+  Découvrez 5 outils efficaces pour calculer l'empreinte carbone de votre site web et adopter des solutions pour votre site.
+  URL : https://maximefreelance.fr//blog/site-web/5-outils-pour-calculer-l-empreinte-carbone-de-votr
+
+- **Tendances du Design Web 2026 : Ce que vous devez savoir**
+  Tendances du design web pour 2026 et comment elles façonnent l'avenir du développement de sites internet. Restez à la pointe !
+  URL : https://maximefreelance.fr//blog/site-web/les-tendances-du-design-web-pour-2025-ce-que-chaqu
+
+- **Réduisez l’Empreinte Carbone de Votre Site Web**
+  Comment optimiser votre site web pour réduire son empreinte carbone : compression d'images, hébergement éco-responsable, et plus encore
+  URL : https://maximefreelance.fr//blog/site-web/reduisez-l-empreinte-carbone-de-votre-site-web-sol
+
+- **5 Raisons d’Éviter les Sites Gratuits**
+  Pourquoi les sites gratuits peuvent limiter votre projet : fonctionnalités restreintes, problèmes de sécurité, mauvais SEO, etc...
+  URL : https://maximefreelance.fr//blog/site-web/5-Raisons-d-Eviter-les-Sites-Gratuits-pour-Votre-Presence-en-Ligne
+
+- **Guide Complet pour Créer un Site Gratuit en 7 Étapes**
+  Choisissez la meilleure plateforme (Wix, WordPress, Google Sites…), personnalisez le design, ajoutez du contenu et lancez votre site.
+  URL : https://maximefreelance.fr//blog/site-web/Guide-Complet-pour-Creer-un-Site-Gratuit-en-7-Etapes
+
+- **Top 10 des Agences Web à Marseille**
+  Trouvez et engagez les meilleures agences web à Marseille. Découvrez les entreprises les plus recommandées.
+  URL : https://maximefreelance.fr//blog/site-web/Les-10-Meilleures-Agences-de-Creation-de-Sites-Web-a-Marseille
+
+
+### Hébergement
+
+- **L'Importance de la Sauvegarde et du Stockage sur le Cloud pour les PME**
+  Découvrez pourquoi la sauvegarde et le stockage cloud sont essentiels pour assurer la sécurité des données des PME.
+  URL : https://maximefreelance.fr//blog/hebergeur/l-importance-de-la-sauvegarde-et-du-stockage-sur-l
+
+- **Découvrez pourquoi j’ai choisi Hostinger comme hébergeur vert**
+  Découvrez pourquoi j'ai choisi Hostinger comme hébergeur vert et profitez de 20% de réduction avec un code promo.
+  URL : https://maximefreelance.fr//blog/hebergeur/pourquoi-j-ai-choisi-hostinger-comme-hebergeur-ver
+
+
+### Symfony
+
+- **Top 5 des Projets Open Source Symfony**
+  Découvrez 5 projets open source avec Symfony qui peuvent inspirer votre développement d'applications web.
+  URL : https://maximefreelance.fr//blog/symfony/top-5-des-projets-open-source-symfony
+
+
+### Next.js
+
+- **Top 5 des Projets Open Source avec Next.js pour S'inspirer**
+  Explorez 5 projets open source basés sur Next.js pour vous inspirer dans le développement de vos applications web.
+  URL : https://maximefreelance.fr//blog/next-js/top-5-des-projets-open-source-avec-next-js-pour-s-
+
+- **Site Statique ou SSR : Faites le Bon Choix**
+  Découvrez pourquoi choisir un site statique ou SSR avec Next.js peut transformer votre présence en ligne avec Maxime Freelance.
+  URL : https://maximefreelance.fr//blog/next-js/pourquoi-opter-pour-un-site-statique-ou-server-sid
+
+- **Gérer Commentaires, Email et API avec Symfony/Next.js**
+  Vérification d'email et la gestion des commentaires dans une application Symfony et Next.js. Solutions  pour valider les emails.
+  URL : https://maximefreelance.fr//blog/next-js/gestion-des-commentaires-email-bot-et-api-avec-sym
+
+- **Accélérez le Chargement de Votre Site avec Next.js**
+  Comment optimiser la vitesse de chargement de votre site web avec Next.js. Des conseils pratiques sur le rendu côté serveur, etc...
+  URL : https://maximefreelance.fr//blog/next-js/ameliorer-la-vitesse-de-chargement-de-votre-site-w
+
+
+### OpenAI & IA
+
+- **ChatGPT : Un Atout pour la Rédaction Web**
+  Boostez votre SEO et améliorez l'engagement utilisateur grâce à ChatGPT pour la création de contenus adaptés à vos besoins.
+  URL : https://maximefreelance.fr//blog/openai/chatgpt-un-atout-pour-la-redaction-de-contenu-pour
+
+- **L’API d’OpenAI : Intégration Simplifiée**
+  Découvrez comment intégrer l'API d'OpenAI à vos projets web simplement et efficacement.
+  URL : https://maximefreelance.fr//blog/openai/demystifier-l-api-d-openai-comment-l-integrer-a-vo
+
+
+### AWS & Cloud
+
+- **Gérez vos Images sur S3 avec aws-samples/image**
+  Comment optimiser efficacement les images dans plusieurs buckets S3 en utilisant le projet aws-samples/image-optimization sur AWS.
+  URL : https://maximefreelance.fr//blog/aws/optimiser-les-images-dans-plusieurs-buckets-s3-ave
+
+- **Installer un CDN d’Images avec S3 et CloudFront**
+  Optimisez vos images en les stockant sur AWS S3 et en les diffusant via CloudFront pour un chargement rapide et performant
+  URL : https://maximefreelance.fr//blog/aws/comment-installer-un-cdn-d-images-avec-s3-et-cloud
+
+## Localisation
+
+Marseille, France
+
+## Contact
+
+- Site : https://maximefreelance.fr/
+- Contact : https://maximefreelance.fr//Contact
+- Devis : https://maximefreelance.fr//devis-en-ligne
+
+## Sitemap
+
+- https://maximefreelance.fr//sitemap_index.xml

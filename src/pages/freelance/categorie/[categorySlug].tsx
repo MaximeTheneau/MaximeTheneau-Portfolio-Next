@@ -81,7 +81,7 @@ export default function CategoryPage({ category, companies }: CategoryPageProps)
             {/* Map */}
             {mapMarkers.length > 0 && (
               <div className="mb-8 rounded overflow-hidden">
-                <AnnuaireMap markers={mapMarkers} height="380px" />
+                <AnnuaireMap markers={mapMarkers} height="380px" autoFit />
               </div>
             )}
 

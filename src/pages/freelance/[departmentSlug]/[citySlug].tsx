@@ -91,7 +91,7 @@ export default function CityPage({ department, city, companies }: CityPageProps)
             {/* Map */}
             {mapMarkers.length > 0 && (
               <div className="mb-8 rounded overflow-hidden">
-                <AnnuaireMap markers={mapMarkers} height="350px" />
+                <AnnuaireMap markers={mapMarkers} height="350px" autoFit />
               </div>
             )}
 
@@ -108,9 +108,7 @@ export default function CityPage({ department, city, companies }: CityPageProps)
                       <div className="flex items-start justify-between">
                         <div>
                           <p className="font-semibold text-lg">{company.name}</p>
-                          {company.category && (
-                            <p className="text-sm text-gray-500">{company.category.name}</p>
-                          )}
+
                         </div>
                         <p className="text-sm text-gray-400 shrink-0 ml-4">{company.phone}</p>
                       </div>
