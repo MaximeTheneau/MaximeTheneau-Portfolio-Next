@@ -5,6 +5,8 @@ import { GetStaticProps } from 'next';
 import { useState, useEffect } from 'react';
 import fetcher from '@/utils/fetcher';
 import { DepartmentType, CategoryType, CompanyType, CityType } from '@/types/annuaire.type';
+import { PostType } from '@/types/post.type';
+import Image from '@/utils/Image';
 import HeadComponents from '@/components/head/HeadComponents';
 import InscriptionCta from '@/components/inscriptionCta/InscriptionCta';
 import AnnuaireAside from '@/components/aside/AnnuaireAside';
@@ -13,41 +15,46 @@ import type { MapMarker } from '@/components/maps/AnnuaireMap';
 const AnnuaireMap = dynamic(() => import('@/components/maps/AnnuaireMap'), { ssr: false });
 
 interface AnnuaireIndexProps {
+  post: PostType;
   departments: DepartmentType[];
   categories: CategoryType[];
   mapMarkers: MapMarker[];
 }
 
 export const getStaticProps: GetStaticProps<AnnuaireIndexProps> = async () => {
-  const data = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire`);
+  const [data, responsePage] = await Promise.all([
+    fetcher(`${process.env.ANNUAIRE_API_URL}annuaire`),
+    fetcher(`${process.env.NEXT_PUBLIC_API_URL}posts/annuaire`),
+  ]);
 
   const mapMarkers: MapMarker[] = [];
 
-  // await Promise.all(
-  //   (data.departments as DepartmentType[]).map(async (dept) => {
-  //     const deptData = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/${dept.slug}`);
-  //     await Promise.all(
-  //       (deptData.cities as CityType[]).map(async (city) => {
-  //         const cityData = await fetcher(
-  //           `${process.env.ANNUAIRE_API_URL}annuaire/${dept.slug}/${city.slug}`
-  //         );
-  //         (cityData.companies as CompanyType[]).forEach((company) => {
-  //           if (company.address.lat && company.address.lng) {
-  //             mapMarkers.push({
-  //               lat: company.address.lat,
-  //               lng: company.address.lng,
-  //               name: company.name,
-  //               url: `/freelance/${dept.slug}/${city.slug}/${company.slug}`,
-  //             });
-  //           }
-  //         });
-  //       })
-  //     );
-  //   })
-  // );
+  await Promise.all(
+    (data.departments as DepartmentType[]).map(async (dept) => {
+      const deptData = await fetcher(`${process.env.ANNUAIRE_API_URL}annuaire/${dept.slug}`);
+      await Promise.all(
+        (deptData.cities as CityType[]).map(async (city) => {
+          const cityData = await fetcher(
+            `${process.env.ANNUAIRE_API_URL}annuaire/${dept.slug}/${city.slug}`
+          );
+          (cityData.companies as CompanyType[]).forEach((company) => {
+            if (company.address.lat && company.address.lng) {
+              mapMarkers.push({
+                lat: company.address.lat,
+                lng: company.address.lng,
+                name: company.name,
+                url: `/freelance/${dept.slug}/${city.slug}/${company.slug}`,
+              });
+            }
+          });
+        })
+      );
+    })
+  );
 
   return {
     props: {
+      post: responsePage.post,
       departments: data.departments,
       categories: data.categories,
       mapMarkers,
@@ -55,15 +62,13 @@ export const getStaticProps: GetStaticProps<AnnuaireIndexProps> = async () => {
   };
 };
 
-export default function AnnuaireIndex({ departments, categories, mapMarkers }: AnnuaireIndexProps) {
+export default function AnnuaireIndex({ post, departments, categories, mapMarkers }: AnnuaireIndexProps) {
   const [query, setQuery] = useState('');
   const [companies, setCompanies] = useState<CompanyType[]>([]);
   const [cities, setCities] = useState<CityType[]>([]);
   const [loading, setLoading] = useState(false);
-  const [focusFilter, setFocusFilter] = useState<string | null>(null);
 
-  const zoomTo = (filter: string) => {
-    setFocusFilter(filter);
+  const zoomTo = () => {
     document.getElementById('annuaire-map')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
@@ -95,23 +100,38 @@ export default function AnnuaireIndex({ departments, categories, mapMarkers }: A
   return (
     <>
       <HeadComponents
-        title="Annuaire Freelance - Trouvez des pros par département et catégorie"
-        description="Annuaire des freelances et professionnels en France. Recherchez par département, ville ou catégorie de compétence."
-        url="/freelance"
-        image=""
-        srcset=""
+        title={post.heading}
+        description={post.metaDescription}
+        url={post.url}
+        image={post.imgPost}
+        srcset={post.srcset}
+        imgWidth={post.imgWidth}
+        imgHeight={post.imgHeight}
       />
 
       <div className="max-w-5xl mx-auto px-4 py-8">
         <div className="flex flex-wrap justify-center">
           <article className="w-full md:w-3/4 px-4 bg-white">
-            <h1 className="text-3xl font-bold mb-2">Annuaire Freelance — Trouvez un pro près de chez vous</h1>
-            <p className="text-gray-600 mb-4">Référencez votre activité et soyez trouvé par vos futurs clients.</p>
+            <figure>
+              <Image
+                src={`${post.imgPost}?format=webp&quality=70`}
+                alt={post.altImg || post.title}
+                width={post.imgWidth}
+                height={post.imgHeight}
+                srcset={post.srcset}
+                priority
+              />
+              {post.title !== post.altImg && (
+                <figcaption>{post.altImg}</figcaption>
+              )}
+            </figure>
+            <h1>{post.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: post.contents }} />
             <InscriptionCta />
 
             {/* Map */}
             <div id="annuaire-map" className="mt-6 mb-8 rounded overflow-hidden">
-              <AnnuaireMap markers={mapMarkers} height="400px" autoFit />
+              <AnnuaireMap markers={mapMarkers} height="400px" />
             </div>
 
             {/* Search */}
@@ -215,6 +235,15 @@ export default function AnnuaireIndex({ departments, categories, mapMarkers }: A
                 ))}
               </ul>
             </section>
+
+            <article>
+              {post.paragraphPosts?.map((paragraphArticle) => (
+                <div key={paragraphArticle.subtitle}>
+                  <h2>{paragraphArticle.subtitle}</h2>
+                  <div className="w-responsive" dangerouslySetInnerHTML={{ __html: paragraphArticle.paragraph }} />
+                </div>
+              ))}
+            </article>
           </article>
           <AnnuaireAside />
         </div>
