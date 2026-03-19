@@ -30,6 +30,7 @@ const INITIAL_FORM: CompanyFormType = {
   formatted_address: '',
   city_name: '',
   website: '',
+  short_description: '',
   description: '',
   postal_code: '',
   department_name: '',
@@ -40,7 +41,7 @@ const INITIAL_FORM: CompanyFormType = {
 
 const STEPS = [
   { label: 'Contact', fields: ['first_name', 'last_name', 'email', 'phone'] },
-  { label: 'Entreprise', fields: ['company_name', 'siret', 'category_ids'] },
+  { label: 'Entreprise', fields: ['company_name', 'siret', 'category_ids', 'website', 'short_description', 'description'] },
   { label: 'Adresse', fields: ['place_id', 'formatted_address', 'city_name', 'postal_code'] },
 ] as const;
 
@@ -173,6 +174,21 @@ export default function Inscription({ categories, departments }: InscriptionProp
       const isEmpty = Array.isArray(val) ? val.length === 0 : !val;
       if (isEmpty) {
         newErrors[f] = ['Ce champ est obligatoire.'];
+        return;
+      }
+      if (f === 'short_description') {
+        const len = (val as string).trim().length;
+        if (len > 130) newErrors[f] = [`La description courte ne doit pas dépasser 130 caractères (actuellement ${len}).`];
+      }
+      if (f === 'description') {
+        const len = (val as string).trim().length;
+        if (len < 500) newErrors[f] = [`La description doit contenir au moins 500 caractères (actuellement ${len}).`];
+        else if (len > 1500) newErrors[f] = [`La description ne doit pas dépasser 1500 caractères (actuellement ${len}).`];
+      }
+      if (f === 'website') {
+        if (!(val as string).startsWith('https://')) {
+          newErrors[f] = ["L'URL doit commencer par https://"];
+        }
       }
     });
     setErrors(newErrors);
@@ -448,11 +464,12 @@ export default function Inscription({ categories, departments }: InscriptionProp
 
               <div>
                 <label className="block text-sm font-medium mb-1" htmlFor="website">
-                  Site web
+                  Site web <span className="text-red-500">*</span>
                 </label>
                 <input
                   id="website"
                   type="url"
+                  required
                   autoComplete="url"
                   placeholder="https://"
                   className={inputClass('website')}
@@ -462,19 +479,59 @@ export default function Inscription({ categories, departments }: InscriptionProp
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1" htmlFor="description">
-                  Description
+                <label className="block text-sm font-medium mb-1" htmlFor="short_description">
+                  Description courte <span className="text-red-500">*</span>
                 </label>
+                <input
+                  id="short_description"
+                  required
+                  maxLength={130}
+                  className={inputClass('short_description')}
+                  placeholder="Résumez votre activité en une phrase percutante…"
+                  {...inputProps('short_description')}
+                />
+                <div className="flex justify-between mt-1">
+                  <ErrorList name="short_description" />
+                  <span className={`text-xs ml-auto ${
+                    (form.short_description?.trim().length ?? 0) > 130 ? 'text-red-500' : 'text-gray-400'
+                  }`}>
+                    {form.short_description?.trim().length ?? 0} / 130 caractères
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1" htmlFor="description">
+                  Description <span className="text-red-500">*</span>
+                </label>
+                <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded text-sm text-blue-800">
+                  Rédigez une description <strong>unique et claire</strong> de votre activité. Évitez le copier-coller générique — une description originale améliore votre visibilité et inspire confiance à vos futurs clients.
+                </div>
                 <textarea
                   id="description"
                   name="description"
+                  required
+                  minLength={500}
+                  maxLength={1500}
                   value={form.description ?? ''}
                   onChange={handleChange}
-                  rows={4}
+                  rows={6}
                   className={inputClass('description')}
-                  placeholder="Décrivez votre activité en quelques lignes…"
+                  placeholder="Décrivez votre activité, vos compétences et ce qui vous différencie…"
                 />
-                <ErrorList name="description" />
+                <div className="flex justify-between mt-1">
+                  <ErrorList name="description" />
+                  <span className={`text-xs ml-auto ${
+                    (form.description?.trim().length ?? 0) < 500
+                      ? 'text-red-500'
+                      : (form.description?.trim().length ?? 0) > 1500
+                      ? 'text-red-500'
+                      : 'text-green-600'
+                  }`}>
+                    {form.description?.trim().length ?? 0} / 1500 caractères
+                    {(form.description?.trim().length ?? 0) < 500 && ` (minimum 500)`}
+                  </span>
+                </div>
               </div>
 
               <div>

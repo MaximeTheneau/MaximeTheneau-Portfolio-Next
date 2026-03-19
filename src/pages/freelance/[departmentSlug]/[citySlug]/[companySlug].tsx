@@ -69,13 +69,12 @@ export default function CompanyPage({ company }: CompanyPageProps) {
     <>
       <HeadComponents
         title={`${company.name} — Freelance à ${city.name} (${department.code})`}
-        description={company.description ?? `Fiche freelance de ${company.name} à ${city.name}.`}
+        description={company.shortDescription ?? `Fiche freelance de ${company.name} à ${city.name}.`}
         url={`/freelance/${department.slug}/${city.slug}/${company.slug}`}
         image=""
         srcset=""
       />
-
-      <div className="max-w-5xl mx-auto px-4 py-8">
+      <div>
         <div className="flex flex-wrap justify-center">
           <article className="w-full md:w-3/4 px-4">
             <nav className="text-sm text-gray-500 mb-4">
@@ -93,77 +92,96 @@ export default function CompanyPage({ company }: CompanyPageProps) {
               › {company.name}
             </nav>
 
-            <div className="border border-gray-200 rounded-lg p-6 mb-6">
-              {company.img && (
-                <div className="mb-5 flex justify-center">
-                  <Image
-                    src={company.img}
-                    srcset={company.srcset}
-                    alt={company.altImg ?? `Logo de ${company.name}`}
-                    width={company.imgWidth ?? 100 }
-                    height={company.imgHeight ?? 100}
-                    priority
-                  />
-                </div>
-              )}
-              <h1 className="text-3xl font-bold mb-1">{company.name}</h1>
-              {company.category && (
-                <p className="text-gray-500 mb-4">
-                  <Link href={`/freelance/categorie/${company.category.slug}`} className="hover:underline">
-                    {company.category.name}
-                  </Link>
-                </p>
-              )}
-
-              {company.description && (
-                <p className="text-gray-700 mb-6">{company.description}</p>
-              )}
-
-              <dl className="space-y-3 text-sm">
-                <div className="flex gap-3">
-                  <dt className="w-28 font-medium text-gray-500 shrink-0">Téléphone</dt>
-                  <dd>
-                    <a href={`tel:${company.phone}`} className="hover:underline">
-                      {company.phone}
-                    </a>
-                  </dd>
-                </div>
-
-                {company.website && (
-                  <div className="flex gap-3">
-                    <dt className="w-28 font-medium text-gray-500 shrink-0">Site web</dt>
+            <div className="p-6 ">
+              <div className="px-8 py-4 bg-secondaryLight rounded my-4">
+                {company.img && (
+                  <div className="mb-5 flex justify-center">
+                    <Image
+                      src={company.img}
+                      srcset={company.srcset}
+                      alt={company.altImg ?? `Logo de ${company.name}`}
+                      width={company.imgWidth ?? 100 }
+                      height={company.imgHeight ?? 100}
+                      priority
+                    />
+                  </div>
+                )}
+                <h1 className="text-3xl font-bold mb-1">{company.name}</h1>
+                {company.description && (
+                  <p >{company.description}</p>
+                )}
+            
+                {/* Categories */}
+                {company.categories.length > 0 && (
+                  <div className="">
+                    <ul>
+                      {company.categories.map((cat) => (
+                        <li key={cat.slug} className="list-none inline-block ">
+                          <Link
+                            href={`/freelance/categorie/${cat.slug}`}
+                            className="inline-block border px-3 py-2 text-sm hover:bg-gray-50"
+                          >
+                            {cat.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <dl >
+                  <div className="flex justify-center gap-3">
+                    <dt className="w-28 font-medium text-gray-500 shrink-0">Téléphone</dt>
                     <dd>
-                      <a
-                        href={company.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:underline text-blue-600 break-all"
-                      >
-                        {company.website}
+                      <a href={`tel:${company.phone}`} className="hover:underline">
+                        {company.phone}
                       </a>
                     </dd>
                   </div>
-                )}
 
-                <div className="flex gap-3">
-                  <dt className="w-28 font-medium text-gray-500 shrink-0">Adresse</dt>
-                  <dd>{company.address.formatted}</dd>
-                </div>
+                  {company.website && (
+                    <div className="flex justify-center gap-3">
+                      <dt className="w-28 font-medium text-gray-500 shrink-0">Site web</dt>
+                      <dd>
+                        <a
+                          href={company.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline text-blue-600 break-all"
+                        >
+                          {company.website}
+                        </a>
+                      </dd>
+                    </div>
+                  )}
 
-                <div className="flex gap-3">
-                  <dt className="w-28 font-medium text-gray-500 shrink-0">SIRET</dt>
-                  <dd className="font-mono">{company.siret}</dd>
-                </div>
-              </dl>
+                  <div className="flex justify-center gap-3">
+                    <dt className="w-28 font-medium text-gray-500 shrink-0">Adresse</dt>
+                    <dd>{company.address.formatted}</dd>
+                  </div>
+
+                  <div className="flex justify-center gap-3">
+                    <dt className="w-28 font-medium text-gray-500 shrink-0">SIRET</dt>
+                    <dd className="font-mono">{company.siret}</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
 
+
+            {/* Map */}
+            {mapMarkers.length > 0 && (
+              <div className="rounded overflow-hidden">
+                <AnnuaireMap markers={mapMarkers} height="300px" autoFit />
+              </div>
+            )}
+            
             {/* Zones d'intervention */}
             {company.interventionDept && company.interventionDept.length > 0 && (
-              <div className="border border-gray-200 rounded-lg p-6 mb-6">
-                <h2 className="text-lg font-semibold mb-3">Zones d&apos;intervention</h2>
-                <ul className="flex flex-wrap gap-2">
+              <div className="border border-gray-200 rounded-lg ">
+                <h2>Zones d&apos;intervention</h2>
+                <ul className="flex flex-wrap justify-center mb-6 gap-2">
                   {company.interventionDept.map((dept) => (
-                    <li key={dept.slug}>
+                    <li className='list-none' key={dept.slug}>
                       <Link
                         href={`/freelance/${dept.slug}`}
                         className="inline-flex items-center gap-1 border border-gray-200 rounded px-3 py-1 text-sm hover:bg-gray-50"
@@ -176,15 +194,9 @@ export default function CompanyPage({ company }: CompanyPageProps) {
                 </ul>
               </div>
             )}
-
-            {/* Map */}
-            {mapMarkers.length > 0 && (
-              <div className="rounded overflow-hidden">
-                <AnnuaireMap markers={mapMarkers} height="300px" autoFit />
-              </div>
-            )}
-          </article>
-          <AnnuaireAside />
+            
+            </article>
+            <AnnuaireAside />
         </div>
       </div>
     </>
