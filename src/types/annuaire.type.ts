@@ -22,6 +22,7 @@ export type CompanyFormType = {
   formatted_address: string
   city_name: string
   website?: string
+  short_description?: string
   description?: string
   postal_code?: string
   department_name?: string
@@ -35,6 +36,7 @@ export type CompanyType = {
   name: string
   phone: string
   website: string | null
+  shortDescription: string | null
   description: string | null
   siret: string
   img?: string | null
@@ -43,7 +45,7 @@ export type CompanyType = {
   imgWidth?: number | null
   imgHeight?: number | null
   interventionDept?: DepartmentType[]
-  category: CategoryType | null
+  categories: CategoryType[]
   address: {
     formatted: string
     lat: string
