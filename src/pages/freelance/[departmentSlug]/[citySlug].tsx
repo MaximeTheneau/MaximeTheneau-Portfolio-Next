@@ -91,7 +91,7 @@ export default function CityPage({ department, city, companies }: CityPageProps)
             {/* Map */}
             {mapMarkers.length > 0 && (
               <div className="mb-8 rounded overflow-hidden">
-                <AnnuaireMap markers={mapMarkers} height="350px" />
+                <AnnuaireMap markers={mapMarkers} height="350px" autoFit />
               </div>
             )}
 

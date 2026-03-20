@@ -131,7 +131,7 @@ export default function AnnuaireIndex({ post, departments, categories, mapMarker
 
             {/* Map */}
             <div id="annuaire-map" className="mt-6 mb-8 rounded overflow-hidden">
-              <AnnuaireMap markers={mapMarkers} height="400px" />
+              <AnnuaireMap markers={mapMarkers} height="400px" autoFit />
             </div>
 
             {/* Search */}
@@ -165,7 +165,7 @@ export default function AnnuaireIndex({ post, departments, categories, mapMarker
                   {cities.map((city) => (
                     <div key={`${city.department.slug}-${city.slug}`} className="flex items-center justify-between px-4 py-3 hover:bg-gray-50">
                       <button
-                        onClick={() => zoomTo(`/freelance/${city.department.slug}/${city.slug}/`)}
+                        onClick={() => zoomTo()}
                         className="flex-1 text-left text-blue-600"
                       >
                         <span>{city.name}</span>
