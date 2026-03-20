@@ -106,17 +106,9 @@ export default function CityPage({ department, city, companies }: CityPageProps)
                       className="block border border-gray-200 rounded p-4 hover:bg-gray-50"
                     >
                       <div className="flex items-start justify-between">
-                        <div>
-                          <p className="font-semibold text-lg">{company.name}</p>
-                          {company.category && (
-                            <p className="text-sm text-gray-500">{company.category.name}</p>
-                          )}
-                        </div>
+                        <p className="font-semibold text-lg">{company.name}</p>
                         <p className="text-sm text-gray-400 shrink-0 ml-4">{company.phone}</p>
                       </div>
-                      {company.description && (
-                        <p className="mt-2 text-sm text-gray-600 line-clamp-2">{company.description}</p>
-                      )}
                     </Link>
                   </li>
                 ))}
