@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 import FormMiddleware from '../../middleware/formMiddleware';
 import Confirmation from '../modal/Confirmation';
 import Input from './form/Input';
-import Button from '../ui/Button';
+import { useHoneypot } from '@/hooks/useHoneypot';
+import HoneypotField from '@/components/form/HoneypotField';
 
 interface FormState {
   name: string;
@@ -52,6 +53,7 @@ const productSurfaceMap: Record<string, number> = {
 // == Composant
 export default function DevisForm() {
   const router = useRouter();
+  const honeypot = useHoneypot();
 
   const { product } = router.query;
 
@@ -212,6 +214,7 @@ export default function DevisForm() {
 
   const handleSubmit = (evt: { preventDefault: () => void; }) => {
     evt.preventDefault();
+    if (honeypot.isBot()) return;
     const req = state.form;
     FormMiddleware(req, 'contact', handleResponse200, handleResponseError);
     setState({
@@ -229,6 +232,7 @@ export default function DevisForm() {
         onSubmit={handleSubmit}
         className="flex flex-wrap sm:flex-row flex-col sm:w-3/4 w-full sm:mx-auto mx-2 p-4 text-left"
       >
+        <HoneypotField honeypot={honeypot} />
         <div className="w-100 sm:w-1/2 pr-4">
           <label htmlFor="name">
             <p className="label">
