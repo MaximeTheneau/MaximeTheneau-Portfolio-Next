@@ -4,7 +4,7 @@ import {
 
 const CSP_GOOGLE_ADS = process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS || 'https://pagead2.googlesyndication.com';
 const CSP_GA_REGION = process.env.NEXT_PUBLIC_CSP_GA_REGION || 'https://region1.google-analytics.com';
-const CSP_AD_QUALITY = process.env.NEXT_PUBLIC_CSP_AD_QUALITY || 'https://ep1.adtrafficquality.google';
+const CSP_AD_QUALITY = process.env.NEXT_PUBLIC_CSP_AD_QUALITY || 'https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google';
 const CSP_API_LOCAL = process.env.NEXT_PUBLIC_CSP_API_LOCAL || 'http://localhost:8000';
 const CSP_GOOGLE_FONTS_STYLE = process.env.NEXT_PUBLIC_CSP_GOOGLE_FONTS_STYLE || 'https://fonts.googleapis.com';
 const CSP_GOOGLE_FONTS_SRC = process.env.NEXT_PUBLIC_CSP_GOOGLE_FONTS_SRC || 'https://fonts.gstatic.com';
@@ -18,7 +18,8 @@ export default function Document() {
           httpEquiv="Content-Security-Policy"
           content={[
             "default-src 'self'",
-            `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com ${CSP_GOOGLE_ADS} https://maps.googleapis.com https://maps.gstatic.com`,
+            `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com ${CSP_GOOGLE_ADS} https://maps.googleapis.com https://maps.gstatic.com ${CSP_AD_QUALITY}`,
+            `script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com ${CSP_GOOGLE_ADS} https://maps.googleapis.com https://maps.gstatic.com ${CSP_AD_QUALITY}`,
             `style-src 'self' 'unsafe-inline' ${CSP_GOOGLE_FONTS_STYLE}`,
             `img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr https://maps.gstatic.com https://maps.googleapis.com ${CSP_GOOGLE_ADS} data:`,
             `font-src 'self' ${CSP_GOOGLE_FONTS_SRC}`,
@@ -59,6 +60,13 @@ if (window.trustedTypes && trustedTypes.createPolicy) {
     createScriptURL: function(s) { return s; }
   });
 }
+new MutationObserver(function(mutations) {
+  mutations.forEach(function(m) {
+    if (m.type === 'attributes' && m.attributeName === 'aria-hidden' && document.body.getAttribute('aria-hidden') === 'true') {
+      document.body.removeAttribute('aria-hidden');
+    }
+  });
+}).observe(document.body, { attributes: true, attributeFilter: ['aria-hidden'] });
 `,
           }}
         />
