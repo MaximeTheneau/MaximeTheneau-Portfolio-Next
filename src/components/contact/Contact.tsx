@@ -2,9 +2,8 @@ import React, { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import formMiddleware from '../../middleware/formMiddleware';
 import Confirmation from '../modal/Confirmation';
-import Button from '../ui/Button';
-// import Select from './form/Select';
-// import Input from './form/Input';
+import { useHoneypot } from '@/hooks/useHoneypot';
+import HoneypotField from '@/components/form/HoneypotField';
 
 interface FormState {
   name: string;
@@ -43,6 +42,7 @@ interface ContactFormState {
 // == Composant
 export default function ContactForm() {
   const router = useRouter();
+  const honeypot = useHoneypot();
   const [state, setState] = useState<ContactFormState>({
     form: {
       name: '',
@@ -127,6 +127,7 @@ export default function ContactForm() {
 
   const handleSubmit = (evt: { preventDefault: () => void; }) => {
     evt.preventDefault();
+    if (honeypot.isBot()) return;
     setState({
       ...state,
       modal: {
@@ -155,6 +156,7 @@ export default function ContactForm() {
             )}
             required
           /> */}
+          <HoneypotField honeypot={honeypot} />
           <div className="w-100 sm:w-1/2 pr-4">
             <label htmlFor="name">
               <p className="label">
