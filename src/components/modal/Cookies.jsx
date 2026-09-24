@@ -107,7 +107,7 @@ export default function CookiesModal() {
     }
 
     if (window.localStorage.getItem('cookiesAdsense')) {
-      if (router.pathname.startsWith('/blog/')) {
+      if (router.pathname.startsWith('/blog/') || router.pathname.startsWith('/freelance/')) {
         createGoogleAdsenseScript();
       }
     } else {
@@ -119,7 +119,7 @@ export default function CookiesModal() {
 
   useEffect(() => {
     if (window.localStorage.getItem('cookiesAdsense')) {
-      if (router.pathname.startsWith('/blog/')) {
+      if (router.pathname.startsWith('/blog/') || router.pathname.startsWith('/freelance/')) {
         createGoogleAdsenseScript();
       }
     }
@@ -133,7 +133,7 @@ export default function CookiesModal() {
     updateCookies('cookiesGoogle', true);
     updateCookies('cookiesAdsense', true);
     createGoogleAnalyticsScript(true);
-    if (router.pathname.startsWith('/blog/')) {
+    if (router.pathname.startsWith('/blog/') || router.pathname.startsWith('/freelance/')) {
       createGoogleAdsenseScript();
     }
   };
@@ -175,7 +175,7 @@ export default function CookiesModal() {
                   onClick={() => {
                     handleCookieChange('cookiesAdsense');
                     window.localStorage.setItem('cookiesAdsense', !cookies.cookiesAdsense);
-                    if (router.pathname.startsWith('/blog/')) {
+                    if (router.pathname.startsWith('/blog/') || router.pathname.startsWith('/freelance/')) {
                       createGoogleAdsenseScript();
                     }
                   }}

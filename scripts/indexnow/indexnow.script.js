@@ -1,10 +1,16 @@
 require('dotenv').config({ path: '.env.local' });
 const fs = require('fs');
 
-const INDEXNOW_KEY = process.env.NEXT_PUBLIC_INDEXNOW_KEY
-const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
-const HOST = new URL(process.env.NEXT_PUBLIC_URL).host;
+const INDEXNOW_KEY = process.env.NEXT_PUBLIC_INDEXNOW_KEY;
+const INDEXNOW_ENDPOINT = process.env.INDEXNOW_ENDPOINT || 'https://api.indexnow.org/indexnow';
 const URL_FRONT = process.env.NEXT_PUBLIC_URL;
+
+if (!URL_FRONT) {
+  console.error('IndexNow: NEXT_PUBLIC_URL is not defined.');
+  process.exit(1);
+}
+
+const HOST = new URL(URL_FRONT).host;
 
 const submitToIndexNow = async () => {
   // Read sitemap to get all URLs
