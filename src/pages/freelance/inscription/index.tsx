@@ -5,6 +5,8 @@ import { GetStaticProps } from 'next';
 import Script from 'next/script';
 import HeadComponents from '@/components/head/HeadComponents';
 import { CategoryType, DepartmentType, CompanyFormType } from '@/types/annuaire.type';
+import { useHoneypot } from '@/hooks/useHoneypot';
+import HoneypotField from '@/components/form/HoneypotField';
 
 declare const google: any;
 
@@ -58,6 +60,7 @@ export const getStaticProps: GetStaticProps<InscriptionProps> = async () => {
 
 export default function Inscription({ categories, departments }: InscriptionProps) {
   const router = useRouter();
+  const honeypot = useHoneypot();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<CompanyFormType>(INITIAL_FORM);
   const [logo, setLogo] = useState<File | null>(null);
@@ -206,6 +209,7 @@ export default function Inscription({ categories, departments }: InscriptionProp
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (honeypot.isBot()) return;
     if (!validateStep()) return;
 
     setGlobalError('');
@@ -320,6 +324,7 @@ export default function Inscription({ categories, departments }: InscriptionProp
         )}
 
         <form onSubmit={handleSubmit} noValidate>
+          <HoneypotField honeypot={honeypot} fieldName="hp_url" />
           {/* ── Étape 1 : Contact ── */}
           {step === 0 && (
             <div className="space-y-4">

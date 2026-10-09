@@ -2,37 +2,15 @@ import {
   Html, Head, Main, NextScript,
 } from 'next/document';
 
-const CSP_GOOGLE_ADS = process.env.NEXT_PUBLIC_CSP_GOOGLE_ADS || 'https://pagead2.googlesyndication.com';
-const CSP_GA_REGION = process.env.NEXT_PUBLIC_CSP_GA_REGION || 'https://region1.google-analytics.com';
-const CSP_AD_QUALITY = process.env.NEXT_PUBLIC_CSP_AD_QUALITY || 'https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google';
-const CSP_API_LOCAL = process.env.NEXT_PUBLIC_CSP_API_LOCAL || 'http://localhost:8000';
-const CSP_GOOGLE_FONTS_STYLE = process.env.NEXT_PUBLIC_CSP_GOOGLE_FONTS_STYLE || 'https://fonts.googleapis.com';
-const CSP_GOOGLE_FONTS_SRC = process.env.NEXT_PUBLIC_CSP_GOOGLE_FONTS_SRC || 'https://fonts.gstatic.com';
-const CSP_ANNUAIRE_API = process.env.NEXT_PUBLIC_CSP_ANNUAIRE_API || 'https://annuaire.maximefreelance.fr';
-
 export default function Document() {
   return (
     <Html lang="fr">
       <Head>
         <meta
           httpEquiv="Content-Security-Policy"
-          content={[
-            "default-src 'self'",
-            `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com ${CSP_GOOGLE_ADS} https://maps.googleapis.com https://maps.gstatic.com ${CSP_AD_QUALITY}`,
-            `script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com ${CSP_GOOGLE_ADS} https://maps.googleapis.com https://maps.gstatic.com ${CSP_AD_QUALITY}`,
-            `style-src 'self' 'unsafe-inline' ${CSP_GOOGLE_FONTS_STYLE}`,
-            `img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr https://maps.gstatic.com https://maps.googleapis.com ${CSP_GOOGLE_ADS} data:`,
-            `font-src 'self' ${CSP_GOOGLE_FONTS_SRC}`,
-            `frame-src https://www.google.com ${CSP_GOOGLE_ADS}`,
-            `connect-src 'self' ${CSP_API_LOCAL} ${CSP_ANNUAIRE_API} https://www.google-analytics.com ${CSP_GA_REGION} https://www.googletagmanager.com https://maps.googleapis.com ${CSP_GOOGLE_ADS} ${CSP_AD_QUALITY}`,
-            "base-uri 'self'",
-            `form-action 'self' ${CSP_API_LOCAL}`,
-            "object-src 'none'",
-            "upgrade-insecure-requests",
-            "trusted-types default nextjs nextjs#bundler dompurify goog#html allow-duplicates google-maps-api#html lit-html",
-            "require-trusted-types-for 'script'",
-          ].join('; ')}
+          content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://maps.googleapis.com https://maps.gstatic.com https://*.adtrafficquality.google; script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://maps.googleapis.com https://maps.gstatic.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline'; img-src 'self' https://picture.maximefreelance.fr https://picure.theneaumaxime.fr data:; font-src 'self'; frame-src https://www.google.com; connect-src 'self' https://back.theneaumaxime.fr https://www.google-analytics.com https://www.googletagmanager.com https://annuaire.maximefreelance.fr; base-uri 'self'; form-action 'self' https://back.theneaumaxime.fr; object-src 'none'; upgrade-insecure-requests; trusted-types default nextjs nextjs#bundler dompurify goog#html google-maps-api#html lit-html 'allow-duplicates'; require-trusted-types-for 'script'; "
         />
+
         <meta name="theme-color" content="#def0c2" />
         <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_WEBMASTER} />
         <meta name="ahrefs-site-verification" content="80e1e4c68c5760798a0c167d6db84e79e9b343301fd1eb054f1da5fc8529e778" />
@@ -60,13 +38,6 @@ if (window.trustedTypes && trustedTypes.createPolicy) {
     createScriptURL: function(s) { return s; }
   });
 }
-new MutationObserver(function(mutations) {
-  mutations.forEach(function(m) {
-    if (m.type === 'attributes' && m.attributeName === 'aria-hidden' && document.body.getAttribute('aria-hidden') === 'true') {
-      document.body.removeAttribute('aria-hidden');
-    }
-  });
-}).observe(document.body, { attributes: true, attributeFilter: ['aria-hidden'] });
 `,
           }}
         />
