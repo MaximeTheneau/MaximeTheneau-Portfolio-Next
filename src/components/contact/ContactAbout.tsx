@@ -12,15 +12,15 @@ export default function ContactAbout() {
         <strong>📍 Marseille 13008</strong>
       </li>
       {/* Numéro de téléphone */}
-      {/* <li>
+      <li>
         <strong>
           <a href="tel:+33622068036" className="text-blue-600 hover:underline">
             📞 06 22 06 80 36
           </a>
         </strong>
-      </li> */}
+      </li>
       <li>
-        <strong>SIRET : 532 206 380 00034</strong>
+        <strong>SIRET : 532 206 380 000 42</strong>
       </li>
       <li>
         <NotCopie />

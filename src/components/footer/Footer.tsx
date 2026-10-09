@@ -91,7 +91,7 @@ export default function Footer() {
         </li>
       </ul>
       <p className="text-center italic text-sm mt-4 text-gray-600">
-        Maxime Freelance - SIRET : 532 206 380 00034 - Marseille
+        Maxime Freelance - SIRET : 532 206 380 000 42 - Marseille -  📞 06 22 06 80 36 
       </p>
     </div>
   );
